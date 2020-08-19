@@ -107,19 +107,19 @@ if ($jabatan == 19) { ?>
 			<b class="arrow"></b>
 			<ul class="submenu">
 				<li class="">
-					<a href="<?= base_url() . 'kehadiranguru'; ?>">
+					<a href="<?= base_url() . 'zakatfitrah'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Zakat Fitrah
 					</a>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'kehadiranpengganti'; ?>">
+					<a href="<?= base_url() . 'zakatmal'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Zakat Mal
 					</a>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'periksakehadiranguru'; ?>">
+					<a href="<?= base_url() . 'infaq'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Infaq
 					</a>
@@ -137,14 +137,14 @@ if ($jabatan == 19) { ?>
 			<b class="arrow"></b>
 			<ul class="submenu">
 				<li class="">
-					<a href="<?= base_url() . 'impbayarpsb'; ?>">
+					<a href="<?= base_url() . 'penerimaanzakat'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Transaksi Penerimaan Zakat
 					</a>
 					<b class="arrow"></b>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'impbayarpsb'; ?>">
+					<a href="<?= base_url() . 'penyaluranlangsung'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Transaksi Penyaluran Langsung
 					</a>
@@ -165,14 +165,14 @@ if ($jabatan == 19) { ?>
 
 			<ul class="submenu">
 				<li class="">
-					<a href="<?= base_url() . 'permataajar'; ?>">
+					<a href="<?= base_url() . 'lap_penerimaan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Laporan Penerimaan
 					</a>
 				</li>
 
 				<li class="">
-					<a href="<?= base_url() . 'penghapusannilai'; ?>">
+					<a href="<?= base_url() . 'rek_koran'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rekening Koran
 					</a>

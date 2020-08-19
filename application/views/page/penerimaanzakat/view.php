@@ -1,11 +1,11 @@
 <div class="row">
     <form class="form-horizontal" target="_blank" method="POST" role="form" id="formSearch" action="<?php echo base_url() ?>muzakki/laporan">
-        Kriteria Pencarian Muzakki
+        Kriteria Pencarian Penerimaan Zakat
         <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Muzakki </label>
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Penerimaan </label>
             <div class="col-sm-6">
-                <select class="form-control" name="kat_muzakki" id="kat_muzakki">
-                    <option value="">-- Pilih Muzakki --</option>
+                <select class="form-control" name="penerimaan" id="penerimaan">
+                    <option value="">-- Pilih Cara --</option>
                     <option value="1">Semua</option>
                     <option value="2">..</option>
                 </select>
@@ -24,8 +24,48 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Muzakki </label>
+            <div class="col-sm-6">
+                <select class="form-control" name="kat_muzakki" id="kat_muzakki">
+                    <option value="">-- Pilih Muzakki --</option>
+                    <option value="1">Semua</option>
+                    <option value="2">..</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cara Penerimaan </label>
+            <div class="col-sm-6">
+                <select class="form-control" name="cara_terima" id="cara_terima">
+                    <option value="">-- Pilih Cara --</option>
+                    <option value="1">Semua</option>
+                    <option value="2">..</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Periode </label>
+                <div class="col-sm-3">
+                    <div class="input-group">
+                        <input class="form-control date-picker" id="id-date-picker-1" name="periode_awal" type="date" data-date-format="dd-mm-yyyy" />
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar bigger-110"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="input-group">
+                        <input class="form-control date-picker" id="id-date-picker-1" type="date" name="periode_akhir" data-date-format="dd-mm-yyyy" />
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar bigger-110"></i>
+                        </span>
+                    </div>
+                </div>
+            
+        </div>
+        <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Alamat </label>
-            <div class="col-sm-3">
+            <div class="col-sm-6">
                 <input type="text" id="alamat" required name="alamat" class="form-control" />
             </div>
         </div>
@@ -40,9 +80,9 @@
             </div>
         </div>
         <td>
-            
+
         <td>
-            
+
             <div class="col-xs-9">
                 <button type="submit" id="btn_search" class="btn btn-sm btn-success pull-right">
                     <a class="ace-icon fa fa-search bigger-120"></a>Periksa
@@ -606,7 +646,7 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="table-header">
-            Semua Data Muzakki
+            Semua Data Penerimaan Zakat
         </div>
     </div>
 </div>
