@@ -82,13 +82,13 @@ if ($jabatan == 19) { ?>
 					</a>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'mssiswa'; ?>">
+					<a href="<?= base_url() . 'mustahik'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Mustahik
 					</a>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'mssiswa'; ?>">
+					<a href="<?= base_url() . 'zakat'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Kategori Zakat
 					</a>

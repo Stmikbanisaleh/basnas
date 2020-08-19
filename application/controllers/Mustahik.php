@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Muzakki extends CI_Controller
+class Mustahik extends CI_Controller
 {
 
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('model_muzakki');
+		$this->load->model('model_mustahik');
 		if (empty($this->session->userdata('username')) && empty($this->session->userdata('nama'))) {
             $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
             redirect('dashboard/login');
@@ -22,11 +22,11 @@ class Muzakki extends CI_Controller
 	public function index()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-			$myjabatan = $this->model_muzakki->viewOrdering('users', 'ID', 'asc')->result_array();
+			$myjabatan = $this->model_mustahik->viewOrdering('users', 'ID', 'asc')->result_array();
 			$data = array(
-				'page_content' 	=> '/muzakki/view',
-				'ribbon' 		=> '<li class="active">Dashboard</li><li>Master Muzakki</li>',
-				'page_name' 	=> 'Master Muzakki',
+				'page_content' 	=> '/mustahik/view',
+				'ribbon' 		=> '<li class="active">Dashboard</li><li>Master Mustahik</li>',
+				'page_name' 	=> 'Master Mustahik',
 				'js' 			=> 'js_file',
 				'myjabatan'		=> $myjabatan,
 			);
