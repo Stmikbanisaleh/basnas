@@ -13,6 +13,11 @@ class Model_mustahik extends CI_model
         return $this->db->get($table);
     }
 
+	public function getprovinsi()
+	{
+		return $this->db->query("SELECT id, proptbpro from master_provinsi group by proptbpro order by proptbpro asc");
+	}
+	
     public function viewWhereOrdering($table, $data, $order, $ordering)
     {
         $this->db->where($data);

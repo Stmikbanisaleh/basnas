@@ -9,9 +9,9 @@ class Mustahik extends CI_Controller
 		parent::__construct();
 		$this->load->model('model_mustahik');
 		if (empty($this->session->userdata('username')) && empty($this->session->userdata('nama'))) {
-            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
-            redirect('dashboard/login');
-        }
+			$this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+			redirect('dashboard/login');
+		}
 	}
 
 	function render_view($data)
@@ -22,13 +22,25 @@ class Mustahik extends CI_Controller
 	public function index()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-			$myjabatan = $this->model_mustahik->viewOrdering('users', 'ID', 'asc')->result_array();
+			$mypekerjaan = $this->model_mustahik->viewOrdering('master_pekerjaan', 'id', 'asc')->result_array();
+			$mypendidikan = $this->model_mustahik->viewOrdering('master_pendidikan', 'id', 'asc')->result_array();
+			$myprovinsi = $this->model_mustahik->getprovinsi()->result_array();
+			$mykepemilikan = $this->model_mustahik->viewOrdering('master_kepemilikan', 'id', 'asc')->result_array();
+			$mynama = $this->model_mustahik->viewOrdering('master_mustahik', 'nama', 'asc')->result_array();
+			$mykatmustahik = $this->model_mustahik->viewOrdering('master_kategori_mustahik', 'nama', 'asc')->result_array();
+			$myusaha = $this->model_mustahik->viewOrdering('master_jenis_usaha', 'nama', 'asc')->result_array();
 			$data = array(
 				'page_content' 	=> '/mustahik/view',
 				'ribbon' 		=> '<li class="active">Dashboard</li><li>Master Mustahik</li>',
 				'page_name' 	=> 'Master Mustahik',
 				'js' 			=> 'js_file',
-				'myjabatan'		=> $myjabatan,
+				'mypekerjaan'		=> $mypekerjaan,
+				'mypendidikan'		=> $mypendidikan,
+				'myprovinsi'		=> $myprovinsi,
+				'mykepemilikan'		=> $mykepemilikan,
+				'mynama'		=> $mynama,
+				'mykatmustahik' => $mykatmustahik,
+				'myusaha' => $myusaha
 			);
 			$this->render_view($data);
 		} else {
@@ -39,43 +51,34 @@ class Mustahik extends CI_Controller
 	public function simpan()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
-			$config['upload_path']          = './assets/gambar';
-            $config['allowed_types']        = 'gif|jpg|png|jpeg';
-            $config['encrypt_name'] = TRUE;
-			$this->load->library('upload', $config);
-			if ($this->upload->do_upload("file")) {
-				$data = array('upload_data' => $this->upload->data());
-				$foto = $data['upload_data']['file_name'];
-				$data = array(
-					'nip'  => $this->input->post('nip'),
-					'nama'  => $this->input->post('nama'),
-					'jabatan'  => $this->input->post('jabatan'),
-					'username'  => $this->input->post('email'),
-					'email'	=> $this->input->post('email'),
-					'password'  => hash('sha512',md5($this->input->post('password'))),
-					'level' => $this->input->post('level'),
-					'status'  => 1,
-					'gambar'  => $foto,
-					'createdAt' => date('Y-m-d H:i:s')
-				);
-				$result = $this->model_karyawan->insert($data, 'tbpengawas');
-				echo json_decode($result);
-			} else {
-				$data = array(
-					'nip'  => $this->input->post('nip'),
-					'nama'  => $this->input->post('nama'),
-					'jabatan'  => $this->input->post('jabatan'),
-					'username'  => $this->input->post('email'),
-					'password'  => hash('sha512',md5($this->input->post('password'))),
-					'level' => $this->input->post('level'),
-					'status'  => 1,
-					'email' => $this->input->post('email'),
-					'createdAt' => date('Y-m-d H:i:s')
-				);
-				$result = $this->model_karyawan->insert($data, 'tbpengawas');
-				echo json_decode($result);
-			}
+			$data = array(
+				'tgl_reg'  => $this->input->post('tanggal'),
+				'kat_mustahik'  => $this->input->post('kat_mustahik'),
+				'nama'  => $this->input->post('nama'),
+				'pendapatan'  => $this->input->post('pendapatan_v'),
+				'tipe_identitas'  => $this->input->post('tipe_identitas'),
+				'tgl_lhr'  => $this->input->post('tgl_lhr'),
+				'jenis_mustahik'  => $this->input->post('jenis_mustahik'),
+				'no_identitas'  => $this->input->post('idn'),
+				'tmp_lhr'  => $this->input->post('tempat_lahir'),
+				'jenis_kelamin'  => $this->input->post('jk'),
+				'kewarganegaraan'  => $this->input->post('warganegara'),
+				'jenis_usaha'  => $this->input->post('ju'),
+				'alamat'  => $this->input->post('alamat'),
+				'provinsi'  => $this->input->post('provinsi'),
+				'kab_kota'  => $this->input->post('kab_kot'),
+				'kecamatan'  => $this->input->post('kec'),
+				'desa_kelurahan'  => $this->input->post('desa'),
+				'kode_pos'  => $this->input->post('kode_pos'),
+				'telp'  => $this->input->post('telp_mustahik'),
+				'fax'  => $this->input->post('fax_mustahik'),
+				'handphone'  => $this->input->post('hp_mustahik'),
+				'email'  => $this->input->post('email'),
+				'website'  => $this->input->post('website'),
+				'createdAt' => date('Y-m-d H:i:s')
+			);
+			$result = $this->model_mustahik->insert($data, 'master_mustahik');
+			echo json_decode($result);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
@@ -99,7 +102,7 @@ class Mustahik extends CI_Controller
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
-			$my_data = $this->model_karyawan->view_karyawan()->result_array();
+			$my_data = $this->model_mustahik->viewOrdering('master_mustahik', 'id', 'desc')->result_array();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
@@ -168,7 +171,7 @@ class Mustahik extends CI_Controller
 			$config['upload_path']          = './assets/gambar';
 			$config['allowed_types']        = 'gif|jpg|png|jpeg';
 			$config['encrypt_name'] = TRUE;
-			$password = hash('sha512',md5($this->input->post('e_password')));
+			$password = hash('sha512', md5($this->input->post('e_password')));
 			$this->load->library('upload', $config);
 			if ($this->upload->do_upload("e_file")) {
 				$data = array('upload_data' => $this->upload->data());
