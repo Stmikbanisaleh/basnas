@@ -20,6 +20,16 @@ class Model_zakatfitrah extends CI_model
         return $this->db->get($table);
     }
 
+	public function viewOrderingZakat($table, $order, $ordering)
+    {
+        return $this->db->query("SELECT a.nama,b.*, CONCAT('Rp. ',FORMAT(b.total_terima,2)) Nominal from $table a join master_zakatfitrah b on a.id = b.id_muzakki order by $order $ordering");
+	}
+	
+	public function viewData($table, $id){
+		return $this->db->query("SELECT a.*, b.npwp,c.id as id_kartu from $table a join master_muzakki b on a.id_muzakki = b.id 
+		join master_rekening c on a.id_muzakki = c.id_muzakki where a.id = $id ");
+	}
+
     public function view_where($table, $data)
     {
         $this->db->where($data);
@@ -60,11 +70,4 @@ class Model_zakatfitrah extends CI_model
         $this->db->truncate($table);
     }
 
-    function simpan_upload($judul,$image){
-        $data = array(
-                'gambar' => $image
-            );  
-        $result= $this->db->insert('tbpengawas',$data);
-        return $result;
-    }
 }

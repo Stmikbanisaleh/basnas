@@ -19,8 +19,10 @@ class Model_muzakki extends CI_model
 			return $this->db->query("SELECT * from master_muzakki where jenis_muzakki ='" . $jenis . "'");
 		} else if ($jenis == null || $jenis == "") {
 			return $this->db->query("SELECT * from master_muzakki where id ='" . $nama . "'");
-		} else {
+		} else if ($nama != null || $nama != "" && $jenis != null || $jenis != "") {
 			return $this->db->query("SELECT * from master_muzakki where id ='" . $nama . "' and jenis_muzakki = '" . $jenis . "'");
+		} else {
+			return $this->db->query("SELECT * from master_muzakki");
 		}
 	}
 

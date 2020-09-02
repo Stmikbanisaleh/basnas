@@ -96,6 +96,12 @@ if ($jabatan == 19) { ?>
 				<li class="">
 					<a href="<?= base_url() . 'zakat'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
+						Master Kategori Zakat
+					</a>
+				</li>
+				<li class="">
+					<a href="<?= base_url() . 'zakat'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
 						Master Kepemilikan
 					</a>
 				</li>
@@ -130,12 +136,7 @@ if ($jabatan == 19) { ?>
 						Master Mustahik
 					</a>
 				</li>
-				<li class="">
-					<a href="<?= base_url() . 'zakat'; ?>">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Master Kategori Zakat
-					</a>
-				</li>
+			
 			</ul>
 		</li>
 

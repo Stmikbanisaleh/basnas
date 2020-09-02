@@ -19,6 +19,14 @@ class Mustahik extends CI_Controller
 		$this->template->load('template', $data); //Display Page
 	}
 
+	public function search()
+	{
+		$jenis = $this->input->post('kat_mustahik');
+		$nama = $this->input->post('nama2');
+		$result = $this->model_mustahik->getmustahiks($jenis, $nama)->result();
+		echo json_encode($result);
+	}
+
 	public function index()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
@@ -52,7 +60,7 @@ class Mustahik extends CI_Controller
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$data = array(
-				'tgl_reg'  => $this->input->post('tanggal'),
+				'tgl_reg'  => date('Y-m-d H:i:s'),
 				'kat_mustahik'  => $this->input->post('kat_mustahik'),
 				'nama'  => $this->input->post('nama'),
 				'pendapatan'  => $this->input->post('pendapatan_v'),
@@ -89,9 +97,9 @@ class Mustahik extends CI_Controller
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
 			$data = array(
-				'id_pengawas'  => $this->input->post('id'),
+				'id'  => $this->input->post('id'),
 			);
-			$my_data = $this->model_karyawan->view_where('tbpengawas', $data)->result();
+			$my_data = $this->model_mustahik->view_where('master_mustahik', $data)->result();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
@@ -102,108 +110,48 @@ class Mustahik extends CI_Controller
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
-			$my_data = $this->model_mustahik->viewOrdering('master_mustahik', 'id', 'desc')->result_array();
+			$my_data = $this->model_mustahik->getmustahik('master_mustahik', 'id', 'desc')->result_array();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
 	}
-	public function import()
-	{
-		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-			$files = $_FILES;
-			$file = $files['file'];
-			$fname = $file['tmp_name'];
-			$file = $_FILES['file']['name'];
-			$fname = $_FILES['file']['tmp_name'];
-			$ext = explode('.', $file);
-			/** Include path **/
-			set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
-			/** PHPExcel_IOFactory */
-			include 'PHPExcel/IOFactory.php';
-			$objPHPExcel = PHPExcel_IOFactory::load($fname);
-			$allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
-			$data_exist = [];
 
-			foreach ($allDataInSheet as $ads) {
-				if (array_filter($ads)) {
-					array_push($data_exist, $ads);
-				}
-			}
-			foreach ($data_exist as $key => $value) {
-				if ($key == '0') {
-					continue;
-				} else {
-					$arrayCustomerQuote = array(
-						'NOINDUK' => $value[0],
-						'NOREG' => $value[1],
-						'NMSISWA' => $value[2],
-						'TPLHR' => $value[3],
-						'TGLHR' => $value[4],
-						'JK' => $value[5],
-						'AGAMA' => $value[6],
-						'TAHUN' => $value[7],
-						'PS' => $value[8],
-						'KDWARGA' => $value[9],
-						'EMAIL' => $value[10],
-						'TELP' => $value[11],
-						'createdAt'    => date('Y-m-d H:i:s')
-					);
-					$result = $this->model_karyawan->insert($arrayCustomerQuote, 'tbpengawas');
-				}
-			}
-			if ($result) {
-				$result = 1;
-			}
-
-			echo json_encode($result);
-		} else {
-			echo json_encode($result);
-		}
-	}
 	public function update()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
 			$data_id = array(
-				'id_pengawas'  => $this->input->post('e_id')
+				'id'  => $this->input->post('e_id')
 			);
-			$config['upload_path']          = './assets/gambar';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
-			$config['encrypt_name'] = TRUE;
-			$password = hash('sha512', md5($this->input->post('e_password')));
-			$this->load->library('upload', $config);
-			if ($this->upload->do_upload("e_file")) {
-				$data = array('upload_data' => $this->upload->data());
-				$foto = $data['upload_data']['file_name'];
-				$data = array(
-					'nip'  => $this->input->post('nip'),
-					'nama'  => $this->input->post('nama'),
-					'jabatan'  => $this->input->post('jabatan'),
-					'username'  => $this->input->post('email'),
-					'password'  => $password,
-					'level' => $this->input->post('level'),
-					'status'  => 1,
-					'gambar'  => $foto,
-					'updatedAt' => date('Y-m-d H:i:s')
-				);
-				$result = $this->model_karyawan->update($data_id, $data, 'tbpengawas');
-				echo json_decode($result);
-			} else {
-				$data = array(
-					'nip'  => $this->input->post('e_nip'),
-					'nama'  => $this->input->post('e_nama'),
-					'jabatan'  => $this->input->post('e_jabatan'),
-					'username'  => $this->input->post('e_email'),
-					'password'  => $password,
-					'level' => $this->input->post('e_level'),
-					'status'  => $this->input->post('e_status'),
-					'gambar'  => null,
-					'updatedAt' => date('Y-m-d H:i:s')
-				);
-				$result = $this->model_karyawan->update($data_id, $data, 'tbpengawas');
-				echo json_decode($result);
-			}
+
+			$data = array(
+				'kat_mustahik'  => $this->input->post('e_kat_mustahik'),
+				'nama'  => $this->input->post('e_nama'),
+				'pendapatan'  => $this->input->post('e_pendapatan_v'),
+				'tipe_identitas'  => $this->input->post('e_tipe_identitas'),
+				'tgl_lhr'  => $this->input->post('e_tgl_lhr'),
+				'jenis_mustahik'  => $this->input->post('e_jenis_mustahik'),
+				'no_identitas'  => $this->input->post('e_idn'),
+				'tmp_lhr'  => $this->input->post('e_tempat_lahir'),
+				'jenis_kelamin'  => $this->input->post('e_jk'),
+				'kewarganegaraan'  => $this->input->post('e_warganegara'),
+				'jenis_usaha'  => $this->input->post('e_ju'),
+				'alamat'  => $this->input->post('e_alamat'),
+				'provinsi'  => $this->input->post('e_provinsi'),
+				'kab_kota'  => $this->input->post('e_kab_kot'),
+				'kecamatan'  => $this->input->post('e_kec'),
+				'desa_kelurahan'  => $this->input->post('e_desa'),
+				'kode_pos'  => $this->input->post('e_kode_pos'),
+				'telp'  => $this->input->post('e_telp_mustahik'),
+				'fax'  => $this->input->post('e_fax_mustahik'),
+				'handphone'  => $this->input->post('e_hp_mustahik'),
+				'email'  => $this->input->post('e_email'),
+				'website'  => $this->input->post('e_website'),
+				'updatedAt' => date('Y-m-d H:i:s')
+			);
+			$result = $this->model_mustahik->update($data_id, $data, 'master_mustahik');
+			echo json_decode($result);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
@@ -214,12 +162,10 @@ class Mustahik extends CI_Controller
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
 			$data_id = array(
-				'id_pengawas'  => $this->input->post('id')
+				'id'  => $this->input->post('id')
 			);
-			$data = array(
-				'isdeleted'  => 1,
-			);
-			$action = $this->model_karyawan->update($data_id, $data, 'tbpengawas');
+			
+			$action = $this->model_mustahik->delete($data_id, 'master_mustahik');
 			echo json_encode($action);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view

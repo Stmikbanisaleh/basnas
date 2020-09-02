@@ -1,5 +1,5 @@
 <div class="row">
-	<form class="form-horizontal" target="_blank" method="POST" role="form" id="formSearch" action="<?php echo base_url() ?>muzakki/laporan">
+	<form class="form-horizontal" id="formSearch">
 		Kriteria Pencarian Mustahik
 		<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kategori Mustahik </label>
@@ -44,38 +44,54 @@
 	<br>
 	<br>
 </div>
-<div id="my-modal2" class="modal fade" tabindex="-1">
+
+
+<div id="modalRekening" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="smaller lighter blue no-margin">Form Import Data <?= $page_name; ?></h3>
+				<h3 class="smaller lighter blue no-margin">Form Rekening Data <?= $page_name ?></h3>
 			</div>
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
-						<form class="form-horizontal" role="form" enctype="multipart/form-data" id="formImport">
+						<form class="form-horizontal" role="form" id="formRekening">
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Import Excel FIle </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Muzaki </label>
 								<div class="col-sm-6">
-									<input type="file" id="file" required name="file" class="form-control" />
+									<input type="hidden" id="e_id" required name="e_id" class="form-control" />
+									<input type="text" id="nama3" readonly name="nama3" class="form-control" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Alamat </label>
+								<div class="col-sm-9">
+									<input type="text" id="alamat3" readonly name="alamat3" placeholder="Nama Muzakki" class="form-control" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
-								<div class="col-sm-9">
-									<a label class="col-sm-3" for="form-field-1"> Download Sample Format </label></a>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nomor Kartu </label>
+								<div class="col-sm-6">
+									<input type="text" id="no_kartu" required name="no_kartu" placeholder="Nomor Kartu" class="form-control" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Bank </label>
+								<div class="col-sm-6">
+									<input type="text" id="nama_bank" required name="nama_bank" placeholder="Nomor Kartu" class="form-control" />
 								</div>
 							</div>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="submit" id="btn_import" class="btn btn-sm btn-success pull-left">
+				<button type="submit" id="btn_update" class="btn btn-sm btn-success pull-left">
 					<i class="ace-icon fa fa-save"></i>
-					Simpan
+					Update
 				</button>
 				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
 					<i class="ace-icon fa fa-times"></i>
@@ -86,6 +102,7 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div>
+
 <div id="my-modal" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -110,14 +127,13 @@
 									</select>
 								</div>
 							</div>
-
-
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Musthaik </label>
 								<div class="col-sm-9">
 									<input type="text" id="nama" required name="nama" placeholder="Nama Mustahik" class="form-control" />
 								</div>
 							</div>
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendapatan Bulananan </label>
 								<div class="col-sm-6">
@@ -263,7 +279,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Pos </label>
 								<div class="col-sm-9">
-									<input type="text" id="kode_pos" required name="kode_pos" class="form-control" />
+									<input type="number" id="kode_pos" required name="kode_pos" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -296,26 +312,6 @@
 									<input type="text" id="website" required name="website" placeholder="website" class="form-control" />
 								</div>
 							</div>
-							<!-- 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Level </label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="level" id="level">
-                                        <option value="">-- Pilih Program --</option>
-                                        <option value="operator">Operator</option>
-                                        <option value="kasir">Kasir</option>
-                                        <option value="akunting">Akunting</option>
-                                    </select>
-                                </div>
-                            </div> -->
-							<!-- 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
-                                <div class="col-sm-9">
-                                    <input type="file" id="file" required name="file" placeholder="" class="form-control" />
-                                </div>
-                            </div> -->
-
 					</div>
 				</div>
 			</div>
@@ -347,17 +343,54 @@
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" enctype="multipart/form-data" role="form" id="formEdit">
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NIK </label>
-								<div class="col-sm-6">
-									<input type="hidden" id="e_id" required name="e_id" />
-									<input type="text" id="e_npwp" required name="e_npwp" placeholder="NPWP" class="form-control" />
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kategori Mustahik </label>
+								<div class="col-sm-9">
+									<select class="form-control" name="e_kat_mustahik" id="e_kat_mustahik">
+										<option value="">--Pilih--</option>
+										<?php foreach ($mykatmustahik as $value) { ?>
+											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+										<?php }
+										?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Musthaik </label>
+								<div class="col-sm-9">
+									<input type="text" id="e_nama" required name="e_nama" placeholder="Nama Mustahik" class="form-control" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
-								<div class="col-sm-9">
-									<input type="text" id="e_nama" required name="e_nama" placeholder="Nama Karyawan" class="form-control" />
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendapatan Bulananan </label>
+								<div class="col-sm-6">
+									<input type="text" id="e_pendapatan" required name="e_pendapatan" placeholder="Pendapatan Bulanan" class="form-control" />
+									<input type="hidden" id="e_pendapatan_v" required name="e_pendapatan_v" />
+									<script language="JavaScript">
+										var rupiah2 = document.getElementById('e_pendapatan');
+										rupiah2.addEventListener('keyup', function(e) {
+											rup2 = this.value.replace(/\D/g, '');
+											$('#e_pendapatan_v').val(rup2);
+											rupiah2.value = formatRupiah(this.value, 'Rp. ');
+										});
+
+										function formatRupiah(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah = split[0].substr(0, sisa),
+												ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan) {
+												separator = sisa ? '.' : '';
+												rupiah += separator + ribuan.join('.');
+											}
+
+											rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+											return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+										}
+									</script>
 								</div>
 							</div>
 
@@ -365,29 +398,23 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Identitas </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="e_tipe_identitas" id="e_tipe_identitas">
-										<option value="0">-- TIPE --</option>
-										<option value="1">KTP</option>
-										<option value="2">PASPOR</option>
-										<?php //foreach ($myjabatan as $value) { 
-										?>
-										<!-- <option value=<?= $value['ID'] ?>><?= $value['NAMAJABATAN'] ?></option> -->
-										<?php //} 
-										?>
+										<option value="0">-- Pilih --</option>
+										<option value="KTP">KTP</option>
+										<option value="PASPORT">PASPORT</option>
 									</select>
 								</div>
 							</div>
 
-							<!-- <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jabatan </label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="jabatan" id="jabatan">
-                                        <option value="0">-- Status --</option>
-                                        <?php foreach ($myjabatan as $value) { ?>
-                                            <option value=<?= $value['ID'] ?>><?= $value['NAMAJABATAN'] ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div> -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Mustahik </label>
+								<div class="col-sm-9">
+									<select class="form-control" name="e_jenis_mustahik" id="e_jenis_mustahik">
+										<option value="0">-- Pilih --</option>
+										<option value="Individu">Individu</option>
+										<option value="Lembaga">Lembaga</option>
+									</select>
+								</div>
+							</div>
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. Identitas </label>
@@ -395,13 +422,6 @@
 									<input type="text" id="e_idn" required name="e_idn" placeholder="No. Identitas" class="form-control" />
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
-								<div class="col-sm-9">
-									<input type="text" id="e_warganegara" required name="e_warganegara" placeholder="No. Identitas" class="form-control" />
-								</div>
-							</div>
-
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tempat Lahir </label>
 								<div class="col-sm-6">
@@ -411,7 +431,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal lahir </label>
 								<div class="col-sm-6">
-									<input type="date" id="e_tanggal" required name="e_tanggal" class="form-control" />
+									<input type="date" id="e_tgl_lhr" required name="e_tgl_lhr" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -419,45 +439,34 @@
 								<div class="col-sm-9">
 									<select class="form-control" name="e_jk" id="e_jk">
 										<option value="">-- Pilih Kelamin --</option>
-										<option value="1">Laki - Laki</option>
-										<option value="2">Perempuan</option>
+										<option value="L">Laki - Laki</option>
+										<option value="P">Perempuan</option>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pekerjaan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_kerja" id="e_kerja">
-										<option value="">-- Pilih Pekerjaan --</option>
-										<option value="1">Pegawai Negri Sipil</option>
-										<option value="2"></option>
+									<select class="form-control" name="e_warganegara" id="e_warganegara">
+										<option value="">-- Pilih --</option>
+										<option value="WNA">WNA</option>
+										<option value="WNI">WNI</option>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Pernikahan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Usaha </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_status" id="e_status">
-										<option value="">-- Pilih Status --</option>
-										<option value="1">Lajang</option>
-										<option value="2">Menikah</option>
+									<select class="form-control" name="e_ju" id="e_ju">
+										<option value="">--Pilih--</option>
+										<?php foreach ($myusaha as $value) { ?>
+											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+										<?php }
+										?>
 									</select>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Pendidikan </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="e_pendidikan" id="e_pendidikan">
-										<option value="">-- Pilih Pendidikan --</option>
-										<option value="1">SD</option>
-										<option value="2">SMP</option>
-										<option value="3">SMK</option>
-										<option value="4">D3</option>
-										<option value="6">S1</option>
 
-									</select>
-								</div>
-							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Alamat </label>
 								<div class="col-sm-9">
@@ -468,13 +477,11 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Provinsi </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="e_provinsi" id="e_provinsi">
-										<option value="">-- Pilih Pendidikan --</option>
-										<option value="1">JABAR</option>
-										<option value="2">JATENG</option>
-										<option value="3">JATIM</option>
-										<option value="4">BANTEN</option>
-										<option value="6">JAKARTA</option>
-
+										<option value="">--Pilih--</option>
+										<?php foreach ($myprovinsi as $value) { ?>
+											<option value=<?= $value['id'] ?>><?= $value['proptbpro'] ?></option>
+										<?php }
+										?>
 									</select>
 								</div>
 							</div>
@@ -499,36 +506,25 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Pos </label>
 								<div class="col-sm-9">
-									<input type="text" id="e_kode_pos" required name="e_kode_pos" class="form-control" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Staus Rumah </label>
-								<div class="col-sm-9">
-									<select class="form-control" name="e_rumah" id="e_rumah">
-										<option value="">-- Pilih Status Rumah --</option>
-										<option value="1">Milik Sendiri</option>
-										<option value="2">.....</option>
-										<option value="3">....</option>
-									</select>
+									<input type="number" id="e_kode_pos" required name="e_kode_pos" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. Telp </label>
 								<div class="col-sm-6">
-									<input type="number" id="e_telp_muzakki" required name="e_telp_mizakki" placeholder="No. Telp" class="form-control" />
+									<input type="number" id="e_telp_mustahik" required name="e_telp_mustahik" placeholder="No. Telp" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Fax </label>
 								<div class="col-sm-6">
-									<input type="number" id="e_fax_muzakki" required name="e_fax_muzakki" placeholder="FAX" class="form-control" />
+									<input type="number" id="e_fax_mustahik" required name="e_fax_mustahik" placeholder="FAX" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Hanphone </label>
 								<div class="col-sm-6">
-									<input type="number" id="e_hp_muzakki" required name="e_hp_muzakki" placeholder="Handphone" class="form-control" />
+									<input type="number" id="e_hp_mustahik" required name="e_hp_mustahik" placeholder="Handphone" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -627,7 +623,7 @@
 			submitHandler: function(form) {
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('karyawan/update') ?>",
+					url: "<?php echo base_url('mustahik/update') ?>",
 					dataType: "JSON",
 					data: $('#formEdit').serialize(),
 					success: function(data) {
@@ -672,7 +668,7 @@
 			if (result.value) {
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('karyawan/delete') ?>",
+					url: "<?php echo base_url('mustahik/delete') ?>",
 					async: true,
 					dataType: "JSON",
 					data: {
@@ -699,13 +695,39 @@
 				id: id,
 			},
 			success: function(data) {
-				$('#e_id').val(data[0].id_pengawas);
-				$('#e_nip').val(data[0].nip);
+				$('#e_id').val(data[0].id);
+				$('#e_kat_mustahik').val(data[0].kat_mustahik);
+
+				var a = ConvertFormatRupiah(data[0].pendapatan, 'Rp. ');
+				$('#e_pendapatan').val(a);
+				$('#e_pendapatan_v').val(data[0].pendapatan);
+
+				$('#e_tanggal').val(data[0].tgl_reg);
 				$('#e_nama').val(data[0].nama);
-				$('#e_jabatan').val(data[0].jabatan);
-				$('#e_email').val(data[0].username);
-				$('#e_level').val(data[0].level);
-				$('#e_status').val(data[0].status);
+				$('#e_npwp').val(data[0].npwp);
+				$('#e_tipe_identitas').val(data[0].tipe_identitas);
+				$('#e_idn').val(data[0].no_identitas);
+				$('#e_warganegara').val(data[0].kewarganegaraan);
+				$('#e_tempat_lahir').val(data[0].tmp_lhr);
+				$('#e_tgl_lhr').val(data[0].tgl_lhr);
+				$('#e_jk').val(data[0].jenis_kelamin);
+				$('#e_kerja').val(data[0].pekerjaan);
+				$('#e_status').val(data[0].status_pernikahan);
+				$('#e_pendidikan').val(data[0].status_pendidikan);
+				$('#e_alamat').val(data[0].alamat);
+				$('#e_provinsi').val(data[0].provinsi);
+				$('#e_kab_kot').val(data[0].kab_kota);
+				$('#e_kec').val(data[0].kecamatan);
+				$('#e_desa').val(data[0].desa_kelurahan);
+				$('#e_kode_pos').val(data[0].kode_pos);
+				$('#e_kepemilikan').val(data[0].status_rumah);
+				$('#e_telp_mustahik').val(data[0].telp);
+				$('#e_fax_mustahik').val(data[0].fax);
+				$('#e_hp_mustahik').val(data[0].handphone);
+				$('#e_email').val(data[0].email);
+				$('#e_website').val(data[0].website);
+				$('#e_jenis_mustahik').val(data[0].jenis_mustahik);
+				$('#e_ju').val(data[0].jenis_usaha);
 			}
 		});
 	});
@@ -726,12 +748,16 @@
 						'<td class="text-center">' + no + '</td>' +
 						'<td>' + data[i].nama + '</td>' +
 						'<td>' + data[i].jenis_mustahik + '</td>' +
-						'<td>' + data[i].kategori_mustahik + '</td>' +
+						'<td>' + data[i].kat_mustahiks + '</td>' +
 						'<td>' + data[i].alamat + '</td>' +
 						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
 						'</button> &nbsp' +
+						// '</button> &nbsp' +
+						// '<button  href="#my-modal-rekening" class="btn btn-xs btn-success item_rekening" title="Rekening" data-id="' + data[i].id + '">' +
+						// '<i class="ace-icon fa fa-book bigger-120"></i>' +
+						// '</button> &nbsp' +
 						'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
 						'</button>' +
@@ -755,5 +781,150 @@
 			}
 
 		});
+	}
+
+
+	$('#show_data').on('click', '.item_rekening', function() {
+		var id = $(this).data('id');
+		$('#modalRekening').modal('show');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('muzakki/tampil_byidrekening') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			},
+			success: function(data) {
+				$('#e_id').val(data[0].id);
+				$('#nama3').val(data[0].nama);
+				$('#alamat3').val(data[0].alamat);
+				$('#no_kartu').val(data[0].nokartu);
+				$('#nama_bank').val(data[0].namabank);
+
+			}
+		});
+	});
+
+	if ($("#formRekening").length > 0) {
+		$("#formRekening").validate({
+			errorClass: "my-error-class",
+			validClass: "my-valid-class",
+			submitHandler: function(form) {
+				formdata = new FormData(form);
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url('muzakki/simpanrekening') ?>",
+					data: formdata,
+					processData: false,
+					contentType: false,
+					cache: false,
+					async: false,
+					success: function(data) {
+						console.log(data);
+						$('#modalRekening').modal('hide');
+						if (data == 1) {
+							document.getElementById("formRekening").reset();
+							swalInputSuccess();
+							show_data();
+						} else if (data == 401) {
+							document.getElementById("formRekening").reset();
+							swalIdDouble();
+						} else {
+							document.getElementById("formRekening").reset();
+							swalInputFailed();
+						}
+					}
+				});
+				return false;
+			}
+		});
+	}
+
+	function ConvertFormatRupiah(angka, prefix) {
+		var number_string = angka.replace(/[^,\d]/g, '').toString(),
+			split = number_string.split(','),
+			sisa = split[0].length % 3,
+			rupiah = split[0].substr(0, sisa),
+			ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+		// tambahkan titik jika yang di input sudah menjadi angka ribuan
+		if (ribuan) {
+			separator = sisa ? '.' : '';
+			rupiah += separator + ribuan.join('.');
+		}
+
+		rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+		return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+	}
+
+	if ($("#formSearch").length > 0) {
+		$("#formSearch").validate({
+			errorClass: "my-error-class",
+			validClass: "my-valid-class",
+			rules: {
+				nopembayaran: {
+					required: false
+				},
+
+				tahun: {
+					required: false
+				},
+			},
+			submitHandler: function(form) {
+				$('#btn_search').html('Searching..');
+				$.ajax({
+					type: 'POST',
+					url: '<?php echo site_url('mustahik/search') ?>',
+					data: $('#formSearch').serialize(),
+					async: true,
+					dataType: 'json',
+					success: function(data) {
+						$('#btn_search').html('<i class="ace-icon fa fa-search"></i>' +
+							'Periksa');
+						var html = '';
+						var i = 0;
+						var no = 1;
+						for (i = 0; i < data.length; i++) {
+							html += '<tr>' +
+								'<td class="text-center">' + no + '</td>' +
+								'<td>' + data[i].nama + '</td>' +
+								'<td>' + data[i].jenis_mustahik + '</td>' +
+								'<td>' + data[i].kat_mustahiks + '</td>' +
+								'<td>' + data[i].alamat + '</td>' +
+								'<td class="text-center">' +
+								'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
+								'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
+								'</button> &nbsp' +
+								// '</button> &nbsp' +
+								// '<button  href="#my-modal-rekening" class="btn btn-xs btn-success item_rekening" title="Rekening" data-id="' + data[i].id + '">' +
+								// '<i class="ace-icon fa fa-book bigger-120"></i>' +
+								// '</button> &nbsp' +
+								'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
+								'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
+								'</button>' +
+								'</td>' +
+								'</tr>';
+							no++;
+						}
+						$("#table_id").dataTable().fnDestroy();
+						var a = $('#show_data').html(html);
+						//                    $('#mydata').dataTable();
+						if (a) {
+							$('#table_id').dataTable({
+								"bPaginate": true,
+								"bLengthChange": false,
+								"bFilter": true,
+								"bInfo": false,
+
+							});
+
+						}
+						/* END TABLETOOLS */
+					}
+				});
+
+			}
+		})
 	}
 </script>
