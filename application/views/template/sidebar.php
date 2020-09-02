@@ -81,6 +81,7 @@ if ($jabatan == 19) { ?>
 						Master Jenis Usaha
 					</a>
 				</li>
+				
 				<li class="">
 					<a href="<?= base_url() . 'pekerjaan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
@@ -109,6 +110,12 @@ if ($jabatan == 19) { ?>
 					<a href="<?= base_url() . 'pendidikan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Pendidikan
+					</a>
+				</li>
+				<li class="">
+					<a href="<?= base_url() . 'jenisusaha'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Master Jenis Zakat
 					</a>
 				</li>
 			</ul>
