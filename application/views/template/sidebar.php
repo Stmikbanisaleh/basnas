@@ -76,31 +76,31 @@ if ($jabatan == 19) { ?>
 			<b class="arrow"></b>
 			<ul class="submenu">
 				<li class="">
-					<a href="<?= base_url() . 'muzakki'; ?>">
+					<a href="<?= base_url() . 'jenisusaha'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Jenis Usaha
 					</a>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'muzakki'; ?>">
+					<a href="<?= base_url() . 'pekerjaan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Pekerjaan
 					</a>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'mustahik'; ?>">
+					<a href="<?= base_url() . 'kat_mustahik'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Kategori Mustahik
 					</a>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'zakat'; ?>">
+					<a href="<?= base_url() . 'kepemilikan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Kepemilikan
 					</a>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'zakat'; ?>">
+					<a href="<?= base_url() . 'pendidikan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Pendidikan
 					</a>
