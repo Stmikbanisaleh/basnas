@@ -83,7 +83,7 @@ class Kat_mustahik extends CI_Controller
             );
             $data = array(
                 'nama'  => $this->input->post('e_nama'),
-                
+                'updatedAt' => date('Y-m-d H:i:s'),
             );
             $action = $this->model_kat_mustahik->update($data_id, $data, 'master_kategori_mustahik');
             echo json_encode($action);

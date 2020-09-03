@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pendidikan extends CI_Controller
+class Jeniszakat extends CI_Controller
 {
 
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('model_pendidikan');
+		$this->load->model('model_jeniszakat');
 		if (empty($this->session->userdata('username')) && empty($this->session->userdata('nama'))) {
 			$this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
 			redirect('dashboard/login');
@@ -25,9 +25,9 @@ class Pendidikan extends CI_Controller
 			
 
 			$data = array(
-				'page_content' 	=> '/pendidikan/view',
-				'ribbon' 		=> '<li class="active">Dashboard</li><li>Master Pendidikan</li>',
-				'page_name' 	=> 'Master Pendidikan',
+				'page_content' 	=> '/jeniszakat/view',
+				'ribbon' 		=> '<li class="active">Dashboard</li><li>Master Jenis Zakat</li>',
+				'page_name' 	=> 'Master Jenis Zakat',
 				'js' 			=> 'js_file'
 			);
 			$this->render_view($data);
@@ -44,7 +44,7 @@ class Pendidikan extends CI_Controller
                     'nama'  => $this->input->post('nama'),
                     'createdAt' => date('Y-m-d H:i:s'),
                 );
-                $action = $this->model_pendidikan->insert($data, 'master_pendidikan');
+                $action = $this->model_jeniszakat->insert($data, 'master_jenis_zakat');
                 echo json_encode($action);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
@@ -57,7 +57,7 @@ class Pendidikan extends CI_Controller
             $data = array(
                 'id'  => $this->input->post('id'),
             );
-            $my_data = $this->model_pendidikan->view_where('master_pendidikan', $data)->result();
+            $my_data = $this->model_jeniszakat->view_where('master_jenis_zakat', $data)->result();
             echo json_encode($my_data);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
@@ -68,7 +68,7 @@ class Pendidikan extends CI_Controller
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
-			$my_data = $this->model_pendidikan->viewOrdering('master_pendidikan', 'id', 'asc')->result();
+			$my_data = $this->model_jeniszakat->viewOrdering('master_jenis_zakat', 'id', 'asc')->result();
             echo json_encode($my_data);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
@@ -85,9 +85,9 @@ class Pendidikan extends CI_Controller
             );
             $data = array(
                 'nama'  => $this->input->post('e_nama'),
-                'updatedAt' => date('Y-m-d H:i:s'),
+                
             );
-            $action = $this->model_pendidikan->update($data_id, $data, 'master_pendidikan');
+            $action = $this->model_jeniszakat->update($data_id, $data, 'master_jenis_zakat');
             echo json_encode($action);
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
@@ -101,7 +101,7 @@ class Pendidikan extends CI_Controller
 			$data_id = array(
 				'id'  => $this->input->post('id')
 			);
-			$action = $this->model_pendidikan->delete($data_id, 'master_pendidikan');
+			$action = $this->model_jeniszakat->delete($data_id, 'master_jenis_zakat');
 			echo json_encode($action);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view

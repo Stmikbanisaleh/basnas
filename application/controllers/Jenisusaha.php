@@ -85,7 +85,7 @@ class Jenisusaha extends CI_Controller
             );
             $data = array(
                 'nama'  => $this->input->post('e_nama'),
-                
+                'updatedAt' => date('Y-m-d H:i:s'),
             );
             $action = $this->model_jenisusaha->update($data_id, $data, 'master_jenis_usaha');
             echo json_encode($action);

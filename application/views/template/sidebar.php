@@ -113,7 +113,7 @@ if ($jabatan == 19) { ?>
 					</a>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'jenisusaha'; ?>">
+					<a href="<?= base_url() . 'jeniszakat'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Jenis Zakat
 					</a>

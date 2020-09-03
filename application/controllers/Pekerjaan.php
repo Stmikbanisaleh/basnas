@@ -85,7 +85,7 @@ class Pekerjaan extends CI_Controller
             );
             $data = array(
                 'nama'  => $this->input->post('e_nama'),
-                
+                'updatedAt' => date('Y-m-d H:i:s'),
             );
             $action = $this->model_pekerjaan->update($data_id, $data, 'master_pekerjaan');
             echo json_encode($action);

@@ -85,7 +85,7 @@ class Kepemilikan extends CI_Controller
             );
             $data = array(
                 'nama'  => $this->input->post('e_nama'),
-                
+                'updatedAt' => date('Y-m-d H:i:s'),
             );
             $action = $this->model_kepemilikan->update($data_id, $data, 'master_kepemilikan');
             echo json_encode($action);
