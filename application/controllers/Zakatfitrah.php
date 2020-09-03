@@ -19,6 +19,16 @@ class Zakatfitrah extends CI_Controller
 		$this->template->load('template', $data); //Display Page
 	}
 
+	public function shownpwp()
+	{
+		$ps = array(
+			'id' => $this->input->post('ps')
+		);
+		$my_data = $this->model_zakatfitrah->view_where('master_muzakki', $ps)->result_array();
+		$npwz = $my_data[0]['npwp'];
+		echo $npwz;
+	}
+
 	public function index()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {

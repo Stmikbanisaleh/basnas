@@ -13,6 +13,16 @@ class Model_zakatmal extends CI_model
         return $this->db->get($table);
     }
 
+	public function viewData($table, $id){
+		return $this->db->query("SELECT a.*, b.npwp,c.id as id_kartu from $table a join master_muzakki b on a.id_muzakki = b.id 
+		join master_rekening c on a.id_muzakki = c.id_muzakki where a.id = $id ");
+	}
+	
+	public function viewOrderingZakat($table, $order, $ordering)
+    {
+        return $this->db->query("SELECT a.nama,b.*, CONCAT('Rp. ',FORMAT(b.total_terima,2)) Nominal from $table a join master_zakatmal b on a.id = b.id_muzakki order by $order $ordering");
+	}
+
     public function viewWhereOrdering($table, $data, $order, $ordering)
     {
         $this->db->where($data);

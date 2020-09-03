@@ -78,7 +78,6 @@
 											$('#total_v').val(rup2);
 											rupiah2.value = formatRupiah(this.value, 'Rp. ');
 										});
-
 										function formatRupiah(angka, prefix) {
 											var number_string = angka.replace(/[^,\d]/g, '').toString(),
 												split = number_string.split(','),
@@ -345,6 +344,19 @@
 				$("#norek").html(data);
 			});
 		});
+
+		$("#nama").change(function() {
+			var ps = $('#nama').val();
+			$.ajax({
+				type: "POST",
+				url: "zakatmal/shownpwp",
+				data: {
+					ps: ps
+				}
+			}).done(function(data) {
+				$("#npwp").val(data);
+			});
+		});
 	});
 
 	//Simpan guru
@@ -403,8 +415,6 @@
 					$('#e_norek').val(data[0].id_kartu);
 				});
 				$('#e_deskripsi').val(data[0].deskripsi);
-
-				
 			}
 		});
 	});
