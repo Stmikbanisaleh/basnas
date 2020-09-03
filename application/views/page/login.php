@@ -30,7 +30,7 @@
 								<span class="red">Halaman</span>
 								<span class="white" id="id-text2">Operator</span>
 							</h1>
-							<h4 class="blue" id="id-company-text">&copy; Smart School</h4>
+							<h4 class="blue" id="id-company-text">&copy; Badan Amil Zakat Nasional</h4>
 						</div>
 
 						<div class="space-6"></div>

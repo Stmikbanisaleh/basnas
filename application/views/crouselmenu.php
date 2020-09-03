@@ -8,8 +8,8 @@
     <meta name="description" content="YAYASAN GEMA NURANI">
     <meta name="author" content="">
     <title>Sistem Informasi Zakat & Sedekah</title>
-    <link rel="apple-touch-icon" href="<?php echo base_url() ?>global/images/logo.png">
-    <link rel="shortcut icon" href="<?php echo base_url() ?>global/images/logo.png">
+    <link rel="apple-touch-icon" href="<?php echo base_url() ?>global/images/_basnas.png">
+    <link rel="shortcut icon" href="<?php echo base_url() ?>global/images/logo_basnas.png">
     <!-- Stylesheets -->
     <link rel="stylesheet" href="<?php echo base_url() ?>global/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>global/css/bootstrap-extend.min.css">
@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>global/vendor/flag-icon-css/flag-icon.css">
     <style>
         .page-locked:before {
-            background-image: url("<?php echo base_url() ?>global/images/lockscreen1.jpg");
+            background-image: url("<?php echo base_url() ?>global/images/a.png");
         }
 
         .page-locked .avatar {
@@ -126,7 +126,7 @@
                     </figure>
                 </div>
             </div>
-            <div align="center" class="gambar"><a href="<?php echo base_url() ?>"><img src="<?php echo base_url() ?>global/images/logo.png" width="200x" /></a></div>
+            <div align="center" class="gambar"><a href="<?php echo base_url() ?>"><img src="<?php echo base_url() ?>global/images/logo_basnas.png" width="200x" /></a></div>
             <footer class="page-copyright page-copyright-inverse">
                 <p>WEBSITE BY ALPHA</p>
                 <p>© 2020. All RIGHT RESERVED.</p>

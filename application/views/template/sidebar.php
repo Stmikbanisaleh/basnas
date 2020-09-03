@@ -128,13 +128,13 @@ if ($jabatan == 19) { ?>
 					</a>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'pendidikan'; ?>">
+					<a href="<?= base_url() . 'program'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Program
 					</a>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'pendidikan'; ?>">
+					<a href="<?= base_url() . 'sub_program'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Sub Program
 					</a>
