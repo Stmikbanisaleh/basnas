@@ -22,7 +22,7 @@ class Model_zakatfitrah extends CI_model
 
 	public function viewOrderingZakat($table, $order, $ordering)
     {
-        return $this->db->query("SELECT a.nama,b.*, CONCAT('Rp. ',FORMAT(b.total_terima,2)) Nominal from $table a join master_zakatfitrah b on a.id = b.id_muzakki order by $order $ordering");
+        return $this->db->query("SELECT a.nama,b.*, CONCAT('Rp. ',FORMAT(b.total_terima,2)) Nominal from $table a join master_zakat b on a.id = b.id_muzakki where b.jenis = 1 order by $order $ordering");
 	}
 	
 	public function viewData($table, $id){

@@ -61,7 +61,6 @@
                         </span>
                     </div>
                 </div>
-            
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Alamat </label>
@@ -862,7 +861,7 @@
     function show_data() {
         $.ajax({
             type: 'POST',
-            url: '<?php echo site_url('karyawan/tampil') ?>',
+            url: '<?php echo site_url('penyaluranlangsung/tampil') ?>',
             async: true,
             dataType: 'json',
             success: function(data) {

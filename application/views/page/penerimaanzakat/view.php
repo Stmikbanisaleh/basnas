@@ -20,7 +20,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NPWP </label>
             <div class="col-sm-3">
-                <input type="text" id="npwp" required name="npw[" class="form-control" />
+                <input type="text" id="npwz" required name="npwz" class="form-control" />
             </div>
         </div>
         <div class="form-group">
@@ -605,26 +605,6 @@
                                     <input type="text" id="e_website" required name="e_website" placeholder="website" class="form-control" />
                                 </div>
                             </div>
-                            <!-- 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Level </label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="level" id="level">
-                                        <option value="">-- Pilih Program --</option>
-                                        <option value="operator">Operator</option>
-                                        <option value="kasir">Kasir</option>
-                                        <option value="akunting">Akunting</option>
-                                    </select>
-                                </div>
-                            </div> -->
-                            <!-- 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
-                                <div class="col-sm-9">
-                                    <input type="file" id="file" required name="file" placeholder="" class="form-control" />
-                                </div>
-                            </div> -->
-
                     </div>
                 </div>
             </div>
@@ -804,7 +784,6 @@
     });
 
     //Simpan guru
-
     $('#show_data').on('click', '.item_hapus', function() {
         var id = $(this).data('id');
         Swal.fire({

@@ -69,11 +69,12 @@ class Zakatmal extends CI_Controller
 				'tgl_terima'  => $this->input->post('tanggal'),
 				'total_terima'  => $this->input->post('total_v'),
 				'jenis_zakat'  => $this->input->post('jeniszakat'),
+				'jenis'  => 2,
 				'norek'  => $this->input->post('norek'),
 				'createdAt' => date('Y-m-d H:i:s'),
 				'petugas'	=> $this->session->userdata('nip')
 			);
-			$result = $this->model_zakatmal->insert($data, 'master_zakatmal');
+			$result = $this->model_zakatmal->insert($data, 'master_zakat');
 			echo json_decode($result);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
@@ -84,7 +85,7 @@ class Zakatmal extends CI_Controller
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$id  = $this->input->post('id');
-			$my_data = $this->model_zakatmal->viewData('master_zakatmal', $id)->result();
+			$my_data = $this->model_zakatmal->viewData('master_zakat', $id)->result();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
@@ -116,7 +117,7 @@ class Zakatmal extends CI_Controller
 				'norek'  => $this->input->post('e_norek'),
 				'updatedAt' => date('Y-m-d H:i:s'),
 			);
-			$result = $this->model_zakatmal->update($data_id, $data, 'master_zakatmal');
+			$result = $this->model_zakatmal->update($data_id, $data, 'master_zakat');
 			echo json_decode($result);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
@@ -131,7 +132,7 @@ class Zakatmal extends CI_Controller
 				'id'  => $this->input->post('id')
 			);
 	
-			$action = $this->model_zakatmal->delete($data_id, 'master_zakatmal');
+			$action = $this->model_zakatmal->delete($data_id, 'master_zakat');
 			echo json_encode($action);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view

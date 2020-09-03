@@ -67,11 +67,12 @@ class Zakatfitrah extends CI_Controller
 				'tgl_terima'  => $this->input->post('tanggal'),
 				'total_terima'  => $this->input->post('total_v'),
 				'deskripsi'  => $this->input->post('deskripsi'),
+				'jenis'  => 1,
 				'norek'  => $this->input->post('norek'),
 				'createdAt' => date('Y-m-d H:i:s'),
 				'petugas'	=> $this->session->userdata('nip')
 			);
-			$result = $this->model_zakatfitrah->insert($data, 'master_zakatfitrah');
+			$result = $this->model_zakatfitrah->insert($data, 'master_zakat');
 			echo json_decode($result);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
@@ -82,7 +83,7 @@ class Zakatfitrah extends CI_Controller
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$data = $this->input->post('id');
-			$my_data = $this->model_zakatfitrah->viewData('master_zakatfitrah', $data)->result();
+			$my_data = $this->model_zakatfitrah->viewData('master_zakat', $data)->result();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
@@ -116,7 +117,7 @@ class Zakatfitrah extends CI_Controller
 				'norek'  => $this->input->post('e_norek'),
 				'updatedAt' => date('Y-m-d H:i:s'),
 			);
-			$result = $this->model_zakatfitrah->update($data_id, $data, 'master_zakatfitrah');
+			$result = $this->model_zakatfitrah->update($data_id, $data, 'master_zakat');
 			echo json_decode($result);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
@@ -131,7 +132,7 @@ class Zakatfitrah extends CI_Controller
 				'id'  => $this->input->post('id')
 			);
 
-			$action = $this->model_zakatfitrah->delete($data_id, 'master_zakatfitrah');
+			$action = $this->model_zakatfitrah->delete($data_id, 'master_zakat');
 			echo json_encode($action);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view

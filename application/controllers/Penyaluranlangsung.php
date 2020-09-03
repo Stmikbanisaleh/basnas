@@ -9,9 +9,9 @@ class Penyaluranlangsung extends CI_Controller
 		parent::__construct();
 		$this->load->model('model_penyaluranlangsung');
 		if (empty($this->session->userdata('username')) && empty($this->session->userdata('nama'))) {
-            $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
-            redirect('dashboard/login');
-        }
+			$this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
+			redirect('dashboard/login');
+		}
 	}
 
 	function render_view($data)
@@ -39,43 +39,19 @@ class Penyaluranlangsung extends CI_Controller
 	public function simpan()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
-			$config['upload_path']          = './assets/gambar';
-            $config['allowed_types']        = 'gif|jpg|png|jpeg';
-            $config['encrypt_name'] = TRUE;
-			$this->load->library('upload', $config);
-			if ($this->upload->do_upload("file")) {
-				$data = array('upload_data' => $this->upload->data());
-				$foto = $data['upload_data']['file_name'];
-				$data = array(
-					'nip'  => $this->input->post('nip'),
-					'nama'  => $this->input->post('nama'),
-					'jabatan'  => $this->input->post('jabatan'),
-					'username'  => $this->input->post('email'),
-					'email'	=> $this->input->post('email'),
-					'password'  => hash('sha512',md5($this->input->post('password'))),
-					'level' => $this->input->post('level'),
-					'status'  => 1,
-					'gambar'  => $foto,
-					'createdAt' => date('Y-m-d H:i:s')
-				);
-				$result = $this->model_karyawan->insert($data, 'tbpengawas');
-				echo json_decode($result);
-			} else {
-				$data = array(
-					'nip'  => $this->input->post('nip'),
-					'nama'  => $this->input->post('nama'),
-					'jabatan'  => $this->input->post('jabatan'),
-					'username'  => $this->input->post('email'),
-					'password'  => hash('sha512',md5($this->input->post('password'))),
-					'level' => $this->input->post('level'),
-					'status'  => 1,
-					'email' => $this->input->post('email'),
-					'createdAt' => date('Y-m-d H:i:s')
-				);
-				$result = $this->model_karyawan->insert($data, 'tbpengawas');
-				echo json_decode($result);
-			}
+			$data = array(
+				'nip'  => $this->input->post('nip'),
+				'nama'  => $this->input->post('nama'),
+				'jabatan'  => $this->input->post('jabatan'),
+				'username'  => $this->input->post('email'),
+				'password'  => hash('sha512', md5($this->input->post('password'))),
+				'level' => $this->input->post('level'),
+				'status'  => 1,
+				'email' => $this->input->post('email'),
+				'createdAt' => date('Y-m-d H:i:s')
+			);
+			$result = $this->model_karyawan->insert($data, 'tbpengawas');
+			echo json_decode($result);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
@@ -168,7 +144,7 @@ class Penyaluranlangsung extends CI_Controller
 			$config['upload_path']          = './assets/gambar';
 			$config['allowed_types']        = 'gif|jpg|png|jpeg';
 			$config['encrypt_name'] = TRUE;
-			$password = hash('sha512',md5($this->input->post('e_password')));
+			$password = hash('sha512', md5($this->input->post('e_password')));
 			$this->load->library('upload', $config);
 			if ($this->upload->do_upload("e_file")) {
 				$data = array('upload_data' => $this->upload->data());

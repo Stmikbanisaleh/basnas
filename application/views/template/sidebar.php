@@ -76,18 +76,19 @@ if ($jabatan == 19) { ?>
 			<b class="arrow"></b>
 			<ul class="submenu">
 				<li class="">
+					<a href="<?= base_url() . 'jeniszakat'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Master Akun
+					</a>
+				</li>
+
+				<li class="">
 					<a href="<?= base_url() . 'jenisusaha'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Jenis Usaha
 					</a>
 				</li>
-				
-				<li class="">
-					<a href="<?= base_url() . 'pekerjaan'; ?>">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Master Pekerjaan
-					</a>
-				</li>
+			
 				<li class="">
 					<a href="<?= base_url() . 'kat_mustahik'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
@@ -106,6 +107,20 @@ if ($jabatan == 19) { ?>
 						Master Kepemilikan
 					</a>
 				</li>
+			
+				<li class="">
+					<a href="<?= base_url() . 'jeniszakat'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Master Jenis Zakat
+					</a>
+				</li>
+					
+				<li class="">
+					<a href="<?= base_url() . 'pekerjaan'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Master Pekerjaan
+					</a>
+				</li>
 				<li class="">
 					<a href="<?= base_url() . 'pendidikan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
@@ -113,9 +128,15 @@ if ($jabatan == 19) { ?>
 					</a>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'jeniszakat'; ?>">
+					<a href="<?= base_url() . 'pendidikan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Master Jenis Zakat
+						Master Program
+					</a>
+				</li>
+				<li class="">
+					<a href="<?= base_url() . 'pendidikan'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Master Sub Program
 					</a>
 				</li>
 			</ul>
@@ -188,13 +209,6 @@ if ($jabatan == 19) { ?>
 			<b class="arrow"></b>
 			<ul class="submenu">
 				<li class="">
-					<a href="<?= base_url() . 'penerimaanzakat'; ?>">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Transaksi Penerimaan Zakat
-					</a>
-					<b class="arrow"></b>
-				</li>
-				<li class="">
 					<a href="<?= base_url() . 'penyaluranlangsung'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Transaksi Penyaluran Langsung
@@ -211,9 +225,7 @@ if ($jabatan == 19) { ?>
 				</span>
 				<b class="arrow fa fa-angle-down"></b>
 			</a>
-
 			<b class="arrow"></b>
-
 			<ul class="submenu">
 				<li class="">
 					<a href="<?= base_url() . 'lap_penerimaan'; ?>">
@@ -237,43 +249,22 @@ if ($jabatan == 19) { ?>
 				</li>
 			</ul>
 		</li>
-
 		<li class="">
 			<a href="javascript:void(0);" class="dropdown-toggle">
-				<i class="menu-icon fa fa-calendar"></i>
+				<i class="menu-icon glyphicon glyphicon-check"></i>
 				<span class="menu-text">
-					Program
+					Approval
 				</span>
 				<b class="arrow fa fa-angle-down"></b>
 			</a>
 			<b class="arrow"></b>
 			<ul class="submenu">
 				<li class="">
-					<a href="<?= base_url() . 'jadwal'; ?>">
+					<a href="<?= base_url() . 'lap_penerimaan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Master Program
+						Approval Penyaluran
 					</a>
 				</li>
-
-			</ul>
-		</li>
-		<li class="">
-			<a href="javascript:void(0);" class="dropdown-toggle">
-				<i class="menu-icon fa fa-calendar"></i>
-				<span class="menu-text">
-					Akun
-				</span>
-				<b class="arrow fa fa-angle-down"></b>
-			</a>
-			<b class="arrow"></b>
-			<ul class="submenu">
-				<li class="">
-					<a href="<?= base_url() . 'jadwal'; ?>">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Master Account
-					</a>
-				</li>
-
 			</ul>
 		</li>
 <?php } ?>
