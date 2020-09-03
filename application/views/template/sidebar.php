@@ -170,7 +170,7 @@ if ($jabatan == 19) { ?>
 
 		<li class="">
 			<a href="javascript:void(0);" class="dropdown-toggle">
-				<i class="menu-icon fa fa-calendar"></i>
+				<i class="menu-icon fa fa-download"></i>
 				<span class="menu-text">
 					Transaksi Masuk
 				</span>
@@ -200,7 +200,7 @@ if ($jabatan == 19) { ?>
 		</li>
 		<li class="">
 			<a href="javascript:void(0);" class="dropdown-toggle">
-				<i class="menu-icon glyphicon glyphicon-user"></i>
+				<i class="menu-icon glyphicon glyphicon-upload"></i>
 				<span class="menu-text">
 					Transaksi Keluar
 				</span>
@@ -211,7 +211,14 @@ if ($jabatan == 19) { ?>
 				<li class="">
 					<a href="<?= base_url() . 'penyaluranlangsung'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Transaksi Penyaluran Langsung
+						 Penyaluran Langsung
+					</a>
+					<b class="arrow"></b>
+				</li>
+				<li class="">
+					<a href="<?= base_url() . 'penyaluranlangsung'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						 Penyaluran Program
 					</a>
 					<b class="arrow"></b>
 				</li>
@@ -260,7 +267,7 @@ if ($jabatan == 19) { ?>
 			<b class="arrow"></b>
 			<ul class="submenu">
 				<li class="">
-					<a href="<?= base_url() . 'lap_penerimaan'; ?>">
+					<a href="<?= base_url() . 'approval'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Approval Penyaluran
 					</a>
