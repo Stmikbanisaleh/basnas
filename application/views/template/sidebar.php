@@ -76,7 +76,7 @@ if ($jabatan == 19) { ?>
 			<b class="arrow"></b>
 			<ul class="submenu">
 				<li class="">
-					<a href="<?= base_url() . 'jeniszakat'; ?>">
+					<a href="<?= base_url() . 'akun'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Akun
 					</a>
@@ -125,6 +125,12 @@ if ($jabatan == 19) { ?>
 					<a href="<?= base_url() . 'pendidikan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Pendidikan
+					</a>
+				</li>
+				<li class="">
+					<a href="<?= base_url() . 'jabatan'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Master jabatan
 					</a>
 				</li>
 				<li class="">
