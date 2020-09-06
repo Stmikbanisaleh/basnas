@@ -8,6 +8,7 @@ class Rek_koran extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('model_rek_koran');
+		$this->load->library('mainfunction');
 		if (empty($this->session->userdata('username')) && empty($this->session->userdata('nama'))) {
             $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
             redirect('dashboard/login');
@@ -22,13 +23,13 @@ class Rek_koran extends CI_Controller
 	public function index()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-			$myjabatan = $this->model_rek_koran->viewOrdering('users', 'ID', 'asc')->result_array();
+			$mymuzaki = $this->model_rek_koran->viewOrdering('master_muzakki', 'ID', 'asc')->result_array();
 			$data = array(
 				'page_content' 	=> '/rek_koran/view',
 				'ribbon' 		=> '<li class="active">Dashboard</li><li>Laporan Rekening Koran</li>',
 				'page_name' 	=> 'Rekening Koran',
 				'js' 			=> 'js_file',
-				'myjabatan'		=> $myjabatan,
+				'mymuzaki'		=> $mymuzaki,
 			);
 			$this->render_view($data);
 		} else {
@@ -36,46 +37,25 @@ class Rek_koran extends CI_Controller
 		}
 	}
 
-	public function simpan()
+	public function laporan()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+			$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
+			$this->load->library('pdf');
 
-			$config['upload_path']          = './assets/gambar';
-            $config['allowed_types']        = 'gif|jpg|png|jpeg';
-            $config['encrypt_name'] = TRUE;
-			$this->load->library('upload', $config);
-			if ($this->upload->do_upload("file")) {
-				$data = array('upload_data' => $this->upload->data());
-				$foto = $data['upload_data']['file_name'];
-				$data = array(
-					'nip'  => $this->input->post('nip'),
-					'nama'  => $this->input->post('nama'),
-					'jabatan'  => $this->input->post('jabatan'),
-					'username'  => $this->input->post('email'),
-					'email'	=> $this->input->post('email'),
-					'password'  => hash('sha512',md5($this->input->post('password'))),
-					'level' => $this->input->post('level'),
-					'status'  => 1,
-					'gambar'  => $foto,
-					'createdAt' => date('Y-m-d H:i:s')
-				);
-				$result = $this->model_karyawan->insert($data, 'tbpengawas');
-				echo json_decode($result);
-			} else {
-				$data = array(
-					'nip'  => $this->input->post('nip'),
-					'nama'  => $this->input->post('nama'),
-					'jabatan'  => $this->input->post('jabatan'),
-					'username'  => $this->input->post('email'),
-					'password'  => hash('sha512',md5($this->input->post('password'))),
-					'level' => $this->input->post('level'),
-					'status'  => 1,
-					'email' => $this->input->post('email'),
-					'createdAt' => date('Y-m-d H:i:s')
-				);
-				$result = $this->model_karyawan->insert($data, 'tbpengawas');
-				echo json_decode($result);
-			}
+			$mydata = $this->model_rek_koran->view_rek_koran($this->input->get('periode_awal'), $this->input->get('periode_akhir'), $this->input->get('muzaki'))->result_array();
+
+			$mymuzaki = $this->model_rek_koran->view_muzaki($this->input->get('muzaki'))->row();
+
+			$data = array(
+				'mydata' => $mydata,
+				'mymuzaki' => $mymuzaki
+			);
+
+			$this->pdf->setPaper('FOLIO', 'potrait');
+			$this->pdf->load_view('page/rek_koran/laporan_pdf', $data);
+			$this->pdf->stream("Slip Gaji " . $tgl . ".pdf", array("Attachment" => true));
+
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
@@ -84,6 +64,8 @@ class Rek_koran extends CI_Controller
 	public function tampil_byid()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+
+			echo json_encode($this->input->post());exit;
 
 			$data = array(
 				'id_pengawas'  => $this->input->post('id'),
@@ -99,127 +81,11 @@ class Rek_koran extends CI_Controller
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
-			$my_data = $this->model_karyawan->view_karyawan()->result_array();
+			$my_data = $this->model_rek_koran->view_rek_koran($this->input->post('periode_awal'), $this->input->post('periode_akhir'), $this->input->post('muzaki'))->result_array();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
 	}
-	public function import()
-	{
-		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-			$files = $_FILES;
-			$file = $files['file'];
-			$fname = $file['tmp_name'];
-			$file = $_FILES['file']['name'];
-			$fname = $_FILES['file']['tmp_name'];
-			$ext = explode('.', $file);
-			/** Include path **/
-			set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
-			/** PHPExcel_IOFactory */
-			include 'PHPExcel/IOFactory.php';
-			$objPHPExcel = PHPExcel_IOFactory::load($fname);
-			$allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
-			$data_exist = [];
-
-			foreach ($allDataInSheet as $ads) {
-				if (array_filter($ads)) {
-					array_push($data_exist, $ads);
-				}
-			}
-			foreach ($data_exist as $key => $value) {
-				if ($key == '0') {
-					continue;
-				} else {
-					$arrayCustomerQuote = array(
-						'NOINDUK' => $value[0],
-						'NOREG' => $value[1],
-						'NMSISWA' => $value[2],
-						'TPLHR' => $value[3],
-						'TGLHR' => $value[4],
-						'JK' => $value[5],
-						'AGAMA' => $value[6],
-						'TAHUN' => $value[7],
-						'PS' => $value[8],
-						'KDWARGA' => $value[9],
-						'EMAIL' => $value[10],
-						'TELP' => $value[11],
-						'createdAt'    => date('Y-m-d H:i:s')
-					);
-					$result = $this->model_karyawan->insert($arrayCustomerQuote, 'tbpengawas');
-				}
-			}
-			if ($result) {
-				$result = 1;
-			}
-
-			echo json_encode($result);
-		} else {
-			echo json_encode($result);
-		}
-	}
-	public function update()
-	{
-		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
-			$data_id = array(
-				'id_pengawas'  => $this->input->post('e_id')
-			);
-			$config['upload_path']          = './assets/gambar';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
-			$config['encrypt_name'] = TRUE;
-			$password = hash('sha512',md5($this->input->post('e_password')));
-			$this->load->library('upload', $config);
-			if ($this->upload->do_upload("e_file")) {
-				$data = array('upload_data' => $this->upload->data());
-				$foto = $data['upload_data']['file_name'];
-				$data = array(
-					'nip'  => $this->input->post('nip'),
-					'nama'  => $this->input->post('nama'),
-					'jabatan'  => $this->input->post('jabatan'),
-					'username'  => $this->input->post('email'),
-					'password'  => $password,
-					'level' => $this->input->post('level'),
-					'status'  => 1,
-					'gambar'  => $foto,
-					'updatedAt' => date('Y-m-d H:i:s')
-				);
-				$result = $this->model_karyawan->update($data_id, $data, 'tbpengawas');
-				echo json_decode($result);
-			} else {
-				$data = array(
-					'nip'  => $this->input->post('e_nip'),
-					'nama'  => $this->input->post('e_nama'),
-					'jabatan'  => $this->input->post('e_jabatan'),
-					'username'  => $this->input->post('e_email'),
-					'password'  => $password,
-					'level' => $this->input->post('e_level'),
-					'status'  => $this->input->post('e_status'),
-					'gambar'  => null,
-					'updatedAt' => date('Y-m-d H:i:s')
-				);
-				$result = $this->model_karyawan->update($data_id, $data, 'tbpengawas');
-				echo json_decode($result);
-			}
-		} else {
-			$this->load->view('page/login'); //Memanggil function render_view
-		}
-	}
-
-	public function delete()
-	{
-		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
-			$data_id = array(
-				'id_pengawas'  => $this->input->post('id')
-			);
-			$data = array(
-				'isdeleted'  => 1,
-			);
-			$action = $this->model_karyawan->update($data_id, $data, 'tbpengawas');
-			echo json_encode($action);
-		} else {
-			$this->load->view('page/login'); //Memanggil function render_view
-		}
-	}
+	
 }

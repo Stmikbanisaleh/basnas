@@ -26,10 +26,27 @@ class Model_lap_penerimaan extends CI_model
         return $this->db->get($table);
     }
 
-    public function view_karyawan()
+    public function view_laporan_penerimaan($periode_awal, $periode_akhir, $jenis_penerimaan)
     {
-        return  $this->db->query('select *,IF(a.status = 1, "Aktif", "Tidak") as statusv2,b.NAMAJABATAN as nmjabatan from tbpengawas a join msjabatan b on a.jabatan = b.ID
-        ');
+        if(empty($jenis_penerimaan)){
+            $where_jenis = "";
+        }else{
+            $where_jenis = "AND mz.jenis = $jenis_penerimaan";
+        }
+        return  $this->db->query("SELECT
+                                    mm.npwp,
+                                    mm.nama,
+                                    mz.cara_terima via,
+                                    mjp.nama jenis_penerimaan,
+                                    mz.tgl_terima,
+                                    mz.total_terima
+                                FROM
+                                    master_zakat mz
+                                JOIN master_muzakki mm ON mz.id_muzakki = mm.id
+                                JOIN mapping_jenis_penerimaan mjp ON mz.jenis = mjp.id
+                                WHERE mz.id_muzakki = mm.id
+                                    AND mz.tgl_terima BETWEEN '$periode_awal' AND '$periode_akhir'
+        ".$where_jenis);
     }
 
     public function view_count($table, $data_id)

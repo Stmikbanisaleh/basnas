@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Lap_penerimaan extends CI_Controller
+class Laporan_penyaluran extends CI_Controller
 {
 
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('model_lap_penerimaan');
+		$this->load->model('model_lap_penyaluran');
 		$this->load->library('mainfunction');
 	}
 
@@ -19,9 +19,9 @@ class Lap_penerimaan extends CI_Controller
 	public function index()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-			$myjabatan = $this->model_lap_penerimaan->viewOrdering('users', 'ID', 'asc')->result_array();
+			$myjabatan = $this->model_lap_penyaluran->viewOrdering('users', 'ID', 'asc')->result_array();
 			$data = array(
-				'page_content' 	=> '/lap_penerimaan/view',
+				'page_content' 	=> '/lap_penyaluran/view',
 				'ribbon' 		=> '<li class="active">Dashboard</li><li>Laporan Penerimaan</li>',
 				'page_name' 	=> 'Laporan Penerimaan',
 				'js' 			=> 'js_file',
@@ -38,15 +38,15 @@ class Lap_penerimaan extends CI_Controller
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
 			$this->load->library('pdf');
-			$mymuzaki = $this->model_lap_penerimaan->viewOrdering('users', 'ID', 'asc')->result_array();
-			$mydata = $this->model_lap_penerimaan->view_laporan_penerimaan($this->input->post('periode_awal'), $this->input->post('periode_akhir'), $this->input->post('jenis_penerimaan'))->result_array();
+
+            $mydata = $this->model_lap_penyaluran->view_laporan_penyaluran($this->input->post('periode_awal'), $this->input->post('periode_akhir'), $this->input->post('is_approve'))->result_array();
+
 			$data = array(
 				'mydata' => $mydata
 			);
-			
 
 			$this->pdf->setPaper('FOLIO', 'potrait');
-			$this->pdf->load_view('page/lap_penerimaan/laporan_pdf', $data);
+			$this->pdf->load_view('page/lap_penyaluran/laporan_pdf', $data);
 			$this->pdf->stream("Slip Gaji " . $tgl . ".pdf", array("Attachment" => true));
 
 		} else {

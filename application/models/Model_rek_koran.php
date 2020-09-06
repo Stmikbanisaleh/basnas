@@ -26,15 +26,44 @@ class Model_rek_koran extends CI_model
         return $this->db->get($table);
     }
 
-    public function view_karyawan()
+    public function view_rek_koran($periode_awal, $periode_akhir, $muzaki)
     {
-        return  $this->db->query('select *,IF(a.status = 1, "Aktif", "Tidak") as statusv2,b.NAMAJABATAN as nmjabatan from tbpengawas a join msjabatan b on a.jabatan = b.ID
-        ');
+        if(empty($muzaki)){
+            $where_muzaki = "";
+        }else{
+            $where_muzaki = "AND mm.npwp = $muzaki";
+        }
+        return  $this->db->query("SELECT
+                                    mm.npwp,
+                                    mm.nama,
+                                    mm.alamat,
+                                    mp.proptbpro provinsi,
+                                    mz.cara_terima via,
+                                    mjp.nama jenis_penerimaan,
+                                    mz.tgl_terima,
+                                    mz.total_terima
+                                FROM
+                                    master_zakat mz
+                                JOIN master_muzakki mm ON mz.id_muzakki = mm.id
+                                JOIN mapping_jenis_penerimaan mjp ON mz.jenis = mjp.id
+                                JOIN master_provinsi mp ON mp.id = mm.provinsi
+                                WHERE mz.id_muzakki = mm.id
+                                    AND mz.tgl_terima BETWEEN '$periode_awal' AND '$periode_akhir'
+        ".$where_muzaki);
     }
 
-    public function view_count($table, $data_id)
+    public function view_muzaki($muzaki)
     {
-        return $this->db->query('select IdGuru from ' . $table . ' where IdGuru = ' . $data_id . ' and isdeleted != 1')->num_rows();
+        return  $this->db->query("SELECT
+                                    mm.npwp,
+                                    mm.nama,
+                                    mm.alamat,
+                                    mp.proptbpro provinsi
+                                FROM
+                                master_muzakki mm
+                                JOIN master_provinsi mp ON mm.provinsi = mp.id
+                                WHERE mm.npwp = '$muzaki'
+        ");
     }
 
     public function insert($data, $table)
@@ -58,13 +87,5 @@ class Model_rek_koran extends CI_model
     function truncate($table)
     {
         $this->db->truncate($table);
-    }
-
-    function simpan_upload($judul,$image){
-        $data = array(
-                'gambar' => $image
-            );  
-        $result= $this->db->insert('tbpengawas',$data);
-        return $result;
     }
 }

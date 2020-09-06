@@ -255,9 +255,9 @@ if ($jabatan == 19) { ?>
 				</li>
 
 				<li class="">
-					<a href="<?= base_url() . 'penghapusannilai'; ?>">
+					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Laporan Penyalur
+						Laporan Penyaluran
 					</a>
 				</li>
 			</ul>
