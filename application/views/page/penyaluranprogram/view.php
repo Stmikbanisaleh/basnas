@@ -4,7 +4,7 @@
 	<form class="form-horizontal" role="form" id="formSearch">
 		Kriteria Pencarian
 		<div class="form-group">
-			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Penyalur </label>
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program </label>
 			<div class="col-sm-3">
 				<select class="form-control basic-single2" name="penyalur" id="penyalur">
 					<option value="">-- Pilih --</option>
@@ -152,6 +152,27 @@
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" enctype="multipart/form-data" role="form" id="formTambah">
 							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Utama </label>
+								<div class="col-sm-6">
+									<select class="form-control" name="programu" id="programu">
+										<option value="">-- Pilih --</option>
+										<?php foreach ($myprogram as $value) {
+										?>
+											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+										<?php }
+										?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sub Program </label>
+								<div class="col-sm-6">
+									<select class="form-control" name="programs" id="programs">
+										<option value="">-- Pilih --</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Ansaf </label>
 								<div class="col-sm-6">
 									<select class="form-control" name="tipe2" id="tipe2">
@@ -296,6 +317,27 @@
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" enctype="multipart/form-data" role="form" id="formEdit">
 							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Utama </label>
+								<div class="col-sm-6">
+									<select class="form-control" name="e_programu" id="e_programu">
+										<option value="">-- Pilih --</option>
+										<?php foreach ($myprogram as $value) {
+										?>
+											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+										<?php }
+										?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sub Program </label>
+								<div class="col-sm-6">
+									<select class="form-control" name="e_programs" id="e_programs">
+										<option value="">-- Pilih --</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Ansaf </label>
 								<div class="col-sm-6">
 									<select class="form-control" name="e_tipe2" id="e_tipe2">
@@ -387,7 +429,7 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="table-header">
-			Semua Data Penyaluran Langsung
+			Semua Data Penyaluran Program
 		</div>
 	</div>
 </div>
@@ -397,6 +439,7 @@
 		<thead>
 			<tr>
 				<th>No</th>
+				<th class="text-center">Sub Program</th>
 				<th class="text-center">Jenis Dana</th>
 				<th class="text-center">Ansaf</th>
 				<th class="text-center">Jumlah Dana</th>
@@ -428,7 +471,7 @@
 				$('#btn_search').html('Searching..');
 				$.ajax({
 					type: 'POST',
-					url: '<?php echo site_url('penyaluranlangsung/search') ?>',
+					url: '<?php echo site_url('penyaluranprogram/search') ?>',
 					data: $('#formSearch').serialize(),
 					async: true,
 					dataType: 'json',
@@ -446,6 +489,7 @@
 							}
 							html += '<tr>' +
 								'<td class="text-center">' + no + '</td>' +
+								'<td>' + data[i].program + '</td>' +
 								'<td>' + data[i].type + '</td>' +
 								'<td>' + data[i].ansaf + '</td>' +
 								'<td>' + data[i].Nominal + '</td>' +
@@ -498,7 +542,7 @@
 				formdata = new FormData(form);
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('penyaluranlangsung/simpan') ?>",
+					url: "<?php echo base_url('penyaluranprogram/simpan') ?>",
 					data: formdata,
 					processData: false,
 					contentType: false,
@@ -533,7 +577,7 @@
 				formdata = new FormData(form);
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('penyaluranlangsung/simpan2') ?>",
+					url: "<?php echo base_url('penyaluranprogram/simpan2') ?>",
 					data: formdata,
 					processData: false,
 					contentType: false,
@@ -567,7 +611,7 @@
 			submitHandler: function(form) {
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('penyaluranlangsung/update') ?>",
+					url: "<?php echo base_url('penyaluranprogram/update') ?>",
 					dataType: "JSON",
 					data: $('#formEdit').serialize(),
 					success: function(data) {
@@ -614,6 +658,19 @@
 			placeholder: "--Pilih--",
 			allowClear: true
 		});
+
+		$("#programu").change(function() {
+			var ps = $('#programu').val();
+			$.ajax({
+				type: "POST",
+				url: "penyaluranprogram/showsubprogram",
+				data: {
+					ps: ps
+				}
+			}).done(function(data) {
+				$("#programs").html(data);
+			});
+		});
 	});
 
 
@@ -621,7 +678,7 @@
 		var id = $(this).data('id');
 		$.ajax({
 			type: "POST",
-			url: "<?php echo base_url('penyaluranlangsung/delete2') ?>",
+			url: "<?php echo base_url('penyaluranprogram/delete2') ?>",
 			async: true,
 			dataType: "JSON",
 			data: {
@@ -650,7 +707,7 @@
 			if (result.value) {
 				$.ajax({
 					type: "POST",
-					url: "<?php echo base_url('penyaluranlangsung/delete') ?>",
+					url: "<?php echo base_url('penyaluranprogram/delete') ?>",
 					async: true,
 					dataType: "JSON",
 					data: {
@@ -669,7 +726,7 @@
 		$('#my-modal2').modal('show');
 		$.ajax({
 			type: "POST",
-			url: "<?php echo base_url('penyaluranlangsung/tampil_byidprogram2') ?>",
+			url: "<?php echo base_url('penyaluranprogram/tampil_byidprogram2') ?>",
 			async: true,
 			dataType: "JSON",
 			data: {
@@ -686,7 +743,7 @@
 		$('#my-modal-detail').modal('show');
 		$.ajax({
 			type: "POST",
-			url: "<?php echo base_url('penyaluranlangsung/tampil_byidprogram') ?>",
+			url: "<?php echo base_url('penyaluranprogram/tampil_byidprogram') ?>",
 			async: true,
 			dataType: "JSON",
 			data: {
@@ -731,7 +788,7 @@
 		$('#modalEdit').modal('show');
 		$.ajax({
 			type: "POST",
-			url: "<?php echo base_url('penyaluranlangsung/tampil_byid') ?>",
+			url: "<?php echo base_url('penyaluranprogram/tampil_byid') ?>",
 			async: true,
 			dataType: "JSON",
 			data: {
@@ -740,16 +797,36 @@
 			success: function(data) {
 				$('#e_id').val(data[0].id);
 				$('#e_tanggal2').val(data[0].createdAt);
+				$('#e_programs').val(data[0].id_program);
 				var a = ConvertFormatRupiah(data[0].jumlah_dana, 'Rp. ');
 				$('#e_total').val(a);
 				$('#e_total_v').val(data[0].jumlah_dana);
-				// $('#e_total_v').val(data[0].total);
+				// $('#e_programs').val(data[0].id_program);
+				$('#e_programu').val(data[0].id_program_utama);
 				$('#e_tipe2').val(data[0].ansaf);
 				$('#e_jenis2').val(data[0].type);
 				$('#e_deskripsi').val(data[0].deskripsi);
+				show_data_rekening(data[0].id_program, function(a){
+					$('#e_programs').val(data[0].id_program);
+				});
 			}
 		});
 	});
+
+
+    function show_data_rekening(id, callback) {
+        var ps = id;
+        $.ajax({
+            type: "POST",
+            url: "penyaluranprogram/showsubprogram2",
+            data: {
+                ps: ps
+            }
+        }).done(function(data) {
+            $("#e_programs").html(data);
+            callback()
+        });
+	}
 
 	function ConvertFormatRupiah(angka, prefix) {
 		var number_string = angka.replace(/[^,\d]/g, '').toString(),
@@ -771,7 +848,7 @@
 	function show_data() {
 		$.ajax({
 			type: 'POST',
-			url: '<?php echo site_url('penyaluranlangsung/tampil') ?>',
+			url: '<?php echo site_url('penyaluranprogram/tampil') ?>',
 			async: true,
 			dataType: 'json',
 			success: function(data) {
@@ -781,32 +858,32 @@
 				for (i = 0; i < data.length; i++) {
 					if (data[i].is_approve == '1') {
 						var status = '<td class="text-center">' +
-						'<button  href="#my-modal-detail" class="btn btn-xs btn-info " title="Add" data-id="' + data[i].id + '">' +
-						'<i class="ace-icon fa fa-check-square-o bigger-120"></i> Approved' +
-						'</button> &nbsp' +
-						'</td>';
-					 } else if (data[i].is_approve == '2') {
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-info " title="Add" data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-check-square-o bigger-120"></i> Approved' +
+							'</button> &nbsp' +
+							'</td>';
+					} else if (data[i].is_approve == '2') {
 						var status = '<td class="text-center">' +
-						'<button  href="#my-modal-detail" class="btn btn-xs btn-success " title="Add" data-id="' + data[i].id + '">' +
-						'<i class="ace-icon fa fa-ban bigger-120"> </i> Completed' +
-						'</button> &nbsp' +
-						'</td>';
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-success " title="Add" data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-ban bigger-120"> </i> Completed' +
+							'</button> &nbsp' +
+							'</td>';
 					} else if (data[i].is_approve == '3') {
 						var status = '<td class="text-center">' +
-						'<button  href="#my-modal-detail" class="btn btn-xs btn-danger " title="Add" data-id="' + data[i].id + '">' +
-						'<i class="ace-icon fa fa-ban bigger-120"> </i> Rejected' +
-						'</button> &nbsp' +
-						'</td>';
-					}
-					 else {
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-danger " title="Add" data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-ban bigger-120"> </i> Rejected' +
+							'</button> &nbsp' +
+							'</td>';
+					} else {
 						var status = '<td class="text-center">' +
-						'<button  href="#my-modal-detail" class="btn btn-xs btn-danger " title="Add" data-id="' + data[i].id + '">' +
-						'<i class="ace-icon fa fa-ban bigger-120"> </i> Unupprove' +
-						'</button> &nbsp' +
-						'</td>';
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-danger " title="Add" data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-ban bigger-120"> </i> Unupprove' +
+							'</button> &nbsp' +
+							'</td>';
 					}
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
+						'<td>' + data[i].program + '</td>' +
 						'<td>' + data[i].type + '</td>' +
 						'<td>' + data[i].ansaf + '</td>' +
 						'<td>' + data[i].Nominal + '</td>' +

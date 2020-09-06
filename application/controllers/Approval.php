@@ -7,7 +7,7 @@ class Approval extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Model_approval');
+		$this->load->model('model_approval');
 		if (empty($this->session->userdata('username')) && empty($this->session->userdata('nama'))) {
 			$this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
 			redirect('dashboard/login');
@@ -32,7 +32,7 @@ class Approval extends CI_Controller
 	public function index()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-			$mypenyaluran = $this->Model_approval->viewOrdering('master_penyaluran', 'id', 'asc')->result_array();
+			$mypenyaluran = $this->model_approval->viewWhereOrderingpenyalur('master_penyaluran', 'id', 'asc')->result_array();
 			$data = array(
 				'page_content' 	=> '/approval/view',
 				'ribbon' 		=> '<li class="active">Dashboard</li><li>Approval</li>',
@@ -82,9 +82,11 @@ class Approval extends CI_Controller
 	public function tampil_byid()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-			$data = $this->input->post('id');
-			$my_data = $this->model_zakatfitrah->viewData('master_zakat', $data)->result();
-			echo json_encode($my_data);
+			$data = array(
+                'id'  => $this->input->post('id'),
+            );
+            $my_data = $this->model_approval->view_where('master_penyaluran', $data)->result();
+            echo json_encode($my_data);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
@@ -94,7 +96,7 @@ class Approval extends CI_Controller
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
-			$my_data = $this->model_approval->viewOrderingZakat('master_penyaluran', 'id', 'desc')->result_array();
+			$my_data = $this->model_approval->viewWhereOrderingpenyalur('master_penyaluran', 'id', 'asc')->result();
 			echo json_encode($my_data);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
@@ -109,33 +111,15 @@ class Approval extends CI_Controller
 				'id'  => $this->input->post('e_id')
 			);
 			$data = array(
-				'id_muzakki'  => $this->input->post('e_nama'),
-				'cara_terima'  => $this->input->post('e_penerimaan'),
-				'tgl_terima'  => $this->input->post('e_tanggal'),
-				'total_terima'  => $this->input->post('e_total_v'),
-				'deskripsi'  => $this->input->post('e_deskripsi'),
-				'norek'  => $this->input->post('e_norek'),
+				'is_approve'  => $this->input->post('e_status'),
+				'petugas_approve'  => $this->session->userdata('nip'),
 				'updatedAt' => date('Y-m-d H:i:s'),
 			);
-			$result = $this->model_zakatfitrah->update($data_id, $data, 'master_zakat');
+			$result = $this->model_approval->update($data_id, $data, 'master_penyaluran');
 			echo json_decode($result);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
 	}
 
-	public function delete()
-	{
-		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-
-			$data_id = array(
-				'id'  => $this->input->post('id')
-			);
-
-			$action = $this->model_zakatfitrah->delete($data_id, 'master_zakat');
-			echo json_encode($action);
-		} else {
-			$this->load->view('page/login'); //Memanggil function render_view
-		}
-	}
 }

@@ -45,8 +45,8 @@
 								<div class="col-sm-9">
 									<select class="form-control" name="penerimaan" id="penerimaan">
 										<option value="0">-- Pilih --</option>
-										<option value="Tunai">Tunai</option>
-										<option value="Angsuran">Angsuran</option>
+										<option value="Transfer">Transfer</option>
+										<option value="Cash">Cash</option>
 									</select>
 								</div>
 							</div>

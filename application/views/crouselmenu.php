@@ -120,9 +120,9 @@
                             <figcaption>Operator</figcaption>
                     </figure>
                     <figure id="weather" name="kasir">
-                        <a style="color:#333" class="dock-item" href="<?php echo base_url() ?>modulkasir/dashboard" target="kasir">
+                        <a style="color:#333" class="dock-item" href="<?php echo base_url() ?>bendahara/dashboard" target="kasir">
                             <div class="temp"><img src="<?php echo base_url() ?>global/images/kasir.png" width="70" height="70"/></div>
-                            <figcaption>Kasir</figcaption>
+                            <figcaption>Bendahara</figcaption>
                     </figure>
                 </div>
             </div>

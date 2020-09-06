@@ -222,7 +222,7 @@ if ($jabatan == 19) { ?>
 					<b class="arrow"></b>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'penyaluranlangsung'; ?>">
+					<a href="<?= base_url() . 'penyaluranprogram'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						 Penyaluran Program
 					</a>
@@ -257,7 +257,7 @@ if ($jabatan == 19) { ?>
 				<li class="">
 					<a href="<?= base_url() . 'penghapusannilai'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Laporan Penyalur
+						Laporan Penyaluran
 					</a>
 				</li>
 			</ul>
