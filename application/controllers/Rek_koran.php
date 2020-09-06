@@ -61,6 +61,30 @@ class Rek_koran extends CI_Controller
 		}
 	}
 
+	public function laporan_rekap()
+	{
+		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+			$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
+			$this->load->library('pdf');
+
+			$mydata = $this->model_rek_koran->view_laporan_rek_koran($this->input->get('periode_awal'), $this->input->get('periode_akhir'), $this->input->get('muzaki'))->result_array();
+
+			$mymuzaki = $this->model_rek_koran->view_muzaki($this->input->get('muzaki'))->row();
+
+			$data = array(
+				'mydata' => $mydata,
+				'mymuzaki' => $mymuzaki
+			);
+
+			$this->pdf->setPaper('FOLIO', 'potrait');
+			$this->pdf->load_view('page/rek_koran/laporan_all_pdf', $data);
+			$this->pdf->stream("Slip Gaji " . $tgl . ".pdf", array("Attachment" => true));
+
+		} else {
+			$this->load->view('page/login'); //Memanggil function render_view
+		}
+	}
+
 	public function tampil_byid()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {

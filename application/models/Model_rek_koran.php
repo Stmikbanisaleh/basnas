@@ -33,6 +33,28 @@ class Model_rek_koran extends CI_model
         }else{
             $where_muzaki = "AND mm.npwp = $muzaki";
         }
+        return  $this->db->query("SELECT DISTINCT
+                                    mm.npwp,
+                                    mm.nama,
+                                    mm.alamat,
+                                    mp.proptbpro provinsi
+                                FROM
+                                    master_zakat mz
+                                JOIN master_muzakki mm ON mz.id_muzakki = mm.id
+                                JOIN mapping_jenis_penerimaan mjp ON mz.jenis = mjp.id
+                                JOIN master_provinsi mp ON mp.id = mm.provinsi
+                                WHERE mz.id_muzakki = mm.id
+                                    AND mz.tgl_terima BETWEEN '$periode_awal' AND '$periode_akhir'
+        ".$where_muzaki);
+    }
+
+    public function view_laporan_rek_koran($periode_awal, $periode_akhir, $muzaki)
+    {
+        if(empty($muzaki)){
+            $where_muzaki = "";
+        }else{
+            $where_muzaki = "AND mm.npwp = $muzaki";
+        }
         return  $this->db->query("SELECT
                                     mm.npwp,
                                     mm.nama,

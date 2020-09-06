@@ -23,7 +23,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Muzaki </label>
             <div class="col-sm-3">
-                <select class="form-control" name="muzaki">
+                <select class="form-control" name="muzaki" id="muzaki">
                     <option value="0">--Pilih Muzaki--</option>
                     <?php
                         foreach($mymuzaki as $row){
@@ -58,8 +58,8 @@
 
         <td>
             <div class="col-xs-9">
-                <button type="submit" id="btn_print_all" class="btn btn-sm btn-yellow pull-right" style="margin-left: 10px;">
-                    <a class="ace-icon fa fa-print bigger-120"></a> Print All
+                <button onclick="print_all()" class="btn btn-sm btn-yellow pull-right" style="margin-left: 10px;">
+                    <a class="ace-icon fa fa-print bigger-120"></a> Print Rekap     
                 </button>
                 <button type="submit" id="btn_search" class="btn btn-sm btn-success pull-right">
                     <a class="ace-icon fa fa-search bigger-120"></a>Periksa
@@ -95,9 +95,6 @@
                 <th>Nama</th>
                 <th>Alamat</th>
                 <th>Provinsi</th>
-                <th>Tanggal</th>
-                <th>Transaksi</th>
-                <th>Jumlah</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -140,9 +137,6 @@
                                 '<td>' + data[i].nama + '</td>' +
                                 '<td>' + data[i].alamat + '</td>' +
                                 '<td>' + data[i].provinsi + '</td>' +
-                                '<td>' + data[i].tgl_terima + '</td>' +
-                                '<td>' + data[i].jenis_penerimaan + '</td>' +
-                                '<td>' + data[i].total_terima + '</td>' +
                                 '<td>' +
                                 '</button> &nbsp' +
                                 '<button class="btn btn-xs btn-info item_print" title="Print" data-id="' + data[i].npwp + '">' +
@@ -184,22 +178,20 @@
         var periode_awal = document.getElementById("periode_awal").value;
         var periode_akhir = document.getElementById("periode_akhir").value;
         window.open('<?php echo base_url('rek_koran/laporan/?') ?>'+'periode_awal='+periode_awal+'&periode_akhir='+periode_akhir+'&muzaki='+id, '_blank');
-        // $.ajax({
-        //     type: "POST",
-        //     url: "<?php echo base_url('rek_koran/tampil_byid') ?>",
-        //     async: true,
-        //     dataType: "JSON",
-        //     data: {
-        //         id: id,
-        //         periode_awal : periode_awal,
-        //         periode_akhir : periode_akhir
-        //     },
-        //     success: function(data) {
-        //         show_data();
-        //         swalDeleteSuccess();
-        //     }
-        // });
     })
+
+    function print_all(){
+        var id = document.getElementById("muzaki").value;
+        var periode_awal = document.getElementById("periode_awal").value;
+        var periode_akhir = document.getElementById("periode_akhir").value;
+        if(periode_awal == ''){
+            exit;
+        }
+        if(periode_akhir == ''){
+            exit;
+        }
+        window.open('<?php echo base_url('rek_koran/laporan_rekap/?') ?>'+'periode_awal='+periode_awal+'&periode_akhir='+periode_akhir+'&muzaki='+id, '_blank');
+    }
 
     $('#show_data').on('click', '.item_edit', function() {
         var id = $(this).data('id');
