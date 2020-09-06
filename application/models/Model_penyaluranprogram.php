@@ -1,6 +1,6 @@
 <?php
 
-class Model_penyaluranlangsung extends CI_model
+class Model_penyaluranprogram extends CI_model
 {
     public function view($table)
     {
@@ -41,8 +41,9 @@ class Model_penyaluranlangsung extends CI_model
 			$periode = "";
 		}
 
-		return $this->db->query("Select a.*,CONCAT('Rp. ',FORMAT(a.jumlah_dana,2)) Nominal, c.nama as ansaf, b.nama as type from master_penyaluran a join master_type b on a.type = b.id
-		join master_kategori_mustahik c on a.ansaf = c.id where 1=1 $penyalur $status $tipe $jenis $periode");
+		return $this->db->query("Select d.deskripsi as program,a.*,CONCAT('Rp. ',FORMAT(a.jumlah_dana,2)) Nominal, c.nama as ansaf, b.nama as type from master_penyaluran a join master_type b on a.type = b.id
+		join master_kategori_mustahik c on a.ansaf = c.id
+		join  master_sub_program d on a.id_program = d.id where 1=1 $penyalur $status $tipe $jenis $periode");
 	}
 	
     public function viewWhereOrdering($table, $data, $order, $ordering)
@@ -54,8 +55,9 @@ class Model_penyaluranlangsung extends CI_model
 	
 	public function viewWhereOrderingpenyalur($table, $order, $ordering)
     {
-        return $this->db->query("SELECT a.*,b.nama as ansaf,c.nama as type ,CONCAT('Rp. ',FORMAT(a.jumlah_dana,2)) Nominal from $table a join master_kategori_mustahik b on a.ansaf = b.id
-		join master_type c on a.type = c.id order by $order $ordering ");
+        return $this->db->query("SELECT d.deskripsi as program, a.*,b.nama as ansaf,c.nama as type ,CONCAT('Rp. ',FORMAT(a.jumlah_dana,2)) Nominal from $table a join master_kategori_mustahik b on a.ansaf = b.id
+		join master_type c on a.type = c.id
+		join  master_sub_program d on a.id_program = d.id where id_program IS NOT NULL order by $order $ordering ");
     }
 
 	public function cek($nama, $idprogram)
