@@ -43,7 +43,7 @@ class Rek_koran extends CI_Controller
 			$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
 			$this->load->library('pdf');
 
-			$mydata = $this->model_rek_koran->view_rek_koran($this->input->get('periode_awal'), $this->input->get('periode_akhir'), $this->input->get('muzaki'))->result_array();
+			$mydata = $this->model_rek_koran->view_laporan_rek_koran($this->input->get('periode_awal'), $this->input->get('periode_akhir'), $this->input->get('muzaki'))->result_array();
 
 			$mymuzaki = $this->model_rek_koran->view_muzaki($this->input->get('muzaki'))->row();
 
