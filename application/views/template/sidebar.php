@@ -260,6 +260,76 @@ if ($jabatan == 19) { ?>
 						Laporan Penyaluran
 					</a>
 				</li>
+
+				<li class="">
+					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Rencana dan Realisasi Penerimaan
+					</a>
+				</li>
+
+				<li class="">
+					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Rencana dan Realisasi Penyaluran Asnaf
+					</a>
+				</li>
+
+				<li class="">
+					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Rencana dan Realisasi Penyaluran Program
+					</a>
+				</li>
+
+				<li class="">
+					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Rencana dan Realisasi Penggalangan Muzaki dan Penerimaan Manfaat
+					</a>
+				</li>
+
+				<li class="">
+					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Rencana dan Realisasi Penerimaan dan Penggunaan Hak Amil
+					</a>
+				</li>
+
+				<li class="">
+					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Rencana dan Realisasi Biaya Operasional Berdasarkan Fungsi
+					</a>
+				</li>
+
+				<li class="">
+					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Rencana dan Realisasi Penggunaan Dana APBN/APBD
+					</a>
+				</li>
+
+				<li class="">
+					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Rencana dan Realisasi Pengumpulan dan Penyaluran Ramadhan
+					</a>
+				</li>
+
+				<li class="">
+					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Rencana dan Realisasi Penerima Manfaat per Asnaf
+					</a>
+				</li>
+
+				<li class="">
+					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Pelaksanaan Pengelolaan Zakat Kabupaten / Kota
+					</a>
+				</li>
 			</ul>
 		</li>
 		<li class="">
