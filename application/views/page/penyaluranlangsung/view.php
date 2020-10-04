@@ -4,7 +4,7 @@
 	<form class="form-horizontal" role="form" id="formSearch">
 		Kriteria Pencarian
 		<div class="form-group">
-			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Penyalur </label>
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sub Program </label>
 			<div class="col-sm-3">
 				<select class="form-control basic-single2" name="penyalur" id="penyalur">
 					<option value="">-- Pilih --</option>

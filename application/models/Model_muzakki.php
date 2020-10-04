@@ -26,6 +26,17 @@ class Model_muzakki extends CI_model
 		}
 	}
 
+	public function joinmuzakki()
+    {
+        return $this->db->query("SELECT m.id, m.nama, m.npwp, m.no_identitas, m.tipe_identitas, m.tgl_reg, m.kewarganegaraan, m.foto, m.tmp_lhr, m.tgl_lhr, m.jenis_kelamin,m.jenis_muzakki, m.status_pernikahan,m.alamat, p.id as 'id_pekerjaan',p.nama as 'pekerjaan',pen.id as 'id_pendidikan', pen.nama as 'pendidikan', prov.id 'id_provinsi',prov.kotatbpro,prov.proptbpro as 'provinsi', m.kab_kota, m.desa_kelurahan, m.kode_pos, m.kecamatan,m.status_rumah,m.telp,m.fax,m.handphone,m.email,m.website
+		from master_muzakki m
+		JOIN master_pekerjaan p on p.id = m.pekerjaan
+		JOIN master_pendidikan pen on pen.id = m.status_pendidikan
+		JOIN master_provinsi prov on prov.id = m.provinsi
+        where m.isdeleted != 1
+        ORDER by m.id desc ");
+	}
+	
 	public function view_where_join($table, $data)
 	{
 		return $this->db->query("Select a.*, b.nama from $table a join master_muzakki b on a.id_muzakki = b.id where id_muzakki = $data");
