@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="<?= base_url() ?>assets/template/css/ace-rtl.min.css" />
 </head>
 
-<body class="login-layout">
+<body class="login-layout light-login" style="background-image: url(<?php echo base_url() ?>assets/a.png);">
 	<div class="main-container">
 		<div class="main-content">
 			<div class="row">
@@ -27,10 +27,11 @@
 					<div class="login-container">
 						<div class="center">
 							<h1>
-								<span class="red">Halaman</span>
-								<span class="white" id="id-text2">Operator</span>
+								<span class="black">Halaman</span>
+								<span class="black" id="id-text2">Login</span>
 							</h1>
-							<h4 class="blue" id="id-company-text">&copy; Badan Amil Zakat Nasional</h4>
+							<div align="center" class="gambar"><a href="<?php echo base_url() ?>"><img src="<?php echo base_url() ?>assets/Logo_baru.png" width="200x" /></a></div>
+							<!-- <h4 class="green" id="id-company-text">&copy; Badan Amil Zakat Nasional</h4> -->
 						</div>
 
 						<div class="space-6"></div>
@@ -39,9 +40,9 @@
 							<div id="login-box" class="login-box visible widget-box no-border">
 								<div class="widget-body">
 									<div class="widget-main">
-										<h4 class="header blue lighter bigger">
-											<i class="ace-icon fa fa-coffee green"></i>
-											Please Enter Your Information
+										<h4 class="header green lighter bigger">
+											<i class="ace-icon fa fa-user green"></i>
+											Please Login
 										</h4>
 
 										<div class="space-6"></div>
@@ -72,7 +73,7 @@
 														<span class="lbl"> Remember Me</span>
 													</label>
 
-													<button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
+													<button type="submit" class="width-35 pull-right btn btn-sm btn-success">
 														<i class="ace-icon fa fa-key"></i>
 														<span class="bigger-110">Login</span>
 													</button>
@@ -83,7 +84,7 @@
 										</form>
 									</div><!-- /.widget-main -->
 
-									<div class="toolbar clearfix">
+									<!-- <div class="toolbar clearfix">
 										<div>
 											<a href="<?php echo base_url() ?>" data-target="#forgot-box" class="forgot-password-link">
 												<i class="ace-icon fa fa-arrow-left"></i>
@@ -91,7 +92,7 @@
 											</a>
 
 										</div>
-									</div>
+									</div> -->
 
 								</div><!-- /.widget-body -->
 							</div><!-- /.login-box -->
