@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="<?= base_url() ?>assets/template/css/ace-rtl.min.css" />
 </head>
 
-<body class="login-layout light-login">
+<body class="login-layout light-login" style="background-image: url(<?php echo base_url() ?>assets/a.png);">
 	<div class="main-container">
 		<div class="main-content">
 			<div class="row">
