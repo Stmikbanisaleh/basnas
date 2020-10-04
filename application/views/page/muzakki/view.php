@@ -43,6 +43,7 @@
 	</div>
 	<br>
 </div>
+<<<<<<< HEAD
 <br>
 <div class="row">
 	<div class="col-xs-1">
@@ -100,6 +101,9 @@
 </div>
 
 <div id="my-modal" class="modal fade" tabindex="-1">
+=======
+<div id="my-modal" class="modal fade">
+>>>>>>> 033338288a2afb5d7fe490b91b7b8a2793f99536
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -150,6 +154,12 @@
 								</div>
 							</div>
 							<div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
+                                <div class="col-sm-9">
+                                    <input type="file" id="file" required name="file" placeholder="" class="form-control" />
+                                </div>
+                            </div> 
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="warganegara" id="warganegara">
@@ -179,6 +189,16 @@
 										<option value="">-- Pilih Kelamin --</option>
 										<option value="L">Laki - Laki</option>
 										<option value="P">Perempuan</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Muzaki </label>
+								<div class="col-sm-9">
+									<select class="form-control" name="jenis_m" id="jenis_m">
+										<option value="0">-- Pilih --</option>
+										<option value="Individu">Individu</option>
+										<option value="Lembaga">Lembaga</option>
 									</select>
 								</div>
 							</div>
@@ -339,13 +359,6 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Alamat </label>
-								<div class="col-sm-9">
-									<input type="text" id="alamat3" readonly name="alamat3" placeholder="Nama Muzakki" class="form-control" />
-								</div>
-							</div>
-
-							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nomor Kartu </label>
 								<div class="col-sm-6">
 									<input type="text" id="no_kartu" required name="no_kartu" placeholder="Nomor Kartu" class="form-control" />
@@ -426,6 +439,12 @@
 								</div>
 							</div>
 							<div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
+                                <div class="col-sm-9">
+                                    <input type="file" id="e_file" required name="e_file" placeholder="" class="form-control" />
+                                </div>
+                            </div> 
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="e_warganegara" id="e_warganegara">
@@ -455,6 +474,16 @@
 										<option value="">-- Pilih Kelamin --</option>
 										<option value="L">Laki - Laki</option>
 										<option value="P">Perempuan</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Muzaki </label>
+								<div class="col-sm-9">
+									<select class="form-control" name="e_jenis_m" id="e_jenis_m">
+										<option value="0">-- Pilih --</option>
+										<option value="Individu">Individu</option>
+										<option value="Lembaga">Lembaga</option>
 									</select>
 								</div>
 							</div>
@@ -619,6 +648,7 @@
 	</table>
 </div>
 <script type="text/javascript">
+<<<<<<< HEAD
 	// $('select').select2({
 	// 	width: '100%',
 	// 	placeholder: "Pilih",
@@ -681,6 +711,55 @@
 						} else {
 							document.getElementById("formImport").reset();
 							swalInputFailed();
+=======
+	$('#tipe_identitas').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
+	$('#warganegara').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+	
+	$('#jk').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
+	$('#jenis_m').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+	
+	$('#jenis_m').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
+	$('#kerja').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
+	$('#pendidikan').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
+	$('#provinsi').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+>>>>>>> 033338288a2afb5d7fe490b91b7b8a2793f99536
 
 						}
 					}
@@ -734,10 +813,10 @@
 					type: "POST",
 					url: "<?php echo base_url('muzakki/simpan') ?>",
 					data: formdata,
-					processData: false,
-					contentType: false,
-					cache: false,
-					async: false,
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    async: false,
 					success: function(data) {
 						console.log(data);
 						$('#my-modal').modal('hide');
@@ -764,11 +843,15 @@
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
 			submitHandler: function(form) {
+				formdata = new FormData(form);
 				$.ajax({
 					type: "POST",
 					url: "<?php echo base_url('muzakki/update') ?>",
-					dataType: "JSON",
-					data: $('#formEdit').serialize(),
+					processData: false,
+					contentType: false,
+					cache: false,
+					async: false,
+					data: formdata,
 					success: function(data) {
 						$('#modalEdit').modal('hide');
 						if (data == 1) {
@@ -838,7 +921,7 @@
 				id: id,
 			},
 			success: function(data) {
-				$('#e_id').val(data[0].id);
+				$('#e_id').val(data[0].id_muzakki);
 				$('#nama3').val(data[0].nama);
 				$('#alamat3').val(data[0].alamat);
 				$('#no_kartu').val(data[0].nokartu);
@@ -870,6 +953,7 @@
 				$('#e_tempat_lahir').val(data[0].tmp_lhr);
 				$('#e_tgl_lhr').val(data[0].tgl_lhr);
 				$('#e_jk').val(data[0].jenis_kelamin);
+				$('#e_jenis_m').val(data[0].jenis_muzakki);
 				$('#e_kerja').val(data[0].pekerjaan);
 				$('#e_status').val(data[0].status_pernikahan);
 				$('#e_pendidikan').val(data[0].status_pendidikan);
@@ -985,7 +1069,7 @@
 						'<button  href="#my-modal-rekening" class="btn btn-xs btn-success item_rekening" title="Rekening" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-book bigger-120"></i>' +
 						'</button> &nbsp' +
-						'<button class="btn btn-xs btn-danger alt="Hapus" item_hapus" title="Delete" data-id="' + data[i].id + '">' +
+						'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
 						'</button>' +
 						'</td>' +

@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
 	<form class="form-horizontal" id="formSearch">
 		Kriteria Pencarian Mustahik
@@ -103,7 +105,7 @@
 	</div><!-- /.modal-dialog -->
 </div>
 
-<div id="my-modal" class="modal fade" tabindex="-1">
+<div id="my-modal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -201,6 +203,14 @@
 									<input type="text" id="tempat_lahir" required name="tempat_lahir" placeholder="Tempat Lahir" class="form-control" />
 								</div>
 							</div>
+
+							<div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
+                                <div class="col-sm-9">
+                                    <input type="file" id="file" required name="file" placeholder="" class="form-control" />
+                                </div>
+							</div> 
+							
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal lahir </label>
 								<div class="col-sm-6">
@@ -581,6 +591,12 @@
 	</table>
 </div>
 <script type="text/javascript">
+	$('select').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
 	if ($("#formTambah").length > 0) {
 		$("#formTambah").validate({
 			errorClass: "my-error-class",
@@ -754,10 +770,6 @@
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
 						'</button> &nbsp' +
-						// '</button> &nbsp' +
-						// '<button  href="#my-modal-rekening" class="btn btn-xs btn-success item_rekening" title="Rekening" data-id="' + data[i].id + '">' +
-						// '<i class="ace-icon fa fa-book bigger-120"></i>' +
-						// '</button> &nbsp' +
 						'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
 						'</button>' +

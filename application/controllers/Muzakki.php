@@ -58,6 +58,7 @@ class Muzakki extends CI_Controller
 				'tmp_lhr'  => $this->input->post('tempat_lahir'),
 				'tgl_lhr'  => $this->input->post('tgl_lhr'),
 				'jenis_kelamin'  => $this->input->post('jk'),
+				'jenis_muzakki'  => $this->input->post('jenis_m'),
 				'pekerjaan'  => $this->input->post('kerja'),
 				'status_pernikahan'  => $this->input->post('status'),
 				'status_pendidikan'  => $this->input->post('pendidikan'),
@@ -76,18 +77,15 @@ class Muzakki extends CI_Controller
 				'createdAt' => date('Y-m-d H:i:s')
 			);
 			$result = $this->model_muzakki->insert($data, 'master_muzakki');
+			$id_muzakki = $this->db->insert_id();
 			if ($result) {
 				$datarek = array(
-					'id_muzakki'  => $this->input->post('e_id'),
-					'nama'  => $this->input->post('nama3'),
-					'alamat'  => $this->input->post('alamat3'),
-					'no_kartu'  => $this->input->post('no_kartu'),
-					'nama_bank'  => $this->input->post('nama_bank'),
+					'id_muzakki'  => $id_muzakki,
 					'createdAt' => date('Y-m-d H:i:s')
 				);
-				$results = $this->model_muzakki->insert($data, 'master_rekening');
+				$results = $this->model_muzakki->insert($datarek, 'master_rekening');
 			}
-			echo json_decode($results);
+			echo json_decode($result);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
@@ -171,6 +169,7 @@ class Muzakki extends CI_Controller
 				'tipe_identitas'  => $this->input->post('e_tipe_identitas'),
 				'no_identitas'  => $this->input->post('e_idn'),
 				'kewarganegaraan'  => $this->input->post('e_warganegara'),
+				'jenis_muzakki'  => $this->input->post('e_jenis_m'),
 				'tmp_lhr'  => $this->input->post('e_tempat_lahir'),
 				'tgl_lhr'  => $this->input->post('e_tgl_lhr'),
 				'jenis_kelamin'  => $this->input->post('e_jk'),
