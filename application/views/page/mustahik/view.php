@@ -46,7 +46,60 @@
 	<br>
 	<br>
 </div>
+<div class="row">
+	<div class="col-xs-1">
+		<button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-xs btn-success">
+			<a class="ace-icon fa fa-upload bigger-120"></a>Import Data
+		</button>
+	</div>
+</div>
+<br>
+<div id="my-modal2" class="modal fade" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3 class="smaller lighter blue no-margin">Form Import Data <?= $page_name; ?></h3>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<?php if ($this->session->flashdata('message')) { ?>
+						<div class="alert alert-danger"> <?= $this->session->flashdata('message') ?> </div>
+					<?php } ?>
+					<div class="col-xs-12">
+						<!-- PAGE CONTENT BEGINS -->
+						<form class="form-horizontal" role="form" enctype="multipart/form-data" id="formImport">
 
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Import Excel FIle </label>
+								<div class="col-sm-6">
+									<input type="file" id="file" required name="file" class="form-control" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
+								<div class="col-sm-9">
+									<a href="<?php echo base_url() . 'mustahik/downloadsample' ?>" class="col-sm-3" for="form-field-1"> Download Sample Format</a>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" id="btn_import" class="btn btn-sm btn-success pull-left">
+					<i class="ace-icon fa fa-save"></i>
+					Import
+				</button>
+				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+					<i class="ace-icon fa fa-times"></i>
+					Batal
+				</button>
+			</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
 
 <div id="modalRekening" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
@@ -596,6 +649,71 @@
 		placeholder: "Pilih",
 		allowClear: true
 	});
+	if ($("#formImport").length > 0) {
+		$("#formImport").validate({
+			errorClass: "my-error-class",
+			validClass: "my-valid-class",
+			rules: {
+				nama: {
+					required: true,
+				},
+				telepon: {
+					required: true,
+					digits: true,
+					maxlength: 14,
+					minlength: 10,
+				},
+				alamat: {
+					required: true,
+					minlength: 10,
+				},
+				email: {
+					required: true,
+					email: true,
+				},
+			},
+			messages: {
+				nama: {
+					required: "Nama harus diisi!"
+				},
+				telepon: {
+					required: "Telepon harus diisi!"
+				},
+				alamat: {
+					required: "Harap Masukan alamat dengan benar!"
+				},
+			},
+			submitHandler: function(form) {
+				formdata = new FormData(form);
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url('mustahik/import') ?>",
+					data: formdata,
+					processData: false,
+					contentType: false,
+					cache: false,
+					async: false,
+					success: function(data) {
+						console.log(data);
+						if (data == 1 || data == true) {
+							document.getElementById("formImport").reset();
+							swalInputSuccess();
+							$('#my-modal2').modal('hide');
+							show_data();
+						} else if (data == 401) {
+							document.getElementById("formImport").reset();
+							swalIdDouble();
+						} else {
+							document.getElementById("formImport").reset();
+							swalInputFailed();
+
+						}
+					}
+				});
+				return false;
+			}
+		});
+	}
 
 	if ($("#formTambah").length > 0) {
 		$("#formTambah").validate({
