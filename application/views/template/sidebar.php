@@ -21,52 +21,6 @@ if ($jabatan == 19) { ?>
 		<!-- Menu Selain PSB -->
 		<li class="">
 			<a href="javascript:void(0);" class="dropdown-toggle">
-				<i class="menu-icon glyphicon glyphicon-user"></i>
-				<span class="menu-text">
-					Penerimaan Siswa Baru
-				</span>
-
-				<b class="arrow fa fa-angle-down"></b>
-			</a>
-
-			<b class="arrow"></b>
-
-			<ul class="submenu">
-				<li class="">
-					<a href="<?= base_url() . 'pengambilanformulir'; ?>">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Pengambilan Formulir
-					</a>
-				</li>
-
-				<li class="">
-					<a href="<?= base_url() . 'pengembalianformulir'; ?>">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Pengembalian Formulir
-					</a>
-				</li>
-
-				<li class="">
-					<a href="<?= base_url() . 'impbayar'; ?>">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Import Pembayaran Formulir
-					</a>
-				</li>
-			</ul>
-		</li>
-	</ul>
-<?php } else { ?>
-	<ul class="nav nav-list">
-		<li class="">
-			<a href="<?= base_url(); ?>dashboard">
-				<i class="menu-icon fa fa-tachometer"></i>
-				<span class="menu-text"> Dashboard </span>
-			</a>
-			<b class="arrow"></b>
-		</li>
-		<!-- Menu Selain PSB -->
-		<li class="">
-			<a href="javascript:void(0);" class="dropdown-toggle">
 				<i class="menu-icon glyphicon glyphicon-cog"></i>
 				<span class="menu-text">
 					Master
