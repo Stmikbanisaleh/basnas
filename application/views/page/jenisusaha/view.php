@@ -22,7 +22,7 @@
 							<!-- PAGE CONTENT BEGINS -->
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Usaha </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Bantuan </label>
 								<div class="col-sm-6">
 									<input type="text" id="nama" name="nama" placeholder="Nama Usaha" class="form-control" />
 								</div>
@@ -57,10 +57,8 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
-
-
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Usaha </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Bantuan </label>
 								<div class="col-sm-6">
 									<input type="hidden" id="e_id" name="e_id" />
 									<input type="text" id="e_nama" name="e_nama" placeholder="Nama Usaha" class="form-control" />
@@ -97,7 +95,7 @@
 		<thead>
 			<tr>
 				<th class="col-md-1">No</th>
-				<th>Nama Usaha</th>
+				<th>Nama Bantuan</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -141,43 +139,6 @@
 		$("#formTambah").validate({
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
-			rules: {
-				id: {
-					required: true
-					// ,maxlength: 50
-				},
-
-				nama: {
-					required: true
-					// , digits:true,
-					// minlength: 10,
-					// maxlength:12,
-				},
-				// email: {
-				//         required: true,
-				//         maxlength: 50,
-				//         email: true,
-				//     },    
-			},
-			messages: {
-
-				id: {
-					required: "Kode Jenis Usaha harus diisi!"
-					// ,maxlength: "Your last name maxlength should be 50 characters long."
-				},
-				nama: {
-					required: "Nama Jenis Usaha harus diisi!"
-					// ,minlength: "The contact number should be 10 digits",
-					// digits: "Please enter only numbers",
-					// maxlength: "The contact number should be 12 digits",
-				},
-				// email: {
-				//     required: "Please enter valid email",
-				//     email: "Please enter valid email",
-				//     maxlength: "The email name should less than or equal to 50 characters",
-				//   },
-
-			},
 			submitHandler: function(form) {
 				$('#btn_simpan').html('Sending..');
 				$.ajax({

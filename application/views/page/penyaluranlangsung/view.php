@@ -138,7 +138,7 @@
 	</div><!-- /.modal-dialog -->
 </div>
 
-<div id="my-modal" class="modal fade" tabindex="-1">
+<div id="my-modal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -411,6 +411,18 @@
 	</table>
 </div>
 <script type="text/javascript">
+	$('#penyalur').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
+	$('#tipe2').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
 	if ($("#formSearch").length > 0) {
 		$("#formSearch").validate({
 			errorClass: "my-error-class",

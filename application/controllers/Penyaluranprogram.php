@@ -41,8 +41,8 @@ class Penyaluranprogram extends CI_Controller
 			$mymustahik = $this->model_penyaluranprogram->viewOrdering('master_mustahik', 'nama', 'asc')->result_array();
 			$data = array(
 				'page_content' 	=> '/penyaluranprogram/view',
-				'ribbon' 		=> '<li class="active">Dashboard</li><li>Penyaluran Langsung</li>',
-				'page_name' 	=> 'Penyaluran Langsung',
+				'ribbon' 		=> '<li class="active">Dashboard</li><li>Penyaluran Program</li>',
+				'page_name' 	=> 'Penyaluran Program',
 				'js' 			=> 'js_file',
 				'mykategorimustahik'		=> $mykategorimustahik,
 				'myprogram'		=> $myprogram,
