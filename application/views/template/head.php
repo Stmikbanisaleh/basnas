@@ -1,6 +1,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta charset="utf-8" />
-<title>Dashboard - Operator</title>
+<title>Dashboard - <?php
+$jabatan = $this->session->userdata('jabatan');
+if ($jabatan == 5) {
+	echo "Administrator";
+} elseif ($jabatan == 4) {
+	echo "Staff";
+} elseif ($jabatan == 3) {
+	echo "Bendahara";
+} elseif ($jabatan == 2) {
+	echo "Pimpinan";
+} else {
+	echo "Amil";
+}
+?></title>
     <link rel="apple-touch-icon" href="<?php echo base_url() ?>global/images/logo.png">
     <link rel="shortcut icon" href="<?php echo base_url() ?>global/images/logo.png">
 <meta name="description" content="overview &amp; stats" />

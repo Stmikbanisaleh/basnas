@@ -64,6 +64,14 @@
 														<i class="ace-icon fa fa-lock"></i>
 													</span>
 												</label>
+												<label class="block clearfix">
+													<select class="form-control" name="jabatan" id="jabatan">
+														<option value="">-- Pilih Jabatan --</option>
+														<?php foreach ($jabatan as $a) { ?>
+															<option value=<?= $a['id'] ?>> <?= $a['nama'] ?></option>
+														<?php } ?>
+													</select>
+												</label>
 
 												<div class="space"></div>
 
