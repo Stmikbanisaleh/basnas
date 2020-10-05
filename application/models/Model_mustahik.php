@@ -31,6 +31,18 @@ class Model_mustahik extends CI_model
 		// $this->db->order_by($order, $ordering);
 		return $this->db->query("SELECT a.*,b.nama as kat_mustahiks from $table a join master_kategori_mustahik b on a.kat_mustahik = b.id order by $order $ordering");
 	}
+	public function joinmustahik()
+    {
+        return $this->db->query("SELECT mm.id, mm.nama, mm.pendapatan,mm.jenis_mustahik, mm.npwp, mm.tipe_identitas, kat.id as 'id_mustahik', kat.nama as 'kat_mustahik', mm.no_identitas, mm.tgl_reg, mm.kewarganegaraan, foto, mm.tmp_lhr,mm.tgl_lhr,mm.jenis_kelamin, mm.jenis_mustahik, p.id as 'id_pekerjaan',p.nama 'pekerjaan', mm.status_pernikahan, pen.id as 'id_pendidikan', pen.nama as 'pendidikan', mm.alamat, pro.id as 'id_provinsi', pro.proptbpro as 'provinsi', mm.kab_kota, mm.desa_kelurahan, mm.kode_pos, j.id as 'id_jenisusaha', j.nama as 'jenis_usaha', mm.kecamatan, mm.status_rumah,mm.telp, mm.fax, mm.handphone, mm.email, mm.website
+		from master_mustahik mm
+		LEFT JOIN master_kategori_mustahik kat on kat.id = mm.kat_mustahik
+		LEFT JOIN master_pekerjaan p on p.id = mm.pekerjaan
+		LEFT JOIN master_pendidikan pen on pen.id = mm.status_pendidikan
+		LEFT JOIN master_provinsi pro on pro.id = mm.provinsi
+		LEFT JOIN master_jenis_usaha j on j.id = mm.jenis_usaha
+		where mm.isdeleted != 1
+		ORDER BY mm.id desc");
+	}
 
 	public function getprovinsi()
 	{

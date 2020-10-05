@@ -232,21 +232,22 @@ class Muzakki extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G1', 'Tempat Lahir');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H1', 'Tanggal Lahir');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I1', 'Jenis Kelamin');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J1', 'Pekerjaan');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('K1', 'Status Pernikahan');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('L1', 'Status Pendidikan');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('M1', 'Alamat');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('N1', 'Provinsi');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('O1', 'Kab / Kota');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P1', 'Kecamatan');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Q1', 'Desa/Kelurahan');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('R1', 'Kode Pos');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('S1', 'Status Rumah');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('T1', 'No. Telp');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('U1', 'Fax');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('V1', 'Handphone');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('W1', 'Email');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('X1', 'Website');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J1', 'Jenis Muzakki');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('K1', 'Pekerjaan');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('L1', 'Status Pernikahan');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('M1', 'Status Pendidikan');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('N1', 'Alamat');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('O1', 'Provinsi');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P1', 'Kab / Kota');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Q1', 'Kecamatan');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('R1', 'Desa/Kelurahan');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('S1', 'Kode Pos');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('T1', 'Status Rumah');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('U1', 'No. Telp');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('V1', 'Fax');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('W1', 'Handphone');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('X1', 'Email');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Y1', 'Website');
 
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A2', '2020-10-06');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B2', 'IQBAL');
@@ -257,21 +258,22 @@ class Muzakki extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G2', 'Bekasi');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H2', '1997-10-01');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I2', 'L');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J2', '2');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J2', 'Individu');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('K2', '2');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('L2', '4');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('M2', 'Jl. Testing Raya No 1111');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('N2', '2201');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('O2', 'Bekasi');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P2', 'Tambun Utara');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Q2', 'Satria Jaya');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('R2', '17510');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('S2', '1');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('T2', '123456789');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('U2', '4456324474');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('V2', '777777777');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('W2', 'school.gemanurani@gmail.com');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('X2', 'gemanurani.com');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('L2', '2');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('M2', '4');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('N2', 'Jl. Testing Raya No 1111');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('O2', '2201');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P2', 'Bekasi');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Q2', 'Tambun Utara');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('R2', 'Satria Jaya');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('S2', '17510');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('T2', '1');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('U2', '123456789');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('V2', '4456324474');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('W2', '777777777');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('X2', 'school.gemanurani@gmail.com');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Y2', 'gemanurani.com');
 
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A3', '2020-10-06');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B3', 'ARMERIA');
@@ -282,21 +284,22 @@ class Muzakki extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G3', 'Bekasi');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H3', '1997-07-01');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I3', 'P');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J3', '2');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J3', 'Lembaga');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('K3', '2');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('L3', '4');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('M3', 'Jl. Testing Raya No 1111');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('N3', '2201');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('O3', 'Bekasi');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P3', 'Tambun Utara');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Q3', 'Satria Jaya');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('R3', '17510');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('S3', '1');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('T3', '123456789');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('U3', '4456324474');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('V3', '777777777');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('W3', 'school.gemanurani@gmail.com');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('X3', 'gemanurani.com');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('L3', '2');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('M3', '4');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('N3', 'Jl. Testing Raya No 1111');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('O3', '2201');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P3', 'Bekasi');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Q3', 'Tambun Utara');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('R3', 'Satria Jaya');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('S3', '17510');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('T3', '1');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('U3', '123456789');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('V3', '4456324474');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('W3', '777777777');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('X3', 'school.gemanurani@gmail.com');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Y3', 'gemanurani.com');
 
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AA1', 'Tanggal Reg');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AB1', 'Nama Muzakki');
@@ -335,6 +338,9 @@ class Muzakki extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('BA1', 'Handphone');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('BB1', 'Email');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('BC1', 'Website');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('BD1', 'Jenis Muzakki');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('BD2', 'Individu');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('BD3', 'Lembaga');
 				foreach ($data as $dataExcel) {
 					$tgl_reg = $dataExcel['tgl_reg'];
 					$nama = $dataExcel['nama'];
@@ -433,17 +439,17 @@ class Muzakki extends CI_Controller
 					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AT' . $row, $kecamatan, PHPExcel_Cell_DataType::TYPE_STRING);
 					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AT')->setAutoSize(true);
 
-					$objPHPExcel->getActiveSheet(0)->getStyle('AR' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AR' . $row, $desa_kelurahan, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AR')->setAutoSize(true);
-
 					$objPHPExcel->getActiveSheet(0)->getStyle('AU' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AU' . $row, $kode_pos, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AU' . $row, $desa_kelurahan, PHPExcel_Cell_DataType::TYPE_STRING);
 					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AU')->setAutoSize(true);
 
 					$objPHPExcel->getActiveSheet(0)->getStyle('AV' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AV' . $row, $kecamatan, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AV' . $row, $kode_pos, PHPExcel_Cell_DataType::TYPE_STRING);
 					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AV')->setAutoSize(true);
+
+					// $objPHPExcel->getActiveSheet(0)->getStyle('AV' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					// $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AV' . $row, $kecamatan, PHPExcel_Cell_DataType::TYPE_STRING);
+					// $objPHPExcel->getActiveSheet(0)->getColumnDimension('AV')->setAutoSize(true);
 
 					$objPHPExcel->getActiveSheet(0)->getStyle('AY' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
 					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AY' . $row, $telp, PHPExcel_Cell_DataType::TYPE_STRING);
@@ -538,45 +544,48 @@ class Muzakki extends CI_Controller
 						array_push($empty_message, "No at row "  . $keys . " Jenis Kelamin harus di isi");
 					}
 					if (!$value[9]) {
-						array_push($empty_message, "No at row "  . $keys . " Pekerjaan harus di isi");
+						array_push($empty_message, "No at row "  . $keys . " Jenis Muzakki harus di isi");
 					}
 					if (!$value[10]) {
+						array_push($empty_message, "No at row "  . $keys . " Pekerjaan harus di isi");
+					}
+					if (!$value[11]) {
 						array_push($empty_message, "No at row "  . $keys . " Status Nikah harus di isi");
 					}
 
-					if (!$value[11]) {
+					if (!$value[12]) {
 						array_push($empty_message, "No at row "  . $keys . " Status Pendidikan harus di isi");
 					}
 
-					if (!$value[12]) {
+					if (!$value[13]) {
 						array_push($empty_message, "No at row "  . $keys . " Alamat harus di isi");
 					}
 
-					if (!$value[13]) {
+					if (!$value[14]) {
 						array_push($empty_message, "No at row "  . $keys . " Provinsi harus di isi");
 					}
 
-					if (!$value[14]) {
+					if (!$value[15]) {
 						array_push($empty_message, "No at row "  . $keys . " Kabupaten/Kota harus di isi");
 					}
 
-					if (!$value[15]) {
+					if (!$value[16]) {
 						array_push($empty_message, "No at row "  . $keys . " Kecamatan harus di isi");
 					}
 
-					if (!$value[16]) {
+					if (!$value[17]) {
 						array_push($empty_message, "No at row "  . $keys . " Desa/Kelurahan harus di isi");
 					}
-					if (!$value[17]) {
+					if (!$value[18]) {
 						array_push($empty_message, "No at row "  . $keys . " Kode Pos harus di isi");
 					}
-					if (!$value[18]) {
+					if (!$value[19]) {
 						array_push($empty_message, "No at row "  . $keys . " Status Rumah harus di isi");
 					}
-					if (!$value[21]) {
+					if (!$value[22]) {
 						array_push($empty_message, "No at row "  . $keys . " Handphone harus di isi");
 					}
-					if (!$value[22]) {
+					if (!$value[23]) {
 						array_push($empty_message, "No at row "  . $keys . " Email harus di isi");
 					}
 
@@ -596,18 +605,19 @@ class Muzakki extends CI_Controller
 							'tmp_lhr'  => $value[6],
 							'tgl_lhr'  => $value[7],
 							'jenis_kelamin'  => $value[8],
-							'pekerjaan'  => $value[9],
-							'status_pernikahan'  => $value[10],
-							'status_pendidikan'  => $value[11],
-							'alamat'  => $value[12],
-							'provinsi'  => $value[13],
-							'kab_kota'  => $value[14],
-							'kecamatan'  => $value[15],
-							'desa_kelurahan'  => $value[16],
-							'kode_pos'  => $value[17],
-							'status_rumah'  => $value[18],
-							'handphone'  => $value[21],
-							'email'  => $value[22],
+							'jenis_muzakki'  => $value[9],
+							'pekerjaan'  => $value[10],
+							'status_pernikahan'  => $value[11],
+							'status_pendidikan'  => $value[12],
+							'alamat'  => $value[13],
+							'provinsi'  => $value[14],
+							'kab_kota'  => $value[15],
+							'kecamatan'  => $value[16],
+							'desa_kelurahan'  => $value[17],
+							'kode_pos'  => $value[18],
+							'status_rumah'  => $value[19],
+							'handphone'  => $value[22],
+							'email'  => $value[23],
 							'createdAt' => date('Y-m-d H:i:s')
 						);
 						$result = $this->model_muzakki->insert($arrayCustomerQuote, 'master_muzakki');
