@@ -16,11 +16,51 @@
 								<div class="col-sm-9">
 									<select required class="form-control" name="e_status" id="e_status">
 										<option value="">-- Pilih Status--</option>
-										<option value="0">Unapprove</option></option>
+										<option value="0">Unapprove</option>
+										</option>
 										<option value="1">Approved</option>
 										<option value="2">Completed</option>
 										<option value="3">Rejected</option>
 									</select>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Diajukan </label>
+								<div class="col-sm-9">
+									<input type="text" id="total_diajukan" readonly name="total_diajukan" placeholder="total penerimaan" class="form-control" />
+								</div>
+							</div>
+						
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Disetujui </label>
+								<div class="col-sm-9">
+									<input type="text" id="e_total" required name="e_total" placeholder="total penerimaan" class="form-control" />
+									<input type="hidden" id="e_total_v" required name="e_total_v" placeholder="total penerimaan" class="form-control" />
+									<script language="JavaScript">
+										var rupiah2 = document.getElementById('e_total');
+										rupiah2.addEventListener('keyup', function(e) {
+											rup2 = this.value.replace(/\D/g, '');
+											$('#e_total_v').val(rup2);
+											rupiah2.value = formatRupiah(this.value, 'Rp. ');
+										});
+										function formatRupiah(angka, prefix) {
+											var number_string = angka.replace(/[^,\d]/g, '').toString(),
+												split = number_string.split(','),
+												sisa = split[0].length % 3,
+												rupiah = split[0].substr(0, sisa),
+												ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+											// tambahkan titik jika yang di input sudah menjadi angka ribuan
+											if (ribuan) {
+												separator = sisa ? '.' : '';
+												rupiah += separator + ribuan.join('.');
+											}
+
+											rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+											return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+										}
+									</script>
 								</div>
 							</div>
 					</div>
@@ -55,7 +95,8 @@
 				<th class="text-center">No</th>
 				<th class="text-center">Jenis Dana</th>
 				<th class="text-center">Ansaf</th>
-				<th class="text-center">Jumlah Dana</th>
+				<th class="text-center">Diajukan</th>
+				<th class="text-center">Disetujui</th>
 				<th class="text-center">Deskripsi</th>
 				<th class="text-center">Status</th>
 				<th class="text-center">Tanggal</th>
@@ -67,7 +108,6 @@
 	</table>
 </div>
 <script type="text/javascript">
-	
 	if ($("#formTambah").length > 0) {
 		$("#formTambah").validate({
 			errorClass: "my-error-class",
@@ -152,6 +192,11 @@
 			success: function(data) {
 				$('#e_id').val(data[0].id);
 				$('#e_status').val(data[0].is_approve);
+				var a = ConvertFormatRupiah(data[0].jumlah_dana, 'Rp. ');
+				$('#total_diajukan').val(a);
+				var b = ConvertFormatRupiah(data[0].jumlah_dana_disetujui, 'Rp. ');
+				$('#e_total').val(b);
+				$('#e_total_v').val(data[0].jumlah_dana_disetujui);
 			}
 		});
 	});
@@ -170,35 +215,35 @@
 				for (i = 0; i < data.length; i++) {
 					if (data[i].is_approve == '1') {
 						var status = '<td class="text-center">' +
-						'<button  href="#my-modal-detail" class="btn btn-xs btn-info " title="Add" data-id="' + data[i].id + '">' +
-						'<i class="ace-icon fa fa-check-square-o bigger-120"></i> Approved' +
-						'</button> &nbsp' +
-						'</td>';
-					 } else if (data[i].is_approve == '2') {
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-info " title="Add" data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-check-square-o bigger-120"></i> Approved' +
+							'</button> &nbsp' +
+							'</td>';
+					} else if (data[i].is_approve == '2') {
 						var status = '<td class="text-center">' +
-						'<button  href="#my-modal-detail" class="btn btn-xs btn-success " title="Add" data-id="' + data[i].id + '">' +
-						'<i class="ace-icon fa fa-ban bigger-120"> </i> Completed' +
-						'</button> &nbsp' +
-						'</td>';
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-success " title="Add" data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-check bigger-120"> </i> Completed' +
+							'</button> &nbsp' +
+							'</td>';
 					} else if (data[i].is_approve == '3') {
 						var status = '<td class="text-center">' +
-						'<button  href="#my-modal-detail" class="btn btn-xs btn-danger " title="Add" data-id="' + data[i].id + '">' +
-						'<i class="ace-icon fa fa-ban bigger-120"> </i> Rejected' +
-						'</button> &nbsp' +
-						'</td>';
-					}
-					 else {
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-danger " title="Add" data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-ban bigger-120"> </i> Rejected' +
+							'</button> &nbsp' +
+							'</td>';
+					} else {
 						var status = '<td class="text-center">' +
-						'<button  href="#my-modal-detail" class="btn btn-xs btn-warning" title="Add" data-id="' + data[i].id + '">' +
-						'<i class="ace-icon fa fa-ban bigger-120"> </i> Unupprove' +
-						'</button> &nbsp' +
-						'</td>';
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-warning" title="Add" data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-ban bigger-120"> </i> Unupprove' +
+							'</button> &nbsp' +
+							'</td>';
 					}
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
 						'<td>' + data[i].type + '</td>' +
 						'<td>' + data[i].ansaf + '</td>' +
 						'<td>' + data[i].Nominal + '</td>' +
+						'<td>' + data[i].Nominal2 + '</td>' +
 						'<td>' + data[i].deskripsi + '</td>' +
 						status +
 						'<td>' + data[i].createdAt + '</td>' +
@@ -229,20 +274,20 @@
 	}
 
 
-    function show_data_rekening(id, callback) {
-        var ps = id;
-        $.ajax({
-            type: "POST",
-            url: "zakatfitrah/shownorek",
-            data: {
-                ps: ps
-            }
-        }).done(function(data) {
-            $("#e_norek").html(data);
-            callback()
-        });
+	function show_data_rekening(id, callback) {
+		var ps = id;
+		$.ajax({
+			type: "POST",
+			url: "zakatfitrah/shownorek",
+			data: {
+				ps: ps
+			}
+		}).done(function(data) {
+			$("#e_norek").html(data);
+			callback()
+		});
 	}
-	
+
 
 	function ConvertFormatRupiah(angka, prefix) {
 		var number_string = angka.replace(/[^,\d]/g, '').toString(),

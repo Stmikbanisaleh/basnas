@@ -85,7 +85,7 @@ if ($jabatan == 19) { ?>
 				<li class="">
 					<a href="<?= base_url() . 'jenisusaha'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Master Jenis Usaha
+						Master Jenis Bantuan
 					</a>
 				</li>
 			
