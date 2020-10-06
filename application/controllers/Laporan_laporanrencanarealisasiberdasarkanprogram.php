@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Laporan_penyaluran extends CI_Controller
+class Laporan_laporanrencanarealisasiberdasarkanprogram extends CI_Controller
 {
 
 	function __construct()
@@ -21,8 +21,8 @@ class Laporan_penyaluran extends CI_Controller
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$data = array(
 				'page_content' 	=> '/lap_penyaluran/view',
-				'ribbon' 		=> '<li class="active">Dashboard</li><li>Laporan Penerimaan</li>',
-				'page_name' 	=> 'Laporan Penerimaan',
+				'ribbon' 		=> '<li class="active">Dashboard</li><li>Laporan Penyaluran Rencana dan Realisasi Berdasarkan Program</li>',
+				'page_name' 	=> 'Laporan Penyaluran Rencana dan Realisasi Berdasarkan Program',
 				'js' 			=> 'js_file',
 			);
 			$this->render_view($data);
@@ -105,7 +105,7 @@ class Laporan_penyaluran extends CI_Controller
 			$row++;
 			$no++;
 			header('Content-Type: application/vnd.ms-excel; charset=utf-8');
-			header('Content-Disposition: attachment; filename=report.xls');
+			header('Content-Disposition: attachment; filename=Laporan_Penyaluran_Rencana_dan_Realisasi_Berdasarkan_Program.xls');
 			header('Cache-Control: max-age=0');
 			ob_end_clean();
 			ob_start();

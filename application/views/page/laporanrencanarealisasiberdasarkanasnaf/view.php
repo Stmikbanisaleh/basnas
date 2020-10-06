@@ -1,4 +1,4 @@
-<form method="POST" role="form" action="<?php echo base_url('laporan_laporanrencanarealisasiberdasarkanprogram/laporanrencanarealisasiberdasarkanprogram') ?>" id="formreport">
+<form method="POST" role="form" action="<?php echo base_url('laporan_laporanrencanarealisasiberdasarkanasnaf/laporanrencanarealisasiberdasarkanasnaf') ?>" id="formreport">
 	<div class="col-xs-3">
 		<div class="form-group">
 			<label for="exampleInputEmail1">Periode Awal</label>
@@ -18,7 +18,6 @@
 				<option value="0">Unapprove</option>
 				<option value="3">Rejected</option>
 				<option value="2">Completed</option>
-
 			</select>
 			<small id="emailHelp" class="form-text text-muted">Status approve / unapprove (Boleh tidak diisi).</small>
 		</div>
@@ -27,44 +26,3 @@
 		</button>
 	</div>
 </form>
-<script>
-	// if ($("#formreport").length > 0) {
-	// 	$("#formreport").validate({
-	// 		errorClass: "my-error-class",
-	// 		validClass: "my-valid-class",
-	// 		rules: {
-	// 			periode_awal: {
-	// 				required: true,
-	// 			},
-	// 			periode_akhir: {
-	// 				required: true,
-	// 			},
-	// 		},
-	// 		messages: {
-	// 			periode_awal: {
-	// 				required: "Harap isi periode!"
-	// 			},
-	// 			periode_akhir: {
-	// 				required: "Harap isi periode!"
-	// 			},
-	// 		},
-	// 		submitHandler: function(form) {
-	// 			formdata = new FormData(form);
-	// 			$.ajax({
-	// 				type: "POST",
-	// 				url: "<?php echo base_url('laporan_penyaluran/laporanrencanarealisasiberdasarkanprogram') ?>",
-	// 				data: formdata,
-	// 				processData: false,
-	// 				contentType: false,
-	// 				cache: false,
-	// 				async: false,
-	// 				success: function(data) {
-	// 					console.log(data);
-	// 				}
-	// 			});
-	// 			return false;
-	// 		}
-
-	// 	});
-	// }
-</script>

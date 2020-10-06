@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
 	<div class="col-xs-1">
 		<button href="#my-modal" role="button" data-toggle="modal" class="btn btn-xs btn-info">
@@ -8,7 +10,7 @@
 	<br>
 </div>
 
-<div id="my-modal" class="modal fade" tabindex="-1">
+<div id="my-modal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -78,6 +80,7 @@
 											$('#total_v').val(rup2);
 											rupiah2.value = formatRupiah(this.value, 'Rp. ');
 										});
+
 										function formatRupiah(angka, prefix) {
 											var number_string = angka.replace(/[^,\d]/g, '').toString(),
 												split = number_string.split(','),
@@ -151,7 +154,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NPWZ </label>
 								<div class="col-sm-6">
-									<input type="hidden" id="e_id" required name="e_id"/>
+									<input type="hidden" id="e_id" required name="e_id" />
 									<input type="text" id="e_npwz" required name="e_npwz" placeholder="NPWZ" class="form-control" />
 								</div>
 							</div>
@@ -263,6 +266,12 @@
 	</table>
 </div>
 <script type="text/javascript">
+	$('#nama').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
 	if ($("#formTambah").length > 0) {
 		$("#formTambah").validate({
 			errorClass: "my-error-class",
@@ -409,7 +418,7 @@
 				var a = ConvertFormatRupiah(data[0].total_terima, 'Rp. ');
 				$('#e_total').val(a);
 				$('#e_total_v').val(data[0].total_terima);
-				show_data_rekening(data[0].id_kartu, function(a){
+				show_data_rekening(data[0].id_kartu, function(a) {
 					$('#e_norek').val(data[0].id_kartu);
 				});
 				$('#e_deskripsi').val(data[0].deskripsi);
@@ -465,20 +474,20 @@
 	}
 
 
-    function show_data_rekening(id, callback) {
-        var ps = id;
-        $.ajax({
-            type: "POST",
-            url: "infaq/shownorek",
-            data: {
-                ps: ps
-            }
-        }).done(function(data) {
-            $("#e_norek").html(data);
-            callback()
-        });
+	function show_data_rekening(id, callback) {
+		var ps = id;
+		$.ajax({
+			type: "POST",
+			url: "infaq/shownorek",
+			data: {
+				ps: ps
+			}
+		}).done(function(data) {
+			$("#e_norek").html(data);
+			callback()
+		});
 	}
-	
+
 
 	function ConvertFormatRupiah(angka, prefix) {
 		var number_string = angka.replace(/[^,\d]/g, '').toString(),

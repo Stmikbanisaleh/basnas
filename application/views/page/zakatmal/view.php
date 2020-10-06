@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
 	<div class="col-xs-1">
 		<button href="#my-modal" role="button" data-toggle="modal" class="btn btn-xs btn-info">
@@ -8,7 +10,7 @@
 	<br>
 </div>
 
-<div id="my-modal" class="modal fade" tabindex="-1">
+<div id="my-modal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -142,7 +144,7 @@
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formEdit">
-						<div class="form-group">
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
 								<div class="col-sm-9">
 									<select required class="form-control" name="e_nama" id="e_nama">
@@ -158,7 +160,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NPWZ </label>
 								<div class="col-sm-6">
-									<input type="hidden" id="e_id"  name="e_id"  class="form-control" />
+									<input type="hidden" id="e_id" name="e_id" class="form-control" />
 									<input type="text" id="e_npwp" readonly name="e_npwp" placeholder="NPWZ" class="form-control" />
 								</div>
 							</div>
@@ -273,6 +275,12 @@
 	</table>
 </div>
 <script type="text/javascript">
+	$('#nama').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
 	if ($("#formTambah").length > 0) {
 		$("#formTambah").validate({
 			errorClass: "my-error-class",
@@ -434,7 +442,7 @@
 				$('#e_total').val(a);
 				$('#e_jeniszakat').val(data[0].jenis_zakat);
 				$('#e_total_v').val(data[0].total_terima);
-				show_data_rekening(data[0].id_kartu, function(a){
+				show_data_rekening(data[0].id_kartu, function(a) {
 					$('#e_norek').val(data[0].id_kartu);
 				});
 			}

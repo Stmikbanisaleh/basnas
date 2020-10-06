@@ -269,21 +269,21 @@ if ($jabatan == 19) { ?>
 				</li>
 
 				<li class="">
-					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+					<a href="<?= base_url() . 'laporan_laporanrencanarealisasiberdasarkanasnaf'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rencana dan Realisasi Penyaluran Asnaf
 					</a>
 				</li>
 
 				<li class="">
-					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+					<a href="<?= base_url() . 'laporan_laporanrencanarealisasiberdasarkanprogram'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rencana dan Realisasi Penyaluran Program
 					</a>
 				</li>
 
 				<li class="">
-					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+					<a href="<?= base_url() . 'Laporan_laporanrencanadanrealisasipenggalanganmuzakkidanpenerimamanfaat'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rencana dan Realisasi Penggalangan Muzaki dan Penerimaan Manfaat
 					</a>
