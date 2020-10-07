@@ -54,6 +54,8 @@ class Laporan_laporanrencanarealisasiberdasarkanasnaf extends CI_Controller
 
 				$fakir = $this->model_lap_penyaluran->getfakirrencana($periode_awal, $periode_akhir)->result_array();
 				$amil = $this->model_lap_penyaluran->getamilrencana($periode_awal, $periode_akhir)->result_array();
+				$mualaf = $this->model_lap_penyaluran->getmualafrencana($periode_awal, $periode_akhir)->result_array();
+				$riqob = $this->model_lap_penyaluran->getriqobrencana($periode_awal, $periode_akhir)->result_array();
 
 				$objPHPExcel->getActiveSheet(0)->getStyle('A' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
 				$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('A' . $row, $no, PHPExcel_Cell_DataType::TYPE_STRING);
@@ -103,19 +105,44 @@ class Laporan_laporanrencanarealisasiberdasarkanasnaf extends CI_Controller
 				$objPHPExcel->getActiveSheet(0)->getColumnDimension('A5')->setAutoSize(true);
 
 				$objPHPExcel->getActiveSheet(0)->getStyle('B5')->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-				$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('B5', 'Penerima Manfaat Asnaf Amil', PHPExcel_Cell_DataType::TYPE_STRING);
+				$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('B5', 'Penerima Manfaat Mualaf', PHPExcel_Cell_DataType::TYPE_STRING);
 
 				$objPHPExcel->getActiveSheet(0)->getStyle('C5')->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-				$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('C5', $amil[0]['direncanakan'], PHPExcel_Cell_DataType::TYPE_STRING);
+				$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('C5', $mualaf[0]['direncanakan'], PHPExcel_Cell_DataType::TYPE_STRING);
 
 				$objPHPExcel->getActiveSheet(0)->getStyle('D5')->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-				$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('D5', $amil[0]['disetujui'], PHPExcel_Cell_DataType::TYPE_STRING);
+				$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('D5', $mualaf[0]['disetujui'], PHPExcel_Cell_DataType::TYPE_STRING);
+
+				$objPHPExcel->getActiveSheet(0)->getStyle('A6')->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+				$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('A6', '1.4', PHPExcel_Cell_DataType::TYPE_STRING);
+
+				$objPHPExcel->getActiveSheet(0)->getStyle('B6')->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+				$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('B6', 'Penerima Manfaat Riqob', PHPExcel_Cell_DataType::TYPE_STRING);
+
+				$objPHPExcel->getActiveSheet(0)->getStyle('C6')->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+				$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('C6', $riqob[0]['direncanakan'], PHPExcel_Cell_DataType::TYPE_STRING);
+
+				$objPHPExcel->getActiveSheet(0)->getStyle('D6')->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+				$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('D6', $riqob[0]['disetujui'], PHPExcel_Cell_DataType::TYPE_STRING);
+
+
+				$objPHPExcel->getActiveSheet(0)->getStyle('A7')->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+				$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('A7', '1.5', PHPExcel_Cell_DataType::TYPE_STRING);
+
+				$objPHPExcel->getActiveSheet(0)->getStyle('B7')->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+				$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('B7', 'Penerima Manfaat Gharimin', PHPExcel_Cell_DataType::TYPE_STRING);
+
+				$objPHPExcel->getActiveSheet(0)->getStyle('C7')->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+				$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('C7', $riqob[0]['direncanakan'], PHPExcel_Cell_DataType::TYPE_STRING);
+
+				$objPHPExcel->getActiveSheet(0)->getStyle('D7')->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+				$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('D7', $riqob[0]['disetujui'], PHPExcel_Cell_DataType::TYPE_STRING);
 
 			}
 			$row++;
 			$no++;
 			header('Content-Type: application/vnd.ms-excel; charset=utf-8');
-			header('Content-Disposition: attachment; filename=Laporan_Penyaluran_Rencana_dan_Realisasi_Berdasarkan_Program.xls');
+			header('Content-Disposition: attachment; filename=Laporan_Penyaluran_Rencana_dan_Realisasi_Berdasarkan_Asnaf.xls');
 			header('Cache-Control: max-age=0');
 			ob_end_clean();
 			ob_start();

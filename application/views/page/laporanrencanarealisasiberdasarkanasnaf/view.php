@@ -10,17 +10,6 @@
 			<input type="date" id="periode_akhir" required name="periode_akhir" placeholder="Periode Akhir" class="form-control" />
 			<small id="emailHelp" class="form-text text-muted">Tanggal akhir laporan.</small>
 		</div>
-		<div class="form-group">
-			<label for="exampleInputEmail1">Status</label>
-			<select class="form-control" required name="is_approve">
-				<option value="0">--Pilih Jenis Penerimaan--</option>
-				<option value="1">Approve</option>
-				<option value="0">Unapprove</option>
-				<option value="3">Rejected</option>
-				<option value="2">Completed</option>
-			</select>
-			<small id="emailHelp" class="form-text text-muted">Status approve / unapprove (Boleh tidak diisi).</small>
-		</div>
 		<button type="submit" id="btn_search" class="btn btn-sm btn-success pull-left">
 			<a class="ace-icon fa fa-search bigger-120"></a>Periksa
 		</button>

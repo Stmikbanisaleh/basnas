@@ -37,6 +37,18 @@ class Model_lap_penyaluran extends CI_model
 		 from master_penyaluran a where a.createdAt between '".$periode_awal."' and '".$periode_akhir."' and ansaf = 3  ");
 	}
 
+	public function getmualafrencana($periode_awal, $periode_akhir)
+	{
+		return $this->db->query("SELECT count(a.id) as direncanakan,(SELECT count(a.id) from master_penyaluran a where a.createdAt between '".$periode_awal."' and '".$periode_akhir."' and is_approve = 2 and ansaf = 4 ) as disetujui
+		 from master_penyaluran a where a.createdAt between '".$periode_awal."' and '".$periode_akhir."' and ansaf = 4  ");
+	}
+
+	public function getriqobrencana($periode_awal, $periode_akhir)
+	{
+		return $this->db->query("SELECT count(a.id) as direncanakan,(SELECT count(a.id) from master_penyaluran a where a.createdAt between '".$periode_awal."' and '".$periode_akhir."' and is_approve = 2 and ansaf = 7 ) as disetujui
+		 from master_penyaluran a where a.createdAt between '".$periode_awal."' and '".$periode_akhir."' and ansaf = 7  ");
+	}
+
 	public function master_kategori_mustahik()
 	{
 		return $this->db->query("SELECT count(b.id) as direncanakan,(SELECT count(id) from master_penyaluran where is_approve = 2) as disetujui  from master_kategori_mustahik a join master_penyaluran b on a.id = b.ansaf");
