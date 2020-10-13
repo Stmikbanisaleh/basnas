@@ -55,7 +55,9 @@ class Model_penyaluranlangsung extends CI_model
 	public function viewWhereOrderingpenyalur($table, $order, $ordering)
     {
         return $this->db->query("SELECT a.*,b.nama as ansaf,c.nama as type ,CONCAT('Rp. ',FORMAT(a.jumlah_dana,2)) Nominal from $table a join master_kategori_mustahik b on a.ansaf = b.id
-		join master_type c on a.type = c.id order by $order $ordering ");
+		join master_type c on a.type = c.id
+        WHERE a.id_program is null
+        order by $order $ordering ");
     }
 
 	public function cek($nama, $idprogram)

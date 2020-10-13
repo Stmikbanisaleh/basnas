@@ -59,14 +59,19 @@ class Mustahik extends CI_Controller
 	public function simpan()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-			$config['upload_path']          = './assets/gambar';
-            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['upload_path'] = './assets/image/mustahik'; 
+			// $config['file_name'] = 'filename';
+			$config['overwrite'] = TRUE;
 			$config['encrypt_name'] = TRUE;
-			$config['max_size']             = 4096; // 4MB
+			$config["allowed_types"] = 'jpg|jpeg|png|gif';
+			$config["max_size"] = 4096;
+			// $config["max_width"] = 400;
+			// $config["max_height"] = 400;
 			$this->load->library('upload', $config);
-			if ($this->upload->do_upload("file")) {
-				$data = array('upload_data' => $this->upload->data());
-				$foto = $data['upload_data']['file_name'];
+			$do_upload = $this->upload->do_upload("foto");
+			if ($do_upload) {
+				$upload_data = $this->upload->data();
+				$file_name = $upload_data['file_name'];
 				$data = array(
 					'tgl_reg'  => date('Y-m-d H:i:s'),
 					'kat_mustahik'  => $this->input->post('kat_mustahik'),
@@ -80,7 +85,7 @@ class Mustahik extends CI_Controller
 					'jenis_kelamin'  => $this->input->post('jk'),
 					'kewarganegaraan'  => $this->input->post('warganegara'),
 					'jenis_usaha'  => $this->input->post('ju'),
-					'foto'	=> $foto,
+					'foto'	=> $file_name,
 					'alamat'  => $this->input->post('alamat'),
 					'provinsi'  => $this->input->post('provinsi'),
 					'kab_kota'  => $this->input->post('kab_kot'),
@@ -164,34 +169,78 @@ class Mustahik extends CI_Controller
 			$data_id = array(
 				'id'  => $this->input->post('e_id')
 			);
+			$config['upload_path'] = './assets/image/mustahik';
+			$config['overwrite'] = TRUE;
+			$config['encrypt_name'] = TRUE;
+			$config["allowed_types"] = 'jpg|jpeg|png|gif';
+			$config["max_size"] = 4096;
+			$this->load->library('upload', $config);
+			$do_upload = $this->upload->do_upload("e_foto");
+			$file_name = null;
+			if ($do_upload) {
+				$upload_data = $this->upload->data();
+				$file_name = $upload_data['file_name'];
+			}
+			if (empty($_FILES['userfile']['name'])) {
+				$data = array(
+					'kat_mustahik'  => $this->input->post('e_kat_mustahik'),
+					'nama'  => $this->input->post('e_nama'),
+					'pendapatan'  => $this->input->post('e_pendapatan_v'),
+					'tipe_identitas'  => $this->input->post('e_tipe_identitas'),
+					'tgl_lhr'  => $this->input->post('e_tgl_lhr'),
+					'jenis_mustahik'  => $this->input->post('e_jenis_mustahik'),
+					'no_identitas'  => $this->input->post('e_idn'),
+					'tmp_lhr'  => $this->input->post('e_tempat_lahir'),
+					'jenis_kelamin'  => $this->input->post('e_jk'),
+					'kewarganegaraan'  => $this->input->post('e_warganegara'),
+					'jenis_usaha'  => $this->input->post('e_ju'),
+					'alamat'  => $this->input->post('e_alamat'),
+					'provinsi'  => $this->input->post('e_provinsi'),
+					'kab_kota'  => $this->input->post('e_kab_kot'),
+					'kecamatan'  => $this->input->post('e_kec'),
+					'desa_kelurahan'  => $this->input->post('e_desa'),
+					'kode_pos'  => $this->input->post('e_kode_pos'),
+					'telp'  => $this->input->post('e_telp_mustahik'),
+					'fax'  => $this->input->post('e_fax_mustahik'),
+					'handphone'  => $this->input->post('e_hp_mustahik'),
+					'email'  => $this->input->post('e_email'),
+					'website'  => $this->input->post('e_website'),
+					'updatedAt' => date('Y-m-d H:i:s')
+				);
+				$result = $this->model_mustahik->update($data_id, $data, 'master_mustahik');
+				echo json_decode($result);
+			}else{
+				$data = array(
+					'kat_mustahik'  => $this->input->post('e_kat_mustahik'),
+					'nama'  => $this->input->post('e_nama'),
+					'pendapatan'  => $this->input->post('e_pendapatan_v'),
+					'tipe_identitas'  => $this->input->post('e_tipe_identitas'),
+					'tgl_lhr'  => $this->input->post('e_tgl_lhr'),
+					'jenis_mustahik'  => $this->input->post('e_jenis_mustahik'),
+					'no_identitas'  => $this->input->post('e_idn'),
+					'tmp_lhr'  => $this->input->post('e_tempat_lahir'),
+					'jenis_kelamin'  => $this->input->post('e_jk'),
+					'kewarganegaraan'  => $this->input->post('e_warganegara'),
+					'jenis_usaha'  => $this->input->post('e_ju'),
+					'foto'	=> $file_name,
+					'alamat'  => $this->input->post('e_alamat'),
+					'provinsi'  => $this->input->post('e_provinsi'),
+					'kab_kota'  => $this->input->post('e_kab_kot'),
+					'kecamatan'  => $this->input->post('e_kec'),
+					'desa_kelurahan'  => $this->input->post('e_desa'),
+					'kode_pos'  => $this->input->post('e_kode_pos'),
+					'telp'  => $this->input->post('e_telp_mustahik'),
+					'fax'  => $this->input->post('e_fax_mustahik'),
+					'handphone'  => $this->input->post('e_hp_mustahik'),
+					'email'  => $this->input->post('e_email'),
+					'website'  => $this->input->post('e_website'),
+					'updatedAt' => date('Y-m-d H:i:s')
+				);
+				$result = $this->model_mustahik->update($data_id, $data, 'master_mustahik');
+				echo json_decode($result);
+			}
 
-			$data = array(
-				'kat_mustahik'  => $this->input->post('e_kat_mustahik'),
-				'nama'  => $this->input->post('e_nama'),
-				'pendapatan'  => $this->input->post('e_pendapatan_v'),
-				'tipe_identitas'  => $this->input->post('e_tipe_identitas'),
-				'tgl_lhr'  => $this->input->post('e_tgl_lhr'),
-				'jenis_mustahik'  => $this->input->post('e_jenis_mustahik'),
-				'no_identitas'  => $this->input->post('e_idn'),
-				'tmp_lhr'  => $this->input->post('e_tempat_lahir'),
-				'jenis_kelamin'  => $this->input->post('e_jk'),
-				'kewarganegaraan'  => $this->input->post('e_warganegara'),
-				'jenis_usaha'  => $this->input->post('e_ju'),
-				'alamat'  => $this->input->post('e_alamat'),
-				'provinsi'  => $this->input->post('e_provinsi'),
-				'kab_kota'  => $this->input->post('e_kab_kot'),
-				'kecamatan'  => $this->input->post('e_kec'),
-				'desa_kelurahan'  => $this->input->post('e_desa'),
-				'kode_pos'  => $this->input->post('e_kode_pos'),
-				'telp'  => $this->input->post('e_telp_mustahik'),
-				'fax'  => $this->input->post('e_fax_mustahik'),
-				'handphone'  => $this->input->post('e_hp_mustahik'),
-				'email'  => $this->input->post('e_email'),
-				'website'  => $this->input->post('e_website'),
-				'updatedAt' => date('Y-m-d H:i:s')
-			);
-			$result = $this->model_mustahik->update($data_id, $data, 'master_mustahik');
-			echo json_decode($result);
+			
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}

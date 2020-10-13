@@ -262,70 +262,70 @@ if ($jabatan == 19) { ?>
 				</li>
 
 				<li class="">
-					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+					<a href="<?= base_url() . 'rr_penerimaan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rencana dan Realisasi Penerimaan
 					</a>
 				</li>
 
 				<li class="">
-					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+					<a href="<?= base_url() . 'rr_penyaluran_asnaf'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rencana dan Realisasi Penyaluran Asnaf
 					</a>
 				</li>
 
 				<li class="">
-					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+					<a href="<?= base_url() . 'rr_penyaluran_program'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rencana dan Realisasi Penyaluran Program
 					</a>
 				</li>
 
 				<li class="">
-					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+					<a href="<?= base_url() . 'rr_penggalangan_muzaki_penerimaan_manfaat'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rencana dan Realisasi Penggalangan Muzaki dan Penerimaan Manfaat
 					</a>
 				</li>
 
 				<li class="">
-					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+					<a href="<?= base_url() . 'rr_penerimaan_dan_penggunaan_hak_amil'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rencana dan Realisasi Penerimaan dan Penggunaan Hak Amil
 					</a>
 				</li>
 
 				<li class="">
-					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+					<a href="<?= base_url() . 'rr_biaya_operasional_fungsi'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rencana dan Realisasi Biaya Operasional Berdasarkan Fungsi
 					</a>
 				</li>
 
 				<li class="">
-					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+					<a href="<?= base_url() . 'rr_penggunaan_dana_apbn_apbd'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rencana dan Realisasi Penggunaan Dana APBN/APBD
 					</a>
 				</li>
 
 				<li class="">
-					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+					<a href="<?= base_url() . 'rr_pengumpulan_dan_penyaluran_ramadhan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rencana dan Realisasi Pengumpulan dan Penyaluran Ramadhan
 					</a>
 				</li>
 
 				<li class="">
-					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+					<a href="<?= base_url() . 'rr_penerimaan_manfaat_asnaf'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rencana dan Realisasi Penerima Manfaat per Asnaf
 					</a>
 				</li>
 
 				<li class="">
-					<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
+					<a href="<?= base_url() . 'pp_zakat_kabupaten_kota'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Pelaksanaan Pengelolaan Zakat Kabupaten / Kota
 					</a>

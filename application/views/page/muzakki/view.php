@@ -295,7 +295,6 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Muzaki </label>
 								<div class="col-sm-6">
-									<input type="hidden" id="e_id" required name="e_id" class="form-control" />
 									<input type="text" id="nama3" readonly name="nama3" class="form-control" />
 								</div>
 							</div>

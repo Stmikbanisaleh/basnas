@@ -48,44 +48,101 @@ class Muzakki extends CI_Controller
 	public function simpan()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-			$data = array(
-				'tgl_reg'  => $this->input->post('tanggal'),
-				'nama'  => $this->input->post('nama'),
-				'npwp'  => $this->input->post('npwp'),
-				'tipe_identitas'  => $this->input->post('tipe_identitas'),
-				'no_identitas'  => $this->input->post('idn'),
-				'kewarganegaraan'  => $this->input->post('warganegara'),
-				'tmp_lhr'  => $this->input->post('tempat_lahir'),
-				'tgl_lhr'  => $this->input->post('tgl_lhr'),
-				'jenis_kelamin'  => $this->input->post('jk'),
-				'jenis_muzakki'  => $this->input->post('jenis_m'),
-				'pekerjaan'  => $this->input->post('kerja'),
-				'status_pernikahan'  => $this->input->post('status'),
-				'status_pendidikan'  => $this->input->post('pendidikan'),
-				'alamat'  => $this->input->post('alamat'),
-				'provinsi'  => $this->input->post('provinsi'),
-				'kab_kota'  => $this->input->post('kab_kot'),
-				'kecamatan'  => $this->input->post('kec'),
-				'desa_kelurahan'  => $this->input->post('desa'),
-				'kode_pos'  => $this->input->post('kode_pos'),
-				'status_rumah'  => $this->input->post('kepemilikan'),
-				'telp'  => $this->input->post('telp_mizakki'),
-				'fax'  => $this->input->post('fax_muzakki'),
-				'handphone'  => $this->input->post('hp_muzakki'),
-				'email'  => $this->input->post('email'),
-				'website'  => $this->input->post('website'),
-				'createdAt' => date('Y-m-d H:i:s')
-			);
-			$result = $this->model_muzakki->insert($data, 'master_muzakki');
-			$id_muzakki = $this->db->insert_id();
-			if ($result) {
-				$datarek = array(
-					'id_muzakki'  => $id_muzakki,
+			$config['upload_path'] = './assets/image/muzakki'; 
+			// $config['file_name'] = 'filename';
+			$config['overwrite'] = TRUE;
+			$config['encrypt_name'] = TRUE;
+			$config["allowed_types"] = 'jpg|jpeg|png|gif';
+			$config["max_size"] = 4096;
+			// $config["max_width"] = 400;
+			// $config["max_height"] = 400;
+			$this->load->library('upload', $config);
+			$do_upload = $this->upload->do_upload("file");
+			if ($do_upload) {
+				$upload_data = $this->upload->data();
+				$file_name = $upload_data['file_name'];
+				$data = array(
+					'tgl_reg'  => $this->input->post('tanggal'),
+					'nama'  => $this->input->post('nama'),
+					'npwp'  => $this->input->post('npwp'),
+					'tipe_identitas'  => $this->input->post('tipe_identitas'),
+					'no_identitas'  => $this->input->post('idn'),
+					'kewarganegaraan'  => $this->input->post('warganegara'),
+					'foto'	=> $file_name,
+					'tmp_lhr'  => $this->input->post('tempat_lahir'),
+					'tgl_lhr'  => $this->input->post('tgl_lhr'),
+					'jenis_kelamin'  => $this->input->post('jk'),
+					'jenis_muzakki'  => $this->input->post('jenis_m'),
+					'pekerjaan'  => $this->input->post('kerja'),
+					'status_pernikahan'  => $this->input->post('status'),
+					'status_pendidikan'  => $this->input->post('pendidikan'),
+					'alamat'  => $this->input->post('alamat'),
+					'provinsi'  => $this->input->post('provinsi'),
+					'kab_kota'  => $this->input->post('kab_kot'),
+					'kecamatan'  => $this->input->post('kec'),
+					'desa_kelurahan'  => $this->input->post('desa'),
+					'kode_pos'  => $this->input->post('kode_pos'),
+					'status_rumah'  => $this->input->post('kepemilikan'),
+					'telp'  => $this->input->post('telp_mizakki'),
+					'fax'  => $this->input->post('fax_muzakki'),
+					'handphone'  => $this->input->post('hp_muzakki'),
+					'email'  => $this->input->post('email'),
+					'website'  => $this->input->post('website'),
 					'createdAt' => date('Y-m-d H:i:s')
 				);
-				$results = $this->model_muzakki->insert($datarek, 'master_rekening');
+				$result = $this->model_muzakki->insert($data, 'master_muzakki');
+				$id_muzakki = $this->db->insert_id();
+
+				if ($result) {
+					$datarek = array(
+						'id_muzakki'  => $id_muzakki,
+						'createdAt' => date('Y-m-d H:i:s')
+					);
+					$results = $this->model_muzakki->insert($datarek, 'master_rekening');
+				}
+				echo json_decode($result);
+
+			}else{
+				$data = array(
+					'tgl_reg'  => $this->input->post('tanggal'),
+					'nama'  => $this->input->post('nama'),
+					'npwp'  => $this->input->post('npwp'),
+					'tipe_identitas'  => $this->input->post('tipe_identitas'),
+					'no_identitas'  => $this->input->post('idn'),
+					'kewarganegaraan'  => $this->input->post('warganegara'),
+					'tmp_lhr'  => $this->input->post('tempat_lahir'),
+					'tgl_lhr'  => $this->input->post('tgl_lhr'),
+					'jenis_kelamin'  => $this->input->post('jk'),
+					'jenis_muzakki'  => $this->input->post('jenis_m'),
+					'pekerjaan'  => $this->input->post('kerja'),
+					'status_pernikahan'  => $this->input->post('status'),
+					'status_pendidikan'  => $this->input->post('pendidikan'),
+					'alamat'  => $this->input->post('alamat'),
+					'provinsi'  => $this->input->post('provinsi'),
+					'kab_kota'  => $this->input->post('kab_kot'),
+					'kecamatan'  => $this->input->post('kec'),
+					'desa_kelurahan'  => $this->input->post('desa'),
+					'kode_pos'  => $this->input->post('kode_pos'),
+					'status_rumah'  => $this->input->post('kepemilikan'),
+					'telp'  => $this->input->post('telp_mizakki'),
+					'fax'  => $this->input->post('fax_muzakki'),
+					'handphone'  => $this->input->post('hp_muzakki'),
+					'email'  => $this->input->post('email'),
+					'website'  => $this->input->post('website'),
+					'createdAt' => date('Y-m-d H:i:s')
+				);
+				$result = $this->model_muzakki->insert($data, 'master_muzakki');
+				$id_muzakki = $this->db->insert_id();
+
+				if ($result) {
+					$datarek = array(
+						'id_muzakki'  => $id_muzakki,
+						'createdAt' => date('Y-m-d H:i:s')
+					);
+					$results = $this->model_muzakki->insert($datarek, 'master_rekening');
+				}
+				echo json_decode($result);
 			}
-			echo json_decode($result);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
@@ -162,36 +219,85 @@ class Muzakki extends CI_Controller
 			$data_id = array(
 				'id'  => $this->input->post('e_id')
 			);
-			$data = array(
-				'tgl_reg'  => $this->input->post('e_tanggal'),
-				'nama'  => $this->input->post('e_nama'),
-				'npwp'  => $this->input->post('e_npwp'),
-				'tipe_identitas'  => $this->input->post('e_tipe_identitas'),
-				'no_identitas'  => $this->input->post('e_idn'),
-				'kewarganegaraan'  => $this->input->post('e_warganegara'),
-				'jenis_muzakki'  => $this->input->post('e_jenis_m'),
-				'tmp_lhr'  => $this->input->post('e_tempat_lahir'),
-				'tgl_lhr'  => $this->input->post('e_tgl_lhr'),
-				'jenis_kelamin'  => $this->input->post('e_jk'),
-				'pekerjaan'  => $this->input->post('e_kerja'),
-				'status_pernikahan'  => $this->input->post('e_status'),
-				'status_pendidikan'  => $this->input->post('e_pendidikan'),
-				'alamat'  => $this->input->post('e_alamat'),
-				'provinsi'  => $this->input->post('e_provinsi'),
-				'kab_kota'  => $this->input->post('e_kab_kot'),
-				'kecamatan'  => $this->input->post('e_kec'),
-				'desa_kelurahan'  => $this->input->post('e_desa'),
-				'kode_pos'  => $this->input->post('e_kode_pos'),
-				'status_rumah'  => $this->input->post('e_kepemilikan'),
-				'telp'  => $this->input->post('e_telp_mizakki'),
-				'fax'  => $this->input->post('e_fax_muzakki'),
-				'handphone'  => $this->input->post('e_hp_muzakki'),
-				'email'  => $this->input->post('e_email'),
-				'website'  => $this->input->post('e_website'),
-				'updatedAt' => date('Y-m-d H:i:s')
-			);
-			$result = $this->model_muzakki->update($data_id, $data, 'master_muzakki');
-			echo json_decode($result);
+			$config['upload_path'] = './assets/image/muzakki';
+			$config['overwrite'] = TRUE;
+			$config['encrypt_name'] = TRUE;
+			$config["allowed_types"] = 'jpg|jpeg|png|gif';
+			$config["max_size"] = 4096;
+			$this->load->library('upload', $config);
+			$do_upload = $this->upload->do_upload("e_file");
+			$file_name = null;
+			if ($do_upload) {
+				$upload_data = $this->upload->data();
+				$file_name = $upload_data['file_name'];
+			}
+			if ($file_name==null) {
+				$data = array(
+					'tgl_reg'  => $this->input->post('e_tanggal'),
+					'nama'  => $this->input->post('e_nama'),
+					'npwp'  => $this->input->post('e_npwp'),
+					'tipe_identitas'  => $this->input->post('e_tipe_identitas'),
+					'no_identitas'  => $this->input->post('e_idn'),
+					'kewarganegaraan'  => $this->input->post('e_warganegara'),
+					'foto'	=> $file_name,
+					'jenis_muzakki'  => $this->input->post('e_jenis_m'),
+					'tmp_lhr'  => $this->input->post('e_tempat_lahir'),
+					'tgl_lhr'  => $this->input->post('e_tgl_lhr'),
+					'jenis_kelamin'  => $this->input->post('e_jk'),
+					'pekerjaan'  => $this->input->post('e_kerja'),
+					'status_pernikahan'  => $this->input->post('e_status'),
+					'status_pendidikan'  => $this->input->post('e_pendidikan'),
+					'alamat'  => $this->input->post('e_alamat'),
+					'provinsi'  => $this->input->post('e_provinsi'),
+					'kab_kota'  => $this->input->post('e_kab_kot'),
+					'kecamatan'  => $this->input->post('e_kec'),
+					'desa_kelurahan'  => $this->input->post('e_desa'),
+					'kode_pos'  => $this->input->post('e_kode_pos'),
+					'status_rumah'  => $this->input->post('e_kepemilikan'),
+					'telp'  => $this->input->post('e_telp_mizakki'),
+					'fax'  => $this->input->post('e_fax_muzakki'),
+					'handphone'  => $this->input->post('e_hp_muzakki'),
+					'email'  => $this->input->post('e_email'),
+					'website'  => $this->input->post('e_website'),
+					'updatedAt' => date('Y-m-d H:i:s')
+				);
+				$result = $this->model_muzakki->update($data_id, $data, 'master_muzakki');
+				echo json_decode($result);
+			}else{
+				$data = array(
+					'tgl_reg'  => $this->input->post('e_tanggal'),
+					'nama'  => $this->input->post('e_nama'),
+					'npwp'  => $this->input->post('e_npwp'),
+					'tipe_identitas'  => $this->input->post('e_tipe_identitas'),
+					'no_identitas'  => $this->input->post('e_idn'),
+					'kewarganegaraan'  => $this->input->post('e_warganegara'),
+					'foto'	=> $file_name,
+					'jenis_muzakki'  => $this->input->post('e_jenis_m'),
+					'tmp_lhr'  => $this->input->post('e_tempat_lahir'),
+					'tgl_lhr'  => $this->input->post('e_tgl_lhr'),
+					'jenis_kelamin'  => $this->input->post('e_jk'),
+					'pekerjaan'  => $this->input->post('e_kerja'),
+					'status_pernikahan'  => $this->input->post('e_status'),
+					'status_pendidikan'  => $this->input->post('e_pendidikan'),
+					'alamat'  => $this->input->post('e_alamat'),
+					'provinsi'  => $this->input->post('e_provinsi'),
+					'kab_kota'  => $this->input->post('e_kab_kot'),
+					'kecamatan'  => $this->input->post('e_kec'),
+					'desa_kelurahan'  => $this->input->post('e_desa'),
+					'kode_pos'  => $this->input->post('e_kode_pos'),
+					'status_rumah'  => $this->input->post('e_kepemilikan'),
+					'telp'  => $this->input->post('e_telp_mizakki'),
+					'fax'  => $this->input->post('e_fax_muzakki'),
+					'handphone'  => $this->input->post('e_hp_muzakki'),
+					'email'  => $this->input->post('e_email'),
+					'website'  => $this->input->post('e_website'),
+					'updatedAt' => date('Y-m-d H:i:s')
+				);
+				$result = $this->model_muzakki->update($data_id, $data, 'master_muzakki');
+				echo json_decode($result);
+
+			}
+			
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}

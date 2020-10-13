@@ -63,7 +63,6 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Muzaki </label>
 								<div class="col-sm-6">
-									<input type="hidden" id="e_id" required name="e_id" class="form-control" />
 									<input type="text" id="nama3" readonly name="nama3" class="form-control" />
 								</div>
 							</div>
@@ -116,7 +115,7 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
-						<form class="form-horizontal" enctype="multipart/form-data" role="form" id="formTambah">
+						<form class="form-horizontal" enctype="multipart/form-data"  role="form" id="formTambah">
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kategori Mustahik </label>
 								<div class="col-sm-9">
@@ -207,9 +206,9 @@
 							<div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
                                 <div class="col-sm-9">
-                                    <input type="file" id="file" required name="file" placeholder="" class="form-control" />
+                                    <input type="file" id="foto" required name="foto" placeholder="" class="form-control" />
                                 </div>
-							</div> 
+							</div>
 							
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal lahir </label>
@@ -354,6 +353,7 @@
 						<form class="form-horizontal" enctype="multipart/form-data" role="form" id="formEdit">
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kategori Mustahik </label>
+									<input type="hidden" id="e_id" required name="e_id" class="form-control" />
 								<div class="col-sm-9">
 									<select class="form-control" name="e_kat_mustahik" id="e_kat_mustahik">
 										<option value="">--Pilih--</option>
@@ -438,6 +438,14 @@
 									<input type="text" id="e_tempat_lahir" required name="e_tempat_lahir" placeholder="Tempat Lahir" class="form-control" />
 								</div>
 							</div>
+
+							<div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
+                                <div class="col-sm-9">
+                                    <input type="file" id="e_foto" name="e_foto" placeholder="" class="form-control" />
+                                </div>
+							</div>
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal lahir </label>
 								<div class="col-sm-6">
@@ -591,7 +599,31 @@
 	</table>
 </div>
 <script type="text/javascript">
-	$('select').select2({
+	$('kat_mustahik').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
+	$('ju').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
+	$('provinsi').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
+	$('kab_kot').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
+	$('kat_mustahik').select2({
 		width: '100%',
 		placeholder: "Pilih",
 		allowClear: true
@@ -637,11 +669,15 @@
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
 			submitHandler: function(form) {
+				formdata = new FormData(form);
 				$.ajax({
 					type: "POST",
 					url: "<?php echo base_url('mustahik/update') ?>",
-					dataType: "JSON",
-					data: $('#formEdit').serialize(),
+					data: formdata,
+					processData: false,
+					contentType: false,
+					cache: false,
+					async: false,
 					success: function(data) {
 						$('#modalEdit').modal('hide');
 						if (data == 1) {
@@ -711,6 +747,7 @@
 				id: id,
 			},
 			success: function(data) {
+				console.log(data[0].kat_mustahik);
 				$('#e_id').val(data[0].id);
 				$('#e_kat_mustahik').val(data[0].kat_mustahik);
 
