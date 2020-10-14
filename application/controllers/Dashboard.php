@@ -3,9 +3,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller
 {
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model('model_jabatan');
+	}
 
 	function render_view($data)
-	{
+	{	
 		$this->template->load('template', $data); //Display Page
 	}
 	function crousel()
@@ -15,7 +20,10 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
+		$jabatan = $this->model_jabatan->view('master_jabatan')->result_array();
+		$data1 = array('jabatan' => $jabatan);
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+			//$jabatan = $this->model_jabatan->view('master_jabatan')->result_array();
 			$data = array(
 				'page_content' 	=> 'dashboard',
 				'ribbon' 		=> '<li class="active">Dashboard</li>',
@@ -23,15 +31,16 @@ class Dashboard extends CI_Controller
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {
-			$this->load->view('page/login'); //Memanggil function render_view
+			$this->load->view('page/login',$data1); //Memanggil function render_view
 		}
 	}
 
 	public function login()
 	{
 		$email = $this->input->post('email');
+		$jabatan = $this->input->post('jabatan');
 		$password = hash('sha512',md5($this->input->post('password')));
-		$query = $this->db->query("select * from users where nip ='" . $email . "' and password = '".$password."' and level ='operator' and status = 1");
+		$query = $this->db->query("select * from users where nip ='" . $email . "' and password = '".$password."' and jabatan = '".$jabatan."' and status = 1");
 		if ($query->num_rows() == 1) {
 			$data = $query->result_array();
 			$this->load->library('Configfunction');

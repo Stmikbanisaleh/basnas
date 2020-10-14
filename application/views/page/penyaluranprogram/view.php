@@ -93,7 +93,7 @@
 	<br>
 </div>
 
-<div id="my-modal2" class="modal fade" tabindex="-1">
+<div id="my-modal2" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -454,6 +454,11 @@
 	</table>
 </div>
 <script type="text/javascript">
+	$('#nama3').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
 	if ($("#formSearch").length > 0) {
 		$("#formSearch").validate({
 			errorClass: "my-error-class",
@@ -507,6 +512,9 @@
 								'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
 								'</button> &nbsp' +
 								'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
+								'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
+								'</button>' +
+								'<button class="btn btn-xs btn-danger item_print" title="Print" data-id="' + data[i].id + '">' +
 								'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
 								'</button>' +
 								'</td>' +
@@ -806,7 +814,7 @@
 				$('#e_tipe2').val(data[0].ansaf);
 				$('#e_jenis2').val(data[0].type);
 				$('#e_deskripsi').val(data[0].deskripsi);
-				show_data_rekening(data[0].id_program, function(a){
+				show_data_rekening(data[0].id_program, function(a) {
 					$('#e_programs').val(data[0].id_program);
 				});
 			}
@@ -814,18 +822,18 @@
 	});
 
 
-    function show_data_rekening(id, callback) {
-        var ps = id;
-        $.ajax({
-            type: "POST",
-            url: "penyaluranprogram/showsubprogram2",
-            data: {
-                ps: ps
-            }
-        }).done(function(data) {
-            $("#e_programs").html(data);
-            callback()
-        });
+	function show_data_rekening(id, callback) {
+		var ps = id;
+		$.ajax({
+			type: "POST",
+			url: "penyaluranprogram/showsubprogram2",
+			data: {
+				ps: ps
+			}
+		}).done(function(data) {
+			$("#e_programs").html(data);
+			callback()
+		});
 	}
 
 	function ConvertFormatRupiah(angka, prefix) {

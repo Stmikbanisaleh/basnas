@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
 	<div class="col-xs-1">
 		<button href="#my-modal" role="button" data-toggle="modal" class="btn btn-xs btn-info">
@@ -370,6 +372,12 @@
 	</table>
 </div>
 <script type="text/javascript">
+	$('#nama').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+	
 	if ($("#formImport").length > 0) {
 		$("#formImport").validate({
 			errorClass: "my-error-class",

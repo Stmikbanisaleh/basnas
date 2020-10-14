@@ -1,4 +1,4 @@
-<form method="POST" role="form" action="<?php echo base_url('laporan_laporanrencanarealisasiberdasarkanprogram/laporanrencanarealisasiberdasarkanprogram') ?>" id="formreport">
+<form method="POST" role="form" action="<?php echo base_url('laporan_laporanrencanadanrealisasipenggalanganmuzakkidanpenerimamanfaat/laporanrencanadanrealisasipenggalanganmuzakkidanpenerimamanfaat') ?>" id="formreport">
 	<div class="col-xs-3">
 		<div class="form-group">
 			<label for="exampleInputEmail1">Periode Awal</label>
@@ -18,7 +18,6 @@
 				<option value="0">Unapprove</option>
 				<option value="3">Rejected</option>
 				<option value="2">Completed</option>
-
 			</select>
 			<small id="emailHelp" class="form-text text-muted">Status approve / unapprove (Boleh tidak diisi).</small>
 		</div>

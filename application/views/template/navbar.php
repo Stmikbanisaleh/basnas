@@ -11,10 +11,23 @@
 <div class="navbar-header pull-left">
 	<a href="<?php echo base_url() ?>dashboard" class="navbar-brand">
 		<small>
-		<img src="<?php echo base_url() ?>global/images/operator.png" width="32" height="32"/></div>
-			Operator
-		</small>
-	</a>
+			<img src="<?php echo base_url() ?>global/images/operator.png" width="32" height="32" /></div>
+<?php
+$jabatan = $this->session->userdata('jabatan');
+if ($jabatan == 5) {
+	echo "Administrator";
+} elseif ($jabatan == 4) {
+	echo "Staff";
+} elseif ($jabatan == 3) {
+	echo "Bendahara";
+} elseif ($jabatan == 2) {
+	echo "Pimpinan";
+} else {
+	echo "Amil";
+}
+?>
+</small>
+</a>
 </div>
 
 <div class="navbar-buttons navbar-header pull-right" role="navigation">
@@ -23,7 +36,20 @@
 			<a data-toggle="dropdown" href="javascript:void(0);" class="dropdown-toggle">
 				<span class="user-info">
 					<small>Selamat datang,</small>
-					<?php echo $this->session->userdata('nama'); ?>
+					<?php
+					$jabatan = $this->session->userdata('jabatan');
+					if ($jabatan == '5') {
+						echo $this->session->userdata('nama');
+					} elseif ($jabatan == '4') {
+						echo $this->session->userdata('nama');
+					} elseif ($jabatan == 3) {
+						echo $this->session->userdata('nama');
+					} elseif ($jabatan == 2) {
+						echo $this->session->userdata('nama');
+					} else {
+						echo $this->session->userdata('nama');
+					}
+					?>
 				</span>
 
 				<i class="ace-icon fa fa-caret-down"></i>

@@ -112,6 +112,7 @@ class Approval extends CI_Controller
 			);
 			$data = array(
 				'is_approve'  => $this->input->post('e_status'),
+				'jumlah_dana_disetujui'  => $this->input->post('e_total_v'),
 				'petugas_approve'  => $this->session->userdata('nip'),
 				'updatedAt' => date('Y-m-d H:i:s'),
 			);

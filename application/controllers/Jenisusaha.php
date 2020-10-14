@@ -26,8 +26,8 @@ class Jenisusaha extends CI_Controller
 
 			$data = array(
 				'page_content' 	=> '/jenisusaha/view',
-				'ribbon' 		=> '<li class="active">Dashboard</li><li>Master Jenis Usaha</li>',
-				'page_name' 	=> 'Master Jenis Usaha',
+				'ribbon' 		=> '<li class="active">Dashboard</li><li>Master Jenis Bantuan</li>',
+				'page_name' 	=> 'Master Jenis Bantuan',
 				'js' 			=> 'js_file'
 			);
 			$this->render_view($data);
