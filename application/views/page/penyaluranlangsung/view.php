@@ -92,7 +92,60 @@
 	<br>
 	<br>
 </div>
+<div class="row">
+	<div class="col-xs-1">
+		<button href="#my-modal22" role="button" data-toggle="modal" class="btn btn-xs btn-success">
+			<a class="ace-icon fa fa-upload bigger-120"></a>Import Data
+		</button>
+	</div>
+</div>
+<br>
+<div id="my-modal22" class="modal fade" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3 class="smaller lighter blue no-margin">Form Import Data <?= $page_name; ?></h3>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<?php if ($this->session->flashdata('message')) { ?>
+						<div class="alert alert-danger"> <?= $this->session->flashdata('message') ?> </div>
+					<?php } ?>
+					<div class="col-xs-12">
+						<!-- PAGE CONTENT BEGINS -->
+						<form class="form-horizontal" role="form" enctype="multipart/form-data" id="formImport">
 
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Import Excel FIle </label>
+								<div class="col-sm-6">
+									<input type="file" id="file" required name="file" class="form-control" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sample </label>
+								<div class="col-sm-9">
+									<a href="<?php echo base_url() . 'penyaluranlangsung/downloadsample' ?>" class="col-sm-3" for="form-field-1"> Download Sample Format</a>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" id="btn_import" class="btn btn-sm btn-success pull-left">
+					<i class="ace-icon fa fa-save"></i>
+					Import
+				</button>
+				<button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
+					<i class="ace-icon fa fa-times"></i>
+					Batal
+				</button>
+			</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
 <div id="my-modal2" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -423,6 +476,52 @@
 		allowClear: true
 	});
 
+	if ($("#formImport").length > 0) {
+		$("#formImport").validate({
+			errorClass: "my-error-class",
+			validClass: "my-valid-class",
+			rules: {
+				ansaf: {
+					required: true,
+				},
+				
+			},
+			messages: {
+				ansaf: {
+					required: "Ansaf harus diisi!"
+				},
+			},
+			submitHandler: function(form) {
+				formdata = new FormData(form);
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url('penyaluranlangsung/import') ?>",
+					data: formdata,
+					processData: false,
+					contentType: false,
+					cache: false,
+					async: false,
+					success: function(data) {
+						console.log(data);
+						if (data == 1 || data == true) {
+							document.getElementById("formImport").reset();
+							swalInputSuccess();
+							$('#my-modal2').modal('hide');
+							show_data();
+						} else if (data == 401) {
+							document.getElementById("formImport").reset();
+							swalIdDouble();
+						} else {
+							document.getElementById("formImport").reset();
+							swalInputFailed();
+
+						}
+					}
+				});
+				return false;
+			}
+		});
+	}
 	if ($("#formSearch").length > 0) {
 		$("#formSearch").validate({
 			errorClass: "my-error-class",

@@ -81,6 +81,13 @@ class Model_penyaluranlangsung extends CI_model
         return  $this->db->query('select *,IF(a.status = 1, "Aktif", "Tidak") as statusv2,b.NAMAJABATAN as nmjabatan from tbpengawas a join msjabatan b on a.jabatan = b.ID
         ');
     }
+    public function trx_penyaluranlangsung()
+    {
+        return $this->db->query("SELECT p.id,kat.id as 'id_ansaf', kat.nama as 'kategori_mustahik',m.nama as 'mustahik',p.jumlah_dana, p.jumlah_dana_disetujui, p.deskripsi
+        from master_penyaluran p
+        LEFT JOIN master_kategori_mustahik kat on p.ansaf = kat.id
+        LEFT JOIN master_mustahik m on kat.id = m.kat_mustahik");
+	}
 
     public function view_count($table, $data_id)
     {
