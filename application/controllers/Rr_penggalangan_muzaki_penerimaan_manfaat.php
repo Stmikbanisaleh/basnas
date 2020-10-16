@@ -27,7 +27,7 @@ class Rr_penggalangan_muzaki_penerimaan_manfaat extends CI_Controller
 			$data = array(
 				'page_content' 	=> '/rr_penggalangan_muzaki_penerimaan_manfaat/view',
 				'ribbon' 		=> '<li class="active">Dashboard</li><li>Laporan</li><li>Laporan Rencana dan Realisasi Penggalangan Muzaki dan Penerimaan Manfaat</li>',
-				'page_name' 	=> 'BELUM',
+				'page_name' 	=> 'Laporan Rencana dan Realisasi Penggalangan Muzaki dan Penerimaan Manfaat',
 				'js' 			=> 'js_file',
 				'myprogram'		=> $myprogram,
 			);
@@ -42,12 +42,19 @@ class Rr_penggalangan_muzaki_penerimaan_manfaat extends CI_Controller
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$post_tgl_awal = $this->input->post('periode_awal');
 			$post_tgl_akhir = $this->input->post('periode_akhir');
-			$myprogram = $this->model_rr_penggalangan_muzaki_penerimaan_manfaat->view_program($post_tgl_akhir, $post_tgl_akhir)->result_array();
-			echo $this->db->last_query();exit;
+			$mymuzaki = $this->model_rr_penggalangan_muzaki_penerimaan_manfaat->view_penggalangan_muzaki($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$mysummuzaki = $this->model_rr_penggalangan_muzaki_penerimaan_manfaat->view_sum_penggalangan_muzaki($post_tgl_akhir, $post_tgl_akhir)->result_array();
+
+			$mybidang = $this->model_rr_penggalangan_muzaki_penerimaan_manfaat->view_bidang($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$mysumbidang = $this->model_rr_penggalangan_muzaki_penerimaan_manfaat->view_sum_bidang($post_tgl_akhir, $post_tgl_akhir)->result_array();
+
 			$tgl_awal = $this->mainfunction->gettgl_indo($post_tgl_awal);
 			$tgl_akhir = $this->mainfunction->gettgl_indo($post_tgl_akhir);
 			$data = array(
-				'myprogram'		=> $myprogram,
+				'mymuzaki'		=> $mymuzaki,
+				'mysummuzaki'	=> $mysummuzaki,
+				'mybidang'		=> $mybidang,
+				'mysumbidang'	=> $mysumbidang,
 				'post_tgl_awal'	=> $post_tgl_awal,
 				'post_tgl_akhir'=> $post_tgl_akhir,
 				'tgl_awal'		=> $tgl_awal,

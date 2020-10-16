@@ -37,6 +37,12 @@
                                     <input type="text" id="deskripsi" name="deskripsi" placeholder="Nama Sub Program" class="form-control" />
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Bidang </label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="bidang" name="bidang" placeholder="Bidang" class="form-control" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -92,6 +98,12 @@
                                     <input type="text" id="e_deskripsi" name="e_deskripsi" placeholder="deskripsi" class="form-control" />
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Bidang </label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="e_bidang" name="e_bidang" placeholder="deskripsi" class="form-control" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -125,6 +137,7 @@
                 <th class="col-md-1">No</th>
                 <th>Nama Program</th>
                 <th>Deskripsi</th>
+                <th>Bidang</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -294,6 +307,7 @@
                         '<td class="text-center">' + no + '</td>' +
                         '<td>' + data[i].nama + '</td>' +
                         '<td>' + data[i].deskripsi + '</td>' +
+                        '<td>' + data[i].bidang + '</td>' +
                         '<td class="text-center">' +
                         '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
                         '<i class="ace-icon fa fa-pencil bigger-120"></i>' +
@@ -345,6 +359,7 @@
                 $('#e_id').val(data[0].id);
                 $('#e_id_master_program').val(data[0].id_master_program);
                 $('#e_deskripsi').val(data[0].deskripsi);
+                $('#e_bidang').val(data[0].bidang);
             }
         });
     });

@@ -53,28 +53,30 @@ class Model_rr_penggalangan_muzaki_penerimaan_manfaat extends CI_model
     {
         return $this->db->query("SELECT
                                     q.column_a,
-                                    SUM(nominal_individu),
-                                    SUM(nominal_lembaga)
+                                    SUM(nominal_individu) nominal_individu,
+                                    SUM(nominal_lembaga) nominal_lembaga
                                 FROM(
                                         SELECT
                                             mtl.column_a,
                                             mtl.column_b,
                                             (SELECT
-                                                SUM(mz.total_terima)
+                                            COUNT(mm.id)
                                             FROM
                                                 master_zakat mz
                                                 JOIN master_muzakki mm ON mm.id = mz.id_muzakki
                                                 WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
                                                 AND mz.jenis = mtl.column_b
-                                                AND mm.jenis_muzakki = 'Individu') nominal_individu,
+                                                AND mm.jenis_muzakki = 'Individu'
+                                                GROUP BY mm.id) nominal_individu,
                                             (SELECT
-                                                SUM(mz.total_terima)
+                                                COUNT(mm.id)
                                             FROM
                                                 master_zakat mz
                                                 JOIN master_muzakki mm ON mm.id = mz.id_muzakki
                                                 WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
                                                 AND mz.jenis = mtl.column_b
-                                                AND mm.jenis_muzakki = 'Lembaga') nominal_lembaga
+                                                AND mm.jenis_muzakki = 'Lembaga'
+                                                GROUP BY mm.id) nominal_lembaga
                                         FROM
                                         mapping_table_header mth
                                         JOIN mapping_table_lines mtl ON mth.kd_mapping = mtl.kd_mapping_header
@@ -83,15 +85,80 @@ class Model_rr_penggalangan_muzaki_penerimaan_manfaat extends CI_model
                                 GROUP BY q.column_a");
     }
 
-    public function view_sub_program($tgl_awal, $tgl_akhir, $id_program)
+    public function view_sum_penggalangan_muzaki($tgl_awal, $tgl_akhir)
     {
-        return $this->db->query("SELECT msp.deskripsi, sum(mpe.jumlah_dana) jumlah_dana
+        return $this->db->query("SELECT
+                                    q.column_a,
+                                    SUM(nominal_individu) nominal_individu,
+                                    SUM(nominal_lembaga) nominal_lembaga
+                                FROM(
+                                        SELECT
+                                        mth.kd_mapping,
+                                            mtl.column_a,
+                                            mtl.column_b,
+                                            (SELECT
+                                            COUNT(mm.id)
+                                            FROM
+                                                master_zakat mz
+                                                JOIN master_muzakki mm ON mm.id = mz.id_muzakki
+                                                WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                                AND mz.jenis = mtl.column_b
+                                                AND mm.jenis_muzakki = 'Individu'
+                                                GROUP BY mm.id) nominal_individu,
+                                            (SELECT
+                                                COUNT(mm.id)
+                                            FROM
+                                                master_zakat mz
+                                                JOIN master_muzakki mm ON mm.id = mz.id_muzakki
+                                                WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                                AND mz.jenis = mtl.column_b
+                                                AND mm.jenis_muzakki = 'Lembaga'
+                                                GROUP BY mm.id) nominal_lembaga
+                                        FROM
+                                        mapping_table_header mth
+                                        JOIN mapping_table_lines mtl ON mth.kd_mapping = mtl.kd_mapping_header
+                                        WHERE mth.kd_mapping = 'LAP_PENGGALANGAN_MUZAKI'
+                                ) q
+                                GROUP BY q.kd_mapping");
+    }
+
+    public function view_bidang($tgl_awal, $tgl_akhir)
+    {
+        return $this->db->query("SELECT
+                                    msp.bidang,
+                                    (SELECT count(mm.nama)
+                                        FROM list_mustahik lm
+                                        JOIN master_mustahik mm ON mm.id = lm.id_mustahik
+                                        WHERE lm.id_program = mp.id
+                                        AND mm.jenis_mustahik = 'Individu') jml_mustahik_individu,
+                                    (SELECT count(mm.nama)
+                                        FROM list_mustahik lm
+                                        JOIN master_mustahik mm ON mm.id = lm.id_mustahik
+                                        WHERE lm.id_program = mp.id
+                                        AND mm.jenis_mustahik = 'Lembaga') jml_mustahik_lembaga
                                 FROM
-                                    master_sub_program msp
-                                JOIN master_penyaluran mpe ON msp.id = mpe.id_program
-                                WHERE mpe.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
-                                    AND mpe.id_program_utama = $id_program
-                                GROUP BY msp.id, msp.deskripsi
-                                ORDER BY msp.deskripsi");
+                                master_penyaluran mp
+                                JOIN master_sub_program msp ON msp.id = mp.id_program
+                                WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                GROUP BY msp.bidang");
+    }
+
+    public function view_sum_bidang($tgl_awal, $tgl_akhir)
+    {
+        return $this->db->query("SELECT
+                                    SUM((SELECT count(mm.nama)
+                                        FROM list_mustahik lm
+                                        JOIN master_mustahik mm ON mm.id = lm.id_mustahik
+                                        WHERE lm.id_program = mp.id
+                                        AND mm.jenis_mustahik = 'Individu')) jml_mustahik_individu,
+                                    SUM((SELECT count(mm.nama)
+                                        FROM list_mustahik lm
+                                        JOIN master_mustahik mm ON mm.id = lm.id_mustahik
+                                        WHERE lm.id_program = mp.id
+                                        AND mm.jenis_mustahik = 'Lembaga')) jml_mustahik_lembaga
+                                FROM
+                                master_penyaluran mp
+                                JOIN master_sub_program msp ON msp.id = mp.id_program
+                                WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'");
     }
 }

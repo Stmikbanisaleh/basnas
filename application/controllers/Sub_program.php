@@ -44,7 +44,8 @@ class Sub_program extends CI_Controller
                 $data = array(
                     'id'  => $this->input->post('id'),
                     'id_master_program'  => $this->input->post('id_master_program'),
-                    'deskripsi'  => $this->input->post('deskripsi'),
+					'deskripsi'  => $this->input->post('deskripsi'),
+					'bidang'  => $this->input->post('bidang'),
                     'createdAt' => date('Y-m-d H:i:s'),
                 );
                 $action = $this->model_sub_program->insert($data, 'master_sub_program');
@@ -88,7 +89,8 @@ class Sub_program extends CI_Controller
             );
             $data = array(
                 'id_master_program'  => $this->input->post('e_id_master_program'),
-                'deskripsi'  => $this->input->post('e_deskripsi'),
+				'deskripsi'  => $this->input->post('e_deskripsi'),
+				'bidang'  => $this->input->post('e_bidang'),
                 'updatedAt' => date('Y-m-d H:i:s'),
             );
             $action = $this->model_sub_program->update($data_id, $data, 'master_sub_program');

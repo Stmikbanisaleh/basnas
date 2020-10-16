@@ -42,11 +42,13 @@ class Rr_penerimaan_manfaat_asnaf extends CI_Controller
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$post_tgl_awal = $this->input->post('periode_awal');
 			$post_tgl_akhir = $this->input->post('periode_akhir');
-			$myprogram = $this->model_rr_penerimaan_manfaat_asnaf->view_program($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$myasnaf = $this->model_rr_penerimaan_manfaat_asnaf->view_asnaf($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$mysumasnaf = $this->model_rr_penerimaan_manfaat_asnaf->view_sum_asnaf($post_tgl_akhir, $post_tgl_akhir)->result_array();
 			$tgl_awal = $this->mainfunction->gettgl_indo($post_tgl_awal);
 			$tgl_akhir = $this->mainfunction->gettgl_indo($post_tgl_akhir);
 			$data = array(
-				'myprogram'		=> $myprogram,
+				'myasnaf'		=> $myasnaf,
+				'mysumasnaf'	=> $mysumasnaf,
 				'post_tgl_awal'	=> $post_tgl_awal,
 				'post_tgl_akhir'=> $post_tgl_akhir,
 				'tgl_awal'		=> $tgl_awal,

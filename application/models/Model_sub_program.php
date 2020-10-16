@@ -15,7 +15,7 @@ class Model_sub_program extends CI_model
     public function getprog($order, $ordering)
 	{
 		$this->db->order_by($order, $ordering);
-        return  $this->db->query("SELECT a.id, a.id_master_program, b.nama, a.deskripsi FROM master_sub_program a JOIN master_program b ON a.id_master_program = b.id");
+        return  $this->db->query("SELECT a.id, a.id_master_program, b.nama, a.deskripsi, a.bidang FROM master_sub_program a JOIN master_program b ON a.id_master_program = b.id");
 	}
 
 	public function viewWhereOrdering($table, $data, $order, $ordering)

@@ -42,11 +42,17 @@ class Rr_penerimaan_dan_penggunaan_hak_amil extends CI_Controller
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$post_tgl_awal = $this->input->post('periode_awal');
 			$post_tgl_akhir = $this->input->post('periode_akhir');
-			$myprogram = $this->model_rr_penerimaan_dan_penggunaan_hak_amil->view_program($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$myzakat = $this->model_rr_penerimaan_dan_penggunaan_hak_amil->view_zakat($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$myinfaq = $this->model_rr_penerimaan_dan_penggunaan_hak_amil->view_infaq($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$mytotal_penerimaan = $this->model_rr_penerimaan_dan_penggunaan_hak_amil->view_total_penerimaan($post_tgl_akhir, $post_tgl_akhir)->result_array();
+
+
 			$tgl_awal = $this->mainfunction->gettgl_indo($post_tgl_awal);
 			$tgl_akhir = $this->mainfunction->gettgl_indo($post_tgl_akhir);
 			$data = array(
-				'myprogram'		=> $myprogram,
+				'myzakat'		=> $myzakat,
+				'myinfaq'		=> $myinfaq,
+				'mytotal_penerimaan'	=> $mytotal_penerimaan,
 				'post_tgl_awal'	=> $post_tgl_awal,
 				'post_tgl_akhir'=> $post_tgl_akhir,
 				'tgl_awal'		=> $tgl_awal,

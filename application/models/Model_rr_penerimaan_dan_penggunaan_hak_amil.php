@@ -49,26 +49,43 @@ class Model_rr_penerimaan_dan_penggunaan_hak_amil extends CI_model
         $this->db->truncate($table);
     }
 
-    public function view_program($tgl_awal, $tgl_akhir)
+    public function view_zakat($tgl_awal, $tgl_akhir)
     {
-        return $this->db->query("SELECT mpe.id_program_utama id, mp.nama, sum(mpe.jumlah_dana) jumlah_dana
+        return $this->db->query("SELECT
+                                    mt.nama, mp.jumlah_dana
                                 FROM
-                                master_program mp
-                                JOIN master_penyaluran mpe ON mp.id = mpe.id_program_utama
-                                WHERE mpe.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
-                                GROUP BY
-                                mp.id, mp.nama");
+                                master_penyaluran mp
+                                JOIN master_kategori_mustahik mkm ON mkm.id = mp.ansaf
+                                JOIN master_type mt on mt.id = mp.type
+                                WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mp.ansaf = 3
+                                AND mt.id = 1
+                                GROUP BY mt.id");
     }
 
-    public function view_sub_program($tgl_awal, $tgl_akhir, $id_program)
+    public function view_infaq($tgl_awal, $tgl_akhir)
     {
-        return $this->db->query("SELECT msp.deskripsi, sum(mpe.jumlah_dana) jumlah_dana
+        return $this->db->query("SELECT
+                                    mt.nama, mp.jumlah_dana
                                 FROM
-                                    master_sub_program msp
-                                JOIN master_penyaluran mpe ON msp.id = mpe.id_program
-                                WHERE mpe.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
-                                    AND mpe.id_program_utama = $id_program
-                                GROUP BY msp.id, msp.deskripsi
-                                ORDER BY msp.deskripsi");
+                                master_penyaluran mp
+                                JOIN master_kategori_mustahik mkm ON mkm.id = mp.ansaf
+                                JOIN master_type mt on mt.id = mp.type
+                                WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mp.ansaf = 3
+                                AND mt.id = 2
+                                GROUP BY mt.id");
+    }
+
+    public function view_total_penerimaan($tgl_awal, $tgl_akhir)
+    {
+        return $this->db->query("SELECT
+                                    SUM(mp.jumlah_dana) jumlah_dana
+                                FROM
+                                master_penyaluran mp
+                                JOIN master_kategori_mustahik mkm ON mkm.id = mp.ansaf
+                                JOIN master_type mt on mt.id = mp.type
+                                WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mp.ansaf = 3");
     }
 }
