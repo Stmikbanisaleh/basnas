@@ -28,6 +28,15 @@ class Model_infaq extends CI_model
 	public function viewData($table, $id){
 		return $this->db->query("SELECT a.*, b.npwp,c.id as id_kartu from $table a join master_muzakki b on a.id_muzakki = b.id 
 		join master_rekening c on a.id_muzakki = c.id_muzakki where a.id = $id ");
+    }
+    public function trxinfaq()
+    {
+        return $this->db->query("SELECT a.id,m.nama,a.cara_terima,a.tgl_terima,rr.id_muzakki,rr.id as 'rek',rr.nokartu,rr.namabank, a.jenis, a.total_terima, a.deskripsi, a.petugas, c.id as 'jenis_zakat', c.nama as 'nama_jenis_zakat'
+        FROM master_zakat a
+        LEFT JOIN master_rekening rr on a.id_muzakki = rr.id_muzakki
+        LEFT JOIN master_jenis_zakat c on a.jenis_zakat = c.id
+        LEFT JOIN  master_muzakki m on m.id = rr.id_muzakki
+        where a.jenis= 3");
 	}
 
     public function view_where($table, $data)
