@@ -223,7 +223,7 @@ if ($jabatan == 5) { ?>
 				</li>
 
 				<li class="">
-					<a href="<?= base_url() . 'laporan_laporanrencanarealisasiberdasarkanasnaf'; ?>">
+					<a href="<?= base_url() . 'rr_penyaluran_asnaf'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rencana dan Realisasi Penyaluran Asnaf
 					</a>

@@ -49,6 +49,87 @@ class Model_rr_penerimaan extends CI_model
         $this->db->truncate($table);
     }
 
+    public function view_zakat_mall_individu($tgl_awal, $tgl_akhir)
+    {
+        return $this->db->query("SELECT
+                                    SUM(mz.total_terima) total_terima
+                                FROM
+                                master_zakat mz
+                                JOIN master_muzakki mm ON mm.id = mz.id_muzakki
+                                WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mm.jenis_muzakki = 'Individu'
+                                AND mz.jenis = 2");
+    }
+
+    public function view_zakat_mall_badan($tgl_awal, $tgl_akhir)
+    {
+        return $this->db->query("SELECT
+                                    SUM(mz.total_terima) total_terima
+                                FROM
+                                master_zakat mz
+                                JOIN master_muzakki mm ON mm.id = mz.id_muzakki
+                                WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mm.jenis_muzakki = 'Lembaga'
+                                AND mz.jenis = 2");
+    }
+
+    public function view_zakat_fitrah($tgl_awal, $tgl_akhir)
+    {
+        return $this->db->query("SELECT
+                                    SUM(mz.total_terima) total_terima
+                                FROM
+                                master_zakat mz
+                                JOIN master_muzakki mm ON mm.id = mz.id_muzakki
+                                WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mz.jenis = 1");
+    }
+
+    public function view_infaq_individu($tgl_awal, $tgl_akhir)
+    {
+        return $this->db->query("SELECT
+                                    SUM(mz.total_terima) total_terima
+                                FROM
+                                master_zakat mz
+                                JOIN master_muzakki mm ON mm.id = mz.id_muzakki
+                                WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mm.jenis_muzakki = 'Individu'
+                                AND mz.jenis = 3");
+    }
+
+    public function view_infaq_badan($tgl_awal, $tgl_akhir)
+    {
+        return $this->db->query("SELECT
+                                    SUM(mz.total_terima) total_terima
+                                FROM
+                                master_zakat mz
+                                JOIN master_muzakki mm ON mm.id = mz.id_muzakki
+                                WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mm.jenis_muzakki = 'Lembaga'
+                                AND mz.jenis = 3");
+    }
+
+    public function view_sum_zakat($tgl_awal, $tgl_akhir)
+    {
+        return $this->db->query("SELECT
+                                    SUM(mz.total_terima) total_terima
+                                FROM
+                                master_zakat mz
+                                JOIN master_muzakki mm ON mm.id = mz.id_muzakki
+                                WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mz.jenis IN (1,2)");
+    }
+
+    public function view_sum_infaq($tgl_awal, $tgl_akhir)
+    {
+        return $this->db->query("SELECT
+                                    SUM(mz.total_terima) total_terima
+                                FROM
+                                master_zakat mz
+                                JOIN master_muzakki mm ON mm.id = mz.id_muzakki
+                                WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mz.jenis = 3");
+    }
+
     public function view_program($tgl_awal, $tgl_akhir)
     {
         return $this->db->query("SELECT mp.id, mp.nama, sum(mpe.jumlah_dana) jumlah_dana

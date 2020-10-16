@@ -26,8 +26,8 @@ class Rr_penerimaan_dan_penggunaan_hak_amil extends CI_Controller
 			$myprogram = $this->model_rr_penerimaan_dan_penggunaan_hak_amil->viewOrdering('master_sub_program', 'id', 'asc')->result_array();
 			$data = array(
 				'page_content' 	=> '/rr_penerimaan_dan_penggunaan_hak_amil/view',
-				'ribbon' 		=> '<li class="active">Dashboard</li><li>Laporan</li><li>Laporan Rencana dan Realisasi Penggalangan Muzaki dan Penerimaan Manfaat</li>',
-				'page_name' 	=> 'BELUM',
+				'ribbon' 		=> '<li class="active">Dashboard</li><li>Laporan</li><li>Laporan Rencana dan Realisasi Penerimaan dan Penggunaan Hak Amil</li>',
+				'page_name' 	=> 'Laporan Rencana dan Realisasi Penerimaan dan Penggunaan Hak Amil',
 				'js' 			=> 'js_file',
 				'myprogram'		=> $myprogram,
 			);

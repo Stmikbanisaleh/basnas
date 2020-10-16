@@ -14,10 +14,10 @@ body {
 </style>
 </head>
 <?php
-// header("Content-type:application/x-msdownload");
-// header("content-disposition:attactment;filename=laporan_honor_reguler.xls");
-// header("pragma:no-cache");
-// header("Expires:0");
+header("Content-type:application/x-msdownload");
+header("content-disposition:attactment;filename=laporan_honor_reguler.xls");
+header("pragma:no-cache");
+header("Expires:0");
 ?>
 <body>
 <div>
@@ -33,6 +33,13 @@ body {
         <th style="width: 15%;">Rencana (Rp)</th> 
         <th style="width: 15%;">Realisasi (Rp) </th> 
         <th style="width: 15%;">Capaian (%) </th>
+    </tr>
+    <tr>
+        <td style="text-align: center;">1</td>
+        <td style="text-align: center;">2</td> 
+        <td style="text-align: center;">3</td> 
+        <td style="text-align: center;">4</td>
+        <td style="text-align: center;">5=4/3</td> 
     </tr>
 <?php
     $no=1;

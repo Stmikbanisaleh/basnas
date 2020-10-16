@@ -26,8 +26,8 @@ class Rr_penerimaan_manfaat_asnaf extends CI_Controller
 			$myprogram = $this->model_rr_penerimaan_manfaat_asnaf->viewOrdering('master_sub_program', 'id', 'asc')->result_array();
 			$data = array(
 				'page_content' 	=> '/rr_penerimaan_manfaat_asnaf/view',
-				'ribbon' 		=> '<li class="active">Dashboard</li><li>Laporan</li><li>Rencana dan Realisasi PBiaya Operasional Fungsi</li>',
-				'page_name' 	=> 'BELUM',
+				'ribbon' 		=> '<li class="active">Dashboard</li><li>Laporan</li><li>Rencana dan Realisasi Penerimaan Manfaat Per Asnaf</li>',
+				'page_name' 	=> 'Rencana dan Realisasi Penerimaan Manfaat Per Asnaf',
 				'js' 			=> 'js_file',
 				'myprogram'		=> $myprogram,
 			);

@@ -13,7 +13,7 @@
                 <input type="date" required name="periode_akhir" class="form-control" />
             </div>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe </label>
             <div class="col-sm-3">
                 <select class="form-control" required name="is_approve">
@@ -27,7 +27,7 @@
                     ?>
                 </select>
             </div>
-        </div>
+        </div> -->
 		<td>
 
 			<div class="col-xs-6">

@@ -14,10 +14,10 @@ body {
 </style>
 </head>
 <?php
-// header("Content-type:application/x-msdownload");
-// header("content-disposition:attactment;filename=laporan_honor_reguler.xls");
-// header("pragma:no-cache");
-// header("Expires:0");
+header("Content-type:application/x-msdownload");
+header("content-disposition:attactment;filename=laporan_honor_reguler.xls");
+header("pragma:no-cache");
+header("Expires:0");
 ?>
 <body>
 <div>
@@ -34,12 +34,22 @@ body {
         <th style="width: 30%;" colspan="3">Badan</th> 
     </tr>
     <tr>
-        <th style="width: 10%;">Rencana (Rp)</th> 
-        <th style="width: 10%;">Realisasi (Rp) </th> 
+        <th style="width: 10%;">Rencana</th> 
+        <th style="width: 10%;">Realisasi</th> 
         <th style="width: 10%;">Capaian (%) </th>
-        <th style="width: 10%;">Rencana (Rp)</th> 
-        <th style="width: 10%;">Realisasi (Rp) </th> 
+        <th style="width: 10%;">Rencana</th> 
+        <th style="width: 10%;">Realisasi</th> 
         <th style="width: 10%;">Capaian (%) </th>
+    </tr>
+    <tr>
+        <th>1</th>
+        <th>2</th> 
+        <th>3</th> 
+        <th>4</th> 
+        <th>5=4/3</th> 
+        <th>6</th> 
+        <th>7</th>
+        <th>8=7/6</th> 
     </tr>
     <?php
     //====================== Start No 1 ========================//

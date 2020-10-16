@@ -29,36 +29,131 @@ header("Expires:0");
         <th style="width: 15%;">Realisasi (Rp) </th> 
         <th style="width: 15%;">Capaian (%) </th>
     </tr>
+
 <?php
+    //mysumzakat
     $no=1;
-    foreach($myprogram as $row){
+    foreach($mysumzakat as $row){
 ?>
     <tr>
-        <td style="padding-left: 10px;"><?= '1.'.$no ?></td>
-        <td><?= $row['nama'] ?></td> 
+        <td style="padding-left: 10px;"><b>1.1</b></td>
+        <td><b>Penerimaan dana zakat</b></td> 
         <td></td> 
-        <td><?= $row['jumlah_dana']?></td>
+        <td><?= $row['total_terima']?></td>
         <td></td> 
     </tr>
 <?php
-
-        $mysubprogram = $this->model_rr_penerimaan->view_sub_program($post_tgl_awal, $post_tgl_akhir, $row['id'])->result_array();
-        $no_sub = 1;
-        foreach($mysubprogram as $row){
-        ?>
-        <tr>
-            <td style="padding-left: 20px;"><?= '1.'.$no.'.'.$no_sub ?></td>
-            <td><?= $row['deskripsi'] ?></td> 
-            <td></td> 
-            <td><?= $row['jumlah_dana']?></td>
-            <td></td> 
-        </tr>
-
-        <?php
-        $no_sub++;
-        }
     $no++;
     }
+     //mysumzakat
+?>
+
+<?php
+    //myzakatmallindividu
+    $no=1;
+    foreach($myzakatmallindividu as $row){
+?>
+    <tr>
+        <td style="padding-left: 10px;"><b>1.1.1</b></td>
+        <td>Penerimaan dana zakat maal perorangan</td> 
+        <td></td> 
+        <td><?= $row['total_terima']?></td>
+        <td></td> 
+    </tr>
+<?php
+    $no++;
+    }
+     //myzakatmallindividu
+?>
+
+<?php
+    //myzakatmallbadan
+    $no=1;
+    foreach($myzakatmallbadan as $row){
+?>
+    <tr>
+        <td style="padding-left: 10px;"><b>1.1.2</b></td>
+        <td>Penerimaan dana zakat maal badan</td> 
+        <td></td> 
+        <td><?= $row['total_terima']?></td>
+        <td></td> 
+    </tr>
+<?php
+    $no++;
+    }
+     //myzakatmallbadan
+?>
+
+<?php
+    //myzakatmallfitrah
+    $no=1;
+    foreach($myzakatmallfitrah as $row){
+?>
+    <tr>
+        <td style="padding-left: 10px;"><b>1.1.3</b></td>
+        <td>Penerimaan dana zakat Fitrah</td> 
+        <td></td> 
+        <td><?= $row['total_terima']?></td>
+        <td></td> 
+    </tr>
+<?php
+    $no++;
+    }
+     //myzakatmallfitrah
+?>
+
+<?php
+    //mysuminfaq
+    $no=1;
+    foreach($mysuminfaq as $row){
+?>
+    <tr>
+        <td style="padding-left: 10px;"><b>1.2</b></td>
+        <td><b>Penerimaan Infaq/Sedekah<b></td> 
+        <td></td> 
+        <td><?= $row['total_terima']?></td>
+        <td></td> 
+    </tr>
+<?php
+    $no++;
+    }
+     //mysuminfaq
+?>
+
+<?php
+    //myinfaqindividu
+    $no=1;
+    foreach($myinfaqindividu as $row){
+?>
+    <tr>
+        <td style="padding-left: 10px;"><b>1.2.1</b></td>
+        <td>Penerimaan dana infaq/sedekah tidak terikat</td> 
+        <td></td> 
+        <td><?= $row['total_terima']?></td>
+        <td></td> 
+    </tr>
+<?php
+    $no++;
+    }
+     //myinfaqindividu
+?>
+
+<?php
+    //myinfaqbadan
+    $no=1;
+    foreach($myinfaqbadan as $row){
+?>
+    <tr>
+        <td style="padding-left: 10px;"><b>1.2.1</b></td>
+        <td>Penerimaan dana infaq/sedekah terikat</td> 
+        <td></td> 
+        <td><?= $row['total_terima']?></td>
+        <td></td> 
+    </tr>
+<?php
+    $no++;
+    }
+     //myinfaqbadan
 ?>
 </table>
 

@@ -13,10 +13,10 @@ body {
 </style>
 </head>
 <?php
-// header("Content-type:application/x-msdownload");
-// header("content-disposition:attactment;filename=laporan_honor_reguler.xls");
-// header("pragma:no-cache");
-// header("Expires:0");
+header("Content-type:application/x-msdownload");
+header("content-disposition:attactment;filename=laporan_honor_reguler.xls");
+header("pragma:no-cache");
+header("Expires:0");
 ?>
 <body>
 <div>

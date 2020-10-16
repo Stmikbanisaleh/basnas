@@ -27,7 +27,7 @@ class Rr_penerimaan extends CI_Controller
 			$data = array(
 				'page_content' 	=> '/rr_penerimaan/view',
 				'ribbon' 		=> '<li class="active">Dashboard</li><li>Laporan Rencana dan Realisasi Penerimaan</li>',
-				'page_name' 	=> 'Laporan Rena',
+				'page_name' 	=> 'Laporan Rencana dan Realisasi Penerimaan',
 				'js' 			=> 'js_file',
 				'myprogram'		=> $myprogram,
 			);
@@ -42,7 +42,13 @@ class Rr_penerimaan extends CI_Controller
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$post_tgl_awal = $this->input->post('periode_awal');
 			$post_tgl_akhir = $this->input->post('periode_akhir');
-			$myprogram = $this->model_rr_penerimaan->view_program($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$mysumzakat = $this->model_rr_penerimaan->view_sum_zakat($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$mysuminfaq = $this->model_rr_penerimaan->view_sum_infaq($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$myzakatmallindividu = $this->model_rr_penerimaan->view_zakat_mall_individu($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$myzakatmallbadan = $this->model_rr_penerimaan->view_zakat_mall_badan($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$myzakatmallfitrah = $this->model_rr_penerimaan->view_zakat_fitrah($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$myinfaqindividu = $this->model_rr_penerimaan->view_infaq_individu($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$myinfaqbadan = $this->model_rr_penerimaan->view_infaq_badan($post_tgl_akhir, $post_tgl_akhir)->result_array();
 			$tgl_awal = $this->mainfunction->gettgl_indo($post_tgl_awal);
 			$tgl_akhir = $this->mainfunction->gettgl_indo($post_tgl_akhir);
 			$data = array(
@@ -50,7 +56,13 @@ class Rr_penerimaan extends CI_Controller
 				'ribbon' 		=> '<li class="active">Dashboard</li><li>Laporan Rencana dan Realisasi Penerimaan</li>',
 				'page_name' 	=> 'Laporan Rena',
 				'js' 			=> 'js_file',
-				'myprogram'		=> $myprogram,
+				'mysumzakat'		=> $mysumzakat,
+				'mysuminfaq'		=> $mysuminfaq,
+				'myzakatmallindividu'		=> $myzakatmallindividu,
+				'myzakatmallbadan'		=> $myzakatmallbadan,
+				'myzakatmallfitrah'		=> $myzakatmallfitrah,
+				'myinfaqindividu'		=> $myinfaqindividu,
+				'myinfaqbadan'		=> $myinfaqbadan,
 				'post_tgl_awal'	=> $post_tgl_awal,
 				'post_tgl_akhir'=> $post_tgl_akhir,
 				'tgl_awal'		=> $tgl_awal,
