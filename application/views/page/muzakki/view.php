@@ -351,6 +351,7 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Muzaki </label>
 								<div class="col-sm-6">
 									<input type="text" id="nama3" readonly name="nama3" class="form-control" />
+									<input type="hidden" id="er_id" name="er_id" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -914,7 +915,7 @@
 				id: id,
 			},
 			success: function(data) {
-				$('#e_id').val(data[0].id_muzakki);
+				$('#er_id').val(data[0].id_muzakki);
 				$('#nama3').val(data[0].nama);
 				$('#alamat3').val(data[0].alamat);
 				$('#no_kartu').val(data[0].nokartu);

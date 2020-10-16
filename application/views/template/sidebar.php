@@ -50,13 +50,13 @@ if ($jabatan == 5) { ?>
 					</a>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'kepemilikan'; ?>">
+					<a href="<?= base_url() . 'zakat'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Kategori Zakat
 					</a>
 				</li>
 				<li class="">
-					<a href="<?= base_url() . 'zakat'; ?>">
+					<a href="<?= base_url() . 'kepemilikan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Kepemilikan
 					</a>
@@ -250,26 +250,26 @@ if ($jabatan == 5) { ?>
 					</a>
 				</li>
 
-				<li class="">
+				<!-- <li class="">
 					<a href="<?= base_url() . 'rr_biaya_operasional_fungsi'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rencana dan Realisasi Biaya Operasional Berdasarkan Fungsi
 					</a>
-				</li>
+				</li> -->
 
-				<li class="">
+				<!-- <li class="">
 					<a href="<?= base_url() . 'rr_penggunaan_dana_apbn_apbd'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rencana dan Realisasi Penggunaan Dana APBN/APBD
 					</a>
-				</li>
+				</li> -->
 
-				<li class="">
+				<!-- <li class="">
 					<a href="<?= base_url() . 'rr_pengumpulan_dan_penyaluran_ramadhan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Rencana dan Realisasi Pengumpulan dan Penyaluran Ramadhan
 					</a>
-				</li>
+				</li> -->
 
 				<li class="">
 					<a href="<?= base_url() . 'rr_penerimaan_manfaat_asnaf'; ?>">
@@ -435,26 +435,26 @@ if ($jabatan == 5) { ?>
 						</a>
 					</li>
 
-					<li class="">
+					<!-- <li class="">
 						<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
 							<i class="menu-icon fa fa-caret-right"></i>
 							Rencana dan Realisasi Biaya Operasional Berdasarkan Fungsi
 						</a>
-					</li>
+					</li> -->
 
-					<li class="">
+					<!-- <li class="">
 						<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
 							<i class="menu-icon fa fa-caret-right"></i>
 							Rencana dan Realisasi Penggunaan Dana APBN/APBD
 						</a>
-					</li>
+					</li> -->
 
-					<li class="">
+					<!-- <li class="">
 						<a href="<?= base_url() . 'laporan_penyaluran'; ?>">
 							<i class="menu-icon fa fa-caret-right"></i>
 							Rencana dan Realisasi Pengumpulan dan Penyaluran Ramadhan
 						</a>
-					</li>
+					</li> -->
 
 					<li class="">
 						<a href="<?= base_url() . 'laporan_penyaluran'; ?>">

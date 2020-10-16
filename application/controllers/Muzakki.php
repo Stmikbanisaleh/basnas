@@ -197,7 +197,7 @@ class Muzakki extends CI_Controller
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
 			$data_id = array(
-				'id_muzakki'  => $this->input->post('e_id')
+				'id_muzakki'  => $this->input->post('er_id')
 			);
 
 			$data = array(
@@ -205,6 +205,7 @@ class Muzakki extends CI_Controller
 				'namabank'  => $this->input->post('nama_bank'),
 				'updatedAt' => date('Y-m-d H:i:s')
 			);
+			// print_r($data_id);exit;
 			$result = $this->model_muzakki->update($data_id, $data, 'master_rekening');
 			echo json_decode($result);
 		} else {
