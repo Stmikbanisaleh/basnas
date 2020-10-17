@@ -42,11 +42,21 @@ class Pp_zakat_kabupaten_kota extends CI_Controller
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$post_tgl_awal = $this->input->post('periode_awal');
 			$post_tgl_akhir = $this->input->post('periode_akhir');
-			$myprogram = $this->model_pp_zakat_kabupaten_kota->view_program($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$myzakatmaal = $this->model_pp_zakat_kabupaten_kota->view_sum_zakat_maal($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$myzakatfitrah = $this->model_pp_zakat_kabupaten_kota->view_sum_zakat_fitrah($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$myinfaq = $this->model_pp_zakat_kabupaten_kota->view_sum_infaq($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$mymuzaki = $this->model_pp_zakat_kabupaten_kota->view_sum_data_muzaki($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$mybidang = $this->model_pp_zakat_kabupaten_kota->view_sum_bidang($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$myasnaf = $this->model_pp_zakat_kabupaten_kota->view_sum_asnaf($post_tgl_akhir, $post_tgl_akhir)->result_array();
 			$tgl_awal = $this->mainfunction->gettgl_indo($post_tgl_awal);
 			$tgl_akhir = $this->mainfunction->gettgl_indo($post_tgl_akhir);
 			$data = array(
-				'myprogram'		=> $myprogram,
+				'myzakatmaal'		=> $myzakatmaal,
+				'myzakatfitrah'		=> $myzakatfitrah,
+				'myinfaq'		=> $myinfaq,
+				'mymuzaki'		=> $mymuzaki,
+				'mybidang'		=> $mybidang,
+				'myasnaf'		=> $myasnaf,
 				'post_tgl_awal'	=> $post_tgl_awal,
 				'post_tgl_akhir'=> $post_tgl_akhir,
 				'tgl_awal'		=> $tgl_awal,

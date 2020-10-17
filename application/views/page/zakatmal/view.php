@@ -546,7 +546,7 @@
 				$('#e_total').val(a);
 				$('#e_jeniszakat').val(data[0].jenis_zakat);
 				$('#e_total_v').val(data[0].total_terima);
-				show_data_rekening(data[0].id_kartu, function(a) {
+				show_data_rekening(data[0].id_muzakki, function(a) {
 					$('#e_norek').val(data[0].id_kartu);
 				});
 			}

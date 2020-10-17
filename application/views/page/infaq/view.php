@@ -517,7 +517,7 @@
 				var a = ConvertFormatRupiah(data[0].total_terima, 'Rp. ');
 				$('#e_total').val(a);
 				$('#e_total_v').val(data[0].total_terima);
-				show_data_rekening(data[0].id_kartu, function(a) {
+				show_data_rekening(data[0].id_muzakki, function(a) {
 					$('#e_norek').val(data[0].id_kartu);
 				});
 				$('#e_deskripsi').val(data[0].deskripsi);

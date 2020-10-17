@@ -49,26 +49,78 @@ class Model_pp_zakat_kabupaten_kota extends CI_model
         $this->db->truncate($table);
     }
 
-    public function view_program($tgl_awal, $tgl_akhir)
+    public function view_sum_zakat_maal($tgl_awal, $tgl_akhir)
     {
-        return $this->db->query("SELECT mpe.id_program_utama id, mp.nama, sum(mpe.jumlah_dana) jumlah_dana
+        return $this->db->query("SELECT
+                                    SUM(mz.total_terima) total_terima
                                 FROM
-                                master_program mp
-                                JOIN master_penyaluran mpe ON mp.id = mpe.id_program_utama
-                                WHERE mpe.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
-                                GROUP BY
-                                mp.id, mp.nama");
+                                master_zakat mz
+                                WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mz.jenis = 2");
     }
 
-    public function view_sub_program($tgl_awal, $tgl_akhir, $id_program)
+    public function view_sum_zakat_fitrah($tgl_awal, $tgl_akhir)
     {
-        return $this->db->query("SELECT msp.deskripsi, sum(mpe.jumlah_dana) jumlah_dana
+        return $this->db->query("SELECT
+                                    SUM(mz.total_terima) total_terima
                                 FROM
-                                    master_sub_program msp
-                                JOIN master_penyaluran mpe ON msp.id = mpe.id_program
-                                WHERE mpe.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
-                                    AND mpe.id_program_utama = $id_program
-                                GROUP BY msp.id, msp.deskripsi
-                                ORDER BY msp.deskripsi");
+                                master_zakat mz
+                                WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mz.jenis = 1");
+    }
+
+    public function view_sum_infaq($tgl_awal, $tgl_akhir)
+    {
+        return $this->db->query("SELECT
+                                    SUM(mz.total_terima) total_terima
+                                FROM
+                                master_zakat mz
+                                WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mz.jenis = 3");
+    }
+
+    public function view_sum_data_muzaki($tgl_awal, $tgl_akhir)
+    {
+        return $this->db->query("SELECT a.jumlah_muzaki_perorangan, b.jumlah_muzaki_lembaga FROM
+                                (
+                                    SELECT
+                                        COUNT(mz.id) jumlah_muzaki_perorangan
+                                    FROM
+                                    master_zakat mz
+                                    JOIN master_muzakki mm ON mm.id = mz.id_muzakki
+                                    WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                    AND mm.jenis_muzakki = 'Individu'
+                                ) a, 
+                                (
+                                    SELECT
+                                        COUNT(mz.id) jumlah_muzaki_lembaga
+                                    FROM
+                                    master_zakat mz
+                                    JOIN master_muzakki mm ON mm.id = mz.id_muzakki
+                                    WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                    AND mm.jenis_muzakki = 'Lembaga'
+                                ) b");
+    }
+
+    public function view_sum_bidang($tgl_awal, $tgl_akhir)
+    {
+        return $this->db->query("SELECT
+                                    mp.id, msp.bidang, SUM(mp.jumlah_dana) jumlah_dana
+                                FROM
+                                master_penyaluran mp
+                                JOIN master_sub_program msp ON msp.id = mp.id_program
+                                WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                GROUP BY msp.bidang");
+    }
+
+    public function view_sum_asnaf($tgl_awal, $tgl_akhir)
+    {
+        return $this->db->query("SELECT
+                                mp.id, SUM(mp.jumlah_dana) jumlah_dana, mkm.nama
+                                FROM
+                                master_penyaluran mp
+                                JOIN master_kategori_mustahik mkm ON mkm.id = mp.ansaf
+                                WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                GROUP BY mp.ansaf");
     }
 }

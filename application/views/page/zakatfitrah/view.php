@@ -101,8 +101,8 @@
 								<div class="col-sm-9">
 									<select class="form-control" name="penerimaan" id="penerimaan">
 										<option value="0">-- Pilih --</option>
-										<option value="Transfer">Transfer</option>
-										<option value="Cash">Cash</option>
+										<option value="Tunai">Tunai</option>
+										<option value="Angsuran">Angsuran</option>
 									</select>
 								</div>
 							</div>
@@ -519,7 +519,7 @@
 				var a = ConvertFormatRupiah(data[0].total_terima, 'Rp. ');
 				$('#e_total').val(a);
 				$('#e_total_v').val(data[0].total_terima);
-				show_data_rekening(data[0].id_kartu, function(a) {
+				show_data_rekening(data[0].id_muzakki, function(a) {
 					$('#e_norek').val(data[0].id_kartu);
 				});
 				$('#e_deskripsi').val(data[0].deskripsi);
@@ -584,6 +584,7 @@
 				ps: ps
 			}
 		}).done(function(data) {
+			console.log(data);
 			$("#e_norek").html(data);
 			callback()
 		});
