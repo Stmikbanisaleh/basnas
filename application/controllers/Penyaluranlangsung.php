@@ -238,10 +238,9 @@ class Penyaluranlangsung extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('N1', 'Jenis Dana');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('O1', 'ID ANSAF');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P1', 'Kategori Mustahik');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Q1', 'Nama');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('R1', 'Jumlah Dana');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('S1', 'Jumlah Dana Disetujui');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('T1', 'Deskripsi');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Q1', 'Jumlah Dana');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('R1', 'Jumlah Dana Disetujui');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('S1', 'Deskripsi');
 
 				foreach ($mymustahik as $dataExcel) {
 					$nama3 = $dataExcel['nama'];
@@ -372,9 +371,7 @@ class Penyaluranlangsung extends CI_Controller
 					if (!$value[2]) {
 						array_push($empty_message, "No at row "  . $keys . "Type harus di isi");
 					}
-					if (!$value[3]) {
-						array_push($empty_message, "No at row "  . $keys . "Deskripsi harus di isi");
-					}
+					
 
 					if (!empty($empty_message)) {
 						$ret['msg'] = $empty_message;

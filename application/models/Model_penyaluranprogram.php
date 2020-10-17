@@ -81,6 +81,15 @@ class Model_penyaluranprogram extends CI_model
         return  $this->db->query('select *,IF(a.status = 1, "Aktif", "Tidak") as statusv2,b.NAMAJABATAN as nmjabatan from tbpengawas a join msjabatan b on a.jabatan = b.ID
         ');
     }
+    public function trx_penyaluranprogram()
+    {
+        return $this->db->query("SELECT p.id,pr.id as 'id_program',pr.deskripsi as 'sub_program',mp.id as 'id_program_utama',mp.nama as 'nama_program',kat.id as 'id_ansaf', kat.nama as 'kategori_mustahik',m.nama as 'mustahik',p.jumlah_dana, p.jumlah_dana_disetujui, p.deskripsi
+        from master_penyaluran p
+        JOIN master_kategori_mustahik kat on p.ansaf = kat.id
+        JOIN master_mustahik m on kat.id = m.kat_mustahik
+        JOIN master_program mp on p.id_program_utama = mp.id
+        JOIN master_sub_program pr on p.id_program = pr.id");
+	}
 
     public function view_count($table, $data_id)
     {
