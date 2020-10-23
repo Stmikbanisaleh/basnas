@@ -49,7 +49,7 @@ class Profile extends CI_Controller
             $data_id = array(
                 'nip'  => $this->input->post('e_nip')
 			);
-			$password = hash('sha512',md5($this->input->post('password')));
+			$password = hash('sha512',md5($this->input->post('e_password')));
 			print_r($password);exit;
             $data = array(
                 'nama'  => $this->input->post('e_nama'),
