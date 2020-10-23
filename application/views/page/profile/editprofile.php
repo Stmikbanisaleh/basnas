@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Password </label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="e_password" id="e_password" placeholder="" value="<?php echo $password; ?>"></textarea>
+                                <input type="password" class="form-control" name="e_password" id="e_password" placeholder="" value=""></textarea>
                             </div>
                         </div>
                     </div>

@@ -48,16 +48,26 @@ class Profile extends CI_Controller
 			
             $data_id = array(
                 'nip'  => $this->input->post('e_nip')
-			);
-			$password = hash('sha512',md5($this->input->post('e_password')));
-			print_r($password);exit;
-            $data = array(
-                'nama'  => $this->input->post('e_nama'),
-                'jabatan'  => $this->input->post('e_jabatan'),
-                'email'  => $this->input->post('e_email'),
-                'password'  => $password,
-                'updatedAt' => date('Y-m-d H:i:s'),
             );
+            if($this->input->post('e_password')!=''){
+                $password = hash('sha512',md5($this->input->post('e_password')));
+                $data = array(
+                    'nama'  => $this->input->post('e_nama'),
+                    'jabatan'  => $this->input->post('e_jabatan'),
+                    'email'  => $this->input->post('e_email'),
+                    'password'  => $password,
+                    'updatedAt' => date('Y-m-d H:i:s'),
+                );
+            }else{
+                $data = array(
+                    'nama'  => $this->input->post('e_nama'),
+                    'jabatan'  => $this->input->post('e_jabatan'),
+                    'email'  => $this->input->post('e_email'),
+                    'updatedAt' => date('Y-m-d H:i:s'),
+                );
+
+            }
+            
             $this->model_profile->update($data_id, $data, 'users');
 			//echo json_encode($action);
 			redirect(site_url('dashboard'));  //Display Page
