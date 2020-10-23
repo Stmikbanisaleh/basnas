@@ -1,336 +1,226 @@
 <div class="row">
-	<div class="space-6"></div>
-	<div class="col-sm-5 infobox-container">
-		<!-- <div class="infobox infobox-green">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-users"></i>
-			</div>
-			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(id) as total from tbguru where isdeleted != 1')->result_array();
-																										echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="#">Jumlah Guru</a></div>
-			</div>
-		</div>
-
-		<div class="infobox infobox-blue">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-users"></i>
-			</div>
-			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(id) as total from mssiswa where isdeleted != 1')->result_array();
-																										echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="#">Jumlah Siswa</a></div>
-			</div>
-		</div>
-
-		<div class="infobox infobox-pink">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-users"></i>
-			</div>
-			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(id_pengawas) as total from tbpengawas where isdeleted != 1')->result_array();
-																											echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="#">Jumlah Karyawan</a></div>
-			</div>
-		</div>
-		<div class="infobox infobox-red">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-users"></i>
-			</div>
-			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(IDRKP) as total from rkpaktvsiswa where isdeleted != 1')->result_array();
-																											echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="#">Jumlah Lulusan</a></div>
-			</div>
-		</div>
-
-		<div class="infobox infobox-orange2">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-calendar"></i>
-			</div>
-			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(id) as total from tbjadwal where isdeleted != 1')->result_array();
-																										echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="#">Jumlah Jadwal Aktif</a></div>
-			</div>
-		</div>
-
-		<div class="infobox infobox-brown">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-book"></i>
-			</div>
-			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(id_krs) as total from tbkrs where isdeleted != 1')->result_array();
-																											echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="#">Jumlah Kurikulum</a></div>
-			</div>
-		</div>
-		<div class="infobox infobox-blue2">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-book"></i>
-			</div>
-			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(ID) as total from trmka where isdeleted != 1')->result_array();
-																												echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="#">Jumlah Mata ajar Aktif</a></div>
-			</div>
-		</div>
-		<div class="infobox infobox-blue2">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-home"></i>
-			</div>
-			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(ID) as total from msruang where isdeleted != 1')->result_array();
-																										echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="#">Jumlah Ruangan</a></div>
-			</div>
-		</div>
-		<div class="infobox infobox-blue2">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-calendar"></i>
-			</div>
-			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(id) as total from tbjadwal where isdeleted != 1')->result_array();
-																										echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="#">Jumlah Jadwal Aktif</a></div>
-			</div>
-		</div>
-		<div class="infobox infobox-blue2">
-			<div class="infobox-icon">
-				<i class="ace-icon fa fa-calendar"></i>
-			</div>
-			<div class="infobox-data">
-				<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(id) as total from tbjadwal where isdeleted != 1')->result_array();
-																										echo $guru[0]['total']; ?></a></span>
-				<div class="infobox-content"><a href="#">Jumlah Jadwal Aktif</a></div>
-			</div>
-		</div> -->
-	</div>
-	<div class="col-sm-7 infobox-container">
-		<div class="widget-box">
-			<div class="widget-header widget-header-flat widget-header-small">
-				<h5 class="widget-title">
-					<i class="ace-icon fa fa-signal"></i>
-					Jumlah Siswa
-				</h5>
-			</div>
-
-			<div class="widget-body">
-				<div class="widget-main">
-					<div id="piechart-placeholder"></div>
-
-					<div class="hr hr8 hr-double"></div>
-
-					<div class="clearfix">
-
-					<div class="grid2">
-							<div class="infobox infobox-red">
-								<div class="infobox-chart">
-									<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
-								</div>
-								<div class="infobox-data">
-									<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 01 or PS = 02 or PS = 03 or PS = 04
-									 or PS = 05 or PS = 06 or PS = 07 or PS = 08 or PS = 09
-									 or PS = 10 or PS = 11 or PS = 12
-									 or PS = 13 or PS = 14 or PS = 15
-									 or PS = 16 or PS = 17'
-									 )->result_array();
-																															echo $guru[0]['total']; ?></a></span>
-									<div class="infobox-content"><a href="#">TK</a></div>
-								</div>
-							</div>
-						</div>
-
-						<div class="grid2">
-							<div class="infobox infobox-green">
-								<div class="infobox-chart">
-									<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
-								</div>
-								<div class="infobox-data">
-									<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 18 or PS = 19 or PS = 20')->result_array();
-																															echo $guru[0]['total']; ?></a></span>
-									<div class="infobox-content"><a href="#">SD</a></div>
-								</div>
-							</div>
-						</div>
-
-						<div class="grid2">
-							<div class="infobox infobox-blue">
-								<div class="infobox-chart">
-									<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
-								</div>
-								<div class="infobox-data">
-									<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 21')->result_array();
-																															echo $guru[0]['total']; ?></a></span>
-									<div class="infobox-content"><a href="#">SMP</a></div>
-								</div>
-							</div>
-						</div>
-
-						<div class="grid2">
-							<div class="infobox infobox-purple">
-								<div class="infobox-chart">
-									<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
-								</div>
-								<div class="infobox-data">
-									<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 22 or PS = 23')->result_array();
-																															echo $guru[0]['total']; ?></a></span>
-									<div class="infobox-content"><a href="#">SMA</a></div>
-								</div>
-							</div>
-						</div>
-
-						<div class="grid2">
-							<div class="infobox infobox-pink">
-								<div class="infobox-chart">
-									<span class="sparkline" data-values="196,111,111,177,154,94,111,111,111"></span>
-								</div>
-								<div class="infobox-data">
-									<span class="infobox-data-number"><a href="#"><?php $guru = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 26 or PS = 27')->result_array();
-																															echo $guru[0]['total']; ?></a></span>
-									<div class="infobox-content"><a href="#">QUBA</a></div>
-								</div>
-							</div>
-						</div>
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-industry fa-5x"></i>
 					</div>
-				</div><!-- /.widget-main -->
-			</div><!-- /.widget-body -->
-		</div><!-- /.widget-box -->
-	</div><!-- /.col -->
-</div><!-- /.row -->
-<script type="text/javascript">
-	jQuery(function($) {
-		$('.easy-pie-chart.percentage').each(function() {
-			var $box = $(this).closest('.infobox');
-			var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
-			var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
-			var size = parseInt($(this).data('size')) || 50;
-			$(this).easyPieChart({
-				barColor: barColor,
-				trackColor: trackColor,
-				scaleColor: false,
-				lineCap: 'butt',
-				lineWidth: parseInt(size / 10),
-				animate: ace.vars['old_ie'] ? false : 1000,
-				size: size
-			});
-		})
+					<div class="col-xs-9 text-right">
+						<div class="huge">Rp_ <?php echo number_format($countfitrah) ?></div>
+						<div>Zakat Fitrah Bulan Oktober 2020</div>
+					</div>
+				</div>
+			</div>
+			<a href="#">
+				<div class="panel-footer">
+					<span class="pull-left">Transaksi Masuk</span>
+					<!-- <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span> -->
 
-		$('.sparkline').each(function() {
-			var $box = $(this).closest('.infobox');
-			var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
-			$(this).sparkline('html', {
-				tagValuesAttribute: 'data-values',
-				type: 'bar',
-				barColor: barColor,
-				chartRangeMin: $(this).data('min') || 0
-			});
-		});
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-green">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-tasks fa-5x"></i>
+					</div>
+					<div class="col-xs-9 text-right">
+						<div class="huge">Rp_ <?php echo number_format($countmaal) ?></div>
+						<div>Zakat Maal Bulan Oktober 2020</div>
+					</div>
+				</div>
+			</div>
+			<a href="#">
+				<div class="panel-footer">
+					<span class="pull-left">Transaksi Masuk</span>
+					<!-- <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span> -->
+
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-yellow">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-indent fa-5x"></i>
+					</div>
+					<div class="col-xs-9 text-right">
+						<div class="huge">Rp_ <?php echo number_format($countinfaq) ?></div>
+						<div>Infaq / Shodaqoh Bulan Oktober 2020</div>
+					</div>
+				</div>
+			</div>
+			<a href="#">
+				<div class="panel-footer">
+					<span class="pull-left">Transaksi Masuk</span>
+					<!-- <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span> -->
+
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>
+<!-- /.row -->
+<!--begin::Row-->
+<div class="row">
+    <div class="col-lg-6 col-md-12">
+        <!--begin::List Widget 3-->
+        <div class="card card-custom card-stretch gutter-b">
+            <!--begin::Header-->
+            <div class="card-header border-0">
+                <h3 class="card-title font-weight-bolder text-dark">Transaksi Masuk</h3>
+
+                <div class="card-toolbar">
+                    <div class="dropdown dropdown-inline">
+                        <!-- <a href="<?= site_url('Admin/Member') ?>" class="btn btn-light btn-sm font-size-sm font-weight-bolder text-dark-75" data-toggle="tooltip" title="See More Members" data-placement="top" aria-haspopup="true" aria-expanded="false">See More</a> -->
+                        <!-- <input type="hidden" id="session_grafmember" name="session_grafmember" value="1"> -->
+                        
+                        <!-- <button type="button" onclick="grafikMember()" id="grafik_member" class="btn btn-outline-secondary">Tahunan</button> -->
+                    </div>
+                </div>
+            </div>
+            <!--end::Header-->
+            <!--begin::Body-->
+            <div class="card-body pt-2">
+                <!--begin::Item-->
+                    <div class="d-flex align-items-center mb-10">
+                        <canvas id="myChart"></canvas>
+                    </div>
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--end::List Widget 3-->
+    </div>
+
+    <div class="col-lg-6 col-md-12">
+        <!--begin::List Widget 4-->
+        <div class="card card-custom card-stretch gutter-b">
+            <!--begin::Header-->
+            <div class="card-header border-0">
+                <h3 class="card-title font-weight-bolder text-dark">Transaksi Keluar</h3>
+                        <input type="hidden" id="session_grafbooking" name="session_grafbooking" value="1">
+                <!-- <div class="card-toolbar">
+                    <div class="dropdown dropdown-inline">
+                        <a href="<?= site_url('Admin/Booking') ?>" class="btn btn-light btn-sm font-size-sm font-weight-bolder text-dark-75" data-toggle="tooltip" title="See More Book Hall" data-placement="top" aria-haspopup="true" aria-expanded="false">See More</a>
+                    </div>
+                </div> -->
+            </div>
+            <!--end::Header-->
+            <!--begin::Body-->
+            <div class="card-body pt-2">
+                <div class="card-body pt-2">
+                    <!--begin::Item-->
+                        <!-- <div class="form-group">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                            <option> -- Data Tahunan -- </option>
+                            <option> -- Data Bulanan -- </option>
+                            </select>
+                        </div> -->
+                        <div class="d-flex align-items-center mb-10">
+                            <canvas id="myChartBooking"></canvas>
+                        </div>
+                </div>
+
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--end:List Widget 4-->
+    </div>
+</div>
+<!--end::Row-->
+<!-- ChartJs must be here because cant load from main.php -->
+<script src="<?= base_url() ?>assets/template/charjs_v280/Chart.js-2.8.0/dist/Chart.min.js"></script>
+<!-- End ChartJs Versi 2.7.2 -->
+<script>
+
+//deklarasi chartjs untuk membuat grafik 2d di id mychart 
+var asd = document.getElementById('myChart').getContext('2d');
 
 
-		//flot chart resize plugin, somehow manipulates default browser resize event to optimize it!
-		//but sometimes it brings up errors with normal resize event handlers
-		$.resize.throttleWindow = false;
+var ctx = document.getElementById('myChartBooking').getContext('2d');
 
-		var placeholder = $('#piechart-placeholder').css({
-			'width': '90%',
-			'min-height': '150px'
-		});
-		var data = [{
-				label: "TK",
-				data: <?php $tbakadmk = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 01 or PS = 02 or PS = 03 or PS = 04
-									 or PS = 05 or PS = 06 or PS = 07 or PS = 08 or PS = 09
-									 or PS = 10 or PS = 11 or PS = 12
-									 or PS = 13 or PS = 14 or PS = 15
-									 or PS = 16 or PS = 17')->result_array();
-						echo $tbakadmk[0]['total']; ?>,
-				color: "red"
-			},
-			{
-				label: "SD",
-				data: <?php $tbakadmk2 = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 18 or PS = 19 or PS = 20')->result_array();
-						echo $tbakadmk2[0]['total']; ?>,
-				color: "green"
-			},
-			{
-				label: "SMP",
-				data: <?php $tbakadmk3 = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 21')->result_array();
-						echo $tbakadmk3[0]['total']; ?>,
-				color: "blue"
-			},
-			{
-				label: "SMA",
-				data: <?php $tbakadmk3 = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 22 or PS = 23')->result_array();
-						echo $tbakadmk3[0]['total']; ?>,
-				color: "purple"
-			},
-			{
-				label: "QUBA",
-				data: <?php $tbakadmk3 = $this->db->query('select count(NMSISWA) as total from mssiswa where PS = 26 or PS = 27')->result_array();
-						echo $tbakadmk3[0]['total']; ?>,
-				color: "pink"
-			},
-		]
+var myChart = new Chart(asd, {
+    
+    type: 'line',
+    data: {
+        labels: ['Januar', 'Februari', 'Maret', 'April', 'Mei', 'Juni',],
+        datasets: [{
+            label: 'Grafik Transaksi',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(34, 139, 35, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+            ],
+            borderColor: [
+                'rgba(34, 139, 35, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
 
-		function drawPieChart(placeholder, data, position) {
-			$.plot(placeholder, data, {
-				series: {
-					pie: {
-						show: true,
-						tilt: 1,
-						highlight: {
-							opacity: 0.25
-						},
-						stroke: {
-							color: '#fff',
-							width: 3
-						},
-						startAngle: 3
-					}
-				},
-				legend: {
-					show: true,
-					position: position || "ne",
-					labelBoxBorderColor: null,
-					margin: [-30, 15]
-				},
-				grid: {
-					hoverable: true,
-					clickable: true
-				}
-			})
-		}
-		drawPieChart(placeholder, data);
-
-		/**
-		we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
-		so that's not needed actually.
-		*/
-		placeholder.data('chart', data);
-		placeholder.data('draw', drawPieChart);
-
-
-		//pie chart tooltip example
-		var $tooltip = $("<div class='tooltip top in'><div class='tooltip-inner'></div></div>").hide().appendTo('body');
-		var previousPoint = null;
-
-		placeholder.on('plothover', function(event, pos, item) {
-			if (item) {
-				if (previousPoint != item.seriesIndex) {
-					previousPoint = item.seriesIndex;
-					var tip = item.series['label'] + " : " + item.series['percent'] + '%';
-					$tooltip.show().children(0).text(tip);
-				}
-				$tooltip.css({
-					top: pos.pageY + 10,
-					left: pos.pageX + 10
-				});
-			} else {
-				$tooltip.hide();
-				previousPoint = null;
-			}
-
-		});
-
-	})
+var myChart = new Chart(ctx, {
+    
+    type: 'line',
+    data: {
+        labels: ['Januar', 'Februari', 'Maret', 'April', 'Mei', 'Juni',],
+        datasets: [{
+            label: 'Grafik Transaksi',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
 </script>

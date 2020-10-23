@@ -7,6 +7,7 @@ class Dashboard extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('model_jabatan');
+		$this->load->model('Model_dashboard');
 	}
 
 	function render_view($data)
@@ -24,10 +25,16 @@ class Dashboard extends CI_Controller
 		$data1 = array('jabatan' => $jabatan);
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			//$jabatan = $this->model_jabatan->view('master_jabatan')->result_array();
+			$countfitrah = $this->Model_dashboard->getZakatFitrah();
+			$countmaal = $this->Model_dashboard->getZakatMaal();
+			$countinfaq = $this->Model_dashboard->getInfaq();
 			$data = array(
 				'page_content' 	=> 'dashboard',
 				'ribbon' 		=> '<li class="active">Dashboard</li>',
 				'page_name' 	=> 'Dashboard',
+				'countfitrah'	=> $countfitrah,
+				'countmaal'		=> $countmaal,
+				'countinfaq'	=> $countinfaq,
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {

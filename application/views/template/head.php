@@ -39,6 +39,14 @@ if ($jabatan == 5) {
 <link rel="stylesheet" href="<?= base_url() ?>assets/template/css/ace-skins.min.css" />
 <link rel="stylesheet" href="<?= base_url() ?>assets/template/css/ace-rtl.min.css" />
 
+
+<!-- Custom CSS -->
+<link href="<?= base_url() ?>assets/template/css/my-custom.css" rel="stylesheet">
+
+<!-- ChartJs Versi 2.7.2 -->
+<link href="<?= base_url() ?>assets/template/charjs_v280/Chart.js-2.8.0/dist/Chartjs/Chart.min.css" rel="stylesheet" type="text/css" />
+<!-- End ChartJs Versi 2.7.2 -->
+
 <style type="text/css">
 	.my-error-class {
     color:#FF0000;  /* red */
