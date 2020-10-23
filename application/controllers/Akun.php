@@ -97,7 +97,7 @@ class Akun extends CI_Controller
                 'nama'  => $this->input->post('e_nama'),
                 'jabatan'  => $this->input->post('e_jabatan'),
                 'username'  => $this->input->post('e_email'),
-                'password'  => hash('sha512', md5($this->input->post('password'))),
+                'password'  => hash('sha512', md5($this->input->post('e_password'))),
                 'level' => $this->input->post('e_level'),
                 'status'  => $this->input->post('e_status'),
                 'updatedAt' => date('Y-m-d H:i:s'),
