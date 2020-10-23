@@ -278,7 +278,7 @@ var myChart = new Chart(ctx, {
          }
       },
       legend: {
-         display: false,
+         display: true,
          position: 'top',
       },
       scales: {
