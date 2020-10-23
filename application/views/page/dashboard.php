@@ -152,37 +152,72 @@ var myChart = new Chart(asd, {
     
     type: 'line',
     data: {
-        labels: ['Januar', 'Februari', 'Maret', 'April', 'Mei', 'Juni',],
+        labels: [
+				<?php
+					$hasilgrafikMasuk = count($grafikMasuk);
+					$i = 1;
+					foreach($grafikMasuk as $rows){
+						if($i < $hasilgrafikMasuk){
+							echo '"'.$rows['bulan_ind'].'",';
+						}else{
+							echo $rows['bulan_ind'];
+						}
+					}
+				?>
+		],
         datasets: [{
             label: 'Grafik Transaksi',
-            data: [12, 19, 3, 5, 2, 3],
+            data: [
+				<?php
+					$i = 1;
+					foreach($grafikMasuk as $rows){
+						if($i < $hasilgrafikMasuk){
+							echo '"'.$rows['total_terima'].'",';
+						}else{
+							echo $rows['total_terima'];
+						}
+					}
+				?>
+			],
             backgroundColor: [
                 'rgba(34, 139, 35, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
             ],
             borderColor: [
                 'rgba(34, 139, 35, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
             ],
             borderWidth: 1
         }]
     },
     options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
+		tooltips: {
+         callbacks: {
+            label: function(t, d) {
+               if (t.datasetIndex === 0) {
+                  var xLabel = d.datasets[t.datasetIndex].label;
+                  var yLabel = t.yLabel + '%';
+                  return xLabel + ': ' + yLabel;
+               } else if (t.datasetIndex === 1) {
+                  var xLabel = d.datasets[t.datasetIndex].label;
+                  var yLabel = t.yLabel >= 1000 ? '$' + t.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '$' + t.yLabel;
+                  return xLabel + ': ' + yLabel;
+               }
+            }
+         }
+      },
+      scales: {
+         yAxes: [{
+            ticks: {
+               beginAtZero: true,
+               callback: function(value, index, values) {
+                  if (parseInt(value) >= 1000) {
+                     return 'Rp_ ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                  } else {
+                     return 'Rp_ ' + value;
+                  }
+               }
+            }
+         }]
+      }
     }
 });
 
@@ -190,37 +225,76 @@ var myChart = new Chart(ctx, {
     
     type: 'line',
     data: {
-        labels: ['Januar', 'Februari', 'Maret', 'April', 'Mei', 'Juni',],
+        labels: [
+				<?php
+					$hasilgetGrafikKeluar = count($getGrafikKeluar);
+					$i = 1;
+					foreach($getGrafikKeluar as $rows){
+						if($i < $hasilgetGrafikKeluar){
+							echo '"'.$rows['bulan_ind'].'",';
+						}else{
+							echo $rows['bulan_ind'];
+						}
+					}
+				?>
+		],
         datasets: [{
             label: 'Grafik Transaksi',
-            data: [12, 19, 3, 5, 2, 3],
+            data: [
+				<?php
+					$i = 1;
+					foreach($getGrafikKeluar as $rows){
+						if($i < $hasilgetGrafikKeluar){
+							echo '"'.$rows['total_terima'].'",';
+						}else{
+							echo $rows['total_terima'];
+						}
+					}
+				?>
+			],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
             ],
             borderWidth: 1
         }]
     },
     options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
+		tooltips: {
+         callbacks: {
+            label: function(t, d) {
+               if (t.datasetIndex === 0) {
+                  var xLabel = d.datasets[t.datasetIndex].label;
+                  var yLabel = t.yLabel + '%';
+                  return xLabel + ': ' + yLabel;
+               } else if (t.datasetIndex === 1) {
+                  var xLabel = d.datasets[t.datasetIndex].label;
+                  var yLabel = t.yLabel >= 1000 ? '$' + t.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '$' + t.yLabel;
+                  return xLabel + ': ' + yLabel;
+               }
+            }
+         }
+      },
+      legend: {
+         display: false,
+         position: 'top',
+      },
+      scales: {
+         yAxes: [{
+            ticks: {
+               beginAtZero: true,
+               callback: function(value, index, values) {
+                  if (parseInt(value) >= 1000) {
+                     return 'Rp_ ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                  } else {
+                     return 'Rp_ ' + value;
+                  }
+               }
+            }
+         }]
+      }
     }
 });
 </script>

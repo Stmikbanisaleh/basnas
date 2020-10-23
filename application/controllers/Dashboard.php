@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
+		// echo date('Y-m-d H:i:s');
 		$jabatan = $this->model_jabatan->view('master_jabatan')->result_array();
 		$data1 = array('jabatan' => $jabatan);
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
@@ -28,6 +29,8 @@ class Dashboard extends CI_Controller
 			$countfitrah = $this->Model_dashboard->getZakatFitrah();
 			$countmaal = $this->Model_dashboard->getZakatMaal();
 			$countinfaq = $this->Model_dashboard->getInfaq();
+			$grafikMasuk = $this->Model_dashboard->getGrafikMasuk()->result_array();
+			$getGrafikKeluar = $this->Model_dashboard->getGrafikKeluar()->result_array();
 			$data = array(
 				'page_content' 	=> 'dashboard',
 				'ribbon' 		=> '<li class="active">Dashboard</li>',
@@ -35,6 +38,8 @@ class Dashboard extends CI_Controller
 				'countfitrah'	=> $countfitrah,
 				'countmaal'		=> $countmaal,
 				'countinfaq'	=> $countinfaq,
+				'grafikMasuk'	=> $grafikMasuk,
+				'getGrafikKeluar'	=> $getGrafikKeluar,
 			);
 			$this->render_view($data); //Memanggil function render_view
 		} else {
