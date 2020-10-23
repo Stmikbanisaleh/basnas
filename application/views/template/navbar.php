@@ -56,17 +56,19 @@ if ($jabatan == 5) {
 			</a>
 
 			<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-				<li>
+				<!-- <li>
 					<a href="<?php echo base_url() . 'setting/index'; ?>">
 						<i class="ace-icon fa fa-cog"></i>
 						Password
 					</a>
-				</li>
-
+				</li> -->
+				
 				<li>
-					<a href="<?php echo base_url() . 'profile/index'; ?>">
+					<a href="<?php echo base_url() . 'profile/datadiri' ?>">
 						<i class="ace-icon fa fa-user"></i>
-						Profile
+						Profile <?php 
+					//echo $this->session->userdata('nip');
+				?>
 					</a>
 				</li>
 

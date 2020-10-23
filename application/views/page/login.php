@@ -53,7 +53,7 @@
 											<fieldset>
 												<label class="block clearfix">
 													<span class="block input-icon input-icon-right">
-														<input type="text" name="email" class="form-control" placeholder="Email" />
+														<input type="text" name="email" class="form-control" placeholder="NIP" />
 														<i class="ace-icon fa fa-user"></i>
 													</span>
 												</label>
