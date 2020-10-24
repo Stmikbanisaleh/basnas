@@ -56,6 +56,7 @@ class Model_rr_penyaluran_asnaf extends CI_model
                                     master_type mt
                                 JOIN master_penyaluran mpe ON mt.id = mpe.type
                                 WHERE mpe.createdAt between  '$tgl_awal' AND '$tgl_akhir'
+                                AND mpe.is_approve = 2
                                 GROUP BY mpe.type
                                 ORDER BY mpe.type");
     }
@@ -68,6 +69,7 @@ class Model_rr_penyaluran_asnaf extends CI_model
                                 from master_penyaluran a
                                 join master_kategori_mustahik b on a.ansaf = b.id
                                 WHERE a.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND a.is_approve = 2
                                     and a.type = 1
                                 group by a.ansaf
                                 ORDER BY a.ansaf");
@@ -81,6 +83,7 @@ class Model_rr_penyaluran_asnaf extends CI_model
                                 from master_penyaluran a
                                 join master_kategori_mustahik b on a.ansaf = b.id
                                 WHERE a.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND a.is_approve = 2
                                     and a.type = $type
                                 group by a.ansaf
                                 ORDER BY a.ansaf");

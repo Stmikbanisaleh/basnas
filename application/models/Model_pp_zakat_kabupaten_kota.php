@@ -110,6 +110,7 @@ class Model_pp_zakat_kabupaten_kota extends CI_model
                                 master_penyaluran mp
                                 JOIN master_sub_program msp ON msp.id = mp.id_program
                                 WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mp.is_approve = 2
                                 GROUP BY msp.bidang");
     }
 
@@ -121,6 +122,7 @@ class Model_pp_zakat_kabupaten_kota extends CI_model
                                 master_penyaluran mp
                                 JOIN master_kategori_mustahik mkm ON mkm.id = mp.ansaf
                                 WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mp.is_approve = 2
                                 GROUP BY mp.ansaf");
     }
 }

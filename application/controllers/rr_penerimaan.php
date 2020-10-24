@@ -42,13 +42,13 @@ class Rr_penerimaan extends CI_Controller
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$post_tgl_awal = $this->input->post('periode_awal');
 			$post_tgl_akhir = $this->input->post('periode_akhir');
-			$mysumzakat = $this->model_rr_penerimaan->view_sum_zakat($post_tgl_akhir, $post_tgl_akhir)->result_array();
-			$mysuminfaq = $this->model_rr_penerimaan->view_sum_infaq($post_tgl_akhir, $post_tgl_akhir)->result_array();
-			$myzakatmallindividu = $this->model_rr_penerimaan->view_zakat_mall_individu($post_tgl_akhir, $post_tgl_akhir)->result_array();
-			$myzakatmallbadan = $this->model_rr_penerimaan->view_zakat_mall_badan($post_tgl_akhir, $post_tgl_akhir)->result_array();
-			$myzakatmallfitrah = $this->model_rr_penerimaan->view_zakat_fitrah($post_tgl_akhir, $post_tgl_akhir)->result_array();
-			$myinfaqindividu = $this->model_rr_penerimaan->view_infaq_individu($post_tgl_akhir, $post_tgl_akhir)->result_array();
-			$myinfaqbadan = $this->model_rr_penerimaan->view_infaq_badan($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$mysumzakat = $this->model_rr_penerimaan->view_sum_zakat($post_tgl_awal, $post_tgl_akhir)->result_array();
+			$mysuminfaq = $this->model_rr_penerimaan->view_sum_infaq($post_tgl_awal, $post_tgl_akhir)->result_array();
+			$myzakatmallindividu = $this->model_rr_penerimaan->view_zakat_mall_individu($post_tgl_awal, $post_tgl_akhir)->result_array();
+			$myzakatmallbadan = $this->model_rr_penerimaan->view_zakat_mall_badan($post_tgl_awal, $post_tgl_akhir)->result_array();
+			$myzakatmallfitrah = $this->model_rr_penerimaan->view_zakat_fitrah($post_tgl_awal, $post_tgl_akhir)->result_array();
+			$myinfaqindividu = $this->model_rr_penerimaan->view_infaq_individu($post_tgl_awal, $post_tgl_akhir)->result_array();
+			$myinfaqbadan = $this->model_rr_penerimaan->view_infaq_badan($post_tgl_awal, $post_tgl_akhir)->result_array();
 			$tgl_awal = $this->mainfunction->gettgl_indo($post_tgl_awal);
 			$tgl_akhir = $this->mainfunction->gettgl_indo($post_tgl_akhir);
 			$data = array(

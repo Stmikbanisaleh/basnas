@@ -58,6 +58,7 @@ class Model_rr_penerimaan_dan_penggunaan_hak_amil extends CI_model
                                 JOIN master_kategori_mustahik mkm ON mkm.id = mp.ansaf
                                 JOIN master_type mt on mt.id = mp.type
                                 WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mp.is_approve = 2
                                 AND mp.ansaf = 3
                                 AND mt.id = 1
                                 GROUP BY mt.id");
@@ -72,6 +73,7 @@ class Model_rr_penerimaan_dan_penggunaan_hak_amil extends CI_model
                                 JOIN master_kategori_mustahik mkm ON mkm.id = mp.ansaf
                                 JOIN master_type mt on mt.id = mp.type
                                 WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mp.is_approve = 2
                                 AND mp.ansaf = 3
                                 AND mt.id = 2
                                 GROUP BY mt.id");
@@ -86,6 +88,7 @@ class Model_rr_penerimaan_dan_penggunaan_hak_amil extends CI_model
                                 JOIN master_kategori_mustahik mkm ON mkm.id = mp.ansaf
                                 JOIN master_type mt on mt.id = mp.type
                                 WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mp.is_approve = 2
                                 AND mp.ansaf = 3");
     }
 }

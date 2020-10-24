@@ -42,7 +42,7 @@ class Rr_penyaluran_program extends CI_Controller
         if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$post_tgl_awal = $this->input->post('periode_awal');
 			$post_tgl_akhir = $this->input->post('periode_akhir');
-			$myprogram = $this->model_rr_penyaluran_program->view_program($post_tgl_akhir, $post_tgl_akhir)->result_array();
+			$myprogram = $this->model_rr_penyaluran_program->view_program($post_tgl_awal, $post_tgl_akhir)->result_array();
 			$tgl_awal = $this->mainfunction->gettgl_indo($post_tgl_awal);
 			$tgl_akhir = $this->mainfunction->gettgl_indo($post_tgl_akhir);
 			$data = array(

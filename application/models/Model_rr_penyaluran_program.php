@@ -56,6 +56,7 @@ class Model_rr_penyaluran_program extends CI_model
                                 master_program mp
                                 JOIN master_penyaluran mpe ON mp.id = mpe.id_program_utama
                                 WHERE mpe.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mpe.is_approve = 2
                                 GROUP BY
                                 mp.id, mp.nama");
     }
@@ -67,6 +68,7 @@ class Model_rr_penyaluran_program extends CI_model
                                     master_sub_program msp
                                 JOIN master_penyaluran mpe ON msp.id = mpe.id_program
                                 WHERE mpe.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mpe.is_approve = 2
                                     AND mpe.id_program_utama = $id_program
                                 GROUP BY msp.id, msp.deskripsi
                                 ORDER BY msp.deskripsi");

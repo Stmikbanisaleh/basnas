@@ -26,8 +26,8 @@ class Rr_penyaluran_asnaf extends CI_Controller
 			$mytype = $this->model_rr_penyaluran_asnaf->viewOrdering('master_type', 'id', 'asc')->result_array();
 			$data = array(
 				'page_content' 	=> '/rr_penyaluran_asnaf/view',
-				'ribbon' 		=> '<li class="active">Dashboard</li><li>Laporan Rencana dan Realisasi Penerimaan</li>',
-				'page_name' 	=> 'Laporan Rena',
+				'ribbon' 		=> '<li class="active">Dashboard</li><li>Laporan Rencana dan Realisasi Penyaluran Berdasarkan Asnaf</li>',
+				'page_name' 	=> 'Laporan Rencana dan Realisasi Penyaluran Berdasarkan Asnaf',
 				'js' 			=> 'js_file',
 				'mytype'		=> $mytype,
 			);

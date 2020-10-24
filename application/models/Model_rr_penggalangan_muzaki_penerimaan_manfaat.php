@@ -60,23 +60,21 @@ class Model_rr_penggalangan_muzaki_penerimaan_manfaat extends CI_model
                                             mtl.column_a,
                                             mtl.column_b,
                                             (SELECT
-                                            COUNT(mm.id)
+                                            COUNT(mz.id)
                                             FROM
                                                 master_zakat mz
                                                 JOIN master_muzakki mm ON mm.id = mz.id_muzakki
                                                 WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
                                                 AND mz.jenis = mtl.column_b
-                                                AND mm.jenis_muzakki = 'Individu'
-                                                GROUP BY mm.id) nominal_individu,
+                                                AND mm.jenis_muzakki = 'Individu') nominal_individu,
                                             (SELECT
-                                                COUNT(mm.id)
+                                                COUNT(mz.id)
                                             FROM
                                                 master_zakat mz
                                                 JOIN master_muzakki mm ON mm.id = mz.id_muzakki
                                                 WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
                                                 AND mz.jenis = mtl.column_b
-                                                AND mm.jenis_muzakki = 'Lembaga'
-                                                GROUP BY mm.id) nominal_lembaga
+                                                AND mm.jenis_muzakki = 'Lembaga') nominal_lembaga
                                         FROM
                                         mapping_table_header mth
                                         JOIN mapping_table_lines mtl ON mth.kd_mapping = mtl.kd_mapping_header
@@ -97,23 +95,21 @@ class Model_rr_penggalangan_muzaki_penerimaan_manfaat extends CI_model
                                             mtl.column_a,
                                             mtl.column_b,
                                             (SELECT
-                                            COUNT(mm.id)
+                                            COUNT(mz.id)
                                             FROM
                                                 master_zakat mz
                                                 JOIN master_muzakki mm ON mm.id = mz.id_muzakki
                                                 WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
                                                 AND mz.jenis = mtl.column_b
-                                                AND mm.jenis_muzakki = 'Individu'
-                                                GROUP BY mm.id) nominal_individu,
+                                                AND mm.jenis_muzakki = 'Individu') nominal_individu,
                                             (SELECT
-                                                COUNT(mm.id)
+                                                COUNT(mz.id)
                                             FROM
                                                 master_zakat mz
                                                 JOIN master_muzakki mm ON mm.id = mz.id_muzakki
                                                 WHERE mz.tgl_terima BETWEEN '$tgl_awal' AND '$tgl_akhir'
                                                 AND mz.jenis = mtl.column_b
-                                                AND mm.jenis_muzakki = 'Lembaga'
-                                                GROUP BY mm.id) nominal_lembaga
+                                                AND mm.jenis_muzakki = 'Lembaga') nominal_lembaga
                                         FROM
                                         mapping_table_header mth
                                         JOIN mapping_table_lines mtl ON mth.kd_mapping = mtl.kd_mapping_header
@@ -126,12 +122,12 @@ class Model_rr_penggalangan_muzaki_penerimaan_manfaat extends CI_model
     {
         return $this->db->query("SELECT
                                     msp.bidang,
-                                    (SELECT count(mm.nama)
+                                    (SELECT count(lm.id)
                                         FROM list_mustahik lm
                                         JOIN master_mustahik mm ON mm.id = lm.id_mustahik
                                         WHERE lm.id_program = mp.id
                                         AND mm.jenis_mustahik = 'Individu') jml_mustahik_individu,
-                                    (SELECT count(mm.nama)
+                                    (SELECT count(lm.id)
                                         FROM list_mustahik lm
                                         JOIN master_mustahik mm ON mm.id = lm.id_mustahik
                                         WHERE lm.id_program = mp.id
@@ -140,18 +136,19 @@ class Model_rr_penggalangan_muzaki_penerimaan_manfaat extends CI_model
                                 master_penyaluran mp
                                 JOIN master_sub_program msp ON msp.id = mp.id_program
                                 WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mp.is_approve = 2
                                 GROUP BY msp.bidang");
     }
 
     public function view_sum_bidang($tgl_awal, $tgl_akhir)
     {
         return $this->db->query("SELECT
-                                    SUM((SELECT count(mm.nama)
+                                    SUM((SELECT count(lm.id)
                                         FROM list_mustahik lm
                                         JOIN master_mustahik mm ON mm.id = lm.id_mustahik
                                         WHERE lm.id_program = mp.id
                                         AND mm.jenis_mustahik = 'Individu')) jml_mustahik_individu,
-                                    SUM((SELECT count(mm.nama)
+                                    SUM((SELECT count(lm.id)
                                         FROM list_mustahik lm
                                         JOIN master_mustahik mm ON mm.id = lm.id_mustahik
                                         WHERE lm.id_program = mp.id
@@ -159,6 +156,7 @@ class Model_rr_penggalangan_muzaki_penerimaan_manfaat extends CI_model
                                 FROM
                                 master_penyaluran mp
                                 JOIN master_sub_program msp ON msp.id = mp.id_program
-                                WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'");
+                                WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mp.is_approve = 2");
     }
 }

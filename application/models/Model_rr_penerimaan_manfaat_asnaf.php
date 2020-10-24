@@ -60,6 +60,7 @@ class Model_rr_penerimaan_manfaat_asnaf extends CI_model
                                 master_penyaluran mp
                                 JOIN master_kategori_mustahik mkm ON mkm.id = mp.ansaf
                                 WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'
+                                AND mp.is_approve = 2
                                 GROUP BY mp.ansaf");
     }
 
@@ -73,6 +74,7 @@ class Model_rr_penerimaan_manfaat_asnaf extends CI_model
                                 FROM
                                 master_penyaluran mp
                                 JOIN master_kategori_mustahik mkm ON mkm.id = mp.ansaf
+                                AND mp.is_approve = 2
                                 WHERE mp.createdAt BETWEEN '$tgl_awal' AND '$tgl_akhir'");
     }
 }
