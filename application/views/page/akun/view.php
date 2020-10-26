@@ -201,7 +201,6 @@
                 <th>Nama</th>
                 <th>Jabatan</th>
                 <th>Username</th>
-                <th>Level</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -382,7 +381,6 @@
                         '<td>' + data[i].nama + '</td>' +
                         '<td>' + data[i].jabatan + '</td>' +
                         '<td>' + data[i].username + '</td>' +
-                        '<td>' + data[i].level + '</td>' +
                         '<td>' + data[i].statusv2 + '</td>' +
                         '<td class="text-center">' +
                         '<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +

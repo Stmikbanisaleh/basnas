@@ -122,5 +122,182 @@ class Approval extends CI_Controller
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
 	}
+	
+	public function downloadsample()
+	{
+		set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
+		include 'PHPExcel/IOFactory.php';
+		$objPHPExcel = new PHPExcel();
+		$id_approve = $this->model_approval->joinapproval()->result_array();
+		//echo $this->db->last_query();exit;
+		$data = $id_approve;
+		$no = 1;
+		$row = 2;
+		if (count($data) > 0) {
+			if ($data) {
+				$key = array_keys($data[0]);
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', 'ID Penyaluran');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B1', 'Approval');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C1', 'Jumlah Dana Di Setujui');
+
+				//$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A2', '36');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B2', '2');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C2', '10000');
+
+				//$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A3', '37');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B3', '2');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C3', '100000');
+
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H1', 'Id Penyaluran');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I1', 'Id Ansaf');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J1', 'Nama Ansaf');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('K1', 'Id Type');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('L1', 'Nama Type');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('M1', 'Di Ajukan');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('N1', 'Di Setujui');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('O1', 'Id Approve');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P1', 'Approve');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('O2', '0');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P2', 'Unapprove');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('O2', '1');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P2', 'Approved');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('O3', '2');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P3', 'Completed');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('O4', '3');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P4', 'Rejected');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Q1', 'Deskripsi');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('R1', 'Tanggal');
+
+				foreach ($data as $dataExcel) {
+					$id = $dataExcel['id_penyalur'];
+					$id_ansaf = $dataExcel['ansaf'];
+					$nama_ansaf = $dataExcel['nama_ansaf'];
+					$id_type = $dataExcel['type'];
+					$nama_type = $dataExcel['nama_type'];
+					$nominal = $dataExcel['Nominal'];
+					$nominal1 = $dataExcel['Nominal2'];
+					$deskripsi = $dataExcel['deskripsi'];
+					$tanggal = $dataExcel['createdAt'];
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('A' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('A' . $row, $id, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('A')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('H' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('H' . $row, $id, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('H')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('I' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('I' . $row, $id_ansaf, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('I')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('J' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('J' . $row, $nama_ansaf, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('J')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('K' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('K' . $row, $id_type, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('K')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('L' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('L' . $row, $nama_type, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('L')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('M' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('M' . $row, $nominal, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('M')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('N' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('N' . $row, $nominal1, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('N')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('Q' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('Q' . $row, $deskripsi, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('Q')->setAutoSize(true);
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('R' . $row)->getNumberFormat()->setFormatCode('yyyy-mm-dd');
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('R' . $row, $tanggal, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('R')->setAutoSize(true);
+
+					$row++;
+					$no++;
+				}
+				header('Content-Type: application/vnd.ms-excel; charset=utf-8');
+				header('Content-Disposition: attachment; filename=report.xls');
+				header('Cache-Control: max-age=0');
+				ob_end_clean();
+				ob_start();
+				$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+				$filename = 'Sample' . 'csv';
+				$objWriter->save('php://output');
+			}
+		}
+	}
+	
+
+	public function import()
+	{
+		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+			$files = $_FILES;
+			$file = $files['file'];
+			$fname = $file['tmp_name'];
+			$file = $_FILES['file']['name'];
+			$fname = $_FILES['file']['tmp_name'];
+			$ext = explode('.', $file);
+			/** Include path **/
+			set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
+			/** PHPExcel_IOFactory */
+			include 'PHPExcel/IOFactory.php';
+			$objPHPExcel = PHPExcel_IOFactory::load($fname);
+			$allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, false, true);
+			$data_exist = [];
+			$empty_message = [];
+
+			foreach ($allDataInSheet as $ads) {
+				if (array_filter($ads)) {
+					array_push($data_exist, $ads);
+				}
+			}
+			foreach ($data_exist as $keys => $value) {
+				if ($keys == '0') {
+					continue;
+				} else {
+					if (!$value[0]) {
+						array_push($empty_message, "No at row "  . $keys . " ID harus di isi");
+					}
+					if (!$value[1]) {
+						array_push($empty_message, "No at row "  . $keys . " Approval harus di isi");
+					}
+					if (!$value[2]) {
+						array_push($empty_message, "No at row "  . $keys . " Dana harus di isi");
+					}
+
+					if (!empty($empty_message)) {
+						$ret['msg'] = $empty_message;
+						$this->session->set_flashdata('message', '' . json_encode($ret['msg']));
+						$result = 2;
+					} else {
+						$data_id = array(
+							'id'  => $value[0]
+						);
+						$arrayCustomerQuote = array(
+							'is_approve'  => $value[1],
+							'jumlah_dana_disetujui'  => $value[2],
+							'petugas_approve'  => $this->session->userdata('nip'),
+							'updatedAt' => date('Y-m-d H:i:s')
+						);
+						$result = $this->model_approval->update($data_id,$arrayCustomerQuote, 'master_penyaluran');
+						//echo $this->db->last_query();exit;
+						//print_r($data_id);exit;
+						$result = 1;
+					}
+				}
+			}
+			echo json_encode($result);
+		} else {
+			$result = 0;
+			echo json_encode($result);
+		}
+	}
 
 }

@@ -36,6 +36,11 @@ class Model_approval extends CI_model
 		join master_rekening c on a.id_muzakki = c.id_muzakki where a.id = $id ");
 	}
 
+    public function joinapproval()
+    {
+        return $this->db->query("SELECT a.*,a.id as id_penyalur,b.nama as nama_ansaf,c.nama as nama_type ,a.jumlah_dana Nominal, a.jumlah_dana_disetujui Nominal2 from master_penyaluran a join master_kategori_mustahik b on a.ansaf = b.id
+		join master_type c on a.type = c.id");
+	}
     public function view_where($table, $data)
     {
         $this->db->where($data);

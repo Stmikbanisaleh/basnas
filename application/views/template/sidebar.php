@@ -49,12 +49,12 @@ if ($jabatan == 5) { ?>
 						Master Kategori Mustahik
 					</a>
 				</li>
-				<li class="">
+				<!-- <li class="">
 					<a href="<?= base_url() . 'zakat'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Master Kategori Zakat
 					</a>
-				</li>
+				</li> -->
 				<li class="">
 					<a href="<?= base_url() . 'kepemilikan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
