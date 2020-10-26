@@ -728,10 +728,13 @@ class Muzakki extends CI_Controller
 							'createdAt' => date('Y-m-d H:i:s')
 						);
 						$result = $this->model_muzakki->insert($arrayCustomerQuote, 'master_muzakki');
-						$result = 1;
+						//$result = 1;
 					}
 				}
 			}
+			if ($result) {
+                $result = 1;
+            }
 			echo json_encode($result);
 		} else {
 			$result = 0;
