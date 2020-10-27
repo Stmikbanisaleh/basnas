@@ -336,13 +336,10 @@ class Infaq extends CI_Controller
 							'createdAt' => date('Y-m-d H:i:s')
 						);
 						$result = $this->model_infaq->insert($arrayCustomerQuote, 'master_zakat');
-						//$result = 1;
+						$result = 1;
 					}
 				}
 			}
-			if ($result) {
-                $result = 1;
-            }
 			echo json_encode($result);
 		} else {
 			$result = 0;

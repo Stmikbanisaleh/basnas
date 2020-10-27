@@ -678,7 +678,9 @@ class Mustahik extends CI_Controller
 						$this->session->set_flashdata('message', '' . json_encode($ret['msg']));
 						$result = 2;
 					} else {
-
+						$data_id = array(
+							'no_identitas'  => $value[7]
+						);
 						$arrayCustomerQuote = array(
 							'tgl_reg'  => $value[0],
 							'nama'  => $value[1],
@@ -706,7 +708,13 @@ class Mustahik extends CI_Controller
 							'email'  => $value[25],
 							'createdAt' => date('Y-m-d H:i:s')
 						);
-						$result = $this->model_mustahik->insert($arrayCustomerQuote, 'master_mustahik');
+						$cek = $this->model_mustahik->view_where_noisdelete($data_id, 'master_mustahik')->num_rows();
+						if($cek > 0) {
+							$result = $this->model_mustahik->update($data_id, $arrayCustomerQuote, 'master_mustahik');
+						}else{
+							$result = $this->model_mustahik->insert($arrayCustomerQuote, 'master_mustahik');
+						}
+						//$result = $this->model_mustahik->insert($arrayCustomerQuote, 'master_mustahik');
 						//$result = 1;
 					}
 				}

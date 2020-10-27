@@ -67,6 +67,11 @@ class Model_mustahik extends CI_model
 		return  $this->db->query('select *,IF(a.status = 1, "Aktif", "Tidak") as statusv2,b.NAMAJABATAN as nmjabatan from tbpengawas a join msjabatan b on a.jabatan = b.ID
         ');
 	}
+	public function view_where_noisdelete($data, $table)
+    {
+        $this->db->where($data);
+        return $this->db->get($table);
+    }
 
 	public function view_count($table, $data_id)
 	{

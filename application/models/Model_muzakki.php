@@ -41,6 +41,11 @@ class Model_muzakki extends CI_model
 	{
 		return $this->db->query("Select a.*, b.nama from $table a join master_muzakki b on a.id_muzakki = b.id where id_muzakki = $data");
 	}
+	public function view_where_noisdelete($data, $table)
+    {
+        $this->db->where($data);
+        return $this->db->get($table);
+    }
 
 	public function getprovinsi()
 	{
