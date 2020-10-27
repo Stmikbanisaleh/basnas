@@ -304,18 +304,7 @@ class Zakatfitrah extends CI_Controller
 					if (!$value[0]) {
 						array_push($empty_message, "No at row "  . $keys . " Id Muzakki Regitrasi harus di isi");
 					}
-					if (!$value[1]) {
-						array_push($empty_message, "No at row "  . $keys . " Cara terima harus di isi");
-					}
-					if (!$value[2]) {
-						array_push($empty_message, "No at row "  . $keys . "Tgl Terima harus di isi");
-					}
-					if (!$value[3]) {
-						array_push($empty_message, "No at row "  . $keys . "Norek harus di isi");
-					}
-					if (!$value[5]) {
-						array_push($empty_message, "No at row "  . $keys . " Total Terima harus di isi");
-					}
+					
 					
 					
 

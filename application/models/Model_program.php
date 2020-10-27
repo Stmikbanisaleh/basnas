@@ -25,7 +25,11 @@ class Model_program extends CI_model
 		$this->db->where($data);
 		return $this->db->get($table);
 	}
-
+	public function view_where_noisdelete($data, $table)
+    {
+        $this->db->where($data);
+        return $this->db->get($table);
+    }
 	public function insert($data, $table)
 	{
 		$result = $this->db->insert($table, $data);

@@ -255,16 +255,27 @@ class Program extends CI_Controller
 						$this->session->set_flashdata('message', '' . json_encode($ret['msg']));
 						$result = 2;
 					} else {
-
+						$data_id = array(
+							'nama'  => $value[0]
+						);
 						$arrayCustomerQuote = array(
 							'nama' => $value[0],
 							'createdAt'	=> date('Y-m-d H:i:s')
 						);
+						$cek = $this->model_program->view_where_noisdelete($data_id, 'master_program')->num_rows();
+						if($cek > 0) {
+							$result = $this->model_program->update($data_id, $arrayCustomerQuote, 'master_program');
+						}else{
+							$result = $this->model_program->insert($arrayCustomerQuote, 'master_program');
+						}
 						$result = $this->model_program->insert($arrayCustomerQuote, 'master_program');
-						$result = 1;
+						//$result = 1;
 					}
 				}
 			}
+			if ($result) {
+                $result = 1;
+            }
 			echo json_encode($result);
 		} else {
 			$result = 0;
