@@ -268,7 +268,7 @@ class Program extends CI_Controller
 						}else{
 							$result = $this->model_program->insert($arrayCustomerQuote, 'master_program');
 						}
-						$result = $this->model_program->insert($arrayCustomerQuote, 'master_program');
+						//$result = $this->model_program->insert($arrayCustomerQuote, 'master_program');
 						//$result = 1;
 					}
 				}
