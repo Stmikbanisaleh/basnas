@@ -8,7 +8,12 @@
 					</div>
 					<div class="col-xs-9 text-right">
 						<div class="huge">Rp_ <?php echo number_format($countfitrah) ?></div>
-						<div>Zakat Fitrah Bulan Oktober 2020</div>
+						<div>Zakat Fitrah Bulan 
+                            <?php
+                                setlocale(LC_ALL, 'IND');
+                                echo strftime('%B %Y'); 
+                            ?>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -31,7 +36,11 @@
 					</div>
 					<div class="col-xs-9 text-right">
 						<div class="huge">Rp_ <?php echo number_format($countmaal) ?></div>
-						<div>Zakat Maal Bulan Oktober 2020</div>
+						<div>Zakat Maal Bulan
+                            <?php
+                                echo strftime('%B %Y'); 
+                            ?>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -54,7 +63,11 @@
 					</div>
 					<div class="col-xs-9 text-right">
 						<div class="huge">Rp_ <?php echo number_format($countinfaq) ?></div>
-						<div>Infaq / Shodaqoh Bulan Oktober 2020</div>
+						<div>Infaq / Shodaqoh Bulan
+                            <?php
+                                echo strftime('%B %Y'); 
+                            ?>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -145,9 +158,6 @@
 //deklarasi chartjs untuk membuat grafik 2d di id mychart 
 var asd = document.getElementById('myChart').getContext('2d');
 
-
-var ctx = document.getElementById('myChartBooking').getContext('2d');
-
 var myChart = new Chart(asd, {
     
     type: 'line',
@@ -220,6 +230,9 @@ var myChart = new Chart(asd, {
       }
     }
 });
+
+
+var ctx = document.getElementById('myChartBooking').getContext('2d');
 
 var myChart = new Chart(ctx, {
     

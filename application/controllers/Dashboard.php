@@ -52,7 +52,7 @@ class Dashboard extends CI_Controller
 		$email = $this->input->post('email');
 		$jabatan = $this->input->post('jabatan');
 		$password = hash('sha512',md5($this->input->post('password')));
-		$query = $this->db->query("select * from users where nip ='" . $email . "' and password = '".$password."' and jabatan = '".$jabatan."' and status = 1");
+		$query = $this->db->query("select * from users where nip ='" . $email . "' and password = '".$password."' and status = 1");
 		//print_r($password);exit;
 		if ($query->num_rows() == 1) {
 			$data = $query->result_array();
