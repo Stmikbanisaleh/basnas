@@ -37,6 +37,15 @@ class Model_zakatfitrah extends CI_model
         LEFT JOIN master_jenis_zakat c on a.jenis_zakat = c.id
         LEFT JOIN  master_muzakki m on m.id = rr.id_muzakki
         where a.jenis= 1");
+    }
+    public function laporan_zakat($table,$id)
+    {
+        return $this->db->query("SELECT a.id,m.nama,m.alamat,a.cara_terima,a.tgl_terima,rr.id_muzakki,rr.id as 'rek',rr.nokartu,rr.namabank, a.jenis, a.total_terima, a.deskripsi, a.petugas, c.id as 'jenis_zakat', c.nama as 'nama_jenis_zakat'
+        FROM $table a
+        LEFT JOIN master_rekening rr on a.id_muzakki = rr.id_muzakki
+        LEFT JOIN master_jenis_zakat c on a.jenis_zakat = c.id
+        LEFT JOIN  master_muzakki m on m.id = rr.id_muzakki
+        where a.id = $id and a.jenis= 1");
 	}
 
     public function view_where($table, $data)

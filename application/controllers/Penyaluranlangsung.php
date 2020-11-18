@@ -191,6 +191,13 @@ class Penyaluranlangsung extends CI_Controller
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
 	}
+	// function download_template(){
+	// 	$id = $this->input->post('id');
+	// 	$asdf = $this->input->post('asdf');
+	// 	$this->downloadsample($id, $asdf);
+	// 	$this->downloadsample2($id, $asdf);
+
+	// }
 	public function downloadsample()
 	{
 		set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
@@ -217,19 +224,23 @@ class Penyaluranlangsung extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C1', 'Type');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D1', 'Deskripsi');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E1', 'CreatedAt');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F1', 'Id Mustahik');
 
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A2', '3');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B2', '1500000');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C2', '1');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D2', 'test import');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E2', '2020-10-16');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F2', '17');
 
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A3', '1');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B3', '1500000');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C3', '2');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D3', 'import penyaluran');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E3', '2020-10-16');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F3', '16');
 
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H1', 'ID Mustahik');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I1', 'Mustahik');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J1', 'Kategori Mustahik');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('K1', 'ID Ansaf');
@@ -243,8 +254,12 @@ class Penyaluranlangsung extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('S1', 'Deskripsi');
 
 				foreach ($mymustahik as $dataExcel) {
+					$id_mus = $dataExcel['id'];
 					$nama3 = $dataExcel['nama'];
 					$kat_mustahik = $dataExcel['kat_mustahik'];
+					$objPHPExcel->getActiveSheet(0)->getStyle('H' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('H' . $row, $id_mus, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getColumnDimension('H')->setAutoSize(true);
 
 					$objPHPExcel->getActiveSheet(0)->getStyle('I' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
 					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('I' . $row, $nama3, PHPExcel_Cell_DataType::TYPE_STRING);
@@ -389,6 +404,17 @@ class Penyaluranlangsung extends CI_Controller
 						);
 						$result = $this->model_penyaluranlangsung->insert($arrayCustomerQuote, 'master_penyaluran');
 						$result = 1;
+						$id = $this->db->insert_id();
+						//print_r($id);exit;
+						if ($id) {
+							$arrayCustomerQuotedetail = array(
+								'id_program' => $id,
+								'id_mustahik' => $value[5],
+								'createdAt'	=> date('Y-m-d H:i:s')
+							);
+							$result = $this->model_penyaluranlangsung->insert($arrayCustomerQuotedetail, 'list_mustahik');
+							$result = 1;
+						}
 					}
 				}
 			}

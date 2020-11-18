@@ -336,4 +336,47 @@ class Zakatfitrah extends CI_Controller
 			echo json_encode($result);
 		}
 	}
+	public function laporan_pdf()
+	{
+		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+			$data = $this->input->post('id');
+			$my_data = $this->model_zakatfitrah->laporan_zakat('master_zakat', $data)->result();
+			//echo $this->db->last_query();exit;
+			// echo json_encode($my_data);
+		
+			$this->load->library('pdf');
+		
+			$this->pdf->setPaper('FOLIO', 'potrait');
+			$this->pdf->filename = "Tanda-Terima-Zakatfitrah"."-".date('Y-m-d').".pdf";
+			$this->pdf->load_view('zakatfitrah/transaksi_zakatfitrah', $my_data);
+		} else {
+			$this->load->view('page/login'); //Memanggil function render_view
+		}
+	
+	}
+	// public function laporan_pdf(){
+    //     $tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
+    //     $nis = $this->input->post('siswa');
+    //     $kelas = $this->input->post('kelas');  
+    //     $my_pembsiswa = $this->model_surattagihan->view_siswatg($nis, $kelas)->row();
+    //     $thnakad = $this->configfunction->getthnakd();
+    //     $this->load->library('pdf');
+
+    //     $setting = $this->model_surattagihan->view('sys_config','id','asc')->row();
+    //     if($my_pembsiswa!=null){
+    //         $data = array(
+    //             'mydata'      => $my_pembsiswa,
+    //             'tgl'         => $tgl,
+    //             'setting'     => $setting,
+    //             'thnakad'     => $thnakad[0]['THNAKAD']
+
+    //         );
+    //         $this->pdf->setPaper('FOLIO', 'potrait');
+    //         $this->pdf->filename = "Surat-Tagihan".$nis."-".date('Y-m-d').".pdf";
+    //         $this->pdf->load_view('pagekasir/surattagihan/laporan', $data);
+    //     }else{
+    //         $this->session->set_flashdata('cat_success', 'Data Tidak Ditemukan!');
+    //         header("Location: ".base_url()."modulkasir/surattagihan");
+    //     }
+    // }
 }
