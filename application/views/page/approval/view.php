@@ -85,7 +85,7 @@
 									<input type="text" id="total_diajukan" readonly name="total_diajukan" placeholder="total penerimaan" class="form-control" />
 								</div>
 							</div>
-						
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Disetujui </label>
 								<div class="col-sm-9">
@@ -98,6 +98,7 @@
 											$('#e_total_v').val(rup2);
 											rupiah2.value = formatRupiah(this.value, 'Rp. ');
 										});
+
 										function formatRupiah(angka, prefix) {
 											var number_string = angka.replace(/[^,\d]/g, '').toString(),
 												split = number_string.split(','),
@@ -306,6 +307,19 @@
 		});
 	});
 
+	$('#show_data').on('click', '.item_print', function() {
+		var id = $(this).data('id');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('approval/laporan_pdf') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			}
+		});
+	});
+
 	//function show all Data
 	function show_data() {
 		$.ajax({
@@ -324,24 +338,30 @@
 							'<i class="ace-icon fa fa-check-square-o bigger-120"></i> Approved' +
 							'</button> &nbsp' +
 							'</td>';
+						var print = '<button class="btn btn-xs btn-success item_print" title="Print" data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-print bigger-120"></i>' +
+							'</button> &nbsp';
 					} else if (data[i].is_approve == '2') {
 						var status = '<td class="text-center">' +
 							'<button  href="#my-modal-detail" class="btn btn-xs btn-success " title="Add" data-id="' + data[i].id + '">' +
 							'<i class="ace-icon fa fa-check bigger-120"> </i> Completed' +
 							'</button> &nbsp' +
 							'</td>';
+							var print = '';
 					} else if (data[i].is_approve == '3') {
 						var status = '<td class="text-center">' +
 							'<button  href="#my-modal-detail" class="btn btn-xs btn-danger " title="Add" data-id="' + data[i].id + '">' +
 							'<i class="ace-icon fa fa-ban bigger-120"> </i> Rejected' +
 							'</button> &nbsp' +
 							'</td>';
+							var print = '';
 					} else {
 						var status = '<td class="text-center">' +
 							'<button  href="#my-modal-detail" class="btn btn-xs btn-warning" title="Add" data-id="' + data[i].id + '">' +
 							'<i class="ace-icon fa fa-ban bigger-120"> </i> Unupprove' +
 							'</button> &nbsp' +
 							'</td>';
+							var print = '';
 					}
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
@@ -352,10 +372,11 @@
 						'<td>' + data[i].deskripsi + '</td>' +
 						status +
 						'<td>' + data[i].createdAt + '</td>' +
-						'<td class="text-center">' +
+						'<td class="text-left">' +
 						'<button  href="#my-modal-detail" class="btn btn-xs btn-info item_edit" title="Add" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
 						'</button> &nbsp' +
+						print +
 						'</td>' +
 						'</tr>';
 					no++;

@@ -59,8 +59,6 @@
 
 <body>
 	<table border="0" width="100%" class="style2" cellspacing="3">
-		<?php foreach ($my_data as $a) {
-		?>
 			<tr>
 				<td>
 					<table border="0" width="100%" class="style2" cellpadding="1" cellspacing="3">
@@ -129,8 +127,6 @@
 				</td>
 			</tr>
 			</tr>
-		<?php
-		}
 		?>
 	</table>
 </body>

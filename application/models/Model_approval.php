@@ -26,6 +26,14 @@ class Model_approval extends CI_model
         return $this->db->get($table);
     }
 
+    public function laporan_approval($table, $id)
+    {
+        return $this->db->query("SELECT p.id,kat.id as 'id_ansaf', kat.nama as 'kategori_mustahik',m.nama as 'mustahik',p.jumlah_dana, p.jumlah_dana_disetujui, p.deskripsi
+        from $table p
+        LEFT JOIN master_kategori_mustahik kat on p.ansaf = kat.id
+        LEFT JOIN master_mustahik m on kat.id = m.kat_mustahik where p.id = $id");
+    }
+    
 	public function viewOrderingZakat($table, $order, $ordering)
     {
         return $this->db->query("SELECT a.nama,b.*, CONCAT('Rp. ',FORMAT(b.total_terima,2)) Nominal from $table a join master_zakat b on a.id = b.id_muzakki where b.jenis = 1 order by $order $ordering");

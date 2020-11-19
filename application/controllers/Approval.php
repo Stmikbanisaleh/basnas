@@ -299,5 +299,23 @@ class Approval extends CI_Controller
 			echo json_encode($result);
 		}
 	}
+	public function laporan_pdf()
+	{
+		$id = $this->input->post('id');
+		$urutan = 0;
+		$data = array(
+			'my_data' => $this->model_approval->laporan_approval('master_penyaluran', $id)->result(),
+			'no' => sprintf("%05s", $urutan++ < 99999999999999999999) //hardcode count by clik harusnya
+		);
+
+		$this->load->library('pdf');
+		//echo json_encode($data['no']);exit;
+		//echo $this->db->last_query();exit;
+		//echo json_encode($data['my_data'][0]);exit;
+
+		$this->pdf->setPaper('FOLIO', 'potrait');
+		$this->pdf->filename = "Kuitansi-Pembayaran". "-" .$data['my_data'][0]->mustahik . "-" . date('Y-m-d') . ".pdf";
+		$this->pdf->load_view('page/approval/kuitansi_pembayaran', $data);
+	}
 
 }
