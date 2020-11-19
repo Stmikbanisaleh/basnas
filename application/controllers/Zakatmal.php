@@ -324,4 +324,19 @@ class Zakatmal extends CI_Controller
 			echo json_encode($result);
 		}
 	}
+	public function laporan_pdf()
+	{
+		$id = $this->input->post('id');
+		$data = array(
+			'my_data' => $this->model_zakatmal->laporan_zakat('master_zakat', $id)->result(),
+		);
+
+		$this->load->library('pdf');
+		//echo $this->db->last_query();exit;
+		//echo json_encode($data['my_data'][0]->nama);exit;
+
+		$this->pdf->setPaper('FOLIO', 'potrait');
+		$this->pdf->filename = "Tanda-Terima-Zakatmal". "-" .$data['my_data'][0]->nama . "-" . date('Y-m-d') . ".pdf";
+		$this->pdf->load_view('page/zakatmal/transaksi_zakatmal', $data);
+	}
 }

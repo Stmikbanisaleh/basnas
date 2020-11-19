@@ -345,10 +345,10 @@ class Zakatfitrah extends CI_Controller
 
 		$this->load->library('pdf');
 		//echo $this->db->last_query();exit;
-		//echo json_encode($data);exit;
+		//echo json_encode($data['my_data'][0]->nama);exit;
 
 		$this->pdf->setPaper('FOLIO', 'potrait');
-		$this->pdf->filename = "Tanda-Terima-Zakatfitrah" . "-" . date('Y-m-d') . ".pdf";
+		$this->pdf->filename = "Tanda-Terima-Zakatfitrah". "-" .$data['my_data'][0]->nama . "-" . date('Y-m-d') . ".pdf";
 		$this->pdf->load_view('page/zakatfitrah/transaksi_zakatfitrah', $data);
 	}
 	// public function laporan_pdf(){

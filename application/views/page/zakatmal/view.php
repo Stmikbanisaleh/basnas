@@ -524,6 +524,18 @@
 			}
 		})
 	})
+	$('#show_data').on('click', '.item_print', function() {
+		var id = $(this).data('id');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url('zakatmal/laporan_pdf') ?>",
+			async: true,
+			dataType: "JSON",
+			data: {
+				id: id,
+			}
+		});
+	});
 
 	$('#show_data').on('click', '.item_edit', function() {
 		var id = $(this).data('id');
@@ -577,7 +589,10 @@
 						'</button> &nbsp' +
 						'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
-						'</button>' +
+						'</button> &nbsp' +
+						'<button class="btn btn-xs btn-success item_print" title="Print" data-id="' + data[i].id + '">' +
+						'<i class="ace-icon fa fa-print bigger-120"></i>' +
+						'</button> &nbsp' +
 						'</td>' +
 						'</tr>';
 					no++;

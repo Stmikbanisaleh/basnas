@@ -71,7 +71,7 @@
 						</tr>
 						<tr>
 							<td colspan='5' align='center'><b>
-									<div id="teks3">Tanda Terima Zakat Fitrah</div>
+									<div id="teks3">Tanda Terima Infaq</div>
 							</td>
 						</tr>
 						<tr>
