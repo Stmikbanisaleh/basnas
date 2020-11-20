@@ -28,7 +28,7 @@ class Model_approval extends CI_model
 
     public function laporan_approval($table, $id)
     {
-        return $this->db->query("SELECT p.id,kat.id as 'id_ansaf', kat.nama as 'kategori_mustahik',m.nama as 'mustahik',p.jumlah_dana, p.jumlah_dana_disetujui, p.deskripsi
+        return $this->db->query("SELECT p.id,kat.id as 'id_ansaf', kat.nama as 'kategori_mustahik',m.nama as 'mustahik',p.jumlah_dana, p.jumlah_dana_disetujui, p.deskripsi,CONCAT('Rp. ',FORMAT(p.jumlah_dana,2)) Nominal, CONCAT('Rp. ',FORMAT(p.jumlah_dana_disetujui,2)) Nominal2
         from $table p
         LEFT JOIN master_kategori_mustahik kat on p.ansaf = kat.id
         LEFT JOIN master_mustahik m on kat.id = m.kat_mustahik where p.id = $id");

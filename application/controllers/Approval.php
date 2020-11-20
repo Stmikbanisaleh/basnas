@@ -302,10 +302,10 @@ class Approval extends CI_Controller
 	public function laporan_pdf()
 	{
 		$id = $this->input->post('id');
-		$urutan = 0;
+		$urutan =+ 1;
 		$data = array(
 			'my_data' => $this->model_approval->laporan_approval('master_penyaluran', $id)->result(),
-			'no' => sprintf("%05s", $urutan++ < 99999999999999999999) //hardcode count by clik harusnya
+			'no' => sprintf("%05s", $urutan++) //hardcode count by clik harusnya
 		);
 
 		$this->load->library('pdf');

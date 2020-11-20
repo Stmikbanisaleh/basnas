@@ -58,7 +58,46 @@
         }
     </style>
 </head>
+<?php
+function penyebut($nilai) {
+	$nilai = abs($nilai);
+	$huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
+	$temp = "";
+	if ($nilai < 12) {
+		$temp = " ". $huruf[$nilai];
+	} else if ($nilai <20) {
+		$temp = penyebut($nilai - 10). " belas";
+	} else if ($nilai < 100) {
+		$temp = penyebut($nilai/10)." puluh". penyebut($nilai % 10);
+	} else if ($nilai < 200) {
+		$temp = " seratus" . penyebut($nilai - 100);
+	} else if ($nilai < 1000) {
+		$temp = penyebut($nilai/100) . " ratus" . penyebut($nilai % 100);
+	} else if ($nilai < 2000) {
+		$temp = " seribu" . penyebut($nilai - 1000);
+	} else if ($nilai < 1000000) {
+		$temp = penyebut($nilai/1000) . " ribu" . penyebut($nilai % 1000);
+	} else if ($nilai < 1000000000) {
+		$temp = penyebut($nilai/1000000) . " juta" . penyebut($nilai % 1000000);
+	} else if ($nilai < 1000000000000) {
+		$temp = penyebut($nilai/1000000000) . " milyar" . penyebut(fmod($nilai,1000000000));
+	} else if ($nilai < 1000000000000000) {
+		$temp = penyebut($nilai/1000000000000) . " trilyun" . penyebut(fmod($nilai,1000000000000));
+	}     
+	return $temp;
+}
 
+function terbilang($nilai) {
+	if($nilai<0) {
+		$hasil = "minus ". trim(penyebut($nilai));
+	} else {
+		$hasil = trim(penyebut($nilai));
+	}     		
+	return $hasil;
+}
+
+//echo ucwords(terbilang(1250000))." Rupiah";
+?>
 <body>
     <table class="style2" cellspacing="3">
             <tr>
@@ -94,7 +133,7 @@
                                 No &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php date_default_timezone_set('Asia/Jakarta');
                                                                                                                                                                                                                             echo date("Ym"); echo $no;?><br>
                                 Telah Terima Dari &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: BAZNAS KOTA BEKASI<br>
-                                Uang Sejumlah &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $my_data[0]->jumlah_dana; ?><br>
+                                Uang Sejumlah &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo ucwords(terbilang($my_data[0]->jumlah_dana_disetujui))." Rupiah";?><br>
                                 Untuk Pembayaran &nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $my_data[0]->deskripsi; ?><br>
                             </td>
                         </tr>
@@ -111,8 +150,8 @@
                     </table>
                 </td>
             <tr>
-                <td>
-                    Jumlah <?php echo $my_data[0]->jumlah_dana_disetujui; ?>
+                <td border="1">
+                    Jumlah : <?php echo $my_data[0]->Nominal2; ?>
                 </td>
             </tr>
             <tr>
