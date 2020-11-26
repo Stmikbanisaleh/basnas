@@ -301,7 +301,7 @@ class Approval extends CI_Controller
 	}
 	public function laporan_pdf()
 	{
-		$id = $this->input->post('id');
+		$id = $this->input->get('id');
 		$urutan =+ 1;
 		$data = array(
 			'my_data' => $this->model_approval->laporan_approval('master_penyaluran', $id)->result(),

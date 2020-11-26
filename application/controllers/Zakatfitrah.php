@@ -338,7 +338,7 @@ class Zakatfitrah extends CI_Controller
 	}
 	public function laporan_pdf()
 	{
-		$id = $this->input->post('id');
+		$id = $this->input->get('id');
 		$data = array(
 			'my_data' => $this->model_zakatfitrah->laporan_zakat('master_zakat', $id)->result(),
 		);

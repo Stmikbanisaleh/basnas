@@ -338,9 +338,11 @@
 							'<i class="ace-icon fa fa-check-square-o bigger-120"></i> Approved' +
 							'</button> &nbsp' +
 							'</td>';
-						var print = '<button class="btn btn-xs btn-success item_print" title="Print" data-id="' + data[i].id + '">' +
-							'<i class="ace-icon fa fa-print bigger-120"></i>' +
-							'</button> &nbsp';
+						var print =  
+						'<a target="_blank"  href="<?php echo base_url() . 'approval/laporan_pdf?id=' ?>' + data[i].id +'" class="btn btn-xs btn-danger" title="Print" data-id="' + data[i].id + '">' +
+                                '<i class="ace-icon fa fa-print bigger-120"></i>' +
+                                '</a>'+
+						' &nbsp';
 					} else if (data[i].is_approve == '2') {
 						var status = '<td class="text-center">' +
 							'<button  href="#my-modal-detail" class="btn btn-xs btn-success " title="Add" data-id="' + data[i].id + '">' +

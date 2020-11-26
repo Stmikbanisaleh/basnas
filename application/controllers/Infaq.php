@@ -336,7 +336,7 @@ class Infaq extends CI_Controller
 	}
 	public function laporan_pdf()
 	{
-		$id = $this->input->post('id');
+		$id = $this->input->get('id');
 		$data = array(
 			'my_data' => $this->model_infaq->laporan_infaq('master_zakat', $id)->result(),
 		);
