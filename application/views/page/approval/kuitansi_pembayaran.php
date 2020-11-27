@@ -98,6 +98,13 @@ function terbilang($nilai) {
 
 //echo ucwords(terbilang(1250000))." Rupiah";
 ?>
+<?php
+header("Content-type:application/x-msdownload");
+header("content-disposition:attactment;filename=".$filename.".xls");
+header("pragma:no-cache");
+header("Expires:0");
+?>
+
 <body>
     <table class="style2" cellspacing="3">
             <tr>

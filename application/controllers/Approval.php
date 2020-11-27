@@ -8,6 +8,7 @@ class Approval extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('model_approval');
+		// $this->load->library('Libs_fpdf');
 		if (empty($this->session->userdata('username')) && empty($this->session->userdata('nama'))) {
 			$this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
 			redirect('dashboard/login');
@@ -83,10 +84,10 @@ class Approval extends CI_Controller
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$data = array(
-                'id'  => $this->input->post('id'),
-            );
-            $my_data = $this->model_approval->view_where('master_penyaluran', $data)->result();
-            echo json_encode($my_data);
+				'id'  => $this->input->post('id'),
+			);
+			$my_data = $this->model_approval->view_where('master_penyaluran', $data)->result();
+			echo json_encode($my_data);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
@@ -122,7 +123,7 @@ class Approval extends CI_Controller
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
 	}
-	
+
 	public function downloadsample()
 	{
 		set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
@@ -233,7 +234,7 @@ class Approval extends CI_Controller
 			}
 		}
 	}
-	
+
 
 	public function import()
 	{
@@ -286,7 +287,7 @@ class Approval extends CI_Controller
 							'petugas_approve'  => $this->session->userdata('nip'),
 							'updatedAt' => date('Y-m-d H:i:s')
 						);
-						$result = $this->model_approval->update($data_id,$arrayCustomerQuote, 'master_penyaluran');
+						$result = $this->model_approval->update($data_id, $arrayCustomerQuote, 'master_penyaluran');
 						//echo $this->db->last_query();exit;
 						//print_r($data_id);exit;
 						$result = 1;
@@ -302,20 +303,54 @@ class Approval extends CI_Controller
 	public function laporan_pdf()
 	{
 		$id = $this->input->get('id');
-		$urutan =+ 1;
+		$urutan = +1;
+		$filename = "Kuitansi-Pembayaran" . "-" . $data['my_data'][0]->mustahik . "-" . date('Y-m-d');
 		$data = array(
 			'my_data' => $this->model_approval->laporan_approval('master_penyaluran', $id)->result(),
-			'no' => sprintf("%05s", $urutan++) //hardcode count by clik harusnya
+			'no' => sprintf("%05s", $urutan++),
+			'filename'	=> $filename
 		);
 
-		$this->load->library('pdf');
-		//echo json_encode($data['no']);exit;
-		//echo $this->db->last_query();exit;
-		//echo json_encode($data['my_data'][0]);exit;
+		// $this->load->library('pdf');
 
-		$this->pdf->setPaper('FOLIO', 'potrait');
-		$this->pdf->filename = "Kuitansi-Pembayaran". "-" .$data['my_data'][0]->mustahik . "-" . date('Y-m-d') . ".pdf";
-		$this->pdf->load_view('page/approval/kuitansi_pembayaran', $data);
+		// $this->pdf->setPaper('FOLIO', 'potrait');
+		// $this->pdf->filename = "Kuitansi-Pembayaran" . "-" . $data['my_data'][0]->mustahik . "-" . date('Y-m-d') . ".pdf";
+		// $this->pdf->load_view('page/approval/kuitansi_pembayaran', $data);
+		$this->load->view('page/approval/kuitansi_pembayaran', $data);
 	}
 
+	function laporan_pdf_fpdf()
+	{
+		$id = $this->input->get('id');
+		$urutan = +1;
+		$data = array(
+			'my_data' => $this->model_approval->laporan_approval('master_penyaluran', $id)->result(),
+			'no' => sprintf("%05s", $urutan++)
+		);
+
+		//PDF
+		$pdf = new FPDF('L', 'mm', array(100, 200));
+		$fileName = "Kuitansi-Pembayaran" . "-" . $data['my_data'][0]->mustahik . "-" . date('Y-m-d') . ".pdf";
+
+		$pdf->AddPage();
+
+		$pdf->SetFont('Arial', 'B', 16);
+		$pdf->Cell(0, 7, 'KUITANSI PEMBAYARAN', 0, 1, 'C');
+		$pdf->Cell(10, 7, '', 0, 1);
+
+		$pdf->MultiCell(190,10,$pdf->WriteHTML('dasas'));
+
+
+
+		// $pdf->SetFont('Arial', 'B', 10);
+		// $pdf->Cell(10, 6, 'No', 1, 0, 'C');
+		// $pdf->Cell(90, 6, 'Nama Pegawai', 1, 0, 'C');
+		// $pdf->Cell(120, 6, 'Alamat', 1, 0, 'C');
+		// $pdf->Cell(40, 6, 'Telp', 1, 1, 'C');
+
+		// $pdf->SetFont('Arial', '', 10);
+		$pdf->Output();
+		// $pdf->Output($fileName, 'D'); Auto Download
+		//End PDF
+	}
 }
