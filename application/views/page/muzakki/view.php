@@ -595,12 +595,6 @@
 									<input type="email" id="e_email" required name="e_email" placeholder="E-mail" class="form-control" />
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Website </label>
-								<div class="col-sm-6">
-									<input type="text" id="e_website" required name="e_website" placeholder="website" class="form-control" />
-								</div>
-							</div>
 					</div>
 				</div>
 			</div>

@@ -259,7 +259,6 @@ class Muzakki extends CI_Controller
 					'fax'  => $this->input->post('e_fax_muzakki'),
 					'handphone'  => $this->input->post('e_hp_muzakki'),
 					'email'  => $this->input->post('e_email'),
-					'website'  => $this->input->post('e_website'),
 					'updatedAt' => date('Y-m-d H:i:s')
 				);
 				$result = $this->model_muzakki->update($data_id, $data, 'master_muzakki');
@@ -291,7 +290,6 @@ class Muzakki extends CI_Controller
 					'fax'  => $this->input->post('e_fax_muzakki'),
 					'handphone'  => $this->input->post('e_hp_muzakki'),
 					'email'  => $this->input->post('e_email'),
-					'website'  => $this->input->post('e_website'),
 					'updatedAt' => date('Y-m-d H:i:s')
 				);
 				$result = $this->model_muzakki->update($data_id, $data, 'master_muzakki');
@@ -323,13 +321,16 @@ class Muzakki extends CI_Controller
 		set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
 		include 'PHPExcel/IOFactory.php';
 		$objPHPExcel = new PHPExcel();
-		$idmuzakki = $this->model_muzakki->joinmuzakki()->result_array();
-		$data = $idmuzakki;
+		$pekerjaan = $this->model_muzakki->viewOrdering('master_pekerjaan','id','asc')->result_array();
+		$pendidikan = $this->model_muzakki->viewOrdering('master_pendidikan','id','asc')->result_array();
+		$kepemilikan = $this->model_muzakki->viewOrdering('master_kepemilikan','id','asc')->result_array();
+		$data = $pekerjaan;
 		$no = 1;
 		$row = 2;
+		$row2 = 2;
+		$row3 = 2;
 		if (count($data) > 0) {
 			if ($data) {
-				$key = array_keys($data[0]);
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', 'Tanggal Reg');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B1', 'Nama Muzakki');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C1', 'NPWP');
@@ -354,13 +355,13 @@ class Muzakki extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('V1', 'Fax');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('W1', 'Handphone');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('X1', 'Email');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Y1', 'Website');
+				
 
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A2', '2020-10-06');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B2', 'IQBAL');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C2', '01000000000131');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B2', 'John Doe');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C2', '10000000130');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D2', 'KTP');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E2', '32000102113233');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E2', '32000102113232');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F2', 'WNI');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G2', 'Bekasi');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H2', '1997-10-01');
@@ -379,11 +380,10 @@ class Muzakki extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('U2', '123456789');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('V2', '4456324474');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('W2', '777777777');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('X2', 'school.gemanurani@gmail.com');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Y2', 'gemanurani.com');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('X2', 'testing@gmail.com');
 
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A3', '2020-10-06');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B3', 'ARMERIA');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B3', 'Jane Doe');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C3', '010000000131');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D3', 'PASPORT');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E3', '32000102113233');
@@ -405,188 +405,72 @@ class Muzakki extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('U3', '123456789');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('V3', '4456324474');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('W3', '777777777');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('X3', 'school.gemanurani@gmail.com');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Y3', 'gemanurani.com');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('X3', 'test@gmail.com');
 
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AA1', 'Tanggal Reg');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AB1', 'Nama Muzakki');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AC1', 'NPWP');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AD1', 'Tipe Identitas');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AE1', 'No. Identitas');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AF1', 'Kewarganegraan');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AG1', 'Tempat Lahir');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AH1', 'Tanggal Lahir');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AI1', 'Jenis Kelamin');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AJ1', 'ID Pekerjaan');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AK1', 'Pekerjaan');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AL1', 'ID Pernikahan');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AM1', 'Status Pernikahan');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AL2', '1');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AM2', 'Lajang');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AL3', '2');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AM3', 'Menikah');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AN1', 'ID Pendidikan');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AO1', 'Status Pendidikan');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AP1', 'Alamat');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AQ1', 'ID Provinsi');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AR1', 'Provinsi');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AS1', 'Kab / Kota');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AT1', 'Kecamatan');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AU1', 'Desa/Kelurahan');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AV1', 'Kode Pos');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AW1', 'ID Status Rumah');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AX1', 'Status Rumah');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AW2', '1');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AX2', 'Milik Sendiri');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AW3', '2');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AX3', 'Milik Orang Tua');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AY1', 'No. Telp');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AZ1', 'Fax');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('BA1', 'Handphone');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('BB1', 'Email');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('BC1', 'Website');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('BD1', 'Jenis Muzakki');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('BD2', 'Individu');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('BD3', 'Lembaga');
+
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AA1', 'Id Pekerjaan');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AB1', 'Nama Pekerjaan');
+
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AC1', 'Id Pernikahan');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AD1', 'Status Pernikahan');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AC2', '1');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AD2', 'Lajang');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AC3', '2');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AD3', 'Menikah');
+
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AE1', 'Id Pendidikan');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AF1', 'Nama Pendidikan');
+
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AG1', 'Id Kepemilikan');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('AH1', 'Nama Kepemilikan');
+
 				foreach ($data as $dataExcel) {
-					$tgl_reg = $dataExcel['tgl_reg'];
-					$nama = $dataExcel['nama'];
-					$npwp = $dataExcel['npwp'];
-					$tipe_identitas = $dataExcel['tipe_identitas'];
-					$no_identitas = $dataExcel['no_identitas'];
-					$tmp_lhr = $dataExcel['tmp_lhr'];
-					$tgl_lhr = $dataExcel['tgl_lhr'];
-					$jenis_kelamin = $dataExcel['jenis_kelamin'];
-					$id_pekerjaan = $dataExcel['id_pekerjaan'];
-					$pekerjaan = $dataExcel['pekerjaan'];
-					$id_pendidikan = $dataExcel['id_pendidikan'];
-					$pendidikan = $dataExcel['pendidikan'];
-					$alamat = $dataExcel['alamat'];
-					$id_provinsi = $dataExcel['id_provinsi'];
-					$provinsi = $dataExcel['provinsi'];
-					$kab_kota = $dataExcel['kab_kota'];
-					$desa_kelurahan = $dataExcel['desa_kelurahan'];
-					$kode_pos = $dataExcel['kode_pos'];
-					$kecamatan = $dataExcel['kecamatan'];
-					$telp = $dataExcel['telp'];
-					$fax = $dataExcel['fax'];
-					$handphone = $dataExcel['handphone'];
-					$email = $dataExcel['email'];
-					$website = $dataExcel['website'];
-
+					$idpekerjaan = $dataExcel['id'];
+					$namapekerjaan = $dataExcel['nama'];
 					$objPHPExcel->getActiveSheet(0)->getStyle('AA' . $row)->getNumberFormat()->setFormatCode('yyyy-mm-dd');
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AA' . $row, $tgl_reg, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AA' . $row, $idpekerjaan, PHPExcel_Cell_DataType::TYPE_STRING);
 					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AA')->setAutoSize(true);
 
 					$objPHPExcel->getActiveSheet(0)->getStyle('AB' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AB' . $row, $nama, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AB' . $row, $namapekerjaan, PHPExcel_Cell_DataType::TYPE_STRING);
 					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AB')->setAutoSize(true);
+					$row++;
+				}
 
-					$objPHPExcel->getActiveSheet(0)->getStyle('AC' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AC' . $row, $npwp, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AC')->setAutoSize(true);
+				foreach ($pendidikan as $dataExcelP){
+					$idpendidikan = $dataExcelP['id'];
+					$namapendidikan = $dataExcelP['nama'];
 
-					$objPHPExcel->getActiveSheet(0)->getStyle('AD' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AD' . $row, $tipe_identitas, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AD')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('AE' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AE' . $row, $no_identitas, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getStyle('AE' . $row2)->getNumberFormat()->setFormatCode('yyyy-mm-dd');
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AE' . $row2, $idpendidikan, PHPExcel_Cell_DataType::TYPE_STRING);
 					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AE')->setAutoSize(true);
 
-					$objPHPExcel->getActiveSheet(0)->getStyle('AF' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AF' . $row, $kewarganegaraan, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getStyle('AF' . $row2)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AF' . $row2, $namapendidikan, PHPExcel_Cell_DataType::TYPE_STRING);
 					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AF')->setAutoSize(true);
+					$row2++;
+				}
 
-					$objPHPExcel->getActiveSheet(0)->getStyle('AG' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AG' . $row, $tmp_lhr, PHPExcel_Cell_DataType::TYPE_STRING);
+				foreach ($kepemilikan as $dataExcelK){
+					$idkepemilikan = $dataExcelK['id'];
+					$namakepemilikan = $dataExcelK['nama'];
+
+					$objPHPExcel->getActiveSheet(0)->getStyle('AG' . $row3)->getNumberFormat()->setFormatCode('yyyy-mm-dd');
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AG' . $row3, $idkepemilikan, PHPExcel_Cell_DataType::TYPE_STRING);
 					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AG')->setAutoSize(true);
 
-					$objPHPExcel->getActiveSheet(0)->getStyle('AH' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AH' . $row, $tgl_lhr, PHPExcel_Cell_DataType::TYPE_STRING);
+					$objPHPExcel->getActiveSheet(0)->getStyle('AH' . $row3)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AH' . $row3, $namakepemilikan, PHPExcel_Cell_DataType::TYPE_STRING);
 					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AH')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('AI' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AI' . $row, $jenis_kelamin, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AI')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('AJ' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AJ' . $row, $id_pekerjaan, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AJ')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('AK' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AK' . $row, $pekerjaan, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AK')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('AN' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AN' . $row, $id_pendidikan, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AN')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('AO' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AO' . $row, $pendidikan, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AO')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('AP' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AP' . $row, $alamat, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AP')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('AQ' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AQ' . $row, $id_provinsi, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AQ')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('AR' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AR' . $row, $provinsi, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AR')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('AS' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AS' . $row, $kab_kota, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AS')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('AT' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AT' . $row, $kecamatan, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AT')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('AU' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AU' . $row, $desa_kelurahan, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AU')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('AV' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AV' . $row, $kode_pos, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AV')->setAutoSize(true);
-
-					// $objPHPExcel->getActiveSheet(0)->getStyle('AV' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					// $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AV' . $row, $kecamatan, PHPExcel_Cell_DataType::TYPE_STRING);
-					// $objPHPExcel->getActiveSheet(0)->getColumnDimension('AV')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('AY' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AY' . $row, $telp, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AY')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('AZ' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('AZ' . $row, $fax, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('AZ')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('BA' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('BA' . $row, $handphone, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('BA')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('BB' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('BB' . $row, $email, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('BB')->setAutoSize(true);
-
-					$objPHPExcel->getActiveSheet(0)->getStyle('BC' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('BC' . $row, $website, PHPExcel_Cell_DataType::TYPE_STRING);
-					$objPHPExcel->getActiveSheet(0)->getColumnDimension('BC')->setAutoSize(true);
-					$row++;
-					$no++;
+					$row3++;
 				}
+
 				header('Content-Type: application/vnd.ms-excel; charset=utf-8');
-				header('Content-Disposition: attachment; filename=report.xls');
+				header('Content-Disposition: attachment; filename=Format_upload_muzakki.xls');
 				header('Cache-Control: max-age=0');
 				ob_end_clean();
 				ob_start();
 				$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-				$filename = 'Sample' . 'csv';
 				$objWriter->save('php://output');
 			}
 		}
@@ -734,6 +618,12 @@ class Muzakki extends CI_Controller
 							$result = $this->model_muzakki->update($data_id, $arrayCustomerQuote, 'master_muzakki');
 						}else{
 							$result = $this->model_muzakki->insert($arrayCustomerQuote, 'master_muzakki');
+							$id = $this->db->insert_id();
+							$datarek = array(
+								'id_muzakki'  => $id,
+								'createdAt' => date('Y-m-d H:i:s')
+							);
+							$results = $this->model_muzakki->insert($datarek, 'master_rekening');
 						}
 						//$result = 1;
 					}
