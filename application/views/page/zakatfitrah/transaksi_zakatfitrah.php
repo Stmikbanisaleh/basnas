@@ -2,132 +2,108 @@
 
 <head>
 	<style type="text/css">
-		table {
+		/* table {
 			font-size: 1em;
-		}
+            border-collapse: collapse;
+            border: 1px solid black;
+		} */
 
 		@page {
 			size: 25.4cm 46cm;
 			margin-top: 1cm;
 			margin-bottom: 0cm;
-			margin-left: 0cm;
+			margin-left: 1cm;
 			margin-right: 0cm;
-			border: 1px solid blue;
 		}
 
-		#teks {
-			font-size: 1em;
-			font-style: normal;
-			line-height: normal;
-			color: #000000;
-			font-family: Arial, Helvetica, sans-serif;
-
+		.text-center{
+			text-align: center;
 		}
 
-		.style2 {
-			font-size: 1em;
-			font-style: normal;
-			line-height: normal;
-			color: #000000;
-			font-family: Arial, Helvetica, sans-serif;
-		}
-
-		#teks2 {
-			font-size: 1em;
-			font-style: normal;
-			line-height: normal;
-			font-weight: bold;
-			color: #000000;
-			font-family: "Times New Roman", Times, serif;
-
-		}
-
-		#teks3 {
-			font-size: 1em;
-			font-style: normal;
-			line-height: normal;
-			font-weight: bold;
-			color: #000000;
-			font-family: Arial, Helvetica, sans-serif;
-		}
-
-		.style4 {
-			font-size: medium;
-		}
 	</style>
 </head>
 
+<?php
+header("Content-type:application/x-msdownload");
+header("content-disposition:attactment;filename=" . $filename . ".xls");
+header("pragma:no-cache");
+header("Expires:0");
+?>
 <body>
-	<table border="0" width="100%" class="style2" cellspacing="3">
-			<tr>
-				<td>
-					<table border="0" width="100%" class="style2" cellpadding="1" cellspacing="3">
-						<tr>
-							<td colspan='5' align='center'><b>
-									<div id="teks3">Badan Amil Zakat Nasional</div>
-							</td>
-						</tr>
-						<tr>
-							<td colspan='5' align='center'><b>
-									<div id="teks3">Tanda Terima Zakat Fitrah</div>
-							</td>
-						</tr>
-						<tr>
-							<td></td>
-
-						</tr>
-						<tr>
-							<td>Telah terima dokumen berupa <?php echo $my_data[0]->deskripsi; ?> yang diserahkan pada :</td>
-						</tr>
-						<tr>
-							<td>
-							</td>
-						</tr>
-						<tr>
-							<td>
-							</td>
-						</tr>
-						<tr>
-							<td colspan='5' class="style2">
-								Tanggal Terima &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $my_data[0]->tgl_terima; ?><br>
-								Nama Muzakki &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $my_data[0]->nama; ?><br>
-								Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $my_data[0]->alamat; ?><br>
-							</td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
-						<tr>
-							<td>Demikian bukti penerimaan dokumen ini dibuat, dan atas perhatiannya diucapkan terima kasih.</td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
-					</table>
-					<br>
-				</td>
-			<tr>
-				<td align="right">Bekasi, <?php echo date("d-F-Y"); ?> <tgl>
-				</td>
-			</tr>
-			<tr>
-				<td align="right">Petugas</td>
-			</tr>
-			<tr>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-			</tr>
-			<tr>
-				<td align="right"><?php echo $my_data[0]->nama_petugas; ?><petugasnya>
-				</td>
-			</tr>
-			</tr>
-		?>
+	<table>
+		<tr>
+			<td colspan="7" class="text-center">
+				<b><h4>TANDA TERIMA DOKUMEN<h4><b>
+			</td>
+		</tr>
+        <tr>
+            <td style="width: 100px;"></td>
+            <td style="width: 100px;"></td>
+            <td style="width: 100px;"></td>
+            <td style="width: 100px;"></td>
+            <td style="width: 100px;"></td>
+            <td style="width: 100px;"></td>
+            <td style="width: 100px;"></td>
+		</tr>
+		<tr>
+			<td colspan="7">Telah terima dokumen berupa Zakat Fitrah, yang diserahkan pada :</td>
+		</tr>
+		<tr>
+            <!-- Break Line -->
+		</tr>
+        <tr>
+            <td colspan="2">
+                Tanggal
+            </td>
+            <td colspan="5">
+				: <?php echo date('d F Y',strtotime($my_data[0]->tgl_terima)); ?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Atas Nama
+            </td>
+            <td colspan="5">
+				: <?php echo $my_data[0]->nama; ?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Alamat
+            </td>
+            <td colspan="5">
+				: <?php echo $my_data[0]->alamat; ?>
+            </td>
+        </tr>
+        <tr>
+            <!-- Break Line -->
+        </tr>
+		<tr>
+			<td colspan="7">Demikian bukti penerimaan dokumen ini dibuat, dan atas perhatiannya diucapkan terima kasih.</td>
+		</tr>
+        <tr>
+            <!-- Break Line -->
+        </tr>
+		<tr>
+            <td colspan="4"></td>
+            <td align="right" colspan="3" style="text-align: left;">Bekasi, <?php echo date("d F Y"); ?> <tgl>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+            <td align="right" colspan="3" style="text-align: left;">Petugas</td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+            <td align="right" colspan="3" style="text-align: left;"><?php echo $my_data[0]->nama_petugas; ?>
+            </td>
+        </tr>
 	</table>
 </body>
 

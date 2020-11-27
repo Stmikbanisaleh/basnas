@@ -339,17 +339,19 @@ class Zakatfitrah extends CI_Controller
 	public function laporan_pdf()
 	{
 		$id = $this->input->get('id');
+		$mydata = $this->model_zakatfitrah->laporan_zakat('master_zakat', $id)->result();
+		$filename = "Tanda-Terima-Zakatfitrah". "-" .$mydata[0]->nama . "-" . date('Y-m-d');
 		$data = array(
-			'my_data' => $this->model_zakatfitrah->laporan_zakat('master_zakat', $id)->result(),
+			'my_data' => $mydata,
+			'filename'	=> $filename
 		);
+		$this->load->view('page/zakatfitrah/transaksi_zakatfitrah', $data);
 
-		$this->load->library('pdf');
-		//echo $this->db->last_query();exit;
-		//echo json_encode($data['my_data'][0]->nama);exit;
+		// $this->load->library('pdf');
 
-		$this->pdf->setPaper('FOLIO', 'potrait');
-		$this->pdf->filename = "Tanda-Terima-Zakatfitrah". "-" .$data['my_data'][0]->nama . "-" . date('Y-m-d') . ".pdf";
-		$this->pdf->load_view('page/zakatfitrah/transaksi_zakatfitrah', $data);
+		// $this->pdf->setPaper('FOLIO', 'potrait');
+		// $this->pdf->filename = "Tanda-Terima-Zakatfitrah". "-" .$data['my_data'][0]->nama . "-" . date('Y-m-d') . ".pdf";
+		// $this->pdf->load_view('page/zakatfitrah/transaksi_zakatfitrah', $data);
 	}
 	// public function laporan_pdf(){
 	//     $tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));

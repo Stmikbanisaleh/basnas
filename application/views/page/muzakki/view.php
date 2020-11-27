@@ -836,6 +836,11 @@
 		$("#formEdit").validate({
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
+			rules: {
+				e_file: {
+					required: false,
+				},
+			},
 			submitHandler: function(form) {
 				formdata = new FormData(form);
 				$.ajax({
