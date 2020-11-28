@@ -65,7 +65,9 @@ class Rek_koran extends CI_Controller
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
-			$this->load->library('pdf');
+			// $this->load->library('pdf');
+			// define('DOMPDF_ENABLE_AUTOLOAD', false);
+			// require_once("./vendor/dompdf/dompdf/dompdf_config.inc.php");
 
 			$mydata = $this->model_rek_koran->view_laporan_rek_koran($this->input->get('periode_awal'), $this->input->get('periode_akhir'), $this->input->get('muzaki'))->result_array();
 
@@ -76,9 +78,18 @@ class Rek_koran extends CI_Controller
 				'mymuzaki' => $mymuzaki
 			);
 
-			$this->pdf->setPaper('FOLIO', 'potrait');
-			$this->pdf->load_view('page/rek_koran/laporan_all_pdf', $data);
-			$this->pdf->stream("Slip Gaji " . $tgl . ".pdf", array("Attachment" => true));
+			// $this->pdf->setPaper('FOLIO', 'potrait');
+			// $this->pdf->load_view('page/rek_koran/laporan_all_pdf', $data);
+			// $this->pdf->stream("Slip Gaji " . $tgl . ".pdf", array("Attachment" => true));
+			// $datanya = $this->load->view('page/rek_koran/laporan_all_pdf', $data);
+			// $dompdf = new DOMPDF();
+			// $dompdf->load_html($datanya);
+			// $dompdf->render();
+			// $dompdf->stream('laporan'.'.pdf',array("Attachment"=>0));
+			$this->load->library('pdfgenerator');
+			$html = $this->load->view('page/rek_koran/laporan_all_pdf', $data, true);
+	    
+	    	$this->pdfgenerator->generate($html,'contoh');
 
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
