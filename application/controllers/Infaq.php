@@ -158,7 +158,6 @@ class Infaq extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F1', 'Total terima');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G1', 'Deskripsi');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H1', 'Petugas');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I1', 'Jenis Zakat');
 
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A2', '16');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B2', 'Tunai');
@@ -168,7 +167,6 @@ class Infaq extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F2', '1500000');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G2', 'import');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H2', '123456');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I2', '');
 
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A3', '17');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B3', 'Tunai');
@@ -178,7 +176,6 @@ class Infaq extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F3', '1500000');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G3', 'import');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H3', '123456');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I3', '');
 
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('K1', 'Id Muzakki');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('L1', 'Nama Muzakki');
@@ -194,7 +191,6 @@ class Infaq extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('T1', 'Deskripsi');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('U1', 'Petugas');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('V1', 'Jenis Zakat');
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('W1', 'Nama Jenis Zakat');
 				foreach ($data as $dataExcel) {
 					$id_muzakki = $dataExcel['id_muzakki'];
 					$nama = $dataExcel['nama'];
@@ -263,7 +259,7 @@ class Infaq extends CI_Controller
 					$no++;
 				}
 				header('Content-Type: application/vnd.ms-excel; charset=utf-8');
-				header('Content-Disposition: attachment; filename=report.xls');
+				header('Content-Disposition: attachment; filename=Format_upload_infaq.xls');
 				header('Cache-Control: max-age=0');
 				ob_end_clean();
 				ob_start();
