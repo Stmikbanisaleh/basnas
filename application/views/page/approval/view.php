@@ -70,11 +70,11 @@
 								<div class="col-sm-9">
 									<select required class="form-control" name="e_status" id="e_status">
 										<option value="">-- Pilih Status--</option>
-										<option value="0">Unapprove</option>
+										<option value="0">Belum disetujui</option>
 										</option>
-										<option value="1">Approved</option>
-										<option value="2">Completed</option>
-										<option value="3">Rejected</option>
+										<option value="1">Disetujui</option>
+										<option value="2">Selesai</option>
+										<option value="3">Ditolak</option>
 									</select>
 								</div>
 							</div>
@@ -332,7 +332,7 @@
 				var i = 0;
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
-					if (data[i].is_approve == '1') {
+					if (data[i].is_approve == '1' || data[i].is_approve == '2' ) {
 						var status = '<td class="text-center">' +
 							'<button  href="#my-modal-detail" class="btn btn-xs btn-info " title="Add" data-id="' + data[i].id + '">' +
 							'<i class="ace-icon fa fa-thumbs-up bigger-120"></i> Disetujui' +

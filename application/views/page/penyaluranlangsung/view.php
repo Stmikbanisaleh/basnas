@@ -1002,7 +1002,11 @@
 						'</button> &nbsp' +
 						'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
-						'</button>' +
+						'</button> &nbsp' +
+						'<a target="_blank"  href="<?php echo base_url() . 'penyaluranlangsung/laporan_pdf?id=' ?>' + data[i].id +'" class="btn btn-xs btn-default" title="Print" data-id="' + data[i].id + '">' +
+                                '<i class="ace-icon fa fa-print bigger-120"></i>' +
+                                '</a>'+
+						' &nbsp'+
 						'</td>' +
 						'</tr>';
 					no++;
