@@ -76,6 +76,7 @@ class Penyaluranlangsung extends CI_Controller
 				'ansaf'  => $this->input->post('tipe2'),
 				'document_proposal'  => $file_proposal,
 				'type'  => $this->input->post('jenis2'),
+				'pic'  => $this->input->post('pic'),
 				'deskripsi' => $this->input->post('deskripsi'),
 				'petugas'	=> $this->session->userdata('nip')
 			);
@@ -186,6 +187,7 @@ class Penyaluranlangsung extends CI_Controller
 				'jumlah_dana'  => $this->input->post('e_total_v'),
 				'ansaf'  => $this->input->post('e_tipe2'),
 				'document_proposal' => $nama_proposal,
+				'pic' => $this->input->post('e_pic'),
 				'type'  => $this->input->post('e_jenis2'),
 				'deskripsi' => $this->input->post('e_deskripsi'),
 			);

@@ -277,6 +277,20 @@
 							</div>
 
 							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Mustahik </label>
+								<div class="col-sm-6">
+									<select class="form-control" required name="pic" id="pic">
+										<option value="">-- Pilih --</option>
+										<?php foreach ($mymustahik as $value) {
+										?>
+											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+										<?php }
+										?>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Deskripsi </label>
 								<div class="col-sm-9">
 									<textarea id="deskripsi" required name="deskripsi" class="form-control"></textarea>
@@ -430,7 +444,21 @@
 									<input type="hidden" id="e_proposal_hide" required name="e_proposal_hide" class="form-control" />
 								</div>
 							</div>
-							
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Mustahik </label>
+								<div class="col-sm-6">
+									<select class="form-control" required name="e_pic" id="e_pic">
+										<option value="">-- Pilih --</option>
+										<?php foreach ($mymustahik as $value) {
+										?>
+											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+										<?php }
+										?>
+									</select>
+								</div>
+							</div>
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Deskripsi </label>
 								<div class="col-sm-9">
@@ -623,6 +651,12 @@
 		$("#formTambah").validate({
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
+			rules: {
+				proposal: {
+					required: false,
+				},
+				
+			},
 			submitHandler: function(form) {
 				formdata = new FormData(form);
 				$.ajax({
@@ -693,6 +727,12 @@
 		$("#formEdit").validate({
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
+			rules: {
+				asdf: {
+					required: false,
+				},
+				
+			},
 			submitHandler: function(form) {
 				formdata = new FormData(form);
 				$.ajax({
@@ -879,6 +919,7 @@
 				$('#e_total').val(a);
 				$('#e_total_v').val(data[0].jumlah_dana);
 				$('#e_proposal_hide').val(data[0].document_proposal);
+				$('#e_pic').val(data[0].pic);
 				// $('#e_total_v').val(data[0].total);
 				$('#e_tipe2').val(data[0].ansaf);
 				$('#e_jenis2').val(data[0].type);

@@ -105,6 +105,7 @@ class Penyaluranprogram extends CI_Controller
 				'document_proposal'  => $file_proposal,
 				'ansaf'  => $this->input->post('tipe2'),
 				'type'  => $this->input->post('jenis2'),
+				'pic' => $this->input->post('pic'),
 				'deskripsi' => $this->input->post('deskripsi'),
 				'petugas'	=> $this->session->userdata('nip')
 			);
@@ -218,6 +219,7 @@ class Penyaluranprogram extends CI_Controller
 				'ansaf'  => $this->input->post('e_tipe2'),
 				'document_proposal' => $nama_proposal,
 				'id_program'  => $this->input->post('e_programs'),
+				'pic' => $this->input->post('e_pic'),
 				'type'  => $this->input->post('e_jenis2'),
 				'deskripsi' => $this->input->post('e_deskripsi'),
 			);
