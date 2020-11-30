@@ -31,6 +31,19 @@ class Penyaluranprogram extends CI_Controller
 		echo json_encode($result);
 	}
 
+	public function laporan_pdf()
+	{
+		$id = $this->input->get('id');
+		$urutan = +1;
+		$filename = "Bukti-pengajuan-proposal-". date('Y-m-d');
+		$data = array(
+			'my_data' => $this->model_penyaluranlangsung->laporan_approval('master_penyaluran', $id)->result(),
+			'no' => sprintf("%05s", $urutan++),
+			'filename'	=> $filename
+		);
+		$this->load->view('page/penyaluranprogram/buktipenerimaan', $data);
+	}
+
 	public function index()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {

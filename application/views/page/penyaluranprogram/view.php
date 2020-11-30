@@ -984,7 +984,7 @@
 					} else if (data[i].is_approve == '2') {
 						var status = '<td class="text-center">' +
 							'<button  href="#my-modal-detail" class="btn btn-xs btn-success " title="Add" data-id="' + data[i].id + '">' +
-							'<i class="ace-icon fa fa-check-square-o bigger-120"> </i> Selesai' +
+							'<i class="ace-icon fa fa-check bigger-120"> </i> Selesai' +
 							'</button> &nbsp' +
 							'</td>';
 					} else if (data[i].is_approve == '3') {
@@ -995,7 +995,7 @@
 							'</td>';
 					} else {
 						var status = '<td class="text-center">' +
-							'<button  href="#my-modal-detail" class="btn btn-xs btn-danger " title="Add" data-id="' + data[i].id + '">' +
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-warning " title="Add" data-id="' + data[i].id + '">' +
 							'<i class="ace-icon fa fa-bullhorn bigger-120"> </i> Menunggu disetujui' +
 							'</button> &nbsp' +
 							'</td>';
@@ -1022,6 +1022,10 @@
 						'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
 						'</button>' +
+						'<a target="_blank"  href="<?php echo base_url() . 'penyaluranlangsung/laporan_pdf?id=' ?>' + data[i].id +'" class="btn btn-xs btn-default" title="Print" data-id="' + data[i].id + '">' +
+                                '<i class="ace-icon fa fa-print bigger-120"></i>' +
+                                '</a>'+
+						' &nbsp'+
 						'</td>' +
 						'</tr>';
 					no++;

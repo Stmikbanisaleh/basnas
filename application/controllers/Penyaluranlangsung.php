@@ -117,6 +117,19 @@ class Penyaluranlangsung extends CI_Controller
 		}
 	}
 
+	public function laporan_pdf()
+	{
+		$id = $this->input->get('id');
+		$urutan = +1;
+		$filename = "Bukti-pengajuan-proposal-". date('Y-m-d');
+		$data = array(
+			'my_data' => $this->model_penyaluranlangsung->laporan_approval('master_penyaluran', $id)->result(),
+			'no' => sprintf("%05s", $urutan++),
+			'filename'	=> $filename
+		);
+		$this->load->view('page/penyaluranlangsung/buktipenerimaan', $data);
+	}
+
 	public function tampil_byidprogram2()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {

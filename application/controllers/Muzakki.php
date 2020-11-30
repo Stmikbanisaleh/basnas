@@ -243,7 +243,6 @@ class Muzakki extends CI_Controller
 			$this->load->library('upload', $config_proposal);
 			$asd = $this->upload->do_upload("e_proposal");
 			$file_proposal = null;
-			echo $asd;exit;
 			if ($asd) {
 				$upload_data = $this->upload->data();
 				$file_proposal = $upload_data['file_name'];
