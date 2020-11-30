@@ -9,7 +9,7 @@ class Rek_koran extends CI_Controller
 		parent::__construct();
 		$this->load->model('model_rek_koran');
 		$this->load->library('mainfunction');
-		$this->load->library('pdfgenerator');
+		// $this->load->library('pdfgenerator');
 		if (empty($this->session->userdata('username')) && empty($this->session->userdata('nama'))) {
             $this->session->set_flashdata('category_error', 'Silahkan masukan username dan password');
             redirect('dashboard/login');
@@ -42,6 +42,7 @@ class Rek_koran extends CI_Controller
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
+			$filename = "Rekening koran ".$this->input->get('muzaki')." periode ". $this->input->post("periode_awal") ." sd ".$this->input->post('periode_akhir');
 
 			$mydata = $this->model_rek_koran->view_laporan_rek_koran($this->input->get('periode_awal'), $this->input->get('periode_akhir'), $this->input->get('muzaki'))->result_array();
 
@@ -53,13 +54,15 @@ class Rek_koran extends CI_Controller
 
 			$data = array(
 				'mydata' => $mydata,
-				'mymuzaki' => $mymuzaki
+				'mymuzaki' => $mymuzaki,
+				'filename'	=> $filename
 			);
 			
 			
-			$html = $this->load->view('page/rek_koran/laporan_pdf', $data, true);
-			$filename = 'Rekening koran '.$muzzaki.' periode '.$this->input->get('periode_awal').' sd '.$this->input->get('periode_akhir').'.pdf';
-	    	$this->pdfgenerator->generate($html,$filename);
+			// $html = $this->load->view('page/rek_koran/laporan_pdf', $data, true);
+			// $filename = 'Rekening koran '.$muzzaki.' periode '.$this->input->get('periode_awal').' sd '.$this->input->get('periode_akhir').'.pdf';
+	    	// $this->pdfgenerator->generate($html,$filename);
+			$this->load->view('page/rek_koran/laporan_pdf', $data);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
@@ -69,16 +72,19 @@ class Rek_koran extends CI_Controller
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
+			$filename = "Rekap rekening koran ".$this->input->get('muzaki')." periode ". $this->input->post("periode_awal") ." sd ".$this->input->post('periode_akhir');
 			$mydata = $this->model_rek_koran->view_laporan_rek_koran($this->input->get('periode_awal'), $this->input->get('periode_akhir'), $this->input->get('muzaki'))->result_array();
 			$mymuzaki = $this->model_rek_koran->view_muzaki($this->input->get('muzaki'))->row();
 			$data = array(
 				'mydata' => $mydata,
-				'mymuzaki' => $mymuzaki
+				'mymuzaki' => $mymuzaki,
+				'filename'	=> $filename
 			);
 			
-			$html = $this->load->view('page/rek_koran/laporan_all_pdf', $data, true);
-			$filename = 'Laporan rekap rekening koran periode '.$this->input->get('periode_awal').' sd '.$this->input->get('periode_akhir').'.pdf';
-	    	$this->pdfgenerator->generate($html,$filename);
+			// $html = $this->load->view('page/rek_koran/laporan_all_pdf', $data, true);
+			// $filename = 'Laporan rekap rekening koran periode '.$this->input->get('periode_awal').' sd '.$this->input->get('periode_akhir').'.pdf';
+	    	// $this->pdfgenerator->generate($html,$filename);
+			$this->load->view('page/rek_koran/laporan_pdf', $data);
 
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view

@@ -181,7 +181,7 @@ class Mustahik extends CI_Controller
 				$upload_data = $this->upload->data();
 				$file_name = $upload_data['file_name'];
 			}
-			if (empty($_FILES['userfile']['name'])) {
+			if (empty($upload_data['file_name'])) {
 				$data = array(
 					'kat_mustahik'  => $this->input->post('e_kat_mustahik'),
 					'nama'  => $this->input->post('e_nama'),

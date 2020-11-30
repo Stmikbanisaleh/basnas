@@ -156,6 +156,12 @@
                                 </div>
                             </div> 
 							<div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Proposal </label>
+                                <div class="col-sm-9">
+                                    <input type="file" id="proposal" name="proposal" placeholder="" class="form-control" />
+                                </div>
+                            </div> 
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="warganegara" id="warganegara">
@@ -441,6 +447,12 @@
                                 </div>
                             </div> 
 							<div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Proposal </label>
+                                <div class="col-sm-9">
+                                    <input type="file" id="e_proposal" required name="e_proposal" placeholder="" class="form-control" />
+                                </div>
+                            </div> 
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="e_warganegara" id="e_warganegara">
@@ -629,6 +641,7 @@
 				<th>Tanggal Registrasi</th>
 				<th>Jenis Muzaki</th>
 				<th>Nama Muzaki</th>
+				<th>Foto</th>
 				<th>Alamat</th>
 				<th>Action</th>
 			</tr>
@@ -795,6 +808,14 @@
 		$("#formTambah").validate({
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
+			rules: {
+				file: {
+					required: false,
+				},
+				porposal: {
+					required: false,
+				},
+			},
 			submitHandler: function(form) {
 				formdata = new FormData(form);
 				$.ajax({
@@ -832,6 +853,9 @@
 			validClass: "my-valid-class",
 			rules: {
 				e_file: {
+					required: false,
+				},
+				e_porposal: {
 					required: false,
 				},
 			},
@@ -1054,6 +1078,7 @@
 						'<td>' + data[i].createdAt + '</td>' +
 						'<td>' + data[i].jenis_muzakki + '</td>' +
 						'<td>' + data[i].nama + '</td>' +
+						'<td ><a href="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].foto+'"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].foto+'""></a></td>' +
 						'<td>' + data[i].alamat + '</td>' +
 						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +

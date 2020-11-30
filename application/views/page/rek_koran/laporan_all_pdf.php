@@ -25,6 +25,12 @@
     }
 </style>
 </head>
+<?php
+header("Content-type:application/x-msdownload");
+header("content-disposition:attactment;filename=" . $filename . ".xls");
+header("pragma:no-cache");
+header("Expires:0");
+?>
 <body>
     <div class="">
 		<div>

@@ -37,17 +37,20 @@ class Lap_penerimaan extends CI_Controller
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$tgl = $this->mainfunction->tgl_indo(date('Y-m-d'));
-			$this->load->library('pdf');
+			$filename = "Laporan Penerimaan ".$this->input->post('jenis_penerimaan')." periode ". $this->input->post("periode_awal") ." sd ".$this->input->post('periode_akhir');
+			// $this->load->library('pdf');
 			$mymuzaki = $this->model_lap_penerimaan->viewOrdering('users', 'ID', 'asc')->result_array();
 			$mydata = $this->model_lap_penerimaan->view_laporan_penerimaan($this->input->post('periode_awal'), $this->input->post('periode_akhir'), $this->input->post('jenis_penerimaan'))->result_array();
 			$data = array(
-				'mydata' => $mydata
+				'mydata' => $mydata,
+				'filename'	=> $filename
 			);
 			
 
-			$this->pdf->setPaper('FOLIO', 'potrait');
-			$this->pdf->load_view('page/lap_penerimaan/laporan_pdf', $data);
-			$this->pdf->stream("Slip Gaji " . $tgl . ".pdf", array("Attachment" => true));
+			// $this->pdf->setPaper('FOLIO', 'potrait');
+			// $this->pdf->load_view('page/lap_penerimaan/laporan_pdf', $data);
+			// $this->pdf->stream("Slip Gaji " . $tgl . ".pdf", array("Attachment" => true));
+			$this->load->view('page/lap_penerimaan/laporan_pdf', $data);
 
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view

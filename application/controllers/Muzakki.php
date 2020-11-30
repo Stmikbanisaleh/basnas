@@ -220,6 +220,7 @@ class Muzakki extends CI_Controller
 			$data_id = array(
 				'id'  => $this->input->post('e_id')
 			);
+			//Image
 			$config['upload_path'] = './assets/image/muzakki';
 			$config['overwrite'] = TRUE;
 			$config['encrypt_name'] = TRUE;
@@ -231,6 +232,21 @@ class Muzakki extends CI_Controller
 			if ($do_upload) {
 				$upload_data = $this->upload->data();
 				$file_name = $upload_data['file_name'];
+			}
+
+			//Proposal
+			$config_proposal['upload_path'] = './assets/file/muzakki';
+			$config_proposal['overwrite'] = TRUE;
+			$config_proposal['encrypt_name'] = TRUE;
+			$config_proposal["allowed_types"] = 'pdf';
+			$config_proposal["max_size"] = 4096;
+			$this->load->library('upload', $config_proposal);
+			$asd = $this->upload->do_upload("e_proposal");
+			$file_proposal = null;
+			echo $asd;exit;
+			if ($asd) {
+				$upload_data = $this->upload->data();
+				$file_proposal = $upload_data['file_name'];
 			}
 			if ($file_name==null) {
 				$data = array(
