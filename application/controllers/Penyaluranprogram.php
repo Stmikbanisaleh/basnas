@@ -96,11 +96,26 @@ class Penyaluranprogram extends CI_Controller
 	public function simpan()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+
+			$config_proposal['upload_path'] = './assets/file/penyaluran/program';
+			$config_proposal['overwrite'] = TRUE;
+			$config_proposal['encrypt_name'] = FALSE;
+			$config_proposal["allowed_types"] = 'pdf';
+			$config_proposal["max_size"] = 4096;
+			$this->load->library('upload', $config_proposal);
+			$asd = $this->upload->do_upload("proposal");
+			$file_proposal = null;
+			if ($asd) {
+				$upload_data = $this->upload->data();
+				$file_proposal = $upload_data['file_name'];
+			}
+
 			$data = array(
 				'createdAt'  => $this->input->post('tanggal2'),
 				'jumlah_dana'  => $this->input->post('total_v'),
 				'id_program'  => $this->input->post('programs'),
 				'id_program_utama'  => $this->input->post('programu'),
+				'document_proposal'  => $file_proposal,
 				'ansaf'  => $this->input->post('tipe2'),
 				'type'  => $this->input->post('jenis2'),
 				'deskripsi' => $this->input->post('deskripsi'),
@@ -186,6 +201,25 @@ class Penyaluranprogram extends CI_Controller
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 
+			$config_proposal['upload_path'] = './assets/file/penyaluran/program';
+			$config_proposal['overwrite'] = TRUE;
+			$config_proposal['encrypt_name'] = FALSE;
+			$config_proposal["allowed_types"] = 'pdf';
+			$config_proposal["max_size"] = 4096;
+			$this->load->library('upload', $config_proposal);
+			$upload_proposal = $this->upload->do_upload("asdf");
+			$file_proposal = null;
+			if ($upload_proposal) {
+				$upload_data = $this->upload->data();
+				$file_proposal = $upload_data['file_name'];
+			}
+
+			if($file_proposal!=null){
+				$nama_proposal = $file_proposal;
+			}else{
+				$nama_proposal = $this->input->post('e_proposal_hide');
+			}
+
 			$data_id = array(
 				'id'  => $this->input->post('e_id')
 			);
@@ -195,6 +229,7 @@ class Penyaluranprogram extends CI_Controller
 				'jumlah_dana'  => $this->input->post('e_total_v'),
 				'id_program_utama'  => $this->input->post('e_programu'),
 				'ansaf'  => $this->input->post('e_tipe2'),
+				'document_proposal' => $nama_proposal,
 				'id_program'  => $this->input->post('e_programs'),
 				'type'  => $this->input->post('e_jenis2'),
 				'deskripsi' => $this->input->post('e_deskripsi'),

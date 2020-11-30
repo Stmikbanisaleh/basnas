@@ -79,8 +79,6 @@
 					<a class="ace-icon fa fa-search bigger-120"></a>Periksa
 				</button>
 			</div>
-			<br>
-			<br>
 	</form>
 </div>
 <div class="row">
@@ -289,6 +287,14 @@
 									</select>
 								</div>
 							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Proposal </label>
+								<div class="col-sm-6">
+									<input type="file" id="proposal" required name="proposal" class="form-control" />
+								</div>
+							</div>
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Deskripsi </label>
 								<div class="col-sm-9">
@@ -453,6 +459,13 @@
 										<?php }
 										?>
 									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Proposal </label>
+								<div class="col-sm-6">
+									<input type="file" id="asdf" required name="asdf" class="form-control" />
+									<input type="hidden" id="e_proposal_hide" required name="e_proposal_hide" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -728,11 +741,17 @@
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
 			submitHandler: function(form) {
+				formdata = new FormData(form);
 				$.ajax({
 					type: "POST",
 					url: "<?php echo base_url('penyaluranprogram/update') ?>",
-					dataType: "JSON",
-					data: $('#formEdit').serialize(),
+					data: formdata,
+					processData: false,
+					contentType: false,
+					cache: false,
+					async: false,
+					// dataType: "JSON",
+					// data: $('#formEdit').serialize(),
 					success: function(data) {
 						$('#modalEdit').modal('hide');
 						if (data == 1) {
@@ -920,7 +939,7 @@
 				var a = ConvertFormatRupiah(data[0].jumlah_dana, 'Rp. ');
 				$('#e_total').val(a);
 				$('#e_total_v').val(data[0].jumlah_dana);
-				// $('#e_programs').val(data[0].id_program);
+				$('#e_proposal_hide').val(data[0].document_proposal);
 				$('#e_programu').val(data[0].id_program_utama);
 				$('#e_tipe2').val(data[0].ansaf);
 				$('#e_jenis2').val(data[0].type);

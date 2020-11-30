@@ -235,18 +235,18 @@ class Muzakki extends CI_Controller
 			}
 
 			//Proposal
-			$config_proposal['upload_path'] = './assets/file/muzakki';
-			$config_proposal['overwrite'] = TRUE;
-			$config_proposal['encrypt_name'] = TRUE;
-			$config_proposal["allowed_types"] = 'pdf';
-			$config_proposal["max_size"] = 4096;
-			$this->load->library('upload', $config_proposal);
-			$asd = $this->upload->do_upload("e_proposal");
-			$file_proposal = null;
-			if ($asd) {
-				$upload_data = $this->upload->data();
-				$file_proposal = $upload_data['file_name'];
-			}
+			// $config_proposal['upload_path'] = './assets/file/muzakki';
+			// $config_proposal['overwrite'] = TRUE;
+			// $config_proposal['encrypt_name'] = TRUE;
+			// $config_proposal["allowed_types"] = 'pdf';
+			// $config_proposal["max_size"] = 4096;
+			// $this->load->library('upload', $config_proposal);
+			// $asd = $this->upload->do_upload("e_proposal");
+			// $file_proposal = null;
+			// if ($asd) {
+			// 	$upload_data = $this->upload->data();
+			// 	$file_proposal = $upload_data['file_name'];
+			// }
 			if ($file_name==null) {
 				$data = array(
 					'tgl_reg'  => $this->input->post('e_tanggal'),
