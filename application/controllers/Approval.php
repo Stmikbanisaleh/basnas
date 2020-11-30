@@ -304,7 +304,7 @@ class Approval extends CI_Controller
 	{
 		$id = $this->input->get('id');
 		$urutan = +1;
-		$filename = "Kuitansi-Pembayaran" . "-" . $data['my_data'][0]->mustahik . "-" . date('Y-m-d');
+		$filename = "Kuitansi-Pembayaran". date('Y-m-d');
 		$data = array(
 			'my_data' => $this->model_approval->laporan_approval('master_penyaluran', $id)->result(),
 			'no' => sprintf("%05s", $urutan++),

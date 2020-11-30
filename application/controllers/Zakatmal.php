@@ -254,7 +254,7 @@ class Zakatmal extends CI_Controller
 					$no++;
 				}
 				header('Content-Type: application/vnd.ms-excel; charset=utf-8');
-				header('Content-Disposition: attachment; filename=report.xls');
+				header('Content-Disposition: attachment; filename=Format_upload_zakat_mal.xls');
 				header('Cache-Control: max-age=0');
 				ob_end_clean();
 				ob_start();
