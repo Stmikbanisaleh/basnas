@@ -812,7 +812,31 @@
 				file: {
 					required: false,
 				},
-				porposal: {
+				tempat_lahir: {
+					required: false,
+				},
+				tgl_lhr: {
+					required: false,
+				},
+				kode_pos: {
+					required: false,
+				},
+				fax_muzakki: {
+					required: false,
+				},
+				telp_mizakki: {
+					required: false,
+				},
+				hp_muzakki: {
+					required: false,
+				},
+				email: {
+					required: false,
+				},
+				website: {
+					required: false,
+				},
+				proposal: {
 					required: false,
 				},
 			},
@@ -853,6 +877,30 @@
 			validClass: "my-valid-class",
 			rules: {
 				e_file: {
+					required: false,
+				},
+				e_tempat_lahir: {
+					required: false,
+				},
+				e_tgl_lhr: {
+					required: false,
+				},
+				e_kode_pos: {
+					required: false,
+				},
+				e_fax_muzakki: {
+					required: false,
+				},
+				e_telp_mizakki: {
+					required: false,
+				},
+				e_hp_muzakki: {
+					required: false,
+				},
+				e_email: {
+					required: false,
+				},
+				e_website: {
 					required: false,
 				},
 				e_porposal: {
