@@ -139,11 +139,11 @@
 									<input type="text" id="total" required name="total" placeholder="total penerimaan" class="form-control" />
 									<input type="hidden" id="total_v" required name="total_v" placeholder="total penerimaan" class="form-control" />
 									<script language="JavaScript">
-										var rupiah2 = document.getElementById('total');
-										rupiah2.addEventListener('keyup', function(e) {
-											rup2 = this.value.replace(/\D/g, '');
-											$('#total_v').val(rup2);
-											rupiah2.value = formatRupiah(this.value, 'Rp. ');
+										var rupiah3 = document.getElementById('total');
+										rupiah3.addEventListener('keyup', function(e) {
+											rup3 = this.value.replace(/\D/g, '');
+											$('#total_v').val(rup3);
+											rupiah3.value = formatRupiah(this.value, 'Rp. ');
 										});
 
 										function formatRupiah(angka, prefix) {
