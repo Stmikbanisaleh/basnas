@@ -155,12 +155,12 @@
                                     <input type="file" id="file" required name="file" placeholder="" class="form-control" />
                                 </div>
                             </div> 
-							<div class="form-group">
+							<!-- <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Proposal </label>
                                 <div class="col-sm-9">
                                     <input type="file" id="proposal" name="proposal" placeholder="" class="form-control" />
                                 </div>
-                            </div> 
+                            </div>  -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
 								<div class="col-sm-9">
@@ -446,12 +446,12 @@
                                     <input type="file" id="e_file" required name="e_file" placeholder="" class="form-control" />
                                 </div>
                             </div> 
-							<div class="form-group">
+							<!-- <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Proposal </label>
                                 <div class="col-sm-9">
                                     <input type="file" id="e_proposal" required name="e_proposal" placeholder="" class="form-control" />
                                 </div>
-                            </div> 
+                            </div>  -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
 								<div class="col-sm-9">
@@ -837,9 +837,9 @@
 				website: {
 					required: false,
 				},
-				proposal: {
-					required: false,
-				},
+				// proposal: {
+				// 	required: false,
+				// },
 			},
 			submitHandler: function(form) {
 				formdata = new FormData(form);
@@ -904,9 +904,9 @@
 				e_website: {
 					required: false,
 				},
-				e_porposal: {
-					required: false,
-				},
+				// e_porposal: {
+				// 	required: false,
+				// },
 			},
 			submitHandler: function(form) {
 				formdata = new FormData(form);

@@ -15,7 +15,7 @@ body {
 </head>
 <?php
 header("Content-type:application/x-msdownload");
-header("content-disposition:attactment;filename=laporan_honor_reguler.xls");
+header("content-disposition:attactment;filename=Laporan penyaluran program ".$post_tgl_awal." sd ".$post_tgl_akhir.".xls");
 header("pragma:no-cache");
 header("Expires:0");
 ?>
