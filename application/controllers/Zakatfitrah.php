@@ -151,7 +151,7 @@ class Zakatfitrah extends CI_Controller
 		if (count($data) > 0) {
 			if ($data) {
 				$key = array_keys($data[0]);
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', 'Nama Muzakki');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', 'ID Muzakki');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B1', 'Cara Terima');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C1', 'Tgl Terima');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D1', 'No Rek');

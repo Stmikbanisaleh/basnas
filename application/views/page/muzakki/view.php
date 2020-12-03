@@ -637,6 +637,7 @@
 		<thead>
 			<tr>
 				<th>No</th>
+				<th>ID Muzakki</th>
 				<th>NPWP</th>
 				<th>Tanggal Registrasi</th>
 				<th>Jenis Muzaki</th>
@@ -651,11 +652,11 @@
 	</table>
 </div>
 <script type="text/javascript">
-	// $('select').select2({
-	// 	width: '100%',
-	// 	placeholder: "Pilih",
-	// 	allowClear: true
-	// });
+	$('select').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
 	$('#tipe_identitas').select2({
 		width: '100%',
 		placeholder: "Pilih",
@@ -1068,10 +1069,12 @@
 						for (i = 0; i < data.length; i++) {
 							html += '<tr>' +
 								'<td class="text-center">' + no + '</td>' +
+								'<td>' + data[i].id + '</td>' +
 								'<td>' + data[i].npwp + '</td>' +
 								'<td>' + data[i].createdAt + '</td>' +
 								'<td>' + data[i].jenis_muzakki + '</td>' +
 								'<td>' + data[i].nama + '</td>' +
+								'<td ><a href="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].foto+'"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].foto+'""></a></td>' +
 								'<td>' + data[i].alamat + '</td>' +
 								'<td class="text-center">' +
 								'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
@@ -1122,6 +1125,7 @@
 				for (i = 0; i < data.length; i++) {
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
+						'<td>' + data[i].id + '</td>' +
 						'<td>' + data[i].npwp + '</td>' +
 						'<td>' + data[i].createdAt + '</td>' +
 						'<td>' + data[i].jenis_muzakki + '</td>' +

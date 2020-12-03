@@ -150,7 +150,7 @@ class Zakatmal extends CI_Controller
 		if (count($data) > 0) {
 			if ($data) {
 				$key = array_keys($data[0]);
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', 'Nama Muzakki');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', 'Id Muzakki');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B1', 'Cara Terima');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C1', 'Tgl Terima');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D1', 'No Rek');
@@ -204,7 +204,7 @@ class Zakatmal extends CI_Controller
 					$jenis_zakat = $dataExcel['jenis_zakat'];
 					$nama_jenis_zakat = $dataExcel['nama_jenis_zakat'];
 
-					$objPHPExcel->getActiveSheet(0)->getStyle('K' . $row)->getNumberFormat()->setFormatCode('yyyy-mm-dd');
+					$objPHPExcel->getActiveSheet(0)->getStyle('K' . $row)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
 					$objPHPExcel->getActiveSheet(0)->setCellValueExplicit('K' . $row, $id_muzakki, PHPExcel_Cell_DataType::TYPE_STRING);
 					$objPHPExcel->getActiveSheet(0)->getColumnDimension('K')->setAutoSize(true);
 
@@ -310,7 +310,7 @@ class Zakatmal extends CI_Controller
 							'total_terima' =>$value[5],
 							'jenis'  => 2,
 							'petugas'	=> $this->session->userdata('nip'),
-							'jenis_zakat'	=> $value,
+							'jenis_zakat'	=> $value[7],
 							'createdAt' => date('Y-m-d H:i:s')
 						);
 						$result = $this->model_zakatmal->insert($arrayCustomerQuote, 'master_zakat');
