@@ -84,7 +84,7 @@ if ($jabatan == 5) { ?>
 				<li class="">
 					<a href="<?= base_url() . 'jabatan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Master jabatan
+						Master Jabatan
 					</a>
 				</li>
 				<li class="">
