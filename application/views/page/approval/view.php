@@ -153,6 +153,7 @@
 				<th class="text-center">Diajukan</th>
 				<th class="text-center">Disetujui</th>
 				<th class="text-center">Deskripsi</th>
+				<th class="text-center">Proposal</th>
 				<th class="text-center">Status</th>
 				<th class="text-center">Tanggal</th>
 				<th class="text-center">Action</th>
@@ -372,6 +373,7 @@
 						'<td>' + data[i].Nominal + '</td>' +
 						'<td>' + data[i].Nominal2 + '</td>' +
 						'<td>' + data[i].deskripsi + '</td>' +
+						'<td ><a href="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].document_proposal+'"> Download Proposal</a></td>' +
 						status +
 						'<td>' + data[i].createdAt + '</td>' +
 						'<td class="text-left">' +
