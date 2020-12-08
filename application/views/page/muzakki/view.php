@@ -156,6 +156,12 @@
                                 </div>
                             </div> 
 							<div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Proposal </label>
+                                <div class="col-sm-9">
+                                    <input type="file" id="proposal" name="proposal" placeholder="" class="form-control" />
+                                </div>
+                            </div> 
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="warganegara" id="warganegara">
@@ -441,6 +447,12 @@
                                 </div>
                             </div> 
 							<div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Proposal </label>
+                                <div class="col-sm-9">
+                                    <input type="file" id="e_proposal" required name="e_proposal" placeholder="" class="form-control" />
+                                </div>
+                            </div> 
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="e_warganegara" id="e_warganegara">
@@ -629,6 +641,7 @@
 				<th>Tanggal Registrasi</th>
 				<th>Jenis Muzaki</th>
 				<th>Nama Muzaki</th>
+				<th>Foto</th>
 				<th>Alamat</th>
 				<th>Action</th>
 			</tr>
@@ -799,6 +812,7 @@
 				file: {
 					required: false,
 				},
+<<<<<<< HEAD
 				tempat_lahir: {
 					required: false,
 				},
@@ -821,6 +835,9 @@
 					required: false,
 				},
 				website: {
+=======
+				porposal: {
+>>>>>>> acb09946017f3d0e95a6d7b47089afdb5bda7361
 					required: false,
 				},
 			},
@@ -863,6 +880,7 @@
 				e_file: {
 					required: false,
 				},
+<<<<<<< HEAD
 				e_tempat_lahir: {
 					required: false,
 				},
@@ -885,6 +903,9 @@
 					required: false,
 				},
 				e_website: {
+=======
+				e_porposal: {
+>>>>>>> acb09946017f3d0e95a6d7b47089afdb5bda7361
 					required: false,
 				},
 			},
@@ -1107,6 +1128,7 @@
 						'<td>' + data[i].createdAt + '</td>' +
 						'<td>' + data[i].jenis_muzakki + '</td>' +
 						'<td>' + data[i].nama + '</td>' +
+						'<td ><a href="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].foto+'"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].foto+'""></a></td>' +
 						'<td>' + data[i].alamat + '</td>' +
 						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +

@@ -79,8 +79,6 @@
 					<a class="ace-icon fa fa-search bigger-120"></a>Periksa
 				</button>
 			</div>
-			<br>
-			<br>
 	</form>
 </div>
 <div class="row">
@@ -289,6 +287,29 @@
 									</select>
 								</div>
 							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Proposal </label>
+								<div class="col-sm-6">
+									<input type="file" id="proposal" required name="proposal" class="form-control" />
+								</div>
+							</div>
+
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Mustahik </label>
+								<div class="col-sm-6">
+									<select class="form-control" required name="pic" id="pic">
+										<option value="">-- Pilih --</option>
+										<?php foreach ($mymustahik as $value) {
+										?>
+											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+										<?php }
+										?>
+									</select>
+								</div>
+							</div>
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Deskripsi </label>
 								<div class="col-sm-9">
@@ -448,6 +469,26 @@
 									<select class="form-control" name="e_jenis2" id="e_jenis2">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($mytype as $value) {
+										?>
+											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
+										<?php }
+										?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Proposal </label>
+								<div class="col-sm-6">
+									<input type="file" id="asdf" required name="asdf" class="form-control" />
+									<input type="hidden" id="e_proposal_hide" required name="e_proposal_hide" class="form-control" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Mustahik </label>
+								<div class="col-sm-6">
+									<select class="form-control" required name="e_pic" id="e_pic">
+										<option value="">-- Pilih --</option>
+										<?php foreach ($mymustahik as $value) {
 										?>
 											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
 										<?php }
@@ -657,6 +698,12 @@
 		$("#formTambah").validate({
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
+			rules: {
+				proposal: {
+					required: false,
+				},
+				
+			},
 			submitHandler: function(form) {
 				formdata = new FormData(form);
 				$.ajax({
@@ -727,12 +774,24 @@
 		$("#formEdit").validate({
 			errorClass: "my-error-class",
 			validClass: "my-valid-class",
+			rules: {
+				asdf: {
+					required: false,
+				},
+				
+			},
 			submitHandler: function(form) {
+				formdata = new FormData(form);
 				$.ajax({
 					type: "POST",
 					url: "<?php echo base_url('penyaluranprogram/update') ?>",
-					dataType: "JSON",
-					data: $('#formEdit').serialize(),
+					data: formdata,
+					processData: false,
+					contentType: false,
+					cache: false,
+					async: false,
+					// dataType: "JSON",
+					// data: $('#formEdit').serialize(),
 					success: function(data) {
 						$('#modalEdit').modal('hide');
 						if (data == 1) {
@@ -920,7 +979,8 @@
 				var a = ConvertFormatRupiah(data[0].jumlah_dana, 'Rp. ');
 				$('#e_total').val(a);
 				$('#e_total_v').val(data[0].jumlah_dana);
-				// $('#e_programs').val(data[0].id_program);
+				$('#e_proposal_hide').val(data[0].document_proposal);
+				$('#e_pic').val(data[0].pic);
 				$('#e_programu').val(data[0].id_program_utama);
 				$('#e_tipe2').val(data[0].ansaf);
 				$('#e_jenis2').val(data[0].type);
@@ -977,26 +1037,26 @@
 				for (i = 0; i < data.length; i++) {
 					if (data[i].is_approve == '1') {
 						var status = '<td class="text-center">' +
-							'<button  href="#my-modal-detail" class="btn btn-xs btn-info " title="Add" data-id="' + data[i].id + '">' +
-							'<i class="ace-icon fa fa-check-square-o bigger-120"></i> Approved' +
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-info " data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-thumbs-up bigger-120"></i> Disetujui' +
 							'</button> &nbsp' +
 							'</td>';
 					} else if (data[i].is_approve == '2') {
 						var status = '<td class="text-center">' +
-							'<button  href="#my-modal-detail" class="btn btn-xs btn-success " title="Add" data-id="' + data[i].id + '">' +
-							'<i class="ace-icon fa fa-ban bigger-120"> </i> Completed' +
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-success " data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-check bigger-120"> </i> Selesai' +
 							'</button> &nbsp' +
 							'</td>';
 					} else if (data[i].is_approve == '3') {
 						var status = '<td class="text-center">' +
-							'<button  href="#my-modal-detail" class="btn btn-xs btn-danger " title="Add" data-id="' + data[i].id + '">' +
-							'<i class="ace-icon fa fa-ban bigger-120"> </i> Rejected' +
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-danger " data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-ban bigger-120"> </i> Ditolak' +
 							'</button> &nbsp' +
 							'</td>';
 					} else {
 						var status = '<td class="text-center">' +
-							'<button  href="#my-modal-detail" class="btn btn-xs btn-danger " title="Add" data-id="' + data[i].id + '">' +
-							'<i class="ace-icon fa fa-ban bigger-120"> </i> Unupprove' +
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-warning " data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-bullhorn bigger-120"> </i> Menunggu disetujui' +
 							'</button> &nbsp' +
 							'</td>';
 					}
@@ -1022,6 +1082,10 @@
 						'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
 						'</button>' +
+						'<a target="_blank"  href="<?php echo base_url() . 'penyaluranlangsung/laporan_pdf?id=' ?>' + data[i].id +'" class="btn btn-xs btn-default" title="Print" data-id="' + data[i].id + '">' +
+                                '<i class="ace-icon fa fa-print bigger-120"></i>' +
+                                '</a>'+
+						' &nbsp'+
 						'</td>' +
 						'</tr>';
 					no++;

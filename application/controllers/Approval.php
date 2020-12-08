@@ -300,22 +300,17 @@ class Approval extends CI_Controller
 			echo json_encode($result);
 		}
 	}
+	
 	public function laporan_pdf()
 	{
 		$id = $this->input->get('id');
 		$urutan = +1;
-		$filename = "Kuitansi-Pembayaran" . "-" . $data['my_data'][0]->mustahik . "-" . date('Y-m-d');
+		$filename = "Kuitansi-Pembayaran". date('Y-m-d');
 		$data = array(
 			'my_data' => $this->model_approval->laporan_approval('master_penyaluran', $id)->result(),
 			'no' => sprintf("%05s", $urutan++),
 			'filename'	=> $filename
 		);
-
-		// $this->load->library('pdf');
-
-		// $this->pdf->setPaper('FOLIO', 'potrait');
-		// $this->pdf->filename = "Kuitansi-Pembayaran" . "-" . $data['my_data'][0]->mustahik . "-" . date('Y-m-d') . ".pdf";
-		// $this->pdf->load_view('page/approval/kuitansi_pembayaran', $data);
 		$this->load->view('page/approval/kuitansi_pembayaran', $data);
 	}
 

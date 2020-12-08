@@ -13,6 +13,18 @@ class Model_penyaluranlangsung extends CI_model
         return $this->db->get($table);
     }
 
+	public function laporan_approval($table, $id)
+    {
+        return $this->db->query("SELECT p.id, p.deskripsi as deskripsi , CONCAT('Rp. ',FORMAT(p.jumlah_dana,2)) Nominal,q.nama as pj
+        from $table p
+        LEFT JOIN master_program m on p.id_program = m.id 
+	 	LEFT JOIN master_sub_program n on m.id = n.id_master_program
+		LEFT JOIN master_kategori_mustahik o on p.ansaf = o.id
+		LEFT JOIN master_mustahik q on p.pic = q.id
+		where p.id = $id");
+		
+	}
+	
 	public function getpenyaluran($penyalur, $status, $tipe, $jenis, $periode_awal, $periode_akhir)
     {
 		if($penyalur != null || $penyalur !=""){
