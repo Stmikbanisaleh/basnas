@@ -21,13 +21,13 @@
 			<div class="col-sm-3">
 				<select class="basic-single form-control" name="status" id="status">
 					<option value="">-- Pilih --</option>
-					<option value="1">Approved</option>
-					<option value="0">UnApprove</option>
+					<option value="1">Disetujui</option>
+					<option value="0">Belum disetujui</option>
 				</select>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Ansaf </label>
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Asnaf </label>
 			<div class="col-sm-3">
 				<select class="form-control basic-single3" name="tipe" id="tipe">
 					<option value="">-- Pilih --</option>
@@ -224,7 +224,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Ansaf </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Asnaf </label>
 								<div class="col-sm-6">
 									<select class="form-control" name="tipe2" id="tipe2">
 										<option value="">-- Pilih --</option>
@@ -412,7 +412,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Ansaf </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Asnaf </label>
 								<div class="col-sm-6">
 									<select class="form-control" name="e_tipe2" id="e_tipe2">
 										<option value="">-- Pilih --</option>
@@ -535,7 +535,7 @@
 				<th>No</th>
 				<th class="text-center">Sub Program</th>
 				<th class="text-center">Jenis Dana</th>
-				<th class="text-center">Ansaf</th>
+				<th class="text-center">Asnaf</th>
 				<th class="text-center">Jumlah Dana</th>
 				<th class="text-center">Deskripsi</th>
 				<th class="text-center">Status</th>
@@ -577,7 +577,7 @@
 					required: "Program Utama harus diisi!"
 				},
 				ansaf: {
-					required: "Ansaf harus diisi!"
+					required: "Asnaf harus diisi!"
 				},
 			},
 			submitHandler: function(form) {

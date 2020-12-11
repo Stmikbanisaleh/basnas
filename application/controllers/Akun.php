@@ -52,9 +52,19 @@ class Akun extends CI_Controller
                 'level' => $this->input->post('level'),
                 'status'  => 1,
                 'createdAt' => date('Y-m-d H:i:s'),
-            );
-            $action = $this->model_akun->insert($data, 'users');
-            echo json_encode($action);
+			);
+
+			$validation = array(
+                'nip'  => $this->input->post('nip')
+			);
+			$cek = $this->model_akun->viewWhereOrdering('users', $validation, 'id', 'asc')->num_rows();
+			if($cek > 0){
+				echo json_encode(401);
+			} else {
+				$action = $this->model_akun->insert($data, 'users');
+				echo json_encode($action);
+			}
+         
         } else {
             $this->load->view('page/login'); //Memanggil function render_view
         }

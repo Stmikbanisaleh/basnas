@@ -53,10 +53,8 @@ class Dashboard extends CI_Controller
 		$jabatan = $this->input->post('jabatan');
 		$password = hash('sha512',md5($this->input->post('password')));
 		$query = $this->db->query("select * from users where nip ='" . $email . "' and password = '".$password."' and status = 1");
-		//print_r($password);exit;
 		if ($query->num_rows() == 1) {
 			$data = $query->result_array();
-			//echo $this->db->last_query();exit;
 			$this->load->library('Configfunction');
 			foreach ($data as $value) {
 				$insert_log = $this->configfunction->insertlog($value['nama'],$value['nip'], date('Y-m-d H:i:s'),$this->input->ip_address());

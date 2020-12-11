@@ -168,11 +168,11 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<!-- PAGE CONTENT BEGINS -->
-						<form class="form-horizontal" enctype="multipart/form-data"  role="form" id="formTambah">
+						<form class="form-horizontal" enctype="multipart/form-data" role="form" id="formTambah">
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kategori Mustahik </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Kategori Mustahik </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="kat_mustahik" id="kat_mustahik">
+									<select class="form-control" required name="kat_mustahik" id="kat_mustahik">
 										<option value="">--Pilih--</option>
 										<?php foreach ($mykatmustahik as $value) { ?>
 											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
@@ -182,14 +182,14 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Musthaik </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Nama Musthaik </label>
 								<div class="col-sm-9">
 									<input type="text" id="nama" required name="nama" placeholder="Nama Mustahik" class="form-control" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendapatan Bulananan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Pendapatan Bulananan </label>
 								<div class="col-sm-6">
 									<input type="text" id="pendapatan" required name="pendapatan" placeholder="Pendapatan Bulanan" class="form-control" />
 									<input type="hidden" id="pendapatan_v" required name="pendapatan_v" />
@@ -222,9 +222,9 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Identitas </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Tipe Identitas </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="tipe_identitas" id="tipe_identitas">
+									<select class="form-control" required name="tipe_identitas" id="tipe_identitas">
 										<option value="0">-- Pilih --</option>
 										<option value="KTP">KTP</option>
 										<option value="PASPORT">PASPORT</option>
@@ -233,9 +233,9 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Mustahik </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Jenis Mustahik </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="jenis_mustahik" id="jenis_mustahik">
+									<select class="form-control" required name="jenis_mustahik" id="jenis_mustahik">
 										<option value="0">-- Pilih --</option>
 										<option value="Individu">Individu</option>
 										<option value="Lembaga">Lembaga</option>
@@ -246,33 +246,41 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. Identitas </label>
 								<div class="col-sm-9">
-									<input type="text" id="idn" required name="idn" placeholder="No. Identitas" class="form-control" />
+									<input type="text" id="idn" maxlength="16" name="idn" placeholder="No. Identitas" class="form-control" />
 								</div>
 							</div>
+
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tempat Lahir </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. KK </label>
+								<div class="col-sm-9">
+									<input type="text" id="no_kk" name="no_kk" placeholder="No. KK" class="form-control" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Tempat Lahir </label>
 								<div class="col-sm-6">
 									<input type="text" id="tempat_lahir" required name="tempat_lahir" placeholder="Tempat Lahir" class="form-control" />
 								</div>
 							</div>
 
 							<div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
-                                <div class="col-sm-9">
-                                    <input type="file" id="foto" required name="foto" placeholder="" class="form-control" />
-                                </div>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Foto </label>
+								<div class="col-sm-9">
+									<input type="file" id="foto" required name="foto" placeholder="" class="form-control" />
+								</div>
 							</div>
-							
+
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal lahir </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Tanggal lahir </label>
 								<div class="col-sm-6">
 									<input type="date" id="tgl_lhr" required name="tgl_lhr" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Kelamin </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Jenis Kelamin </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="jk" id="jk">
+									<select class="form-control" required name="jk" id="jk">
 										<option value="">-- Pilih Kelamin --</option>
 										<option value="L">Laki - Laki</option>
 										<option value="P">Perempuan</option>
@@ -280,9 +288,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Kewarganegaraan </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="warganegara" id="warganegara">
+									<select class="form-control" required name="warganegara" id="warganegara">
 										<option value="">-- Pilih --</option>
 										<option value="WNA">WNA</option>
 										<option value="WNI">WNI</option>
@@ -312,40 +320,37 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Provinsi </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="provinsi" id="provinsi">
-										<option value="">--Pilih--</option>
-										<?php foreach ($myprovinsi as $value) { ?>
-											<option value=<?= $value['id'] ?>><?= $value['proptbpro'] ?></option>
-										<?php }
-										?>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kabupaten / Kota </label>
 								<div class="col-sm-9">
-									<input type="text" id="kab_kot" required name="kab_kot" class="form-control" />
+								<select class="form-control" name="kab_kot" id="kab_kot">
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kecamatan </label>
 								<div class="col-sm-9">
-									<input type="text" id="kec" required name="kec" class="form-control" />
+								<select class="form-control" name="kec" id="kec">
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Desa / Kelurahan </label>
 								<div class="col-sm-9">
-									<input type="text" id="desa" required name="desa" class="form-control" />
+									<input type="text" id="desa" name="desa" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Pos </label>
 								<div class="col-sm-9">
-									<input type="number" id="kode_pos" required name="kode_pos" class="form-control" />
+									<input type="number" id="kode_pos" name="kode_pos" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. Telp </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> No. Telp </label>
 								<div class="col-sm-6">
 									<input type="number" id="telp_mustahik" required name="telp_mustahik" placeholder="No. Telp" class="form-control" />
 								</div>
@@ -353,11 +358,11 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Fax </label>
 								<div class="col-sm-6">
-									<input type="number" id="fax_mustahik" required name="fax_mustahik" placeholder="FAX" class="form-control" />
+									<input type="number" id="fax_mustahik" name="fax_mustahik" placeholder="FAX" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Hanphone </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Hanphone </label>
 								<div class="col-sm-6">
 									<input type="number" id="hp_mustahik" required name="hp_mustahik" placeholder="Handphone" class="form-control" />
 								</div>
@@ -365,13 +370,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> E-mail </label>
 								<div class="col-sm-6">
-									<input type="email" id="email" required name="email" placeholder="E-mail" class="form-control" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Website </label>
-								<div class="col-sm-6">
-									<input type="text" id="website" required name="website" placeholder="website" class="form-control" />
+									<input type="email" id="email" name="email" placeholder="E-mail" class="form-control" />
 								</div>
 							</div>
 					</div>
@@ -405,10 +404,10 @@
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" enctype="multipart/form-data" role="form" id="formEdit">
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kategori Mustahik </label>
-									<input type="hidden" id="e_id" required name="e_id" class="form-control" />
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Kategori Mustahik </label>
+								<input type="hidden" id="e_id" required name="e_id" class="form-control" />
 								<div class="col-sm-9">
-									<select class="form-control" name="e_kat_mustahik" id="e_kat_mustahik">
+									<select class="form-control" required name="e_kat_mustahik" id="e_kat_mustahik">
 										<option value="">--Pilih--</option>
 										<?php foreach ($mykatmustahik as $value) { ?>
 											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
@@ -418,14 +417,14 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Musthaik </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Nama Musthaik </label>
 								<div class="col-sm-9">
 									<input type="text" id="e_nama" required name="e_nama" placeholder="Nama Mustahik" class="form-control" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendapatan Bulananan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Pendapatan Bulananan </label>
 								<div class="col-sm-6">
 									<input type="text" id="e_pendapatan" required name="e_pendapatan" placeholder="Pendapatan Bulanan" class="form-control" />
 									<input type="hidden" id="e_pendapatan_v" required name="e_pendapatan_v" />
@@ -458,9 +457,9 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Identitas </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Tipe Identitas </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_tipe_identitas" id="e_tipe_identitas">
+									<select class="form-control" required name="e_tipe_identitas" id="e_tipe_identitas">
 										<option value="0">-- Pilih --</option>
 										<option value="KTP">KTP</option>
 										<option value="PASPORT">PASPORT</option>
@@ -469,9 +468,9 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Mustahik </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Jenis Mustahik </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_jenis_mustahik" id="e_jenis_mustahik">
+									<select class="form-control" required name="e_jenis_mustahik" id="e_jenis_mustahik">
 										<option value="0">-- Pilih --</option>
 										<option value="Individu">Individu</option>
 										<option value="Lembaga">Lembaga</option>
@@ -482,9 +481,17 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. Identitas </label>
 								<div class="col-sm-9">
-									<input type="text" id="e_idn" required name="e_idn" placeholder="No. Identitas" class="form-control" />
+									<input type="text" id="e_idn" name="e_idn" placeholder="No. Identitas" class="form-control" />
 								</div>
 							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. KK </label>
+								<div class="col-sm-9">
+									<input type="text" id="e_no_kk" name="e_no_kk" placeholder="No. KK" class="form-control" />
+								</div>
+							</div>
+
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tempat Lahir </label>
 								<div class="col-sm-6">
@@ -493,10 +500,10 @@
 							</div>
 
 							<div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
-                                <div class="col-sm-9">
-                                    <input type="file" id="e_foto" name="e_foto" placeholder="" class="form-control" />
-                                </div>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
+								<div class="col-sm-9">
+									<input type="file" id="e_foto" name="e_foto" placeholder="" class="form-control" />
+								</div>
 							</div>
 
 							<div class="form-group">
@@ -506,9 +513,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Kelamin </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Jenis Kelamin </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_jk" id="e_jk">
+									<select class="form-control" required name="e_jk" id="e_jk">
 										<option value="">-- Pilih Kelamin --</option>
 										<option value="L">Laki - Laki</option>
 										<option value="P">Perempuan</option>
@@ -516,9 +523,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <b>*</b> Kewarganegaraan </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_warganegara" id="e_warganegara">
+									<select class="form-control" required name="e_warganegara" id="e_warganegara">
 										<option value="">-- Pilih --</option>
 										<option value="WNA">WNA</option>
 										<option value="WNI">WNI</option>
@@ -526,9 +533,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Usaha </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Jenis Usaha </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_ju" id="e_ju">
+									<select class="form-control" required name="e_ju" id="e_ju">
 										<option value="">--Pilih--</option>
 										<?php foreach ($myusaha as $value) { ?>
 											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
@@ -539,7 +546,7 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Alamat </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Alamat </label>
 								<div class="col-sm-9">
 									<input type="text" id="e_alamat" required name="e_alamat" placeholder="Alamat" class="form-control" />
 								</div>
@@ -548,34 +555,29 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Provinsi </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="e_provinsi" id="e_provinsi">
-										<option value="">--Pilih--</option>
-										<?php foreach ($myprovinsi as $value) { ?>
-											<option value=<?= $value['id'] ?>><?= $value['proptbpro'] ?></option>
-										<?php }
-										?>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kabupaten / Kota </label>
 								<div class="col-sm-9">
-									<input type="text" id="e_kab_kot" required name="e_kab_kot" class="form-control" />
+									<input type="text" id="e_kab_kot" name="e_kab_kot" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kecamatan </label>
 								<div class="col-sm-9">
-									<input type="text" id="e_kec" required name="e_kec" class="form-control" />
+									<input type="text" id="e_kec" name="e_kec" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Desa / Kelurahan </label>
 								<div class="col-sm-9">
-									<input type="text" id="e_desa" required name="e_desa" class="form-control" />
+									<input type="text" id="e_desa" name="e_desa" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Pos </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Kode Pos </label>
 								<div class="col-sm-9">
 									<input type="number" id="e_kode_pos" required name="e_kode_pos" class="form-control" />
 								</div>
@@ -589,11 +591,11 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Fax </label>
 								<div class="col-sm-6">
-									<input type="number" id="e_fax_mustahik" required name="e_fax_mustahik" placeholder="FAX" class="form-control" />
+									<input type="number" id="e_fax_mustahik" name="e_fax_mustahik" placeholder="FAX" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Hanphone </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Hanphone </label>
 								<div class="col-sm-6">
 									<input type="number" id="e_hp_mustahik" required name="e_hp_mustahik" placeholder="Handphone" class="form-control" />
 								</div>
@@ -601,13 +603,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> E-mail </label>
 								<div class="col-sm-6">
-									<input type="email" id="e_email" required name="e_email" placeholder="E-mail" class="form-control" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Website </label>
-								<div class="col-sm-6">
-									<input type="text" id="e_website" required name="e_website" placeholder="website" class="form-control" />
+									<input type="email" id="e_email" name="e_email" placeholder="E-mail" class="form-control" />
 								</div>
 							</div>
 					</div>
@@ -826,6 +822,13 @@
 	$(document).ready(function() {
 		show_data();
 		$('#datatable_tabletools').DataTable();
+		$.ajax({
+			type: "POST",
+			url: "mustahik/showprovinsi",
+		}).done(function(data) {
+			$("#provinsi").html(data);
+			$("#e_provinsi").html(data);
+		});
 	});
 
 	//Simpan guru
@@ -860,6 +863,33 @@
 		})
 	})
 
+	$("#provinsi").change(function() {
+		var provinsi = $('#provinsi').val();
+		$.ajax({
+			type: "POST",
+			url: "mustahik/showkab",
+			data:{
+				provinsi:provinsi,
+			}
+		}).done(function(data) {
+			$("#kab_kot").html(data);
+		});
+	});
+
+	$("#kab_kot").change(function() {
+		var provinsi = $('#provinsi').val();
+		var cityid = $('#kab_kot').val();
+		$.ajax({
+			type: "POST",
+			url: "mustahik/showkec",
+			data:{
+				cityid:cityid,
+			}
+		}).done(function(data) {
+			$("#kec").html(data);
+		});
+	});
+
 	$('#show_data').on('click', '.item_edit', function() {
 		var id = $(this).data('id');
 		$('#modalEdit').modal('show');
@@ -872,14 +902,11 @@
 				id: id,
 			},
 			success: function(data) {
-				console.log(data[0].kat_mustahik);
 				$('#e_id').val(data[0].id);
 				$('#e_kat_mustahik').val(data[0].kat_mustahik);
-
 				var a = ConvertFormatRupiah(data[0].pendapatan, 'Rp. ');
 				$('#e_pendapatan').val(a);
 				$('#e_pendapatan_v').val(data[0].pendapatan);
-
 				$('#e_tanggal').val(data[0].tgl_reg);
 				$('#e_nama').val(data[0].nama);
 				$('#e_npwp').val(data[0].npwp);
@@ -889,6 +916,7 @@
 				$('#e_tempat_lahir').val(data[0].tmp_lhr);
 				$('#e_tgl_lhr').val(data[0].tgl_lhr);
 				$('#e_jk').val(data[0].jenis_kelamin);
+				$('#e_no_kk').val(data[0].no_kk);
 				$('#e_kerja').val(data[0].pekerjaan);
 				$('#e_status').val(data[0].status_pernikahan);
 				$('#e_pendidikan').val(data[0].status_pendidikan);
@@ -925,7 +953,7 @@
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
 						'<td>' + data[i].nama + '</td>' +
-						'<td ><a href="<?php echo site_url('/assets/image/mustahik/') ?>'+data[i].foto+'"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/mustahik/') ?>'+data[i].foto+'""></a></td>' +
+						'<td ><a href="<?php echo site_url('/assets/image/mustahik/') ?>' + data[i].foto + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/mustahik/') ?>' + data[i].foto + '""></a></td>' +
 						'<td>' + data[i].jenis_mustahik + '</td>' +
 						'<td>' + data[i].kat_mustahiks + '</td>' +
 						'<td>' + data[i].alamat + '</td>' +
@@ -1064,7 +1092,7 @@
 							html += '<tr>' +
 								'<td class="text-center">' + no + '</td>' +
 								'<td>' + data[i].nama + '</td>' +
-								'<td ><a href="<?php echo site_url('/assets/image/mustahik/') ?>'+data[i].foto+'"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/mustahik/') ?>'+data[i].foto+'""></a></td>' +
+								'<td ><a href="<?php echo site_url('/assets/image/mustahik/') ?>' + data[i].foto + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/mustahik/') ?>' + data[i].foto + '""></a></td>' +
 								'<td>' + data[i].jenis_mustahik + '</td>' +
 								'<td>' + data[i].kat_mustahiks + '</td>' +
 								'<td>' + data[i].alamat + '</td>' +

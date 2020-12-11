@@ -9,8 +9,10 @@ class Model_approval extends CI_model
 
 	public function viewWhereOrderingpenyalur($table, $order, $ordering)
     {
-        return $this->db->query("SELECT a.*,b.nama as ansaf,c.nama as type ,CONCAT('Rp. ',FORMAT(a.jumlah_dana,2)) Nominal, CONCAT('Rp. ',FORMAT(a.jumlah_dana_disetujui,2)) Nominal2 from $table a join master_kategori_mustahik b on a.ansaf = b.id
-		join master_type c on a.type = c.id order by $order $ordering ");
+        return $this->db->query("SELECT e.nama as petugasnama, d.nama as namapenyalur, a.*,b.nama as ansaf,c.nama as type ,CONCAT('Rp. ',FORMAT(a.jumlah_dana,2)) Nominal, CONCAT('Rp. ',FORMAT(a.jumlah_dana_disetujui,2)) Nominal2 from $table a join master_kategori_mustahik b on a.ansaf = b.id
+		join master_type c on a.type = c.id 
+		join master_mustahik d on a.pic = d.id 
+		join users e on a.petugas = e.nip order by $order $ordering ");
 	}
 	
     public function viewOrdering($table, $order, $ordering)

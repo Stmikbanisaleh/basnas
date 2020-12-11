@@ -16,19 +16,18 @@ class Model_mustahik extends CI_model
 	public function getmustahiks($jenis, $nama)
 	{
 		if ($nama == null || $nama == "") {
-			return $this->db->query("SELECT * from master_mustahik where jenis_mustahik ='" . $jenis . "'");
+			return $this->db->query("SELECT a.*, b.nama as kat_mustahiks from master_mustahik a  join master_kategori_mustahik b on a.kat_mustahik = b.id where a.jenis_mustahik ='" . $jenis . " '");
 		} else if ($jenis == null || $jenis == "") {
-			return $this->db->query("SELECT * from master_mustahik where id ='" . $nama . "'");
+			return $this->db->query("SELECT a.*, b.nama as kat_mustahiks from master_mustahik a  join master_kategori_mustahik b on a.kat_mustahik = b.id where a.id ='" . $nama . " '");
 		} else if ($nama != null || $nama != "" && $jenis != null || $jenis != "") {
-			return $this->db->query("SELECT * from master_mustahik where id ='" . $nama . "' and jenis_mustahik = '" . $jenis . "'");
+			return $this->db->query("SELECT a.*, b.nama as kat_mustahiks from master_mustahik a  join master_kategori_mustahik b on a.kat_mustahik = b.id where id ='" . $nama . "' and jenis_mustahik = '" . $jenis . "'");
 		} else {
-			return $this->db->query("SELECT * from master_mustahik");
+			return $this->db->query("SELECT a.*, b.nama as kat_mustahiks from master_mustahik a  join master_kategori_mustahik b on a.kat_mustahik = b.id");
 		}
 	}
 
 	public function getmustahik($table, $order, $ordering)
 	{
-		// $this->db->order_by($order, $ordering);
 		return $this->db->query("SELECT a.*,b.nama as kat_mustahiks from $table a join master_kategori_mustahik b on a.kat_mustahik = b.id order by $order $ordering");
 	}
 	public function joinmustahik()

@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
 <div class="row">
     <div class="col-xs-1">
         <button id="item-tambah" role="button" data-toggle="modal" class="btn btn-xs btn-info">
@@ -8,7 +10,7 @@
     <br>
 </div>
 
-<div id="modalTambah" class="modal fade" tabindex="-1">
+<div id="modalTambah" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -145,18 +147,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Level </label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="e_level" id="e_level">
-                                        <option value="">-- Pilih Program --</option>
-                                        <option value="operator">Operator</option>
-                                        <option value="kasir">Kasir</option>
-                                        <option value="akunting">Akunting</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Aktif </label>
                                 <div class="col-sm-9">
                                     <select class="form-control" name="e_status" id="e_status">
@@ -197,7 +187,7 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Kode</th>
+                <th>NIK Karyawan</th>
                 <th>Nama</th>
                 <th>Jabatan</th>
                 <th>Username</th>
@@ -209,7 +199,14 @@
         </tbody>
     </table>
 </div>
-<script>
+<script type="text/javascript">
+
+	$('select').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
     if ($("#formImport").length > 0) {
         $("#formImport").validate({
             errorClass: "my-error-class",
@@ -248,39 +245,20 @@
             rules: {
                 id: {
                     required: true
-                    // ,maxlength: 50
                 },
 
                 nama: {
                     required: true
-                    // , digits:true,
-                    // minlength: 10,
-                    // maxlength:12,
                 },
-                // email: {
-                //         required: true,
-                //         maxlength: 50,
-                //         email: true,
-                //     },    
             },
             messages: {
 
                 id: {
                     required: "Kode Jenis Pekerjaan harus diisi!"
-                    // ,maxlength: "Your last name maxlength should be 50 characters long."
                 },
                 nama: {
                     required: "Nama Jenis User harus diisi!"
-                    // ,minlength: "The contact number should be 10 digits",
-                    // digits: "Please enter only numbers",
-                    // maxlength: "The contact number should be 12 digits",
                 },
-                // email: {
-                //     required: "Please enter valid email",
-                //     email: "Please enter valid email",
-                //     maxlength: "The email name should less than or equal to 50 characters",
-                //   },
-
             },
             submitHandler: function(form) {
                 $('#btn_simpan').html('Sending..');
@@ -298,14 +276,10 @@
                             show_data();
                             $('#modalTambah').modal('hide');
                         } else if (response == 401) {
-                            swalIdDouble('Nama User Sudah digunakan!');
+                            swalIdDouble('NIK Sudah digunakan!');
                         } else {
                             swalInputFailed();
                         }
-                        // setTimeout(function(){
-                        // // $('#res_message').hide();
-                        // // $('#msg_div').hide();
-                        // },3000);
                     }
                 });
             }
@@ -347,7 +321,7 @@
                             show_data();
                             $('#modalEdit').modal('hide');
                         } else if (response == 401) {
-                            swalIdDouble('Nama jenis User Sudah digunakan!');
+                            swalIdDouble('NIK Sudah digunakan!');
                         } else {
                             swalEditFailed();
                         }

@@ -148,6 +148,7 @@
 		<thead>
 			<tr>
 				<th class="text-center">No</th>
+				<th class="text-center">Nama</th>
 				<th class="text-center">Jenis Dana</th>
 				<th class="text-center">Ansaf</th>
 				<th class="text-center">Diajukan</th>
@@ -156,6 +157,7 @@
 				<th class="text-center">Proposal</th>
 				<th class="text-center">Status</th>
 				<th class="text-center">Tanggal</th>
+				<th class="text-center">Petugas</th>
 				<th class="text-center">Action</th>
 			</tr>
 		</thead>
@@ -368,6 +370,7 @@
 					}
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
+						'<td>' + data[i].namapenyalur + '</td>' +
 						'<td>' + data[i].type + '</td>' +
 						'<td>' + data[i].ansaf + '</td>' +
 						'<td>' + data[i].Nominal + '</td>' +
@@ -376,6 +379,7 @@
 						'<td ><a href="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].document_proposal+'"> Download Proposal</a></td>' +
 						status +
 						'<td>' + data[i].createdAt + '</td>' +
+						'<td>' + data[i].petugasnama + '</td>' +
 						'<td class="text-left">' +
 						'<button  href="#my-modal-detail" class="btn btn-xs btn-info item_edit" title="Add" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
