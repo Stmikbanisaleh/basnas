@@ -653,6 +653,12 @@
 	</table>
 </div>
 <script type="text/javascript">
+	$('select').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
 	$('kat_mustahik').select2({
 		width: '100%',
 		placeholder: "Pilih",
@@ -1058,6 +1064,7 @@
 							html += '<tr>' +
 								'<td class="text-center">' + no + '</td>' +
 								'<td>' + data[i].nama + '</td>' +
+								'<td ><a href="<?php echo site_url('/assets/image/mustahik/') ?>'+data[i].foto+'"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/mustahik/') ?>'+data[i].foto+'""></a></td>' +
 								'<td>' + data[i].jenis_mustahik + '</td>' +
 								'<td>' + data[i].kat_mustahiks + '</td>' +
 								'<td>' + data[i].alamat + '</td>' +

@@ -145,13 +145,13 @@ class Zakatfitrah extends CI_Controller
 		include 'PHPExcel/IOFactory.php';
 		$objPHPExcel = new PHPExcel();
 		$muzakki = $this->model_zakatfitrah->viewOrdering('master_muzakki','id','asc')->result_array();
-		$data = $id_zakatfitrah;
+		$data = $muzakki;
 		$no = 1;
 		$row = 2;
 		if (count($data) > 0) {
 			if ($data) {
 				$key = array_keys($data[0]);
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', 'Nama Muzakki');
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', 'ID Muzakki');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B1', 'Cara Terima');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C1', 'Tgl Terima');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D1', 'No Rek');

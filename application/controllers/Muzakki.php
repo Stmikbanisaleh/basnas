@@ -653,4 +653,16 @@ class Muzakki extends CI_Controller
 			echo json_encode($result);
 		}
 	}
+
+	public function getkota()
+	{
+		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
+
+			$myprovinsi = $this->model_muzakki->getkota($this->input->post('id_provinsi'))->result_array();
+			echo json_encode($myprovinsi);
+
+		} else {
+			$this->load->view('page/login'); //Memanggil function render_view
+		}
+	}
 }

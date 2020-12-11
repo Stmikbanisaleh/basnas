@@ -150,17 +150,17 @@
 								</div>
 							</div>
 							<div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
-                                <div class="col-sm-9">
-                                    <input type="file" id="file" required name="file" placeholder="" class="form-control" />
-                                </div>
-                            </div> 
-							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
+								<div class="col-sm-9">
+									<input type="file" id="file" required name="file" placeholder="" class="form-control" />
+								</div>
+							</div>
+							<!-- <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Proposal </label>
                                 <div class="col-sm-9">
                                     <input type="file" id="proposal" name="proposal" placeholder="" class="form-control" />
                                 </div>
-                            </div> 
+                            </div>  -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
 								<div class="col-sm-9">
@@ -247,10 +247,10 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Provinsi </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="provinsi" id="provinsi">
-										<option value="">--Pilih--</option>
+									<select class="form-control" name="provinsi" id="provinsi" onchange="checkprovinsi()">
+										<option value="32">JAWA BARAT</option>
 										<?php foreach ($myprovinsi as $value) { ?>
-											<option value=<?= $value['id'] ?>><?= $value['proptbpro'] ?></option>
+											<option value=<?= $value['kode'] ?>><?= $value['nama'] ?></option>
 										<?php }
 										?>
 									</select>
@@ -258,8 +258,12 @@
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kabupaten / Kota </label>
-								<div class="col-sm-9">
+								<div class="col-sm-9" id="div_kabkot">
+									<!-- <select class="form-control" name="kab_kot" id="kab_kot" onchange="checkkota()"> -->
 									<input type="text" id="kab_kot" required name="kab_kot" class="form-control" />
+										<option value="32">KOTA BEKASI</option>
+										<option value="32">KOTA BEKASI</option>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -441,17 +445,17 @@
 								</div>
 							</div>
 							<div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
-                                <div class="col-sm-9">
-                                    <input type="file" id="e_file" required name="e_file" placeholder="" class="form-control" />
-                                </div>
-                            </div> 
-							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
+								<div class="col-sm-9">
+									<input type="file" id="e_file" required name="e_file" placeholder="" class="form-control" />
+								</div>
+							</div>
+							<!-- <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Proposal </label>
                                 <div class="col-sm-9">
                                     <input type="file" id="e_proposal" required name="e_proposal" placeholder="" class="form-control" />
                                 </div>
-                            </div> 
+                            </div>  -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
 								<div class="col-sm-9">
@@ -637,6 +641,7 @@
 		<thead>
 			<tr>
 				<th>No</th>
+				<th>ID Muzakki</th>
 				<th>NPWP</th>
 				<th>Tanggal Registrasi</th>
 				<th>Jenis Muzaki</th>
@@ -651,11 +656,11 @@
 	</table>
 </div>
 <script type="text/javascript">
-	// $('select').select2({
-	// 	width: '100%',
-	// 	placeholder: "Pilih",
-	// 	allowClear: true
-	// });
+	$('select').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
 	$('#tipe_identitas').select2({
 		width: '100%',
 		placeholder: "Pilih",
@@ -667,7 +672,7 @@
 		placeholder: "Pilih",
 		allowClear: true
 	});
-	
+
 	$('#jk').select2({
 		width: '100%',
 		placeholder: "Pilih",
@@ -679,7 +684,7 @@
 		placeholder: "Pilih",
 		allowClear: true
 	});
-	
+
 	$('#jenis_m').select2({
 		width: '100%',
 		placeholder: "Pilih",
@@ -703,7 +708,7 @@
 		placeholder: "Pilih",
 		allowClear: true
 	});
-	
+
 	if ($("#formImport").length > 0) {
 		$("#formImport").validate({
 			errorClass: "my-error-class",
@@ -812,7 +817,6 @@
 				file: {
 					required: false,
 				},
-<<<<<<< HEAD
 				tempat_lahir: {
 					required: false,
 				},
@@ -835,9 +839,27 @@
 					required: false,
 				},
 				website: {
-=======
+					required: false,
+				},
 				porposal: {
->>>>>>> acb09946017f3d0e95a6d7b47089afdb5bda7361
+					required: false,
+				},
+				kode_pos: {
+					required: false,
+				},
+				fax_muzakki: {
+					required: false,
+				},
+				telp_mizakki: {
+					required: false,
+				},
+				hp_muzakki: {
+					required: false,
+				},
+				email: {
+					required: false,
+				},
+				website: {
 					required: false,
 				},
 			},
@@ -847,10 +869,10 @@
 					type: "POST",
 					url: "<?php echo base_url('muzakki/simpan') ?>",
 					data: formdata,
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    async: false,
+					processData: false,
+					contentType: false,
+					cache: false,
+					async: false,
 					success: function(data) {
 						console.log(data);
 						$('#my-modal').modal('hide');
@@ -880,7 +902,6 @@
 				e_file: {
 					required: false,
 				},
-<<<<<<< HEAD
 				e_tempat_lahir: {
 					required: false,
 				},
@@ -903,11 +924,14 @@
 					required: false,
 				},
 				e_website: {
-=======
-				e_porposal: {
->>>>>>> acb09946017f3d0e95a6d7b47089afdb5bda7361
 					required: false,
 				},
+				e_porposal: {
+					required: false,
+				},
+				// e_porposal: {
+				// 	required: false,
+				// },
 			},
 			submitHandler: function(form) {
 				formdata = new FormData(form);
@@ -1070,10 +1094,12 @@
 						for (i = 0; i < data.length; i++) {
 							html += '<tr>' +
 								'<td class="text-center">' + no + '</td>' +
+								'<td>' + data[i].id + '</td>' +
 								'<td>' + data[i].npwp + '</td>' +
 								'<td>' + data[i].createdAt + '</td>' +
 								'<td>' + data[i].jenis_muzakki + '</td>' +
 								'<td>' + data[i].nama + '</td>' +
+								'<td ><a href="<?php echo site_url('/assets/image/muzakki/') ?>' + data[i].foto + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/muzakki/') ?>' + data[i].foto + '""></a></td>' +
 								'<td>' + data[i].alamat + '</td>' +
 								'<td class="text-center">' +
 								'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
@@ -1124,11 +1150,12 @@
 				for (i = 0; i < data.length; i++) {
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
+						'<td>' + data[i].id + '</td>' +
 						'<td>' + data[i].npwp + '</td>' +
 						'<td>' + data[i].createdAt + '</td>' +
 						'<td>' + data[i].jenis_muzakki + '</td>' +
 						'<td>' + data[i].nama + '</td>' +
-						'<td ><a href="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].foto+'"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].foto+'""></a></td>' +
+						'<td ><a href="<?php echo site_url('/assets/image/muzakki/') ?>' + data[i].foto + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/muzakki/') ?>' + data[i].foto + '""></a></td>' +
 						'<td>' + data[i].alamat + '</td>' +
 						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
@@ -1161,4 +1188,34 @@
 
 		});
 	}
+
+	function checkprovinsi() {
+		$.ajax({
+			type: 'POST',
+			url: '<?php echo site_url('muzakki/getkota') ?>',
+			data: {
+				id_provinsi : document.getElementById("provinsi").value,
+			},
+			dataType: 'json',
+			success: function(data) {
+				var html = '';
+				html += '<select class="form-control" name="kab_kot" id="kab_kot" onchange="checkkota()">';
+				html += '<option value="0">--Pilih Kota--</option>' ;
+				for (i = 0; i < data.length; i++) {
+					html += '<option value="'+data[i].kode+'">'+data[i].nama+'</option>' ;
+					// no++;
+				}
+				html += '</select>';
+				var a = $('#div_kabkot').html(html);
+				/* END TABLETOOLS */
+				// alert("success");
+			}
+		});
+
+	}
 </script>
+<!-- <select class="form-control" name="kab_kot" id="kab_kot" onchange="checkkota()">
+									<input type="text" id="kab_kot" required name="kab_kot" class="form-control" />
+										<option value="32">KOTA BEKASI</option>
+										<option value="32">KOTA BEKASI</option>
+									</select> -->
