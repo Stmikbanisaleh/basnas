@@ -239,24 +239,21 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Provinsi </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="provinsi" id="provinsi">
-										<option value="">--Pilih--</option>
-										<?php foreach ($myprovinsi as $value) { ?>
-											<option value=<?= $value['id'] ?>><?= $value['proptbpro'] ?></option>
-										<?php }
-										?>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kabupaten / Kota </label>
 								<div class="col-sm-9">
-									<input type="text" id="kab_kot" required name="kab_kot" class="form-control" />
+								<select class="form-control" name="kab_kot" id="kab_kot">
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kecamatan </label>
 								<div class="col-sm-9">
-									<input type="text" id="kec" required name="kec" class="form-control" />
+								<select class="form-control" name="kec" id="kec">
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -517,24 +514,23 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Provinsi </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="e_provinsi" id="e_provinsi">
-										<option value="">--Pilih--</option>
-										<?php foreach ($myprovinsi as $value) { ?>
-											<option value=<?= $value['id'] ?>><?= $value['proptbpro'] ?></option>
-										<?php }
-										?>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kabupaten / Kota </label>
 								<div class="col-sm-9">
-									<input type="text" id="e_kab_kot" required name="e_kab_kot" class="form-control" />
+									<select class="form-control" name="e_kab_kot" id="e_kab_kot">
+									<option value=''>--Pilih Data --</option>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kecamatan </label>
 								<div class="col-sm-9">
-									<input type="text" id="e_kec" required name="e_kec" class="form-control" />
+									<select class="form-control" name="e_kec" id="e_kec">
+									<option value=''>--Pilih Data --</option>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -631,16 +627,12 @@
 	</table>
 </div>
 <script type="text/javascript">
-	$('select').select2({
-		width: '100%',
-		placeholder: "Pilih",
-		allowClear: true
-	});
-	$('#tipe_identitas').select2({
-		width: '100%',
-		placeholder: "Pilih",
-		allowClear: true
-	});
+
+	// $('#tipe_identitas').select2({
+	// 	width: '100%',
+	// 	placeholder: "Pilih",
+	// 	allowClear: true
+	// });
 
 	$('#warganegara').select2({
 		width: '100%',
@@ -813,9 +805,6 @@
 				email: {
 					required: false,
 				},
-				// proposal: {
-				// 	required: false,
-				// },
 			},
 			submitHandler: function(form) {
 				formdata = new FormData(form);
@@ -911,9 +900,69 @@
 	$(document).ready(function() {
 		show_data();
 		$('#datatable_tabletools').DataTable();
+		$.ajax({
+			type: "POST",
+			url: "muzakki/showprovinsi",
+		}).done(function(data) {
+			$("#provinsi").html(data);
+			$("#e_provinsi").html(data);
+		});
 	});
 
-	//Simpan guru
+	$("#provinsi").change(function() {
+		var provinsi = $('#provinsi').val();
+		$.ajax({
+			type: "POST",
+			url: "mustahik/showkab",
+			data:{
+				provinsi:provinsi,
+			}
+		}).done(function(data) {
+			$("#kab_kot").html(data);
+		});
+	});
+
+	$("#kab_kot").change(function() {
+		var provinsi = $('#provinsi').val();
+		var cityid = $('#kab_kot').val();
+		$.ajax({
+			type: "POST",
+			url: "mustahik/showkec",
+			data:{
+				cityid:cityid,
+			}
+		}).done(function(data) {
+			$("#kec").html(data);
+		});
+	});
+
+	$("#e_provinsi").change(function() {
+		var provinsi = $('#e_provinsi').val();
+		$.ajax({
+			type: "POST",
+			url: "muzakki/showkab",
+			data:{
+				provinsi:provinsi,
+			}
+		}).done(function(data) {
+			$("#e_kab_kot").html(data);
+		});
+	});
+
+	$("#e_kab_kot").change(function() {
+		var provinsi = $('#e_provinsi').val();
+		var cityid = $('#e_kab_kot').val();
+		$.ajax({
+			type: "POST",
+			url: "muzakki/showkec",
+			data:{
+				cityid:cityid,
+			}
+		}).done(function(data) {
+			$("#e_kec").html(data);
+		});
+	});
+
 
 	$('#show_data').on('click', '.item_hapus', function() {
 		var id = $(this).data('id');
@@ -994,7 +1043,8 @@
 				$('#e_status').val(data[0].status_pernikahan);
 				$('#e_pendidikan').val(data[0].status_pendidikan);
 				$('#e_alamat').val(data[0].alamat);
-				$('#e_provinsi').val(data[0].provinsi);
+				// $('#e_provinsi').val(data[0].provinsi);
+				getProvAPI(data[0].provinsi);
 				$('#e_kab_kot').val(data[0].kab_kota);
 				$('#e_kec').val(data[0].kecamatan);
 				$('#e_desa').val(data[0].desa_kelurahan);
@@ -1008,6 +1058,18 @@
 			}
 		});
 	});
+
+	function getProvAPI(provID) {
+		$.ajax({
+			type: "POST",
+			url: "muzakki/showprovinsibyid",
+			data:{
+				provinsi:provID,
+			}
+		}).done(function(data) {
+			$("#e_provinsi").html(data);
+		});
+	}
 
 	if ($("#formSearch").length > 0) {
 		$("#formSearch").validate({
@@ -1086,6 +1148,8 @@
 			}
 		})
 	}
+
+	
 
 	//function show all Data
 	function show_data() {

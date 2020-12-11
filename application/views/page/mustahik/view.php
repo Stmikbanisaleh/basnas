@@ -317,23 +317,23 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Provinsi </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Provinsi </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="provinsi" id="provinsi">
+									<select class="form-control" required name="provinsi" id="provinsi">
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kabupaten / Kota </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Kabupaten / Kota </label>
 								<div class="col-sm-9">
-								<select class="form-control" name="kab_kot" id="kab_kot">
+								<select class="form-control" required name="kab_kot" id="kab_kot">
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kecamatan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Kecamatan </label>
 								<div class="col-sm-9">
-								<select class="form-control" name="kec" id="kec">
+								<select class="form-control" required name="kec" id="kec">
 									</select>
 								</div>
 							</div>
@@ -344,9 +344,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kode Pos </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Kode Pos </label>
 								<div class="col-sm-9">
-									<input type="number" id="kode_pos" name="kode_pos" class="form-control" />
+									<input type="number"  id="kode_pos" name="kode_pos" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -561,13 +561,15 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kabupaten / Kota </label>
 								<div class="col-sm-9">
-									<input type="text" id="e_kab_kot" name="e_kab_kot" class="form-control" />
+								<select class="form-control" name="e_kab_kot" id="e_kab_kot">
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kecamatan </label>
 								<div class="col-sm-9">
-									<input type="text" id="e_kec" name="e_kec" class="form-control" />
+								<select class="form-control" name="e_kec" id="e_kec">
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -649,13 +651,19 @@
 	</table>
 </div>
 <script type="text/javascript">
-	$('select').select2({
+	$('kat_mustahik').select2({
 		width: '100%',
 		placeholder: "Pilih",
 		allowClear: true
 	});
 
-	$('kat_mustahik').select2({
+	$('provinsi').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
+	$('kab_kot').select2({
 		width: '100%',
 		placeholder: "Pilih",
 		allowClear: true
@@ -887,6 +895,33 @@
 			}
 		}).done(function(data) {
 			$("#kec").html(data);
+		});
+	});
+
+	$("#e_provinsi").change(function() {
+		var provinsi = $('#e_provinsi').val();
+		$.ajax({
+			type: "POST",
+			url: "mustahik/showkab",
+			data:{
+				provinsi:provinsi,
+			}
+		}).done(function(data) {
+			$("#e_kab_kot").html(data);
+		});
+	});
+
+	$("#e_kab_kot").change(function() {
+		var provinsi = $('#e_provinsi').val();
+		var cityid = $('#e_kab_kot').val();
+		$.ajax({
+			type: "POST",
+			url: "mustahik/showkec",
+			data:{
+				cityid:cityid,
+			}
+		}).done(function(data) {
+			$("#e_kec").html(data);
 		});
 	});
 

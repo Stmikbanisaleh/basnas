@@ -74,8 +74,42 @@ class Mustahik extends CI_Controller
 		));
 
 		$response = curl_exec($curl);
-		$err = curl_error($curl);
 
+		$err = curl_error($curl);
+		curl_close($curl);
+
+		if ($err) {
+			echo "cURL Error #:" . $err;
+		} else {
+			$data = json_decode($response, true);
+			$prov = $data['rajaongkir']['results'];
+		echo "<option value='0'>--Pilih Data --</option>";
+		foreach ($prov as $key => $value) {
+		echo "<option value='" . $value['province_id'] . "'> " . $value['province'] . " </option>";
+		}
+		}
+	
+	}
+
+	public function showprovinsibyid()
+	{
+		$province = $this->input->post('provinsi');
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => "https://api.rajaongkir.com/starter/province?id=$province",
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "GET",
+			CURLOPT_HTTPHEADER => array(
+				"key: b0cca0b7827f71b3ffe565525c503f6e"
+			),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
 		curl_close($curl);
 
 		if ($err) {

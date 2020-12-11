@@ -68,6 +68,14 @@
 		});
 	}
 
+	function swalExpired(){
+		Swal.fire({
+		  icon: 'error',
+		  title: 'Gagal',
+		  text: 'Minimal Pengajuan Jeda 6 Bulan!',
+		});
+	}
+
 	function swalAktifFail(){
 		Swal.fire({
 		  icon: 'success',

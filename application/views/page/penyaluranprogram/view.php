@@ -733,9 +733,9 @@
 							document.getElementById("formTambah").reset();
 							swalInputSuccess();
 							show_data();
-						} else if (data == 401) {
+						} else if (data == 403) {
 							document.getElementById("formTambah").reset();
-							swalIdDouble();
+							swalExpired();
 						} else {
 							document.getElementById("formTambah").reset();
 							swalInputFailed();
