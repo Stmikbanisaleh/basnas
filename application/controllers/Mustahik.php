@@ -207,8 +207,7 @@ class Mustahik extends CI_Controller
 					'email'  => $this->input->post('email'),
 					'createdAt' => date('Y-m-d H:i:s')
 				);
-				$result = $this->model_mustahik->insert($data, 'master_mustahik');
-				echo json_decode($result);
+				
 			} else {
 				$data = array(
 					'tgl_reg'  => date('Y-m-d H:i:s'),
@@ -225,9 +224,11 @@ class Mustahik extends CI_Controller
 					'kewarganegaraan'  => $this->input->post('warganegara'),
 					'jenis_usaha'  => $this->input->post('ju'),
 					'alamat'  => $this->input->post('alamat'),
+
 					'provinsi'  => $this->input->post('provinsi'),
 					'kab_kota'  => $this->input->post('kab_kot'),
 					'kecamatan'  => $this->input->post('kec'),
+
 					'desa_kelurahan'  => $this->input->post('desa'),
 					'kode_pos'  => $this->input->post('kode_pos'),
 					'telp'  => $this->input->post('telp_mustahik'),
@@ -236,9 +237,9 @@ class Mustahik extends CI_Controller
 					'email'  => $this->input->post('email'),
 					'createdAt' => date('Y-m-d H:i:s')
 				);
-				$result = $this->model_mustahik->insert($data, 'master_mustahik');
-				echo json_decode($result);
 			}
+			$result = $this->model_mustahik->insert($data, 'master_mustahik');
+			echo json_decode($result);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}

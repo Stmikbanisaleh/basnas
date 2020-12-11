@@ -159,7 +159,7 @@
 						<form class="form-horizontal" enctype="multipart/form-data" role="form" id="formTambah2">
 							<input type="hidden" id="e_id2" required name="e_id2" class="form-control" />
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Mustahik </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Nama Mustahik </label>
 								<div class="col-sm-6">
 									<select class="form-control" required name="nama3" id="nama3">
 										<option value="">-- Pilih --</option>
@@ -189,7 +189,7 @@
 	</div><!-- /.modal-dialog -->
 </div>
 
-<div id="my-modal" class="modal fade" tabindex="-1">
+<div id="my-modal" class="modal fade" >
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -203,7 +203,7 @@
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" enctype="multipart/form-data" role="form" id="formTambah">
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Program Utama </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Program Utama </label>
 								<div class="col-sm-6">
 									<select class="form-control" name="programu" id="programu">
 										<option value="">-- Pilih --</option>
@@ -216,17 +216,17 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sub Program </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b>  Sub Program </label>
 								<div class="col-sm-6">
-									<select class="form-control" name="programs" id="programs">
+									<select class="form-control" required name="programs" id="programs">
 										<option value="">-- Pilih --</option>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Asnaf </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b>  Tipe Asnaf </label>
 								<div class="col-sm-6">
-									<select class="form-control" name="tipe2" id="tipe2">
+									<select class="form-control" required name="tipe2" id="tipe2">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($mykategorimustahik as $value) {
 										?>
@@ -237,13 +237,13 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Penerimaan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b>  Tanggal Penerimaan </label>
 								<div class="col-sm-6">
 									<input type="date" id="tanggal2" required name="tanggal2" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Total Penerimaan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b>  Total Penerimaan </label>
 								<div class="col-sm-9">
 									<input type="text" id="total" required name="total" placeholder="Total Penerimaan" class="form-control" />
 									<input type="hidden" id="total_v" required name="total_v" class="form-control" />
@@ -275,9 +275,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Dana </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Jenis Dana </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="jenis2" id="jenis2">
+									<select class="form-control" required name="jenis2" id="jenis2">
 										<option value="">-- Pilih --</option>
 										<?php foreach ($mytype as $value) {
 										?>
@@ -289,7 +289,7 @@
 							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Proposal </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Proposal </label>
 								<div class="col-sm-6">
 									<input type="file" id="proposal" required name="proposal" class="form-control" />
 								</div>
@@ -297,7 +297,7 @@
 
 							
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Mustahik </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <b>*</b> Nama Mustahik </label>
 								<div class="col-sm-6">
 									<select class="form-control" required name="pic" id="pic">
 										<option value="">-- Pilih --</option>
@@ -549,6 +549,18 @@
 </div>
 <script type="text/javascript">
 	$('#nama3').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+	
+	$('#pic').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
+	$('#tipe2').select2({
 		width: '100%',
 		placeholder: "Pilih",
 		allowClear: true

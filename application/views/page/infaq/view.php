@@ -76,7 +76,7 @@
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" enctype="multipart/form-data" role="form" id="formTambah">
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Nama </label>
 								<div class="col-sm-9">
 									<select required class="form-control" name="nama" id="nama">
 										<option value="">-- Pilih Muzakki--</option>
@@ -91,14 +91,14 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NPWZ </label>
 								<div class="col-sm-6">
-									<input type="text" id="npwp" required name="npwp" placeholder="NPWZ" class="form-control" />
+									<input type="text" id="npwp" name="npwp" placeholder="NPWZ" class="form-control" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cara Penerimaan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Cara Penerimaan </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="penerimaan" id="penerimaan">
+									<select class="form-control" required name="penerimaan" id="penerimaan">
 										<option value="0">-- Pilih --</option>
 										<option value="Tunai">Tunai</option>
 										<option value="Non Tunai">Non Tunai</option>
@@ -106,23 +106,23 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pilih Nomor Rekening </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Pilih Nomor Rekening </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="norek" id="norek">
+									<select class="form-control" required name="norek" id="norek">
 										<option value="0">-- Pilih --</option>
 									</select>
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Penerimaan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Tanggal Penerimaan </label>
 								<div class="col-sm-6">
 									<input type="date" id="tanggal" required name="tanggal" class="form-control" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Total Penerimaan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Total Penerimaan </label>
 								<div class="col-sm-9">
 									<input type="text" id="total" required name="total" placeholder="total penerimaan" class="form-control" />
 									<input type="hidden" id="total_v" required name="total_v" placeholder="total penerimaan" class="form-control" />
@@ -157,7 +157,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Deskripsi </label>
 								<div class="col-sm-9">
-									<input type="text" id="deskripsi" required name="deskripsi" placeholder="Deskripsi" class="form-control" />
+									<input type="text" id="deskripsi" name="deskripsi" placeholder="Deskripsi" class="form-control" />
 								</div>
 							</div>
 
@@ -192,7 +192,7 @@
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" enctype="multipart/form-data" role="form" id="formEdit">
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Nama </label>
 								<div class="col-sm-9">
 									<select required class="form-control" name="e_nama" id="e_nama">
 										<option value="">-- Pilih Muzakki--</option>
@@ -208,14 +208,14 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NPWZ </label>
 								<div class="col-sm-6">
 									<input type="hidden" id="e_id" required name="e_id" />
-									<input type="text" id="e_npwz" required name="e_npwz" placeholder="NPWZ" class="form-control" />
+									<input type="text" id="e_npwz" name="e_npwz" placeholder="NPWZ" class="form-control" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cara Penerimaan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Cara Penerimaan </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_penerimaan" id="e_penerimaan">
+									<select class="form-control" required name="e_penerimaan" id="e_penerimaan">
 										<option value="0">-- Pilih --</option>
 										<option value="Tunai">Tunai</option>
 										<option value="Non Tunai">Non Tunai</option>
@@ -223,23 +223,23 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pilih Nomor Rekening </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Pilih Nomor Rekening </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_norek" id="e_norek">
+									<select class="form-control" required name="e_norek" id="e_norek">
 										<option value="0">-- Pilih --</option>
 									</select>
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Penerimaan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Tanggal Penerimaan </label>
 								<div class="col-sm-6">
 									<input type="date" id="e_tanggal" required name="e_tanggal" class="form-control" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Total Penerimaan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Total Penerimaan </label>
 								<div class="col-sm-9">
 									<input type="text" id="e_total" required name="e_total" placeholder="total penerimaan" class="form-control" />
 									<input type="hidden" id="e_total_v" required name="e_total_v" placeholder="total penerimaan" class="form-control" />

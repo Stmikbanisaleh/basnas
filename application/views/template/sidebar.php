@@ -78,7 +78,7 @@ if ($jabatan == 5) { ?>
 				<li class="">
 					<a href="<?= base_url() . 'jabatan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Master jabatan
+						Master Jabatan
 					</a>
 				</li>
 				<li class="">
@@ -173,6 +173,13 @@ if ($jabatan == 5) { ?>
 					<a href="<?= base_url() . 'penyaluranprogram'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Penyaluran
+					</a>
+					<b class="arrow"></b>
+				</li>
+				<li class="">
+					<a href="<?= base_url() . 'penyaluranselesai'; ?>">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Status Penyaluran Selesai 
 					</a>
 					<b class="arrow"></b>
 				</li>

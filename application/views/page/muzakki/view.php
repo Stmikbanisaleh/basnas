@@ -615,13 +615,14 @@
 		<thead>
 			<tr>
 				<th>No</th>
-				<th>ID Muzakki</th>
+				<th>Nama Muzaki</th>
+				<th>No Antrian</th>
 				<th>NPWP</th>
 				<th>Tanggal Registrasi</th>
 				<th>Jenis Muzaki</th>
-				<th>Nama Muzaki</th>
 				<th>Foto</th>
 				<th>Alamat</th>
+				<th>Detail</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -812,9 +813,6 @@
 				email: {
 					required: false,
 				},
-				website: {
-					required: false,
-				},
 				// proposal: {
 				// 	required: false,
 				// },
@@ -879,12 +877,6 @@
 				e_email: {
 					required: false,
 				},
-				e_website: {
-					required: false,
-				},
-				// e_porposal: {
-				// 	required: false,
-				// },
 			},
 			submitHandler: function(form) {
 				formdata = new FormData(form);
@@ -1045,15 +1037,21 @@
 						var i = 0;
 						var no = 1;
 						for (i = 0; i < data.length; i++) {
+							var status = '<td class="text-center">' +
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-info " title="Add" data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-search bigger-120"></i> Detail' +
+							'</button> &nbsp' +
+							'</td>';
 							html += '<tr>' +
 								'<td class="text-center">' + no + '</td>' +
+								'<td>' + data[i].nama + '</td>' +
 								'<td>' + data[i].id + '</td>' +
 								'<td>' + data[i].npwp + '</td>' +
 								'<td>' + data[i].createdAt + '</td>' +
 								'<td>' + data[i].jenis_muzakki + '</td>' +
-								'<td>' + data[i].nama + '</td>' +
 								'<td ><a href="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].foto+'"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].foto+'""></a></td>' +
 								'<td>' + data[i].alamat + '</td>' +
+								status +
 								'<td class="text-center">' +
 								'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
 								'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
@@ -1101,15 +1099,21 @@
 				var i = 0;
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
+					var status = '<td class="text-center">' +
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-info " title="Add" data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-search bigger-120"></i> Detail' +
+							'</button> &nbsp' +
+							'</td>';
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
+						'<td>' + data[i].nama + '</td>' +
 						'<td>' + data[i].id + '</td>' +
 						'<td>' + data[i].npwp + '</td>' +
 						'<td>' + data[i].createdAt + '</td>' +
 						'<td>' + data[i].jenis_muzakki + '</td>' +
-						'<td>' + data[i].nama + '</td>' +
 						'<td ><a href="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].foto+'"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].foto+'""></a></td>' +
 						'<td>' + data[i].alamat + '</td>' +
+						status +
 						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
