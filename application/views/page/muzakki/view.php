@@ -99,7 +99,7 @@
 	</div><!-- /.modal-dialog -->
 </div>
 
-<div id="my-modal" class="modal fade" tabindex="-1">
+<div id="my-modal" class="modal fade" >
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -112,15 +112,13 @@
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" enctype="multipart/form-data" role="form" id="formTambah">
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Registrasi </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Tanggal Registrasi </label>
 								<div class="col-sm-6">
 									<input type="date" id="tanggal" required name="tanggal" class="form-control" />
 								</div>
 							</div>
-
-
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Nama </label>
 								<div class="col-sm-9">
 									<input type="text" id="nama" required name="nama" placeholder="Nama Muzakki" class="form-control" />
 								</div>
@@ -128,14 +126,14 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NPWP </label>
 								<div class="col-sm-6">
-									<input type="text" id="npwp" required name="npwp" placeholder="NPWP" class="form-control" />
+									<input type="text" id="npwp" name="npwp" placeholder="NPWP" class="form-control" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Identitas </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <b>*</b> Tipe Identitas </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="tipe_identitas" id="tipe_identitas">
+									<select class="form-control" name="tipe_identitas" required id="tipe_identitas">
 										<option value="0">-- TIPE --</option>
 										<option value="KTP">KTP</option>
 										<option value="PASPORT">PASPORT</option>
@@ -146,25 +144,19 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. Identitas </label>
 								<div class="col-sm-9">
-									<input type="text" id="idn" required name="idn" placeholder="No. Identitas" class="form-control" />
+									<input type="text" id="idn" maxlength="16" name="idn" placeholder="No. Identitas" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <b>*</b> Foto </label>
                                 <div class="col-sm-9">
                                     <input type="file" id="file" required name="file" placeholder="" class="form-control" />
                                 </div>
                             </div> 
-							<!-- <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Proposal </label>
-                                <div class="col-sm-9">
-                                    <input type="file" id="proposal" name="proposal" placeholder="" class="form-control" />
-                                </div>
-                            </div>  -->
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Kewarganegaraan </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="warganegara" id="warganegara">
+									<select class="form-control" required name="warganegara" id="warganegara">
 										<option value="">-- Pilih --</option>
 										<option value="WNA">WNA</option>
 										<option value="WNI">WNI</option>
@@ -173,19 +165,19 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tempat Lahir </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <b>*</b> Tempat Lahir </label>
 								<div class="col-sm-6">
 									<input type="text" id="tempat_lahir" required name="tempat_lahir" placeholder="Tempat Lahir" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal lahir </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <b>*</b> Tanggal lahir </label>
 								<div class="col-sm-6">
 									<input type="date" id="tgl_lhr" required name="tgl_lhr" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Kelamin </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Jenis Kelamin </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="jk" id="jk">
 										<option value="">-- Pilih Kelamin --</option>
@@ -195,9 +187,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Muzaki </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Jenis Muzaki </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="jenis_m" id="jenis_m">
+									<select class="form-control" required name="jenis_m" id="jenis_m">
 										<option value="0">-- Pilih --</option>
 										<option value="Individu">Individu</option>
 										<option value="Lembaga">Lembaga</option>
@@ -220,8 +212,7 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Pernikahan </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="status" id="status">
-										<option value="">-- Pilih Status --</option>
-										<option value="1">Lajang</option>
+										<option value="1">Belum Menikah</option>
 										<option value="2">Menikah</option>
 									</select>
 								</div>
@@ -281,9 +272,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Staus Rumah </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <b>*</b> Staus Rumah </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="kepemilikan" id="kepemilikan">
+									<select class="form-control" required name="kepemilikan" id="kepemilikan">
 										<option value="">--Pilih--</option>
 										<?php foreach ($mykepemilikan as $value) { ?>
 											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
@@ -314,12 +305,6 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> E-mail </label>
 								<div class="col-sm-6">
 									<input type="email" id="email" required name="email" placeholder="E-mail" class="form-control" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Website </label>
-								<div class="col-sm-6">
-									<input type="text" id="website" required name="website" placeholder="website" class="form-control" />
 								</div>
 							</div>
 					</div>
@@ -354,7 +339,7 @@
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" role="form" id="formRekening">
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Muzaki </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Nama Muzaki </label>
 								<div class="col-sm-6">
 									<input type="text" id="nama3" readonly name="nama3" class="form-control" />
 									<input type="hidden" id="er_id" name="er_id" class="form-control" />
@@ -368,7 +353,7 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama Bank </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <b>*</b> Nama Bank </label>
 								<div class="col-sm-6">
 									<input type="text" id="nama_bank" required name="nama_bank" placeholder="Nomor Kartu" class="form-control" />
 								</div>
@@ -404,14 +389,14 @@
 						<!-- PAGE CONTENT BEGINS -->
 						<form class="form-horizontal" enctype="multipart/form-data" role="form" id="formEdit">
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal Registrasi </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Tanggal Registrasi </label>
 								<div class="col-sm-6">
 									<input type="hidden" id="e_id" required name="e_id" class="form-control" />
 									<input type="date" id="e_tanggal" required name="e_tanggal" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nama </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Nama </label>
 								<div class="col-sm-9">
 									<input type="text" id="e_nama" required name="e_nama" placeholder="Nama Muzakki" class="form-control" />
 								</div>
@@ -419,14 +404,14 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> NPWP </label>
 								<div class="col-sm-6">
-									<input type="text" id="e_npwp" required name="e_npwp" placeholder="NPWP" class="form-control" />
+									<input type="text" id="e_npwp" name="e_npwp" placeholder="NPWP" class="form-control" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipe Identitas </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Tipe Identitas </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_tipe_identitas" id="e_tipe_identitas">
+									<select class="form-control" required name="e_tipe_identitas" id="e_tipe_identitas">
 										<option value="0">-- Pilih --</option>
 										<option value="KTP">KTP</option>
 										<option value="PASPORT">PASPORT</option>
@@ -437,25 +422,19 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. Identitas </label>
 								<div class="col-sm-9">
-									<input type="text" id="e_idn" required name="e_idn" placeholder="No. Identitas" class="form-control" />
+									<input type="text" id="e_idn"  name="e_idn" placeholder="No. Identitas" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
                                 <div class="col-sm-9">
-                                    <input type="file" id="e_file" required name="e_file" placeholder="" class="form-control" />
+                                    <input type="file" id="e_file" name="e_file" placeholder="" class="form-control" />
                                 </div>
                             </div> 
-							<!-- <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Proposal </label>
-                                <div class="col-sm-9">
-                                    <input type="file" id="e_proposal" required name="e_proposal" placeholder="" class="form-control" />
-                                </div>
-                            </div>  -->
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kewarganegaraan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Kewarganegaraan </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_warganegara" id="e_warganegara">
+									<select class="form-control" required name="e_warganegara" id="e_warganegara">
 										<option value="">-- Pilih --</option>
 										<option value="WNA">WNA</option>
 										<option value="WNI">WNI</option>
@@ -464,21 +443,21 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tempat Lahir </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Tempat Lahir </label>
 								<div class="col-sm-6">
 									<input type="text" id="e_tempat_lahir" required name="e_tempat_lahir" placeholder="Tempat Lahir" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal lahir </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <b>*</b> Tanggal lahir </label>
 								<div class="col-sm-6">
 									<input type="date" id="e_tgl_lhr" required name="e_tgl_lhr" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Kelamin </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Jenis Kelamin </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_jk" id="e_jk">
+									<select class="form-control" required name="e_jk" id="e_jk">
 										<option value="">-- Pilih Kelamin --</option>
 										<option value="L">Laki - Laki</option>
 										<option value="P">Perempuan</option>
@@ -486,9 +465,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Muzaki </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <b>*</b> Jenis Muzaki </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_jenis_m" id="e_jenis_m">
+									<select class="form-control" required name="e_jenis_m" id="e_jenis_m">
 										<option value="0">-- Pilih --</option>
 										<option value="Individu">Individu</option>
 										<option value="Lembaga">Lembaga</option>
@@ -496,9 +475,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pekerjaan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Pekerjaan </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_kerja" id="e_kerja">
+									<select class="form-control" required name="e_kerja" id="e_kerja">
 										<option value="">--Pilih--</option>
 										<?php foreach ($mypekerjaan as $value) { ?>
 											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
@@ -511,8 +490,7 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Status Pernikahan </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="e_status" id="e_status">
-										<option value="">-- Pilih Status --</option>
-										<option value="1">Lajang</option>
+										<option value="1">Belum Menikah</option>
 										<option value="2">Menikah</option>
 									</select>
 								</div>
@@ -572,9 +550,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Staus Rumah </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <b>*</b> Staus Rumah </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="e_kepemilikan" id="e_kepemilikan">
+									<select class="form-control" required name="e_kepemilikan" id="e_kepemilikan">
 										<option value="">--Pilih--</option>
 										<?php foreach ($mykepemilikan as $value) { ?>
 											<option value=<?= $value['id'] ?>><?= $value['nama'] ?></option>
@@ -586,13 +564,13 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. Telp </label>
 								<div class="col-sm-6">
-									<input type="number" id="e_telp_mizakki" required name="e_telp_mizakki" placeholder="No. Telp" class="form-control" />
+									<input type="number" id="e_telp_mizakki"  name="e_telp_mizakki" placeholder="No. Telp" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Fax </label>
 								<div class="col-sm-6">
-									<input type="number" id="e_fax_muzakki" required name="e_fax_muzakki" placeholder="FAX" class="form-control" />
+									<input type="number" id="e_fax_muzakki"  name="e_fax_muzakki" placeholder="FAX" class="form-control" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -604,7 +582,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> E-mail </label>
 								<div class="col-sm-6">
-									<input type="email" id="e_email" required name="e_email" placeholder="E-mail" class="form-control" />
+									<input type="email" id="e_email"  name="e_email" placeholder="E-mail" class="form-control" />
 								</div>
 							</div>
 					</div>

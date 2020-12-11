@@ -49,12 +49,6 @@ if ($jabatan == 5) { ?>
 						Master Kategori Mustahik
 					</a>
 				</li>
-				<!-- <li class="">
-					<a href="<?= base_url() . 'zakat'; ?>">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Master Kategori Zakat
-					</a>
-				</li> -->
 				<li class="">
 					<a href="<?= base_url() . 'kepemilikan'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
@@ -168,17 +162,17 @@ if ($jabatan == 5) { ?>
 			</a>
 			<b class="arrow"></b>
 			<ul class="submenu">
-				<li class="">
+				<!-- <li class="">
 					<a href="<?= base_url() . 'penyaluranlangsung'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
 						Penyaluran Langsung
 					</a>
 					<b class="arrow"></b>
-				</li>
+				</li> -->
 				<li class="">
 					<a href="<?= base_url() . 'penyaluranprogram'; ?>">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Penyaluran Program
+						Penyaluran
 					</a>
 					<b class="arrow"></b>
 				</li>

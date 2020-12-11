@@ -101,7 +101,7 @@
 									<select class="form-control" name="penerimaan" id="penerimaan">
 										<option value="0">-- Pilih --</option>
 										<option value="Tunai">Tunai</option>
-										<option value="Angsuran">Angsuran</option>
+										<option value="Non Tunai">Non Tunai</option>
 									</select>
 								</div>
 							</div>
@@ -223,7 +223,7 @@
 									<select class="form-control" name="e_penerimaan" id="e_penerimaan">
 										<option value="0">-- Pilih --</option>
 										<option value="Tunai">Tunai</option>
-										<option value="Angsuran">Angsuran</option>
+										<option value="Non Tunai">Non Tunai</option>
 									</select>
 								</div>
 							</div>
