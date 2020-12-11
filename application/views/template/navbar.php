@@ -17,13 +17,15 @@ $jabatan = $this->session->userdata('jabatan');
 if ($jabatan == 5) {
 	echo "Administrator";
 } elseif ($jabatan == 4) {
-	echo "Staff";
+	echo "Wakil";
 } elseif ($jabatan == 3) {
 	echo "Bendahara";
 } elseif ($jabatan == 2) {
 	echo "Pimpinan";
+} elseif ($jabatan == 9) {
+	echo "Resepsionis";
 } else {
-	echo "Amil";
+	echo "Magang";
 }
 ?>
 </small>
