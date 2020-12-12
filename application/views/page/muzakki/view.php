@@ -244,29 +244,22 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Provinsi </label>
 								<div class="col-sm-9">
-									<select class="form-control" name="provinsi" id="provinsi" onchange="checkprovinsi()">
-										<option value="32">JAWA BARAT</option>
-										<?php foreach ($myprovinsi as $value) { ?>
-											<option value=<?= $value['kode'] ?>><?= $value['nama'] ?></option>
-										<?php }
-										?>
+									<select class="form-control" name="provinsi" id="provinsi">
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kabupaten / Kota </label>
-								<div class="col-sm-9" id="div_kabkot">
-									<!-- <select class="form-control" name="kab_kot" id="kab_kot" onchange="checkkota()"> -->
-									<input type="text" id="kab_kot" required name="kab_kot" class="form-control" />
-										<option value="32">KOTA BEKASI</option>
-										<option value="32">KOTA BEKASI</option>
+								<div class="col-sm-9">
+								<select class="form-control" name="kab_kot" id="kab_kot">
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kecamatan </label>
 								<div class="col-sm-9">
-									<input type="text" id="kec" required name="kec" class="form-control" />
+								<select class="form-control" name="kec" id="kec">
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -533,24 +526,23 @@
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Provinsi </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="e_provinsi" id="e_provinsi">
-										<option value="">--Pilih--</option>
-										<?php foreach ($myprovinsi as $value) { ?>
-											<option value=<?= $value['id'] ?>><?= $value['proptbpro'] ?></option>
-										<?php }
-										?>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kabupaten / Kota </label>
 								<div class="col-sm-9">
-									<input type="text" id="e_kab_kot" required name="e_kab_kot" class="form-control" />
+									<select class="form-control" name="e_kab_kot" id="e_kab_kot">
+									<option value=''>--Pilih Data --</option>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kecamatan </label>
 								<div class="col-sm-9">
-									<input type="text" id="e_kec" required name="e_kec" class="form-control" />
+									<select class="form-control" name="e_kec" id="e_kec">
+									<option value=''>--Pilih Data --</option>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -631,13 +623,14 @@
 		<thead>
 			<tr>
 				<th>No</th>
-				<th>ID Muzakki</th>
+				<th>Nama Muzaki</th>
+				<th>No Antrian</th>
 				<th>NPWP</th>
 				<th>Tanggal Registrasi</th>
 				<th>Jenis Muzaki</th>
-				<th>Nama Muzaki</th>
 				<th>Foto</th>
 				<th>Alamat</th>
+				<th>Detail</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -646,16 +639,12 @@
 	</table>
 </div>
 <script type="text/javascript">
-	$('select').select2({
-		width: '100%',
-		placeholder: "Pilih",
-		allowClear: true
-	});
-	$('#tipe_identitas').select2({
-		width: '100%',
-		placeholder: "Pilih",
-		allowClear: true
-	});
+
+	// $('#tipe_identitas').select2({
+	// 	width: '100%',
+	// 	placeholder: "Pilih",
+	// 	allowClear: true
+	// });
 
 	$('#warganegara').select2({
 		width: '100%',
@@ -828,30 +817,6 @@
 				email: {
 					required: false,
 				},
-				website: {
-					required: false,
-				},
-				porposal: {
-					required: false,
-				},
-				kode_pos: {
-					required: false,
-				},
-				fax_muzakki: {
-					required: false,
-				},
-				telp_mizakki: {
-					required: false,
-				},
-				hp_muzakki: {
-					required: false,
-				},
-				email: {
-					required: false,
-				},
-				website: {
-					required: false,
-				},
 			},
 			submitHandler: function(form) {
 				formdata = new FormData(form);
@@ -913,15 +878,6 @@
 				e_email: {
 					required: false,
 				},
-				e_website: {
-					required: false,
-				},
-				e_porposal: {
-					required: false,
-				},
-				// e_porposal: {
-				// 	required: false,
-				// },
 			},
 			submitHandler: function(form) {
 				formdata = new FormData(form);
@@ -956,9 +912,69 @@
 	$(document).ready(function() {
 		show_data();
 		$('#datatable_tabletools').DataTable();
+		$.ajax({
+			type: "POST",
+			url: "muzakki/showprovinsi",
+		}).done(function(data) {
+			$("#provinsi").html(data);
+			$("#e_provinsi").html(data);
+		});
 	});
 
-	//Simpan guru
+	$("#provinsi").change(function() {
+		var provinsi = $('#provinsi').val();
+		$.ajax({
+			type: "POST",
+			url: "mustahik/showkab",
+			data:{
+				provinsi:provinsi,
+			}
+		}).done(function(data) {
+			$("#kab_kot").html(data);
+		});
+	});
+
+	$("#kab_kot").change(function() {
+		var provinsi = $('#provinsi').val();
+		var cityid = $('#kab_kot').val();
+		$.ajax({
+			type: "POST",
+			url: "mustahik/showkec",
+			data:{
+				cityid:cityid,
+			}
+		}).done(function(data) {
+			$("#kec").html(data);
+		});
+	});
+
+	$("#e_provinsi").change(function() {
+		var provinsi = $('#e_provinsi').val();
+		$.ajax({
+			type: "POST",
+			url: "muzakki/showkab",
+			data:{
+				provinsi:provinsi,
+			}
+		}).done(function(data) {
+			$("#e_kab_kot").html(data);
+		});
+	});
+
+	$("#e_kab_kot").change(function() {
+		var provinsi = $('#e_provinsi').val();
+		var cityid = $('#e_kab_kot').val();
+		$.ajax({
+			type: "POST",
+			url: "muzakki/showkec",
+			data:{
+				cityid:cityid,
+			}
+		}).done(function(data) {
+			$("#e_kec").html(data);
+		});
+	});
+
 
 	$('#show_data').on('click', '.item_hapus', function() {
 		var id = $(this).data('id');
@@ -1039,7 +1055,8 @@
 				$('#e_status').val(data[0].status_pernikahan);
 				$('#e_pendidikan').val(data[0].status_pendidikan);
 				$('#e_alamat').val(data[0].alamat);
-				$('#e_provinsi').val(data[0].provinsi);
+				// $('#e_provinsi').val(data[0].provinsi);
+				getProvAPI(data[0].provinsi);
 				$('#e_kab_kot').val(data[0].kab_kota);
 				$('#e_kec').val(data[0].kecamatan);
 				$('#e_desa').val(data[0].desa_kelurahan);
@@ -1053,6 +1070,18 @@
 			}
 		});
 	});
+
+	function getProvAPI(provID) {
+		$.ajax({
+			type: "POST",
+			url: "muzakki/showprovinsibyid",
+			data:{
+				provinsi:provID,
+			}
+		}).done(function(data) {
+			$("#e_provinsi").html(data);
+		});
+	}
 
 	if ($("#formSearch").length > 0) {
 		$("#formSearch").validate({
@@ -1082,15 +1111,21 @@
 						var i = 0;
 						var no = 1;
 						for (i = 0; i < data.length; i++) {
+							var status = '<td class="text-center">' +
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-info " title="Add" data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-search bigger-120"></i> Detail' +
+							'</button> &nbsp' +
+							'</td>';
 							html += '<tr>' +
 								'<td class="text-center">' + no + '</td>' +
+								'<td>' + data[i].nama + '</td>' +
 								'<td>' + data[i].id + '</td>' +
 								'<td>' + data[i].npwp + '</td>' +
 								'<td>' + data[i].createdAt + '</td>' +
 								'<td>' + data[i].jenis_muzakki + '</td>' +
-								'<td>' + data[i].nama + '</td>' +
-								'<td ><a href="<?php echo site_url('/assets/image/muzakki/') ?>' + data[i].foto + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/muzakki/') ?>' + data[i].foto + '""></a></td>' +
+								'<td ><a href="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].foto+'"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].foto+'""></a></td>' +
 								'<td>' + data[i].alamat + '</td>' +
+								status +
 								'<td class="text-center">' +
 								'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
 								'<i class="ace-icon fa fa-pencil bigger-120"></i>' +
@@ -1126,6 +1161,8 @@
 		})
 	}
 
+	
+
 	//function show all Data
 	function show_data() {
 		$.ajax({
@@ -1138,15 +1175,21 @@
 				var i = 0;
 				var no = 1;
 				for (i = 0; i < data.length; i++) {
+					var status = '<td class="text-center">' +
+							'<button  href="#my-modal-detail" class="btn btn-xs btn-info " title="Add" data-id="' + data[i].id + '">' +
+							'<i class="ace-icon fa fa-search bigger-120"></i> Detail' +
+							'</button> &nbsp' +
+							'</td>';
 					html += '<tr>' +
 						'<td class="text-center">' + no + '</td>' +
+						'<td>' + data[i].nama + '</td>' +
 						'<td>' + data[i].id + '</td>' +
 						'<td>' + data[i].npwp + '</td>' +
 						'<td>' + data[i].createdAt + '</td>' +
 						'<td>' + data[i].jenis_muzakki + '</td>' +
-						'<td>' + data[i].nama + '</td>' +
-						'<td ><a href="<?php echo site_url('/assets/image/muzakki/') ?>' + data[i].foto + '"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/muzakki/') ?>' + data[i].foto + '""></a></td>' +
+						'<td ><a href="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].foto+'"> <img style="width:80px; height: 60px;" src="<?php echo site_url('/assets/image/muzakki/') ?>'+data[i].foto+'""></a></td>' +
 						'<td>' + data[i].alamat + '</td>' +
+						status +
 						'<td class="text-center">' +
 						'<button  href="#my-modal-edit" class="btn btn-xs btn-info item_edit" title="Edit" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-pencil bigger-120"></i>' +

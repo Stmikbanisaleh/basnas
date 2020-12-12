@@ -62,17 +62,6 @@
                                     <input type="password" class="form-control" required name="password" id="password" placeholder=""></textarea>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Level </label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="level" id="level">
-                                        <option value="">-- Pilih Program --</option>
-                                        <option value="operator">Operator</option>
-                                        <option value="kasir">Kasir</option>
-                                    </select>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

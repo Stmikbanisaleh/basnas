@@ -35,7 +35,7 @@ class Penyaluranprogram extends CI_Controller
 	{
 		$id = $this->input->get('id');
 		$urutan = +1;
-		$filename = "Bukti-pengajuan-proposal-". date('Y-m-d');
+		$filename = "Bukti-pengajuan-proposal-" . date('Y-m-d');
 		$data = array(
 			'my_data' => $this->model_penyaluranlangsung->laporan_approval('master_penyaluran', $id)->result(),
 			'no' => sprintf("%05s", $urutan++),
@@ -144,11 +144,66 @@ class Penyaluranprogram extends CI_Controller
 				'deskripsi' => $this->input->post('deskripsi'),
 				'petugas'	=> $this->session->userdata('nip')
 			);
-			$result = $this->model_penyaluranprogram->insert($data, 'master_penyaluran');
-			echo json_decode($result);
+			$validasi = $this->cek($data['pic']);
+			$isNew = $this->isNew($data['pic']);
+			if($isNew <= 0){
+				$result = $this->model_penyaluranprogram->insert($data, 'master_penyaluran');
+					echo json_decode($result);
+			} else {
+				if ($validasi >= 180) {
+					$cekByKK = $this->cekByKK($data['pic']);
+					if ($cekByKK >= 180) {
+						$result = $this->model_penyaluranprogram->insert($data, 'master_penyaluran');
+						echo json_decode($result);
+					}else {
+						echo json_decode(403);
+					}
+				} else {
+					echo json_decode(403);
+				}
+			}
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
+	}
+
+	private function cek($data)
+	{
+		$cek = $this->db->query("select createdAt from master_penyaluran where pic =" . $data . " order by createdAt desc limit 1")->result_array();
+		if(!empty($cek[0]['createdAt'])){
+			$date = new DateTime($cek[0]['createdAt']);
+			$now = new DateTime();
+			$result =  $date->diff($now)->format("%d");
+			return $result;
+		} else {
+			return 200;
+		}
+
+	}
+
+	private function isNew($data)
+	{
+		$result = $this->db->query("select b.no_kk from master_penyaluran a 
+		join master_mustahik b on a.pic=b.id
+		where a.pic =" . $data . " order by a.createdAt desc limit 1")->num_rows();
+		return $result;
+	}
+
+	private function cekByKK($data)
+	{
+		$cek = $this->db->query("select b.no_kk from master_penyaluran a 
+		join master_mustahik b on a.pic=b.id
+		where a.pic =" . $data . " order by a.createdAt desc limit 1")->result_array();
+		$cek2 = $this->db->query("select a.no_kk from master_mustahik a where a.no_kk = '" . $cek[0]['no_kk'] . "'")->result_array();
+
+		$cek3 = $this->db->query("select a.no_kk,a.createdAt from master_penyaluran a 
+		join master_mustahik b on a.pic=b.id
+		where a.pic =" . $data . " or b.no_kk = " . $cek2[0]['no_kk'] . " order by a.createdAt desc limit 1")->result_array();
+
+		$date = new DateTime($cek3[0]['createdAt']);
+		$now = new DateTime();
+		$result =  $date->diff($now)->format("%d");
+		return $result;
 	}
 
 	public function simpan2()
@@ -237,9 +292,9 @@ class Penyaluranprogram extends CI_Controller
 				$file_proposal = $upload_data['file_name'];
 			}
 
-			if($file_proposal!=null){
+			if ($file_proposal != null) {
 				$nama_proposal = $file_proposal;
-			}else{
+			} else {
 				$nama_proposal = $this->input->post('e_proposal_hide');
 			}
 
@@ -511,7 +566,7 @@ class Penyaluranprogram extends CI_Controller
 					if (!$value[4]) {
 						array_push($empty_message, "No at row "  . $keys . "Type harus di isi");
 					}
-					
+
 
 					if (!empty($empty_message)) {
 						$ret['msg'] = $empty_message;

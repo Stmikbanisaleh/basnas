@@ -14,6 +14,147 @@ class Muzakki extends CI_Controller
 		}
 	}
 
+	public function showprovinsi()
+	{
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => "https://api.rajaongkir.com/starter/province",
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "GET",
+			CURLOPT_HTTPHEADER => array(
+				"key: b0cca0b7827f71b3ffe565525c503f6e"
+			),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+
+		curl_close($curl);
+
+		if ($err) {
+			echo "cURL Error #:" . $err;
+		} else {
+			$data = json_decode($response, true);
+			$prov = $data['rajaongkir']['results'];
+		echo "<option value=''>--Pilih Data --</option>";
+		foreach ($prov as $key => $value) {
+		echo "<option value='" . $value['province_id'] . "'> " . $value['province'] . " </option>";
+		}
+		}
+	
+	}
+
+
+	public function showkab()
+	{
+		$province = $this->input->post('provinsi');
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => "https://api.rajaongkir.com/starter/city?province=$province",
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "GET",
+			CURLOPT_HTTPHEADER => array(
+				"key: ab093838b7365c96fb5a6d8683a8b32d"
+			),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+
+		curl_close($curl);
+
+		if ($err) {
+			echo "cURL Error #:" . $err;
+		} else {
+			$data = json_decode($response, true);
+			$prov = $data['rajaongkir']['results'];
+			echo "<option value=''>--Pilih Data --</option>";
+			foreach ($prov as $key => $value) {
+			echo "<option value='" . $value['city_id'] . "'> " .$value['type'] ." ". $value['city_name'] . " </option>";
+		}
+		}
+	}
+
+
+	public function showkec()
+	{
+		$province = $this->input->post('provinsi');
+		$cityid = $this->input->post('cityid');
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => "https://pro.rajaongkir.com/api/subdistrict?city=$cityid",
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "GET",
+			CURLOPT_HTTPHEADER => array(
+				"key: ab093838b7365c96fb5a6d8683a8b32d"
+			),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+
+		curl_close($curl);
+
+		if ($err) {
+			echo "cURL Error #:" . $err;
+		} else {
+			$data = json_decode($response, true);
+			$prov = $data['rajaongkir']['results'];
+			echo "<option value=''>--Pilih Data --</option>";
+			foreach ($prov as $key => $value) {
+			echo "<option value='" . $value['subdistrict_id'] . "'>  " . $value['subdistrict_name'] . " </option>";
+		}
+		}
+	}
+
+	public function showprovinsibyid()
+	{
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => "https://api.rajaongkir.com/starter/province",
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "GET",
+			CURLOPT_HTTPHEADER => array(
+				"key: b0cca0b7827f71b3ffe565525c503f6e"
+			),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+		curl_close($curl);
+
+		if ($err) {
+			echo "cURL Error #:" . $err;
+		} else {
+			$data = json_decode($response, true);
+			$prov = $data['rajaongkir']['results'];
+			echo "<option value=''>--Pilih Data --</option>";
+		foreach ($prov as $key => $value) {
+			echo "<option value='" . $value['province_id'] . "'> " . $value['province'] . " </option>";
+			}
+		}
+	
+	}
+
 	function render_view($data)
 	{
 		$this->template->load('template', $data); //Display Page

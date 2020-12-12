@@ -74,8 +74,42 @@ class Mustahik extends CI_Controller
 		));
 
 		$response = curl_exec($curl);
-		$err = curl_error($curl);
 
+		$err = curl_error($curl);
+		curl_close($curl);
+
+		if ($err) {
+			echo "cURL Error #:" . $err;
+		} else {
+			$data = json_decode($response, true);
+			$prov = $data['rajaongkir']['results'];
+		echo "<option value='0'>--Pilih Data --</option>";
+		foreach ($prov as $key => $value) {
+		echo "<option value='" . $value['province_id'] . "'> " . $value['province'] . " </option>";
+		}
+		}
+	
+	}
+
+	public function showprovinsibyid()
+	{
+		$province = $this->input->post('provinsi');
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => "https://api.rajaongkir.com/starter/province?id=$province",
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "GET",
+			CURLOPT_HTTPHEADER => array(
+				"key: b0cca0b7827f71b3ffe565525c503f6e"
+			),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
 		curl_close($curl);
 
 		if ($err) {
@@ -207,8 +241,7 @@ class Mustahik extends CI_Controller
 					'email'  => $this->input->post('email'),
 					'createdAt' => date('Y-m-d H:i:s')
 				);
-				$result = $this->model_mustahik->insert($data, 'master_mustahik');
-				echo json_decode($result);
+				
 			} else {
 				$data = array(
 					'tgl_reg'  => date('Y-m-d H:i:s'),
@@ -225,9 +258,11 @@ class Mustahik extends CI_Controller
 					'kewarganegaraan'  => $this->input->post('warganegara'),
 					'jenis_usaha'  => $this->input->post('ju'),
 					'alamat'  => $this->input->post('alamat'),
+
 					'provinsi'  => $this->input->post('provinsi'),
 					'kab_kota'  => $this->input->post('kab_kot'),
 					'kecamatan'  => $this->input->post('kec'),
+
 					'desa_kelurahan'  => $this->input->post('desa'),
 					'kode_pos'  => $this->input->post('kode_pos'),
 					'telp'  => $this->input->post('telp_mustahik'),
@@ -236,9 +271,9 @@ class Mustahik extends CI_Controller
 					'email'  => $this->input->post('email'),
 					'createdAt' => date('Y-m-d H:i:s')
 				);
-				$result = $this->model_mustahik->insert($data, 'master_mustahik');
-				echo json_decode($result);
 			}
+			$result = $this->model_mustahik->insert($data, 'master_mustahik');
+			echo json_decode($result);
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
