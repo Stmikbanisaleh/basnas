@@ -44,6 +44,28 @@ class Penyaluranprogram extends CI_Controller
 		$this->load->view('page/penyaluranprogram/buktipenerimaan', $data);
 	}
 
+	public function printkwitansi()
+	{
+		$id = $this->input->get('id');
+		$subprogram = $this->input->get('subprogram');
+		$data = array(
+			'id'	=> $id,
+			'subprogram'	=> $subprogram
+		);
+		$this->load->view('page/penyaluranprogram/kwitansipenyaluranhtml', $data);
+	}
+
+	public function printurutan()
+	{
+		$id = $this->input->get('id');
+		$subprogram = $this->input->get('subprogram');
+		$data = array(
+			'id'	=> $id,
+			'subprogram'	=> $subprogram
+		);
+		$this->load->view('page/penyaluranprogram/printurutan', $data);
+	}
+
 	public function index()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {

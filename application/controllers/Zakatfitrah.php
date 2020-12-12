@@ -267,4 +267,15 @@ class Zakatfitrah extends CI_Controller
 		);
 		$this->load->view('page/zakatfitrah/transaksi_zakatfitrah', $data);
 	}
+
+	public function printbuktizakat()
+	{
+		$id = $this->input->get('id');
+		$subprogram = $this->input->get('subprogram');
+		$data = array(
+			'id'	=> $id,
+			'subprogram'	=> $subprogram
+		);
+		$this->load->view('page/zakatfitrah/printbuktizakat', $data);
+	}
 }

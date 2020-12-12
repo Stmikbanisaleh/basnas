@@ -1082,8 +1082,11 @@
 						'<button class="btn btn-xs btn-danger item_hapus" title="Delete" data-id="' + data[i].id + '">' +
 						'<i class="ace-icon fa fa-trash-o bigger-120"></i>' +
 						'</button>' +
-						'<a target="_blank"  href="<?php echo base_url() . 'penyaluranlangsung/laporan_pdf?id=' ?>' + data[i].id +'" class="btn btn-xs btn-default" title="Print" data-id="' + data[i].id + '">' +
+						'<a target="_blank"  href="<?php echo base_url() . 'penyaluranprogram/printkwitansi?id=' ?>' + data[i].id +'" class="btn btn-xs btn-default" title="Print" data-id="' + data[i].id + '">' +
                                 '<i class="ace-icon fa fa-print bigger-120"></i>' +
+                                '</a>'+
+						'<a target="_blank"  href="<?php echo base_url() . 'penyaluranprogram/printurutan?id=' ?>' + data[i].id +'&subprogram='+ data[i].program +'" class="btn btn-xs btn-light" title="Print urutan" data-id="' + data[i].id + '">' +
+                                '<i class="ace-icon fa fa-print bigger-120"></i> Urutan' +
                                 '</a>'+
 						' &nbsp'+
 						'</td>' +

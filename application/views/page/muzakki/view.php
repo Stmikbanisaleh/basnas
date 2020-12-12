@@ -148,7 +148,6 @@
 								</div>
 							</div>
 							<div class="form-group">
-<<<<<<< HEAD
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
 								<div class="col-sm-9">
 									<input type="file" id="file" required name="file" placeholder="" class="form-control" />
@@ -160,13 +159,6 @@
                                     <input type="file" id="proposal" name="proposal" placeholder="" class="form-control" />
                                 </div>
                             </div>  -->
-=======
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <b>*</b> Foto </label>
-                                <div class="col-sm-9">
-                                    <input type="file" id="file" required name="file" placeholder="" class="form-control" />
-                                </div>
-                            </div> 
->>>>>>> b47e003af2a610f5fe96adeec766bc4e7a56558c
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Kewarganegaraan </label>
 								<div class="col-sm-9">
@@ -444,7 +436,6 @@
 								</div>
 							</div>
 							<div class="form-group">
-<<<<<<< HEAD
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
 								<div class="col-sm-9">
 									<input type="file" id="e_file" required name="e_file" placeholder="" class="form-control" />
@@ -456,13 +447,6 @@
                                     <input type="file" id="e_proposal" required name="e_proposal" placeholder="" class="form-control" />
                                 </div>
                             </div>  -->
-=======
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Foto </label>
-                                <div class="col-sm-9">
-                                    <input type="file" id="e_file" name="e_file" placeholder="" class="form-control" />
-                                </div>
-                            </div> 
->>>>>>> b47e003af2a610f5fe96adeec766bc4e7a56558c
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Kewarganegaraan </label>
 								<div class="col-sm-9">
