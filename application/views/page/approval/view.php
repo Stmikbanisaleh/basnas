@@ -1,10 +1,3 @@
-<!-- <div class="row">
-	<div class="col-xs-1">
-		<button href="#my-modal2" role="button" data-toggle="modal" class="btn btn-xs btn-success">
-			<a class="ace-icon fa fa-upload bigger-120"></a>Import Data
-		</button>
-	</div>
-</div> -->
 <br>
 <div id="my-modal2" class="modal fade" tabindex="-1">
 	<div class="modal-dialog">
@@ -117,6 +110,12 @@
 									</script>
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Komentar </label>
+								<div class="col-sm-9">
+									<textarea type="text" id="e_komentar" name="e_komentar"  class="form-control" ></textarea>
+								</div>
+							</div>
 					</div>
 				</div>
 			</div>
@@ -153,7 +152,7 @@
 				<th class="text-center">Diajukan</th>
 				<th class="text-center">Disetujui</th>
 				<th class="text-center">Deskripsi</th>
-				<th class="text-center">Proposal</th>
+				<th class="text-center">Komentar Ketua</th>
 				<th class="text-center">Status</th>
 				<th class="text-center">Tanggal</th>
 				<th class="text-center">Petugas</th>
@@ -300,6 +299,7 @@
 			success: function(data) {
 				$('#e_id').val(data[0].id);
 				$('#e_status').val(data[0].is_approve);
+				$('#e_komentar').val(data[0].komentar);
 				var a = ConvertFormatRupiah(data[0].jumlah_dana, 'Rp. ');
 				$('#total_diajukan').val(a);
 				var b = ConvertFormatRupiah(data[0].jumlah_dana_disetujui, 'Rp. ');
@@ -379,7 +379,7 @@
 						'<td>' + data[i].Nominal + '</td>' +
 						'<td>' + data[i].Nominal2 + '</td>' +
 						'<td>' + data[i].deskripsi + '</td>' +
-						'<td ><a href="<?php echo site_url('/assets/file/penyaluran/program/') ?>'+data[i].document_proposal+'"> Download Proposal</a></td>' +
+						'<td>' + data[i].komentar + '</td>' +
 						status +
 						'<td>' + data[i].createdAt + '</td>' +
 						'<td>' + data[i].petugasnama + '</td>' +

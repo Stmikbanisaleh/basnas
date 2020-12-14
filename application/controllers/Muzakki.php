@@ -16,144 +16,35 @@ class Muzakki extends CI_Controller
 
 	public function showprovinsi()
 	{
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => "https://api.rajaongkir.com/starter/province",
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => "",
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 30,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => "GET",
-			CURLOPT_HTTPHEADER => array(
-				"key: b0cca0b7827f71b3ffe565525c503f6e"
-			),
-		));
-
-		$response = curl_exec($curl);
-		$err = curl_error($curl);
-
-		curl_close($curl);
-
-		if ($err) {
-			echo "cURL Error #:" . $err;
-		} else {
-			$data = json_decode($response, true);
-			$prov = $data['rajaongkir']['results'];
-		echo "<option value=''>--Pilih Data --</option>";
-		foreach ($prov as $key => $value) {
-		echo "<option value='" . $value['province_id'] . "'> " . $value['province'] . " </option>";
+		$getprovinsi = $this->model_muzakki->getprovinsi()->result_array();
+		echo "<option value='0'>--Pilih Data --</option>";
+		foreach ($getprovinsi as $value) {
+			echo "<option value='" . $value['id'] . "'> ". $value['name'] . "</option>";
 		}
-		}
-	
 	}
 
 
 	public function showkab()
 	{
-		$province = $this->input->post('provinsi');
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => "https://api.rajaongkir.com/starter/city?province=$province",
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => "",
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 30,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => "GET",
-			CURLOPT_HTTPHEADER => array(
-				"key: ab093838b7365c96fb5a6d8683a8b32d"
-			),
-		));
-
-		$response = curl_exec($curl);
-		$err = curl_error($curl);
-
-		curl_close($curl);
-
-		if ($err) {
-			echo "cURL Error #:" . $err;
-		} else {
-			$data = json_decode($response, true);
-			$prov = $data['rajaongkir']['results'];
-			echo "<option value=''>--Pilih Data --</option>";
-			foreach ($prov as $key => $value) {
-			echo "<option value='" . $value['city_id'] . "'> " .$value['type'] ." ". $value['city_name'] . " </option>";
-		}
+		$provinsi = $this->input->post("provinsi");
+		$getkab = $this->model_muzakki->getkota($provinsi)->result_array();
+		echo "<option value='0'>--Pilih Data --</option>";
+		foreach ($getkab as $value) {
+			echo "<option value='" . $value['id'] . "'> ". $value['name'] . "</option>";
 		}
 	}
 
 
 	public function showkec()
 	{
-		$province = $this->input->post('provinsi');
-		$cityid = $this->input->post('cityid');
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => "https://pro.rajaongkir.com/api/subdistrict?city=$cityid",
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => "",
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 30,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => "GET",
-			CURLOPT_HTTPHEADER => array(
-				"key: ab093838b7365c96fb5a6d8683a8b32d"
-			),
-		));
-
-		$response = curl_exec($curl);
-		$err = curl_error($curl);
-
-		curl_close($curl);
-
-		if ($err) {
-			echo "cURL Error #:" . $err;
-		} else {
-			$data = json_decode($response, true);
-			$prov = $data['rajaongkir']['results'];
-			echo "<option value=''>--Pilih Data --</option>";
-			foreach ($prov as $key => $value) {
-			echo "<option value='" . $value['subdistrict_id'] . "'>  " . $value['subdistrict_name'] . " </option>";
-		}
+		$cityid = $this->input->post("cityid");
+		$getkec = $this->model_muzakki->getkec($cityid)->result_array();
+		echo "<option value='0'>--Pilih Data --</option>";
+		foreach ($getkec as $value) {
+			echo "<option value='" . $value['id'] . "'> ". $value['name'] . "</option>";
 		}
 	}
 
-	public function showprovinsibyid()
-	{
-		$curl = curl_init();
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => "https://api.rajaongkir.com/starter/province",
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => "",
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 30,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => "GET",
-			CURLOPT_HTTPHEADER => array(
-				"key: b0cca0b7827f71b3ffe565525c503f6e"
-			),
-		));
-
-		$response = curl_exec($curl);
-		$err = curl_error($curl);
-		curl_close($curl);
-
-		if ($err) {
-			echo "cURL Error #:" . $err;
-		} else {
-			$data = json_decode($response, true);
-			$prov = $data['rajaongkir']['results'];
-			echo "<option value=''>--Pilih Data --</option>";
-		foreach ($prov as $key => $value) {
-			echo "<option value='" . $value['province_id'] . "'> " . $value['province'] . " </option>";
-			}
-		}
-	
-	}
 
 	function render_view($data)
 	{
@@ -189,7 +80,7 @@ class Muzakki extends CI_Controller
 	public function simpan()
 	{
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
-			$config['upload_path'] = './assets/image/muzakki'; 
+			$config['upload_path'] = './assets/image/muzakki';
 			// $config['file_name'] = 'filename';
 			$config['overwrite'] = TRUE;
 			$config['encrypt_name'] = TRUE;
@@ -241,8 +132,7 @@ class Muzakki extends CI_Controller
 					$results = $this->model_muzakki->insert($datarek, 'master_rekening');
 				}
 				echo json_decode($result);
-
-			}else{
+			} else {
 				$data = array(
 					'tgl_reg'  => $this->input->post('tanggal'),
 					'nama'  => $this->input->post('nama'),
@@ -372,7 +262,37 @@ class Muzakki extends CI_Controller
 				$upload_data = $this->upload->data();
 				$file_name = $upload_data['file_name'];
 			}
-			if ($file_name==null) {
+			if ($file_name == null) {
+				$data = array(
+					'tgl_reg'  => $this->input->post('e_tanggal'),
+					'nama'  => $this->input->post('e_nama'),
+					'npwp'  => $this->input->post('e_npwp'),
+					'tipe_identitas'  => $this->input->post('e_tipe_identitas'),
+					'no_identitas'  => $this->input->post('e_idn'),
+					'kewarganegaraan'  => $this->input->post('e_warganegara'),
+					'jenis_muzakki'  => $this->input->post('e_jenis_m'),
+					'tmp_lhr'  => $this->input->post('e_tempat_lahir'),
+					'tgl_lhr'  => $this->input->post('e_tgl_lhr'),
+					'jenis_kelamin'  => $this->input->post('e_jk'),
+					'pekerjaan'  => $this->input->post('e_kerja'),
+					'status_pernikahan'  => $this->input->post('e_status'),
+					'status_pendidikan'  => $this->input->post('e_pendidikan'),
+					'alamat'  => $this->input->post('e_alamat'),
+					'provinsi'  => $this->input->post('e_provinsi'),
+					'kab_kota'  => $this->input->post('e_kab_kot'),
+					'kecamatan'  => $this->input->post('e_kec'),
+					'desa_kelurahan'  => $this->input->post('e_desa'),
+					'kode_pos'  => $this->input->post('e_kode_pos'),
+					'status_rumah'  => $this->input->post('e_kepemilikan'),
+					'telp'  => $this->input->post('e_telp_mizakki'),
+					'fax'  => $this->input->post('e_fax_muzakki'),
+					'handphone'  => $this->input->post('e_hp_muzakki'),
+					'email'  => $this->input->post('e_email'),
+					'updatedAt' => date('Y-m-d H:i:s')
+				);
+				$result = $this->model_muzakki->update($data_id, $data, 'master_muzakki');
+				echo json_decode($result);
+			} else {
 				$data = array(
 					'tgl_reg'  => $this->input->post('e_tanggal'),
 					'nama'  => $this->input->post('e_nama'),
@@ -403,40 +323,7 @@ class Muzakki extends CI_Controller
 				);
 				$result = $this->model_muzakki->update($data_id, $data, 'master_muzakki');
 				echo json_decode($result);
-			}else{
-				$data = array(
-					'tgl_reg'  => $this->input->post('e_tanggal'),
-					'nama'  => $this->input->post('e_nama'),
-					'npwp'  => $this->input->post('e_npwp'),
-					'tipe_identitas'  => $this->input->post('e_tipe_identitas'),
-					'no_identitas'  => $this->input->post('e_idn'),
-					'kewarganegaraan'  => $this->input->post('e_warganegara'),
-					'foto'	=> $file_name,
-					'jenis_muzakki'  => $this->input->post('e_jenis_m'),
-					'tmp_lhr'  => $this->input->post('e_tempat_lahir'),
-					'tgl_lhr'  => $this->input->post('e_tgl_lhr'),
-					'jenis_kelamin'  => $this->input->post('e_jk'),
-					'pekerjaan'  => $this->input->post('e_kerja'),
-					'status_pernikahan'  => $this->input->post('e_status'),
-					'status_pendidikan'  => $this->input->post('e_pendidikan'),
-					'alamat'  => $this->input->post('e_alamat'),
-					'provinsi'  => $this->input->post('e_provinsi'),
-					'kab_kota'  => $this->input->post('e_kab_kot'),
-					'kecamatan'  => $this->input->post('e_kec'),
-					'desa_kelurahan'  => $this->input->post('e_desa'),
-					'kode_pos'  => $this->input->post('e_kode_pos'),
-					'status_rumah'  => $this->input->post('e_kepemilikan'),
-					'telp'  => $this->input->post('e_telp_mizakki'),
-					'fax'  => $this->input->post('e_fax_muzakki'),
-					'handphone'  => $this->input->post('e_hp_muzakki'),
-					'email'  => $this->input->post('e_email'),
-					'updatedAt' => date('Y-m-d H:i:s')
-				);
-				$result = $this->model_muzakki->update($data_id, $data, 'master_muzakki');
-				echo json_decode($result);
-
 			}
-			
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}
@@ -461,9 +348,9 @@ class Muzakki extends CI_Controller
 		set_include_path(APPPATH . 'third_party/PHPExcel/Classes/');
 		include 'PHPExcel/IOFactory.php';
 		$objPHPExcel = new PHPExcel();
-		$pekerjaan = $this->model_muzakki->viewOrdering('master_pekerjaan','id','asc')->result_array();
-		$pendidikan = $this->model_muzakki->viewOrdering('master_pendidikan','id','asc')->result_array();
-		$kepemilikan = $this->model_muzakki->viewOrdering('master_kepemilikan','id','asc')->result_array();
+		$pekerjaan = $this->model_muzakki->viewOrdering('master_pekerjaan', 'id', 'asc')->result_array();
+		$pendidikan = $this->model_muzakki->viewOrdering('master_pendidikan', 'id', 'asc')->result_array();
+		$kepemilikan = $this->model_muzakki->viewOrdering('master_kepemilikan', 'id', 'asc')->result_array();
 		$data = $pekerjaan;
 		$no = 1;
 		$row = 2;
@@ -495,7 +382,7 @@ class Muzakki extends CI_Controller
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('V1', 'Fax');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('W1', 'Handphone');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('X1', 'Email');
-				
+
 
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A2', '2020-10-06');
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B2', 'John Doe');
@@ -577,7 +464,7 @@ class Muzakki extends CI_Controller
 					$row++;
 				}
 
-				foreach ($pendidikan as $dataExcelP){
+				foreach ($pendidikan as $dataExcelP) {
 					$idpendidikan = $dataExcelP['id'];
 					$namapendidikan = $dataExcelP['nama'];
 
@@ -591,7 +478,7 @@ class Muzakki extends CI_Controller
 					$row2++;
 				}
 
-				foreach ($kepemilikan as $dataExcelK){
+				foreach ($kepemilikan as $dataExcelK) {
 					$idkepemilikan = $dataExcelK['id'];
 					$namakepemilikan = $dataExcelK['nama'];
 
@@ -615,7 +502,7 @@ class Muzakki extends CI_Controller
 			}
 		}
 	}
-	
+
 
 	public function import()
 	{
@@ -754,9 +641,9 @@ class Muzakki extends CI_Controller
 							'createdAt' => date('Y-m-d H:i:s')
 						);
 						$cek = $this->model_muzakki->view_where_noisdelete($data_id, 'master_muzakki')->num_rows();
-						if($cek > 0) {
+						if ($cek > 0) {
 							$result = $this->model_muzakki->update($data_id, $arrayCustomerQuote, 'master_muzakki');
-						}else{
+						} else {
 							$result = $this->model_muzakki->insert($arrayCustomerQuote, 'master_muzakki');
 							$id = $this->db->insert_id();
 							$datarek = array(
@@ -770,8 +657,8 @@ class Muzakki extends CI_Controller
 				}
 			}
 			if ($result) {
-                $result = 1;
-            }
+				$result = 1;
+			}
 			echo json_encode($result);
 		} else {
 			$result = 0;
@@ -785,7 +672,6 @@ class Muzakki extends CI_Controller
 
 			$myprovinsi = $this->model_muzakki->getkota($this->input->post('id_provinsi'))->result_array();
 			echo json_encode($myprovinsi);
-
 		} else {
 			$this->load->view('page/login'); //Memanggil function render_view
 		}

@@ -651,6 +651,24 @@
 	</table>
 </div>
 <script type="text/javascript">
+	$('#kab_kot').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
+	$('#provinsi').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
+	$('#kec').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+
 	$('kat_mustahik').select2({
 		width: '100%',
 		placeholder: "Pilih",

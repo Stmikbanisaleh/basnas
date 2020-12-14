@@ -45,7 +45,22 @@ class Model_mustahik extends CI_model
 
 	public function getprovinsi()
 	{
-		return $this->db->query("SELECT id, proptbpro from master_provinsi group by proptbpro order by proptbpro asc");
+		return $this->db->query("SELECT id,name FROM provinces ORDER BY name");
+	}
+
+	public function getprovinsiById($id)
+	{
+		return $this->db->query("SELECT id,name FROM provinces where id = $id ORDER BY name");
+	}
+
+	public function getkota($id)
+	{
+		return $this->db->query("SELECT id,name FROM regencies WHERE province_id ='$id' ORDER BY name");
+	}
+
+	public function getkec($id)
+	{
+		return $this->db->query("SELECT id,name FROM districts WHERE regency_id ='$id' ORDER BY name");
 	}
 
 	public function viewWhereOrdering($table, $data, $order, $ordering)
