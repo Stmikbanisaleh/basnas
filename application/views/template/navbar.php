@@ -24,8 +24,8 @@ if ($jabatan == 5) {
 	echo "Pimpinan";
 } elseif ($jabatan == 9) {
 	echo "Resepsionis";
-} else {
-	echo "Magang";
+} elseif($jabatan == 10){
+	echo "Staff Pendistribusian";
 }
 ?>
 </small>

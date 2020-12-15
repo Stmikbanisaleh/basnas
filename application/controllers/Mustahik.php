@@ -32,7 +32,6 @@ class Mustahik extends CI_Controller
 		if ($this->session->userdata('username') != null && $this->session->userdata('nama') != null) {
 			$mypekerjaan = $this->model_mustahik->viewOrdering('master_pekerjaan', 'id', 'asc')->result_array();
 			$mypendidikan = $this->model_mustahik->viewOrdering('master_pendidikan', 'id', 'asc')->result_array();
-			$myprovinsi = $this->model_mustahik->getprovinsi()->result_array();
 			$mykepemilikan = $this->model_mustahik->viewOrdering('master_kepemilikan', 'id', 'asc')->result_array();
 			$mynama = $this->model_mustahik->viewOrdering('master_mustahik', 'nama', 'asc')->result_array();
 			$mykatmustahik = $this->model_mustahik->viewOrdering('master_kategori_mustahik', 'nama', 'asc')->result_array();
@@ -44,7 +43,6 @@ class Mustahik extends CI_Controller
 				'js' 			=> 'js_file',
 				'mypekerjaan'		=> $mypekerjaan,
 				'mypendidikan'		=> $mypendidikan,
-				'myprovinsi'		=> $myprovinsi,
 				'mykepemilikan'		=> $mykepemilikan,
 				'mynama'		=> $mynama,
 				'mykatmustahik' => $mykatmustahik,
@@ -58,143 +56,31 @@ class Mustahik extends CI_Controller
 
 	public function showprovinsi()
 	{
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => "https://api.rajaongkir.com/starter/province",
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => "",
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 30,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => "GET",
-			CURLOPT_HTTPHEADER => array(
-				"key: b0cca0b7827f71b3ffe565525c503f6e"
-			),
-		));
-
-		$response = curl_exec($curl);
-
-		$err = curl_error($curl);
-		curl_close($curl);
-
-		if ($err) {
-			echo "cURL Error #:" . $err;
-		} else {
-			$data = json_decode($response, true);
-			$prov = $data['rajaongkir']['results'];
+		$getprovinsi = $this->model_mustahik->getprovinsi()->result_array();
 		echo "<option value='0'>--Pilih Data --</option>";
-		foreach ($prov as $key => $value) {
-		echo "<option value='" . $value['province_id'] . "'> " . $value['province'] . " </option>";
+		foreach ($getprovinsi as $value) {
+			echo "<option value='" . $value['id'] . "'> ". $value['name'] . "</option>";
 		}
-		}
-	
 	}
-
-	public function showprovinsibyid()
-	{
-		$province = $this->input->post('provinsi');
-		$curl = curl_init();
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => "https://api.rajaongkir.com/starter/province?id=$province",
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => "",
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 30,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => "GET",
-			CURLOPT_HTTPHEADER => array(
-				"key: b0cca0b7827f71b3ffe565525c503f6e"
-			),
-		));
-
-		$response = curl_exec($curl);
-		$err = curl_error($curl);
-		curl_close($curl);
-
-		if ($err) {
-			echo "cURL Error #:" . $err;
-		} else {
-			$data = json_decode($response, true);
-			$prov = $data['rajaongkir']['results'];
-		echo "<option value='0'>--Pilih Data --</option>";
-		foreach ($prov as $key => $value) {
-		echo "<option value='" . $value['province_id'] . "'> " . $value['province'] . " </option>";
-		}
-		}
-	
-	}
-
 
 	public function showkab()
 	{
-		$province = $this->input->post('provinsi');
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => "https://api.rajaongkir.com/starter/city?province=$province",
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => "",
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 30,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => "GET",
-			CURLOPT_HTTPHEADER => array(
-				"key: ab093838b7365c96fb5a6d8683a8b32d"
-			),
-		));
-
-		$response = curl_exec($curl);
-		$err = curl_error($curl);
-
-		curl_close($curl);
-
-		if ($err) {
-			echo "cURL Error #:" . $err;
-		} else {
-			$data = json_decode($response, true);
-			$prov = $data['rajaongkir']['results'];
-			echo "<option value='0'>--Pilih Data --</option>";
-			foreach ($prov as $key => $value) {
-			echo "<option value='" . $value['city_id'] . "'> " .$value['type'] ." ". $value['city_name'] . " </option>";
-		}
+		$provinsi = $this->input->post("provinsi");
+		$getkab = $this->model_mustahik->getkota($provinsi)->result_array();
+		echo "<option value='0'>--Pilih Data --</option>";
+		foreach ($getkab as $value) {
+			echo "<option value='" . $value['id'] . "'> ". $value['name'] . "</option>";
 		}
 	}
 
 
 	public function showkec()
 	{
-		$province = $this->input->post('provinsi');
-		$cityid = $this->input->post('cityid');
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => "https://pro.rajaongkir.com/api/subdistrict?city=$cityid",
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => "",
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 30,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => "GET",
-			CURLOPT_HTTPHEADER => array(
-				"key: ab093838b7365c96fb5a6d8683a8b32d"
-			),
-		));
-
-		$response = curl_exec($curl);
-		$err = curl_error($curl);
-
-		curl_close($curl);
-
-		if ($err) {
-			echo "cURL Error #:" . $err;
-		} else {
-			$data = json_decode($response, true);
-			$prov = $data['rajaongkir']['results'];
-			echo "<option value='0'>--Pilih Data --</option>";
-			foreach ($prov as $key => $value) {
-			echo "<option value='" . $value['subdistrict_id'] . "'>  " . $value['subdistrict_name'] . " </option>";
-		}
+		$cityid = $this->input->post("cityid");
+		$getkec = $this->model_mustahik->getkec($cityid)->result_array();
+		echo "<option value='0'>--Pilih Data --</option>";
+		foreach ($getkec as $value) {
+			echo "<option value='" . $value['id'] . "'> ". $value['name'] . "</option>";
 		}
 	}
 
@@ -258,11 +144,9 @@ class Mustahik extends CI_Controller
 					'kewarganegaraan'  => $this->input->post('warganegara'),
 					'jenis_usaha'  => $this->input->post('ju'),
 					'alamat'  => $this->input->post('alamat'),
-
 					'provinsi'  => $this->input->post('provinsi'),
 					'kab_kota'  => $this->input->post('kab_kot'),
 					'kecamatan'  => $this->input->post('kec'),
-
 					'desa_kelurahan'  => $this->input->post('desa'),
 					'kode_pos'  => $this->input->post('kode_pos'),
 					'telp'  => $this->input->post('telp_mustahik'),

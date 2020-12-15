@@ -640,12 +640,18 @@
 </div>
 <script type="text/javascript">
 
-	// $('#tipe_identitas').select2({
-	// 	width: '100%',
-	// 	placeholder: "Pilih",
-	// 	allowClear: true
-	// });
+	$('#kab_kot').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
 
+	$('#kec').select2({
+		width: '100%',
+		placeholder: "Pilih",
+		allowClear: true
+	});
+	
 	$('#warganegara').select2({
 		width: '100%',
 		placeholder: "Pilih",
@@ -937,7 +943,7 @@
 		var provinsi = $('#provinsi').val();
 		$.ajax({
 			type: "POST",
-			url: "mustahik/showkab",
+			url: "muzakki/showkab",
 			data:{
 				provinsi:provinsi,
 			}
@@ -951,7 +957,7 @@
 		var cityid = $('#kab_kot').val();
 		$.ajax({
 			type: "POST",
-			url: "mustahik/showkec",
+			url: "muzakki/showkec",
 			data:{
 				cityid:cityid,
 			}
@@ -1086,7 +1092,7 @@
 	function getProvAPI(provID) {
 		$.ajax({
 			type: "POST",
-			url: "muzakki/showprovinsibyid",
+			url: "muzakki/showprovinsi",
 			data:{
 				provinsi:provID,
 			}

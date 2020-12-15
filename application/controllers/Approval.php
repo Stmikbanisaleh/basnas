@@ -115,6 +115,7 @@ class Approval extends CI_Controller
 				'is_approve'  => $this->input->post('e_status'),
 				'jumlah_dana_disetujui'  => $this->input->post('e_total_v'),
 				'petugas_approve'  => $this->session->userdata('nip'),
+				'komentar'  => $this->input->post('e_komentar'),
 				'updatedAt' => date('Y-m-d H:i:s'),
 			);
 			$result = $this->model_approval->update($data_id, $data, 'master_penyaluran');
