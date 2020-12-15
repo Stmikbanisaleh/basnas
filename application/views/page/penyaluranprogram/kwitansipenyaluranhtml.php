@@ -227,10 +227,10 @@
                 </div>
                 <div class="ttdblok3">
                     Bekasi, ........ 20 ....
-                    <br>
+                    <br>Penerima
                     <br><br><br><br><br><br>
-                    <div class="font-size06em">
-                        *Putih untuk diserahkan, hijau untuk keuangan
+                    <div class="font-size1em">
+                        (.............................................)
                     </div>
                 </div>
             </div>

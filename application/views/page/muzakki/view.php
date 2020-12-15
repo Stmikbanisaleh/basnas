@@ -914,11 +914,23 @@
 		$('#datatable_tabletools').DataTable();
 		$.ajax({
 			type: "POST",
-			url: "muzakki/showprovinsi",
-		}).done(function(data) {
-			$("#provinsi").html(data);
-			$("#e_provinsi").html(data);
+			url: "<?php echo base_url('muzakki/getprovinsi') ?>",
+			processData: false,
+			contentType: false,
+			cache: false,
+			async: false,
+			data: formdata,
+			success: function(data) {
+				
+			}
 		});
+		// $.ajax({
+		// 	type: "POST",
+		// 	url: "muzakki/showprovinsi",
+		// }).done(function(data) {
+		// 	$("#provinsi").html(data);
+		// 	$("#e_provinsi").html(data);
+		// });
 	});
 
 	$("#provinsi").change(function() {

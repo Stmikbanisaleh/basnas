@@ -43,11 +43,6 @@ class Model_mustahik extends CI_model
 		ORDER BY mm.id desc");
 	}
 
-	public function getprovinsi()
-	{
-		return $this->db->query("SELECT id, proptbpro from master_provinsi group by proptbpro order by proptbpro asc");
-	}
-
 	public function viewWhereOrdering($table, $data, $order, $ordering)
 	{
 		$this->db->where($data);
@@ -107,5 +102,20 @@ class Model_mustahik extends CI_model
 		);
 		$result = $this->db->insert('tbpengawas', $data);
 		return $result;
+	}
+
+	public function getprovinsi()
+	{
+		return $this->db->query("SELECT kode,nama FROM wilayah_2020 WHERE CHAR_LENGTH(kode)=2 ORDER BY nama");
+	}
+
+	public function getkota($id)
+	{
+		return $this->db->query("SELECT kode,nama FROM wilayah_2020 WHERE LEFT(kode,'2')='$id' AND CHAR_LENGTH(kode)=5 ORDER BY nama");
+	}
+
+	public function getkecamatan()
+	{
+		return $this->db->query("SELECT kode,nama FROM wilayah_2020 WHERE LEFT(kode,'5')='32.03' AND CHAR_LENGTH(kode)=8 ORDER BY nama");
 	}
 }

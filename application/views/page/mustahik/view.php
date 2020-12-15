@@ -832,11 +832,34 @@
 		$('#datatable_tabletools').DataTable();
 		$.ajax({
 			type: "POST",
-			url: "mustahik/showprovinsi",
-		}).done(function(data) {
-			$("#provinsi").html(data);
-			$("#e_provinsi").html(data);
+			url: "<?php echo base_url('mustahik/update') ?>",
+			data: formdata,
+			processData: false,
+			contentType: false,
+			cache: false,
+			async: false,
+			success: function(data) {
+				$('#modalEdit').modal('hide');
+				if (data == 1) {
+					document.getElementById("formEdit").reset();
+					swalEditSuccess();
+					show_data();
+				} else if (data == 401) {
+					document.getElementById("formEdit").reset();
+					swalIdDouble();
+				} else {
+					document.getElementById("formEdit").reset();
+					swalEditFailed();
+				}
+			}
 		});
+		// $.ajax({
+		// 	type: "POST",
+		// 	url: "mustahik/showprovinsi",
+		// }).done(function(data) {
+		// 	$("#provinsi").html(data);
+		// 	$("#e_provinsi").html(data);
+		// });
 	});
 
 	//Simpan guru
