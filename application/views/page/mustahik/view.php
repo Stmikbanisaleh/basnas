@@ -189,10 +189,10 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Pendapatan Bulananan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendapatan Bulananan </label>
 								<div class="col-sm-6">
-									<input type="text" id="pendapatan" required name="pendapatan" placeholder="Pendapatan Bulanan" class="form-control" />
-									<input type="hidden" id="pendapatan_v" required name="pendapatan_v" />
+									<input type="text" id="pendapatan"  name="pendapatan" placeholder="Pendapatan Bulanan" class="form-control" />
+									<input type="hidden" id="pendapatan_v"  name="pendapatan_v" />
 									<script language="JavaScript">
 										var rupiah = document.getElementById('pendapatan');
 										rupiah.addEventListener('keyup', function(e) {
@@ -244,16 +244,16 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. Identitas </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> No. Identitas </label>
 								<div class="col-sm-9">
-									<input type="text" id="idn" maxlength="16" name="idn" placeholder="No. Identitas" class="form-control" />
+									<input type="text" id="idn" maxlength="16" name="idn" required placeholder="No. Identitas" class="form-control" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> No. KK </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> No. KK </label>
 								<div class="col-sm-9">
-									<input type="text" id="no_kk" name="no_kk" placeholder="No. KK" class="form-control" />
+									<input type="text" id="no_kk" name="no_kk" required placeholder="No. KK" class="form-control" />
 								</div>
 							</div>
 
@@ -265,18 +265,20 @@
 							</div>
 
 							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Tanggal lahir </label>
+								<div class="col-sm-6">
+									<input type="date" id="tgl_lhr" required name="tgl_lhr" class="form-control" />
+								</div>
+							</div>
+
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Foto </label>
 								<div class="col-sm-9">
 									<input type="file" id="foto" required name="foto" placeholder="" class="form-control" />
 								</div>
 							</div>
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Tanggal lahir </label>
-								<div class="col-sm-6">
-									<input type="date" id="tgl_lhr" required name="tgl_lhr" class="form-control" />
-								</div>
-							</div>
+						
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Jenis Kelamin </label>
 								<div class="col-sm-9">
@@ -298,7 +300,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Usaha </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Jenis Program </label>
 								<div class="col-sm-9">
 									<select class="form-control" name="ju" id="ju">
 										<option value="">--Pilih--</option>
@@ -710,6 +712,7 @@
 		placeholder: "Pilih",
 		allowClear: true
 	});
+	
 	if ($("#formImport").length > 0) {
 		$("#formImport").validate({
 			errorClass: "my-error-class",
