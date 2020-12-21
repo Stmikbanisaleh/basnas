@@ -170,7 +170,7 @@ var myChart = new Chart(asd, {
 						if($i < $hasilgrafikMasuk){
 							echo '"'.$rows['bulan_ind'].'",';
 						}else{
-							echo '"'.$rows['bulan_ind'].'"';
+							echo $rows['bulan_ind'];
 						}
 					}
 				?>
@@ -246,7 +246,7 @@ var myChart = new Chart(ctx, {
 						if($i < $hasilgetGrafikKeluar){
 							echo '"'.$rows['bulan_ind'].'",';
 						}else{
-							echo '"'.$rows['bulan_ind'].'"';
+							echo $rows['bulan_ind'];
 						}
 					}
 				?>

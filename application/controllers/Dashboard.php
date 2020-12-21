@@ -31,6 +31,8 @@ class Dashboard extends CI_Controller
 			$countinfaq = $this->Model_dashboard->getInfaq();
 			$grafikMasuk = $this->Model_dashboard->getGrafikMasuk()->result_array();
 			$getGrafikKeluar = $this->Model_dashboard->getGrafikKeluar()->result_array();
+
+			// print_r($getGrafikKeluar);exit;
 			$data = array(
 				'page_content' 	=> 'dashboard',
 				'ribbon' 		=> '<li class="active">Dashboard</li>',
