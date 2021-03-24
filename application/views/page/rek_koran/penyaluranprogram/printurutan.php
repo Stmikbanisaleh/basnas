@@ -26,7 +26,7 @@
         <b>BAZNAS KOTA BEKASI</b>
     </div>
     <div class="text-center font-size07">
-        Jl. Jend. Ahmad Yani Blok B No.11 Kayuringin Jaya
+        Jl. Jend. Ahmad Yani Blok B No.11 Kayuringin Jaya (021) 8896 4877
     </div>
     <hr>
     <div class="font-size07">
