@@ -189,7 +189,7 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Pendapatan Bulananan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendapatan Bulananan </label>
 								<div class="col-sm-6">
 									<input type="text" id="pendapatan" required name="pendapatan" placeholder="Pendapatan Bulanan" class="form-control" />
 									<input type="hidden" id="pendapatan_v" required name="pendapatan_v" />
@@ -424,7 +424,7 @@
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><b>*</b> Pendapatan Bulananan </label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pendapatan Bulananan </label>
 								<div class="col-sm-6">
 									<input type="text" id="e_pendapatan" required name="e_pendapatan" placeholder="Pendapatan Bulanan" class="form-control" />
 									<input type="hidden" id="e_pendapatan_v" required name="e_pendapatan_v" />
